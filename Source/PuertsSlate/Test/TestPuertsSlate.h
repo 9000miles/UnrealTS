@@ -33,6 +33,8 @@ protected:
 
 	void OnStart() override;
 
+	void AddToWidget();
+
 	void StartScript();
 private:
 	TSharedPtr<STextBlock> MyTextBlock;

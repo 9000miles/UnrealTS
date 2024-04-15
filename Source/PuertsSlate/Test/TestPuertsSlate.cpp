@@ -37,6 +37,7 @@ void UTestPuertsSlateGameInstance::CopyFiles()
 void UTestPuertsSlateGameInstance::SetTestWidget(TSharedPtr<SWidget> Widget)
 {
 	TestWidget = Widget;
+	AddToWidget();
 }
 
 TSharedPtr<STextBlock> UTestPuertsSlateGameInstance::GetTextBlock()
@@ -49,6 +50,14 @@ void UTestPuertsSlateGameInstance::OnStart()
 	Super::OnStart();
 	StartScript();
 
+	AddToWidget();
+
+
+}
+
+
+void UTestPuertsSlateGameInstance::AddToWidget()
+{
 	if (!TestWidget.IsValid())
 	{
 		MyTextBlock = SNew(STextBlock)
@@ -59,9 +68,6 @@ void UTestPuertsSlateGameInstance::OnStart()
 	}
 
 	this->GetGameViewportClient()->AddViewportWidgetContent(TestWidget.ToSharedRef());
-
-
-
 }
 
 void UTestPuertsSlateGameInstance::StartScript()

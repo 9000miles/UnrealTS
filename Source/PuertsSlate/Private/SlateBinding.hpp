@@ -67,9 +67,9 @@ UsingTSharedPtr(FVector);
 struct SButtonExtension
 {
 	static FName WidgetType;
-	static TSharedPtr<SButton> Create(FJsObject Object)
+	static TSharedPtr<SButton> Create(FJsObject Arguments)
 	{
-		auto Arguments = Object.Get<FJsObject>("args");
+		//auto Arguments = Object.Get<FJsObject>("args");
 
 		auto ClickFunc = Arguments.Get< std::function<void()>>("OnClicked");
 		FString  Text = FString(Arguments.Get<std::string>("Text").c_str());
@@ -86,7 +86,7 @@ __declspec(selectany) FName SButtonExtension::WidgetType = "SButton";
 struct STextBlockExtension
 {
 	static FName WidgetType;
-	static TSharedPtr<STextBlock> Create(/*CallbackInfoType info, */FJsObject Object)
+	static TSharedPtr<STextBlock> Create(/*CallbackInfoType info, */FJsObject Arguments)
 	{
 		//v8::Isolate* Isolate = info.GetIsolate();
 		//v8::Isolate::Scope IsolateScope(Isolate);
@@ -94,10 +94,10 @@ struct STextBlockExtension
 		//v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
 		//v8::Context::Scope ContextScope(Context);
 
-		int xx = Object.Get<int>("xx");
-		std::string cp1 = Object.Get<std::string>("cp1");
+		//int xx = Object.Get<int>("xx");
+		//std::string cp1 = Object.Get<std::string>("cp1");
 
-		auto Arguments = Object.Get<FJsObject>("args");
+		//auto Arguments = Object.Get<FJsObject>("args");
 		FString  Text = FString(Arguments.Get<std::string>("Text").c_str());
 
 		return
@@ -211,6 +211,7 @@ struct AutoRegisterForSlate
 
 		puerts::DefineClass<SButton>()
 			.Extends<SBorder>()
+			.Function("SNew", MakeFunction(&SButtonExtension::Create))
 			//.Property("OnClicked", MakeProperty(&SButton::OnClicked))
 			//.Method("SetOnClicked", MakeFunction(&SButton::SetOnClicked))
 			.Variable("WidgetType", MakeReadonlyVariable(&SButtonExtension::WidgetType))
@@ -222,7 +223,7 @@ struct AutoRegisterForSlate
 
 		puerts::DefineClass<STextBlock>()
 			.Extends<SLeafWidget>()
-			.Function("SNew", MakeExtension(&STextBlockExtension::Create))
+			.Function("SNew", MakeFunction(&STextBlockExtension::Create))
 			//.Function("SWidgetNew", MakeExtension(&SWidgetBuilder::New))
 			//.Function(
 			//	"SNew",
