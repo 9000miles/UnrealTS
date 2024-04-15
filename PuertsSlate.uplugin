@@ -26,5 +26,15 @@
       "Name": "Puerts",
       "Enabled": true
     }
-  ]
+  ],
+  "PreBuildSteps": {
+    "Win64": [
+      "E:\\UE\\4.27\\Html5Engine\\Html5Project\\BuildSteps.cmd uplugin PreBuild"
+    ]
+  },
+  "PostBuildSteps": {
+    "Win64": [
+      "E:\\UE\\4.27\\Html5Engine\\Html5Project\\BuildSteps.cmd uplugin PostBuild"
+    ]
+  }
 }

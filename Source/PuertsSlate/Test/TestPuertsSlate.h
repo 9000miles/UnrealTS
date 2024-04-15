@@ -26,7 +26,9 @@ public:
 	virtual void CopyFiles();
 
 public:
+	void SetTestWidget(TSharedPtr<SWidget> Widget);
 	TSharedPtr<STextBlock> GetTextBlock();
+
 protected:
 
 	void OnStart() override;
@@ -34,6 +36,7 @@ protected:
 	void StartScript();
 private:
 	TSharedPtr<STextBlock> MyTextBlock;
+	TSharedPtr<SWidget> TestWidget;
 
 protected:
 	TSharedPtr<puerts::FJsEnv> JsEnv;
