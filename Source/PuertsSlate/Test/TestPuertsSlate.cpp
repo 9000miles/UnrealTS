@@ -33,6 +33,12 @@ void UTestPuertsSlateGameInstance::CopyFiles()
 
 }
 
+
+void UTestPuertsSlateGameInstance::SetTestWidget(TSharedPtr<SWidget> Widget)
+{
+	TestWidget = Widget;
+}
+
 TSharedPtr<STextBlock> UTestPuertsSlateGameInstance::GetTextBlock()
 {
 	return MyTextBlock;
@@ -41,14 +47,19 @@ TSharedPtr<STextBlock> UTestPuertsSlateGameInstance::GetTextBlock()
 void UTestPuertsSlateGameInstance::OnStart()
 {
 	Super::OnStart();
-
-	MyTextBlock = SNew(STextBlock)
-		.Text(NSLOCTEXT("UTestPuertsSlateGameInstance", "KKK", "MMMMMMMMMM"))
-		;
-
-	this->GetGameViewportClient()->AddViewportWidgetContent(MyTextBlock.ToSharedRef());
-
 	StartScript();
+
+	if (!TestWidget.IsValid())
+	{
+		MyTextBlock = SNew(STextBlock)
+			.Text(NSLOCTEXT("UTestPuertsSlateGameInstance", "KKK", "MMMMMMMMMM"))
+			;
+
+		TestWidget = MyTextBlock;
+	}
+
+	this->GetGameViewportClient()->AddViewportWidgetContent(TestWidget.ToSharedRef());
+
 
 
 }
@@ -109,6 +120,7 @@ struct AutoRegisterMyTest
 	{
 		puerts::DefineClass<UTestPuertsSlateGameInstance>()
 			.Method("GetTextBlock", MakeFunction(&UTestPuertsSlateGameInstance::GetTextBlock))
+			.Method("SetTestWidget", MakeFunction(&UTestPuertsSlateGameInstance::SetTestWidget))
 			.Register();
 
 	}
