@@ -44,6 +44,7 @@ public class PuertsSlate : ModuleRules
                 "UMG",
                 "Puerts",
                 "Projects",
+                "DeclarationGenerator",
 				// ... add private dependencies that you statically link with here ...	
 			}
             );

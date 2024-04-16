@@ -8,9 +8,11 @@
 #include "V8Converter.hpp"
 #include "Object.hpp"
 #include "V8Utils.h"
+#include "TemplateBindingGenerator.h"
 
 UsingCppType(TAttribute<FText>);
 UsingCppType(TAttribute<FMargin>);
+UsingCppType(TAttribute<FVector2D>);
 
 //UsingCppType(FMargin);
 
@@ -81,10 +83,36 @@ struct SButtonExtension
 	}
 };
 
-__declspec(selectany) FName SButtonExtension::WidgetType = "SButton";
+
+const FString TS_String = "string";
+const FString TS_Boolean = "boolean";
+const FString TS_Number = "number";
+
+#define ADD_ARGUMENT(Name, Type) Arguments.Add(#Name, #Type)
+
+#define UsingWidgetArgumentsType(Name) UsingNamedCppType(##Name##::FArguments, ##Name##_FArguments);
+
+UsingWidgetArgumentsType(STextBlock);
 
 struct STextBlockExtension
 {
+	STextBlockExtension()
+	{
+		FWidgetArguments Arguments;
+		//Arguments.Add("Text", TS_String);
+		ADD_ARGUMENT(Text, string);
+		ADD_ARGUMENT(ColorAndOpacity, cpp.SlateColor);
+		ADD_ARGUMENT(Margin, UE.Margin);
+		UTemplateBindingGenerator::AllWidget().Add("STextBlock", Arguments);
+
+		//puerts::DefineClass<STextBlock::FArguments>()
+		//	.Property("Text", MakeProperty(&STextBlock::FArguments::_Text))
+		//	//.Property("ColorAndOpacity", MakeProperty(&STextBlock::FArguments::_ColorAndOpacity))
+		//	.Property("ShadowOffset", MakeProperty(&STextBlock::FArguments::_ShadowOffset))
+		//	.Register();
+	}
+
+
 	static FName WidgetType;
 	static TSharedPtr<STextBlock> Create(/*CallbackInfoType info, */FJsObject Arguments)
 	{
@@ -98,11 +126,13 @@ struct STextBlockExtension
 		//std::string cp1 = Object.Get<std::string>("cp1");
 
 		//auto Arguments = Object.Get<FJsObject>("args");
-		FString  Text = FString(Arguments.Get<std::string>("Text").c_str());
+		FString Text = FString(Arguments.Get<std::string>("Text").c_str());
+		FSlateColor ColorAndOpacity = Arguments.Get<FSlateColor>("ColorAndOpacity");
 
 		return
 			SNew(STextBlock)
 			.Text(FText::FromString(Text))
+			.ColorAndOpacity(ColorAndOpacity)
 			;
 
 		//info.GetReturnValue().Set(
@@ -123,18 +153,20 @@ struct STextBlockExtension
 	}
 };
 
+STextBlockExtension __STextBlockExtension;
+
 
 
 //class FAttribute { FAttribute(); };
 //UsingCppType(FAttribute);
 
 
-class TType { 
-TType() {} 
-TType(const TType&) = default;
-TType(TType&&) = default;
-TType& operator=(const TType&) = default;
-TType& operator=(TType&&) = default;
+class TType {
+	TType() {}
+	TType(const TType&) = default;
+	TType(TType&&) = default;
+	TType& operator=(const TType&) = default;
+	TType& operator=(TType&&) = default;
 };
 UsingCppType(TType);
 
