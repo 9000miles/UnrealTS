@@ -1,4 +1,4 @@
-//#include "ScriptBackend.hpp"
+﻿//#include "ScriptBackend.hpp"
 #include "Widgets/Input/SButton.h"
 #include "Widgets/Layout/SBorder.h"
 #include "Binding.hpp"
@@ -121,59 +121,9 @@ struct STextBlockExtension
 		}
 
 	}
-
-	static void SetTextg(STextBlock TextBlock, const FText Text)
-	{
-		//if (TextBlock.IsValid())
-		{
-			//TextBlock->SetText(Text);
-			TextBlock.SetText(Text);
-		}
-	}
 };
 
-struct SWidgetBuilder
-{
-	static TSharedPtr<STextBlock> Create(/*CallbackInfoType info, */std::string WidgetType, FJsObject Object)
-	{
-		if (WidgetType == "STextBlock")
-			return STextBlockExtension::Create(Object);
-		//else if (WidgetType == "SButton")
-		//	return SButtonExtension::Create(Object);
 
-		return nullptr;
-	}
-	static TSharedPtr<SButton> CreateButton(/*CallbackInfoType info, */std::string WidgetType, FJsObject Object)
-	{
-		//if (WidgetType == "STextBlock")
-		//	return STextBlockExtension::Create(Object);
-		if (WidgetType == "SButton")
-			return SButtonExtension::Create(Object);
-
-		return nullptr;
-	}
-};
-
-UsingCppType(SWidgetBuilder);
-
-struct AutoRegisterForSWidgetBuilder
-{
-	AutoRegisterForSWidgetBuilder()
-	{
-		//puerts::DefineClass<FAttribute>()
-		//	.Register();
-
-		puerts::DefineClass<SWidgetBuilder>()
-			.Function("Create", MakeFunction(&SWidgetBuilder::Create))
-			.Function("CreateButton", MakeFunction(&SWidgetBuilder::CreateButton))
-			.Register();
-	}
-};
-AutoRegisterForSWidgetBuilder __AutoRegisterForSWidgetBuilder;
-
-
-
-__declspec(selectany) FName STextBlockExtension::WidgetType = TEXT("STextBlock");
 
 //class FAttribute { FAttribute(); };
 //UsingCppType(FAttribute);
@@ -237,7 +187,6 @@ struct AutoRegisterForSlate
 			.Function("SNew", MakeFunction(&SButtonExtension::Create))
 			//.Property("OnClicked", MakeProperty(&SButton::OnClicked))
 			//.Method("SetOnClicked", MakeFunction(&SButton::SetOnClicked))
-			.Variable("WidgetType", MakeReadonlyVariable(&SButtonExtension::WidgetType))
 			.Register();
 
 		puerts::DefineClass<SLeafWidget>()
@@ -257,8 +206,10 @@ struct AutoRegisterForSlate
 			//	::puerts::FuncCallWrapper<decltype(&STextBlockExtension::New), &STextBlockExtension::New>::extensionInfo(puerts::Count())
 			//)
 			.Method("GetText", MakeFunction(&STextBlock::GetText))
+			//不能直接传string，需要TAtrribute
 			//.Method("SetText", MakeFunction(&STextBlock::SetText))
 			.Method("SetMargin", MakeFunction(&STextBlock::SetMargin))
+			//扩展函数self传递有问题
 			//.Method("SetText", MakeFunction(&STextBlockExtension::SetText))
 			.Method(
 				"SetText",
@@ -269,11 +220,8 @@ struct AutoRegisterForSlate
 				::puerts::FuncCallWrapper<decltype(&STextBlockExtension::SetText), &STextBlockExtension::SetText>::extensionInfo(puerts::Count())
 			)
 			//.Method("SetText", MakeExtension(&STextBlockExtension::SetText))
-			.Variable("WidgetType", MakeReadonlyVariable(&STextBlockExtension::WidgetType))
 			.Register();
 
-		auto sfs = SNew(STextBlock);
-		TSharedPtr<STextBlock> bsso = SNew(STextBlock);
 
 		//STextBlock::FArguments sfs = SNew(STextBlock);
 		//puerts::DefineClass<STextBlock::FArguments>()
