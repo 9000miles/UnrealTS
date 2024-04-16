@@ -36,7 +36,7 @@ UsingTSharedPtr(SLeafWidget);
 
 UsingCppType(STextBlock);
 UsingTSharedPtr(STextBlock);
-UsingCppType(STextBlock::FArguments);
+//UsingCppType(STextBlock::FArguments);
 
 UsingUStruct(FMargin);
 UsingTSharedPtr(FVector);
@@ -276,11 +276,11 @@ struct AutoRegisterForSlate
 		TSharedPtr<STextBlock> bsso = SNew(STextBlock);
 
 		//STextBlock::FArguments sfs = SNew(STextBlock);
-		puerts::DefineClass<STextBlock::FArguments>()
-			.Property("Text", MakeProperty(&STextBlock::FArguments::_Text))
-			.Register();
+		//puerts::DefineClass<STextBlock::FArguments>()
+		//	.Property("Text", MakeProperty(&STextBlock::FArguments::_Text))
+		//	.Register();
 
-		//RegisterTSharedPtr(STextBlock);
+		RegisterTSharedPtr(STextBlock);
 		//RegisterTSharedPtr(FVector);
 
 
