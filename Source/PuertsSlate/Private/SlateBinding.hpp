@@ -112,6 +112,8 @@ struct STextBlockExtension
 
 
 	}
+	//static void SetText(const TSharedPtr<STextBlock> TextBlock, const FText Text)
+
 	static void SetText(const TSharedPtr<STextBlock> TextBlock, const FText Text)
 	{
 		if (TextBlock.IsValid())
@@ -168,19 +170,23 @@ __declspec(selectany) FName STextBlockExtension::WidgetType = TEXT("STextBlock")
 //UsingCppType(FAttribute);
 
 
+class TType{ TType(){}};
+UsingCppType(TType);
+
 struct AutoRegisterForSlate
 {
 	AutoRegisterForSlate()
 	{
-		//puerts::DefineClass<FAttribute>()
-		//	.Register();
+		puerts::DefineClass<TType>()
+			.Register();
 
 		puerts::DefineClass<TAttribute<FText>>()
-			.Constructor(
-				CombineConstructors(
-					MakeConstructor(TAttribute<FText>, FText),
-					MakeConstructor(TAttribute<FMargin>, FMargin)
-				))
+			.Constructor<FText>()
+			//.Constructor(
+			//	CombineConstructors(
+			//		MakeConstructor(TAttribute<FText>, FText),
+			//		MakeConstructor(TAttribute<FMargin>, FMargin)
+			//	))
 			.Register();
 		//puerts::DefineClass<TAttribute<FMargin>>()
 		//	.Register();
@@ -236,6 +242,7 @@ struct AutoRegisterForSlate
 			.Method("GetText", MakeFunction(&STextBlock::GetText))
 			.Method("SetText", MakeFunction(&STextBlock::SetText))
 			.Method("SetMargin", MakeFunction(&STextBlock::SetMargin))
+			//.Method("SetText", MakeFunction(&STextBlockExtension::SetText))
 			//.Method("SetText", MakeExtension(&STextBlockExtension::SetText))
 			.Variable("WidgetType", MakeReadonlyVariable(&STextBlockExtension::WidgetType))
 			.Register();
