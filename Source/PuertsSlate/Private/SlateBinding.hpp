@@ -113,6 +113,11 @@ struct STextBlockExtension
 		//	.Register();
 	}
 
+	static TSharedPtr<STextBlock> MakeShared()
+	{
+		return ::MakeShared<STextBlock>();
+	}
+
 
 	static TSharedPtr<STextBlock> CreateBySNew(/*CallbackInfoType info, */FJsObject Arguments, FString Filename = "")
 	{
@@ -145,12 +150,12 @@ struct STextBlockExtension
 
 
 	}
-	static void CreateBySAssignNew(TSharedPtr<STextBlock> ExposeAs, FJsObject Arguments, FString Filename = "")
+	static void CreateBySAssignNew(TSharedPtr<STextBlock>& ExposeAs, FJsObject Arguments, FString Filename = "")
 	{
-		MakeTDecl<STextBlock>("STextBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()).Expose(ExposeAs)
-			<<= STextBlock::FArguments()
-			.Text(FText())
-			;
+		FString Text = FString(Arguments.Get<std::string>("Text").c_str());
+		FSlateColor ColorAndOpacity = Arguments.Get<FSlateColor>("ColorAndOpacity");
+
+		ExposeAs = CreateBySNew(Arguments, Filename);
 	}
 	static void SetText(const TSharedPtr<STextBlock> TextBlock, const FText Text)
 	{
@@ -240,6 +245,7 @@ struct AutoRegisterForSlate
 			.Function("SNew", MakeFunction(&STextBlockExtension::CreateBySNew))
 			//.Function("SNew", [](::puerts::CallbackInfoType info) { ::puerts::FuncCallWrapper<decltype(&STextBlockExtension::CreateBySNew), &STextBlockExtension::CreateBySNew>::callWithDefaultValues(info, FJsObject(), ""); }, ::puerts::FuncCallWrapper<decltype(&STextBlockExtension::CreateBySNew), &STextBlockExtension::CreateBySNew>::info(puerts::Count(FJsObject(), "")))
 			.Function("SAssignNew", MakeFunction(&STextBlockExtension::CreateBySAssignNew))
+			.Function("MakeShared", MakeFunction(&STextBlockExtension::MakeShared))
 			//.Function("SWidgetNew", MakeExtension(&SWidgetBuilder::New))
 			//.Function(
 			//	"SNew",
@@ -273,6 +279,39 @@ struct AutoRegisterForSlate
 		//	.Register();
 
 		RegisterTSharedPtr(STextBlock);
+// 		puerts::DefineClass<TSharedPtr<STextBlock>>()
+// 			.Constructor<TSharedPtr<STextBlock>>()
+// 			.Method("Equals", [](::puerts::CallbackInfoType info)
+// 				{
+// 					::puerts::FuncCallWrapper<decltype(&TSharedPtrExtension<STextBlock>::Equals), &TSharedPtrExtension<STextBlock>::Equals>::callExtensionWithDefaultValues(info);
+// 				},
+// 				::puerts::FuncCallWrapper<decltype(&TSharedPtrExtension<STextBlock>::Equals), &TSharedPtrExtension<STextBlock>::Equals>::extensionInfo(puerts::Count()))
+// 			.Method("Get", [](::puerts::CallbackInfoType info)
+// 				{
+// 					::puerts::FuncCallWrapper<decltype(&TSharedPtr<STextBlock>::Get), &TSharedPtr<STextBlock>::Get>::callWithDefaultValues(info);
+// 				},
+// 				::puerts::FuncCallWrapper<decltype(&TSharedPtr<STextBlock>::Get), &TSharedPtr<STextBlock>::Get>::info(puerts::Count()))
+// 			.Method("IsValid", [](::puerts::CallbackInfoType info)
+// 				{
+// 					::puerts::FuncCallWrapper<decltype(&TSharedPtr<STextBlock>::IsValid), &TSharedPtr<STextBlock>::IsValid>::callWithDefaultValues(info);
+// 				},
+// 				::puerts::FuncCallWrapper<decltype(&TSharedPtr<STextBlock>::IsValid), &TSharedPtr<STextBlock>::IsValid>::info(puerts::Count()))
+// 			.Method("Reset", [](::puerts::CallbackInfoType info)
+// 				{
+// 					::puerts::FuncCallWrapper<decltype(&TSharedPtr<STextBlock>::Reset), &TSharedPtr<STextBlock>::Reset>::callWithDefaultValues(info);
+// 				},
+// 				::puerts::FuncCallWrapper<decltype(&TSharedPtr<STextBlock>::Reset), &TSharedPtr<STextBlock>::Reset>::info(puerts::Count()))
+// 			.Method("GetSharedReferenceCount", [](::puerts::CallbackInfoType info)
+// 				{
+// 					::puerts::FuncCallWrapper<decltype(&TSharedPtr<STextBlock>::GetSharedReferenceCount), &TSharedPtr<STextBlock>::GetSharedReferenceCount>::callWithDefaultValues(info);
+// 				},
+// 				::puerts::FuncCallWrapper<decltype(&TSharedPtr<STextBlock>::GetSharedReferenceCount), &TSharedPtr<STextBlock>::GetSharedReferenceCount>::info(puerts::Count()))
+// 			.Method("IsUnique", [](::puerts::CallbackInfoType info)
+// 				{
+// 					::puerts::FuncCallWrapper<decltype(&TSharedPtr<STextBlock>::IsUnique), &TSharedPtr<STextBlock>::IsUnique>::callWithDefaultValues(info);
+// 				},
+// 				::puerts::FuncCallWrapper<decltype(&TSharedPtr<STextBlock>::IsUnique), &TSharedPtr<STextBlock>::IsUnique>::info(puerts::Count()))
+// 			.Register();;
 		//RegisterTSharedPtr(FVector);
 
 
