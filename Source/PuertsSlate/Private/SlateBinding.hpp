@@ -89,6 +89,7 @@ const FString TS_Boolean = "boolean";
 const FString TS_Number = "number";
 
 #define ADD_ARGUMENT(Name, Type) Arguments.Add(#Name, #Type)
+#define ADD_ARGUMENT_MUST_FILL(Name, Type) Arguments.Add(#Name, #Type, false)
 
 #define UsingWidgetArgumentsType(Name) UsingNamedCppType(##Name##::FArguments, ##Name##_FArguments);
 
