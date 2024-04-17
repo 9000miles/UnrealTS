@@ -114,8 +114,7 @@ struct STextBlockExtension
 	}
 
 
-	static FName WidgetType;
-	static TSharedPtr<STextBlock> Create(/*CallbackInfoType info, */FJsObject Arguments)
+	static TSharedPtr<STextBlock> CreateBySNew(/*CallbackInfoType info, */FJsObject Arguments, FString Filename = "")
 	{
 		//v8::Isolate* Isolate = info.GetIsolate();
 		//v8::Isolate::Scope IsolateScope(Isolate);
@@ -127,11 +126,14 @@ struct STextBlockExtension
 		//std::string cp1 = Object.Get<std::string>("cp1");
 
 		//auto Arguments = Object.Get<FJsObject>("args");
+		//@TODO 需要增加判断是否有属性
 		FString Text = FString(Arguments.Get<std::string>("Text").c_str());
 		FSlateColor ColorAndOpacity = Arguments.Get<FSlateColor>("ColorAndOpacity");
 
 		return
-			SNew(STextBlock)
+			//SNew(STextBlock)
+			MakeTDecl<STextBlock>("STextBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs())
+			<<= STextBlock::FArguments()
 			.Text(FText::FromString(Text))
 			.ColorAndOpacity(ColorAndOpacity)
 			;
@@ -142,6 +144,13 @@ struct STextBlockExtension
 		//auto Arguments = Object.Get<FJsObject>("args");
 
 
+	}
+	static void CreateBySAssignNew(TSharedPtr<STextBlock> ExposeAs, FJsObject Arguments, FString Filename = "")
+	{
+		MakeTDecl<STextBlock>("STextBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()).Expose(ExposeAs)
+			<<= STextBlock::FArguments()
+			.Text(FText())
+			;
 	}
 	static void SetText(const TSharedPtr<STextBlock> TextBlock, const FText Text)
 	{
@@ -228,7 +237,9 @@ struct AutoRegisterForSlate
 
 		puerts::DefineClass<STextBlock>()
 			.Extends<SLeafWidget>()
-			.Function("SNew", MakeFunction(&STextBlockExtension::Create))
+			.Function("SNew", MakeFunction(&STextBlockExtension::CreateBySNew))
+			//.Function("SNew", [](::puerts::CallbackInfoType info) { ::puerts::FuncCallWrapper<decltype(&STextBlockExtension::CreateBySNew), &STextBlockExtension::CreateBySNew>::callWithDefaultValues(info, FJsObject(), ""); }, ::puerts::FuncCallWrapper<decltype(&STextBlockExtension::CreateBySNew), &STextBlockExtension::CreateBySNew>::info(puerts::Count(FJsObject(), "")))
+			.Function("SAssignNew", MakeFunction(&STextBlockExtension::CreateBySAssignNew))
 			//.Function("SWidgetNew", MakeExtension(&SWidgetBuilder::New))
 			//.Function(
 			//	"SNew",
