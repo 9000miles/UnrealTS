@@ -16,8 +16,6 @@ void FPuertsSlateModule::ShutdownModule()
 	// we call this function before unloading the module.
 }
 
-AutoRegisterForSlate __AutoRegisterForSlate__;
-
 #undef LOCTEXT_NAMESPACE
 	
 IMPLEMENT_MODULE(FPuertsSlateModule, PuertsSlate)

@@ -8,6 +8,7 @@ public class PuertsSlate : ModuleRules
     {
         PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
         bEnableUndefinedIdentifierWarnings = false;
+        OptimizeCode = CodeOptimization.InShippingBuildsOnly;
 
         PublicIncludePaths.AddRange(
             new string[] {

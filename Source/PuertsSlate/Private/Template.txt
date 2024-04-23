@@ -1,0 +1,56 @@
+#pragma once
+
+#include "CoreMinimal.h"
+#include "JsObject.h"
+#include "Binding.hpp"
+#include "PuertsSlateDefines.h"
+#include "TemplateBindingGenerator.h"
+
+UsingCppType($WidgetClass$);
+UsingTSharedPtr($WidgetClass$);
+
+struct $WidgetClass$_Extension
+{
+	$WidgetClass$_Extension() { }
+	static TSharedPtr<$WidgetClass$> $MakeShared()
+	{
+		return ::MakeShared<$WidgetClass$>();
+	}
+	static void $SAssignNew(TSharedPtr<$WidgetClass$>&ExposeAs, FJsObject Arguments, FString Filename = "")
+	{
+		ExposeAs = $SNew(Arguments, Filename);
+	}
+	static TSharedPtr<$WidgetClass$> $SNew(FJsObject Arguments, FString Filename = "")
+	{
+		return MakeTDecl<$WidgetClass$>("$WidgetClass$", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs())
+			<<= $WidgetClass$::FArguments()
+			;
+	}
+};
+
+struct AutoRegisterWidget_$WidgetClass$
+{
+	void DefineArguments()
+	{
+		FWidgetArguments Arg;
+
+		UTemplateBindingGenerator::AllWidget().Add("$WidgetClass$", Arg);
+	}
+
+	AutoRegisterWidget_$WidgetClass$()
+	{
+		DefineArguments();
+
+		puerts::DefineClass<$WidgetClass$>()
+			//.Extends<ParentClass>()
+			.Function("SNew", MakeFunction(&$WidgetClass$_Extension::$SNew))
+			.Function("SAssignNew", MakeFunction(&$WidgetClass$_Extension::$SAssignNew))
+			.Function("MakeShared", MakeFunction(&$WidgetClass$_Extension::$MakeShared))
+			.Register();
+
+		RegisterTSharedPtr($WidgetClass$);
+	}
+};
+
+AutoRegisterWidget_$WidgetClass$ _AutoRegisterWidget_$WidgetClass$;
+
