@@ -22,9 +22,9 @@ struct $WidgetClass$_Extension
 	}
 	static TSharedPtr<$WidgetClass$> $SNew(FJsObject Arguments, FString Filename = "")
 	{
-		return MakeTDecl<$WidgetClass$>("$WidgetClass$", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs())
-			<<= $WidgetClass$::FArguments()
-			;
+		$WidgetClass$::FArguments _Arguments;
+
+		return MakeTDecl<$WidgetClass$>("$WidgetClass$", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= _Arguments;
 	}
 };
 

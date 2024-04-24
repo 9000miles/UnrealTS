@@ -23,14 +23,21 @@ struct STextBlock_Extension
 	}
 	static TSharedPtr<STextBlock> $SNew(FJsObject Arguments, FString Filename = "")
 	{
-		FString Text = FString(Arguments.Get<std::string>("Text").c_str());
-		FSlateColor ColorAndOpacity = Arguments.Get<FSlateColor>("ColorAndOpacity");
+		STextBlock::FArguments _Arguments;
 
-		return MakeTDecl<STextBlock>("STextBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs())
-			<<= STextBlock::FArguments()
-			.Text(FText::FromString(Text))
-			.ColorAndOpacity(ColorAndOpacity)
-			;
+		if (Arguments.Has("Text"))
+		{
+			FString Text = FString(Arguments.Get<std::string>("Text").c_str());
+			_Arguments.Text(FText::FromString(Text));
+		}
+
+		if (Arguments.Has("ColorAndOpacity"))
+		{
+			FSlateColor ColorAndOpacity = Arguments.Get<FSlateColor>("ColorAndOpacity");
+			_Arguments.ColorAndOpacity(ColorAndOpacity);
+		}
+
+		return MakeTDecl<STextBlock>("STextBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= _Arguments;
 	}
 	static void SetText(const TSharedPtr<STextBlock> TextBlock, const FText Text)
 	{
