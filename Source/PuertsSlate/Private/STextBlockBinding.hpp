@@ -25,17 +25,27 @@ struct STextBlock_Extension
 	{
 		STextBlock::FArguments _Arguments;
 
-		if (Arguments.Has("Text"))
+		SET_ARGUMENT_Text();
+		const char* Arg_Text = "Text"; 
+		if (Arguments.Has(Arg_Text)) 
 		{
-			FString Text = FString(Arguments.Get<std::string>("Text").c_str());
-			_Arguments.Text(FText::FromString(Text));
-		}
+			FString TextString = FString(Arguments.Get<std::string>(Arg_Text).c_str()); 
+			_Arguments.Text(FText::FromString(TextString));
+		};
+		//const char* Arg_Name_Text = "Text";
+		//if (Arguments.Has(Arg_Name_Text))
+		//{
+		//	FString TextString = FString(Arguments.Get<std::string>(Arg_Name_Text).c_str());
+		//	_Arguments.Text(FText::FromString(TextString));
+		//}
 
-		if (Arguments.Has("ColorAndOpacity"))
-		{
-			FSlateColor ColorAndOpacity = Arguments.Get<FSlateColor>("ColorAndOpacity");
-			_Arguments.ColorAndOpacity(ColorAndOpacity);
-		}
+		SET_ARGUMENT_ColorAndOpacity();
+		//const char* Arg_Name_ColorAndOpacity = "ColorAndOpacity";
+		//if (Arguments.Has(Arg_Name_ColorAndOpacity))
+		//{
+		//	FSlateColor ColorAndOpacity = Arguments.Get<FSlateColor>(Arg_Name_ColorAndOpacity);
+		//	_Arguments.ColorAndOpacity(ColorAndOpacity);
+		//}
 
 		return MakeTDecl<STextBlock>("STextBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= _Arguments;
 	}
