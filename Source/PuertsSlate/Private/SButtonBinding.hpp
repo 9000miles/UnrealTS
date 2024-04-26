@@ -45,7 +45,7 @@ struct AutoRegisterWidget_SButton
 		Arg.Add("VAlign", _EVerticalAlignment_);
 		Arg.Add("OnClicked", "() => void");
 
-		UTemplateBindingGenerator::AllWidget().Add("SButton", Arg);
+		UTemplateBindingGenerator::RegisterWidgetArgumentType("SButton", Arg);
 	}
 
 	AutoRegisterWidget_SButton()

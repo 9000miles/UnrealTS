@@ -26,8 +26,9 @@ struct STextBlock_Extension
 	{
 		STextBlock::FArguments _Arguments;
 
-		SET_WIDGET_ARGUMENT_VARIABLE(Text);
-		SET_WIDGET_ARGUMENT_VARIABLE(ColorAndOpacity);
+		//SET_WIDGET_ARGUMENT_VARIABLE(Text);
+		WidgetArgument::Set_Text<STextBlock::FArguments>(_Arguments, Arguments, "Text");
+		//SET_WIDGET_ARGUMENT_VARIABLE(ColorAndOpacity);
 
 		//const char* Arg_Name_Text = "Text";
 		//if (Arguments.Has(Arg_Name_Text))

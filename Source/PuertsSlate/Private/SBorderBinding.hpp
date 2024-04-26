@@ -39,7 +39,7 @@ struct AutoRegisterWidget_SBorder
 		Arg.Add("Padding", "UE.Margin");
 		Arg.Add("OnMouseButtonDown", "(Geometry: cpp.Geometry, MouseEvent: cpp.PointerEvent, InAssociation: cpp.MaterialParameterAssociation, InIndex: number) => void");
 
-		UTemplateBindingGenerator::AllWidget().Add("SBorder", Arg);
+		UTemplateBindingGenerator::RegisterWidgetArgumentType("SBorder", Arg);
 	}
 
 	AutoRegisterWidget_SBorder()
