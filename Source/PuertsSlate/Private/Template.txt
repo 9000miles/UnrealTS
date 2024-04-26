@@ -34,7 +34,7 @@ struct AutoRegisterWidget_$WidgetClass$
 	{
 		FWidgetArguments Arg;
 
-		UTemplateBindingGenerator::AllWidget().Add("$WidgetClass$", Arg);
+		UTemplateBindingGenerator::RegisterWidgetArgumentType("$WidgetClass$", Arg);
 	}
 
 	AutoRegisterWidget_$WidgetClass$()

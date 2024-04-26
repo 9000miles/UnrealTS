@@ -25,13 +25,7 @@ struct STextBlock_Extension
 	{
 		STextBlock::FArguments _Arguments;
 
-		SET_ARGUMENT_Text();
-		const char* Arg_Text = "Text"; 
-		if (Arguments.Has(Arg_Text)) 
-		{
-			FString TextString = FString(Arguments.Get<std::string>(Arg_Text).c_str()); 
-			_Arguments.Text(FText::FromString(TextString));
-		};
+		WIDGET_ARGUMENT_SET__Text();
 		//const char* Arg_Name_Text = "Text";
 		//if (Arguments.Has(Arg_Name_Text))
 		//{
@@ -39,7 +33,7 @@ struct STextBlock_Extension
 		//	_Arguments.Text(FText::FromString(TextString));
 		//}
 
-		SET_ARGUMENT_ColorAndOpacity();
+		WIDGET_ARGUMENT_SET__ColorAndOpacity();
 		//const char* Arg_Name_ColorAndOpacity = "ColorAndOpacity";
 		//if (Arguments.Has(Arg_Name_ColorAndOpacity))
 		//{
@@ -61,14 +55,16 @@ struct AutoRegisterWidget_STextBlock
 	void DefineArguments()
 	{
 		FWidgetArguments Arg;
-		Arg.Add("Text", "string");
+		REGISTER_WIDGET_ARGUMENT_TYPE__Text();
+		//Arg.Add("Text", "string | () => string");
 		Arg.Add("ColorAndOpacity", "cpp.SlateColor");
-		Arg.Add("Margin", "UE.Margin");
+		REGISTER_WIDGET_ARGUMENT_TYPE__Margin();
+		//Arg.Add("Margin", "UE.Margin");
 		Arg.Add("WrapTextAt", "number");
 		Arg.Add("AutoWrapText", "boolean");
 		Arg.Add("MinDesiredWidth", "number");
 
-		UTemplateBindingGenerator::AllWidget().Add("STextBlock", Arg);
+		UTemplateBindingGenerator::RegisterWidgetArgumentType("STextBlock", Arg);
 	}
 
 	AutoRegisterWidget_STextBlock()
