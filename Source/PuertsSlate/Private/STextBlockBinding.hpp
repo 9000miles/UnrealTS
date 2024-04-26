@@ -6,6 +6,7 @@
 #include "PuertsSlateDefines.h"
 #include "TemplateBindingGenerator.h"
 #include "Widgets/Text/STextBlock.h"
+#include "WidgetArgumentHelper.hpp"
 
 UsingCppType(STextBlock);
 UsingTSharedPtr(STextBlock);
@@ -25,7 +26,9 @@ struct STextBlock_Extension
 	{
 		STextBlock::FArguments _Arguments;
 
-		WIDGET_ARGUMENT_SET__Text();
+		SET_WIDGET_ARGUMENT_VARIABLE(Text);
+		SET_WIDGET_ARGUMENT_VARIABLE(ColorAndOpacity);
+
 		//const char* Arg_Name_Text = "Text";
 		//if (Arguments.Has(Arg_Name_Text))
 		//{
@@ -33,7 +36,6 @@ struct STextBlock_Extension
 		//	_Arguments.Text(FText::FromString(TextString));
 		//}
 
-		WIDGET_ARGUMENT_SET__ColorAndOpacity();
 		//const char* Arg_Name_ColorAndOpacity = "ColorAndOpacity";
 		//if (Arguments.Has(Arg_Name_ColorAndOpacity))
 		//{
