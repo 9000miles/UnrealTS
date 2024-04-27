@@ -16,15 +16,15 @@ struct $WidgetClass$_Extension
 	{
 		return ::MakeShared<$WidgetClass$>();
 	}
-	static void $SAssignNew(TSharedPtr<$WidgetClass$>&ExposeAs, FJsObject Arguments, FString Filename = "")
+	static void $SAssignNew(TSharedPtr<$WidgetClass$>&ExposeAs, FJsObject JsObject, FString Filename = "")
 	{
-		ExposeAs = $SNew(Arguments, Filename);
+		ExposeAs = $SNew(JsObject, Filename);
 	}
-	static TSharedPtr<$WidgetClass$> $SNew(FJsObject Arguments, FString Filename = "")
+	static TSharedPtr<$WidgetClass$> $SNew(FJsObject JsObject, FString Filename = "")
 	{
-		$WidgetClass$::FArguments _Arguments;
+		$WidgetClass$::FArguments Arguments;
 
-		return MakeTDecl<$WidgetClass$>("$WidgetClass$", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= _Arguments;
+		return MakeTDecl<$WidgetClass$>("$WidgetClass$", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
 	}
 };
 

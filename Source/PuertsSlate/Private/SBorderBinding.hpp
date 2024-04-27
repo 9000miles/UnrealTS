@@ -17,15 +17,19 @@ struct SBorder_Extension
 	{
 		return ::MakeShared<SBorder>();
 	}
-	static void $SAssignNew(TSharedPtr<SBorder>& ExposeAs, FJsObject Arguments, FString Filename = "")
+	static void $SAssignNew(TSharedPtr<SBorder>& ExposeAs, FJsObject JsObject, FString Filename = "")
 	{
-		ExposeAs = $SNew(Arguments, Filename);
+		ExposeAs = $SNew(JsObject, Filename);
 	}
-	static TSharedPtr<SBorder> $SNew(FJsObject Arguments, FString Filename = "")
+	static TSharedPtr<SBorder> $SNew(FJsObject JsObject, FString Filename = "")
 	{
-		return MakeTDecl<SBorder>("SBorder", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs())
-			<<= SBorder::FArguments()
-			;
+		SBorder::FArguments Arguments;
+
+		return MakeTDecl<SBorder>("SBorder", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+
+		//return MakeTDecl<SBorder>("SBorder", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs())
+		//	<<= SBorder::FArguments()
+		//	;
 	}
 };
 

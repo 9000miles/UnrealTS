@@ -18,33 +18,33 @@ struct STextBlock_Extension
 	{
 		return ::MakeShared<STextBlock>();
 	}
-	static void $SAssignNew(TSharedPtr<STextBlock>& ExposeAs, FJsObject Arguments, FString Filename = "")
+	static void $SAssignNew(TSharedPtr<STextBlock>& ExposeAs, FJsObject JsObject, FString Filename = "")
 	{
-		ExposeAs = $SNew(Arguments, Filename);
+		ExposeAs = $SNew(JsObject, Filename);
 	}
-	static TSharedPtr<STextBlock> $SNew(FJsObject Arguments, FString Filename = "")
+	static TSharedPtr<STextBlock> $SNew(FJsObject JsObject, FString Filename = "")
 	{
-		STextBlock::FArguments _Arguments;
+		STextBlock::FArguments Arguments;
 
-		//SET_WIDGET_ARGUMENT_VARIABLE(Text);
-		WidgetArgument::Set_Text<STextBlock::FArguments>(_Arguments, Arguments, "Text");
+		SET_WIDGET_ARGUMENT_VARIABLE(Text);
+		//WidgetArgument::Set_Text<STextBlock::FArguments>(Arguments, JsObject, "Text");
 		//SET_WIDGET_ARGUMENT_VARIABLE(ColorAndOpacity);
 
 		//const char* Arg_Name_Text = "Text";
-		//if (Arguments.Has(Arg_Name_Text))
+		//if (JsObject.Has(Arg_Name_Text))
 		//{
-		//	FString TextString = FString(Arguments.Get<std::string>(Arg_Name_Text).c_str());
-		//	_Arguments.Text(FText::FromString(TextString));
+		//	FString TextString = FString(JsObject.Get<std::string>(Arg_Name_Text).c_str());
+		//	Arguments.Text(FText::FromString(TextString));
 		//}
 
 		//const char* Arg_Name_ColorAndOpacity = "ColorAndOpacity";
-		//if (Arguments.Has(Arg_Name_ColorAndOpacity))
+		//if (JsObject.Has(Arg_Name_ColorAndOpacity))
 		//{
-		//	FSlateColor ColorAndOpacity = Arguments.Get<FSlateColor>(Arg_Name_ColorAndOpacity);
-		//	_Arguments.ColorAndOpacity(ColorAndOpacity);
+		//	FSlateColor ColorAndOpacity = JsObject.Get<FSlateColor>(Arg_Name_ColorAndOpacity);
+		//	Arguments.ColorAndOpacity(ColorAndOpacity);
 		//}
 
-		return MakeTDecl<STextBlock>("STextBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= _Arguments;
+		return MakeTDecl<STextBlock>("STextBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
 	}
 	static void SetText(const TSharedPtr<STextBlock> TextBlock, const FText Text)
 	{
