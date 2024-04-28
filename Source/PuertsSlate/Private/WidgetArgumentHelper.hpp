@@ -32,8 +32,18 @@ namespace WidgetArgument
 		v8::Local<v8::Value> Descriptor;
 		if (!JsObject.Has(VariableName, Descriptor)) return;
 
-		FString TextString = FString(JsObject.Get<std::string>(VariableName).c_str());
-		Arguments.HighlightText(FText::FromString(TextString));
+		if (Descriptor->IsString())
+		{
+			FString TextString = FString(JsObject.Get<std::string>(VariableName).c_str());
+			Arguments.HighlightText(FText::FromString(TextString));
+		}
+		else if (Descriptor->IsFunction())
+		{
+			auto Func = JsObject.Get<std::function<char* ()>>(VariableName);
+			TAttribute<FText>::FGetter Getter;
+			Getter.BindLambda([Func]() { const char* Result = Func(); return Result ? FText::FromString(Result) : FText(); });
+			Arguments._HighlightText.Bind(Getter);
+		}
 	}
 	template<typename TArgumentType>
 	void Set_ColorAndOpacity(TArgumentType& Arguments, FJsObject JsObject, const char* VariableName)
@@ -41,8 +51,16 @@ namespace WidgetArgument
 		v8::Local<v8::Value> Descriptor;
 		if (!JsObject.Has(VariableName, Descriptor)) return;
 
-		FSlateColor ColorAndOpacity = JsObject.Get<FSlateColor>(VariableName);
-		Arguments.ColorAndOpacity(ColorAndOpacity);
+		if (Descriptor->IsString())
+		{
+			FString String = FString(JsObject.Get<std::string>(VariableName).c_str());
+
+		}
+		else if (Descriptor->IsObject())
+		{
+			FSlateColor ColorAndOpacity = JsObject.Get<FSlateColor>(VariableName);
+			Arguments.ColorAndOpacity(ColorAndOpacity);
+		}
 	}
 	template<typename TArgumentType>
 	void Set_OnClicked(TArgumentType& Arguments, FJsObject JsObject, const char* VariableName)
