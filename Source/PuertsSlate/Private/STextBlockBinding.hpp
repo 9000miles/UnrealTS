@@ -28,7 +28,7 @@ struct STextBlock_Extension
 
 		SET_WIDGET_ARGUMENT_VARIABLE(Text);
 		//WidgetArgument::Set_Text<STextBlock::FArguments>(Arguments, JsObject, "Text");
-		//SET_WIDGET_ARGUMENT_VARIABLE(ColorAndOpacity);
+		SET_WIDGET_ARGUMENT_VARIABLE(ColorAndOpacity);
 
 		//const char* Arg_Name_Text = "Text";
 		//if (JsObject.Has(Arg_Name_Text))

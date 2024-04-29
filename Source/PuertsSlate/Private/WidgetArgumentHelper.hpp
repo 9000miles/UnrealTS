@@ -13,6 +13,11 @@ namespace WidgetArgument
 		v8::Local<v8::Value> Descriptor;
 		if (!JsObject.Has(VariableName, Descriptor)) return;
 
+		//v8::Local<v8::Object> des = static_cast<v8::Local<v8::Object>(Descriptor);
+		//if (des->IsString())
+		//{
+		//	UE_LOG(LogTemp, Log, TEXT("dddddddddd"));
+		//}
 		if (Descriptor->IsString())
 		{
 			FString TextString = FString(JsObject.Get<std::string>(VariableName).c_str());
