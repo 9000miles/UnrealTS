@@ -6,7 +6,10 @@
 
 // **************************** REGISTER_WIDGET_ARGUMENT_TYPE ****************************
 #define REGISTER_WIDGET_ARGUMENT_TYPE__Text()\
-Arg.Add("Text", "string | (() => string)")
+Arg.Add("Text", "string | (() => any)")
 
 #define REGISTER_WIDGET_ARGUMENT_TYPE__Margin()\
 Arg.Add("Margin", "UE.Margin | number | { Horizontal: number, Vertical: number } | { Left: number, Top: number, Right: number, Buttom: number}");
+
+#define REGISTER_WIDGET_ARGUMENT_TYPE__ColorAndOpacity()\
+Arg.Add("ColorAndOpacity", "string | UE.LinearColor | { R: number, G: number, B:number, A: number } | (() => any)")

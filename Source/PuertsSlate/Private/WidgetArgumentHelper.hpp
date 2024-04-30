@@ -10,15 +10,15 @@ namespace WidgetArgument
 	template<typename TArgumentType>
 	void Set_Text(TArgumentType& Arguments, FJsObject JsObject, const char* VariableName)
 	{
-		v8::Local<v8::Value> Descriptor;
-		if (!JsObject.Has(VariableName, Descriptor)) return;
+		v8::Local<v8::Value> Value;
+		if (!JsObject.Has(VariableName, Value)) return;
 
-		if (Descriptor->IsString())
+		if (Value->IsString())
 		{
 			FString TextString = FString(JsObject.Get<std::string>(VariableName).c_str());
 			Arguments.Text(FText::FromString(TextString));
 		}
-		else if (Descriptor->IsFunction())
+		else if (Value->IsFunction())
 		{
 			auto Function = JsObject.Get<FJsObject>(VariableName);
 			TAttribute<FText>::FGetter Getter;
@@ -34,70 +34,83 @@ namespace WidgetArgument
 	template<typename TArgumentType>
 	void Set_HighlightText(TArgumentType& Arguments, FJsObject JsObject, const char* VariableName)
 	{
-		v8::Local<v8::Value> Descriptor;
-		if (!JsObject.Has(VariableName, Descriptor)) return;
+		v8::Local<v8::Value> Value;
+		if (!JsObject.Has(VariableName, Value)) return;
 
-		if (Descriptor->IsString())
+		if (Value->IsString())
 		{
 			FString TextString = FString(JsObject.Get<std::string>(VariableName).c_str());
 			Arguments.HighlightText(FText::FromString(TextString));
 		}
-		else if (Descriptor->IsFunction())
+		else if (Value->IsFunction())
 		{
-			auto Func = JsObject.Get<std::function<char* ()>>(VariableName);
+			auto Function = JsObject.Get<FJsObject>(VariableName);
 			TAttribute<FText>::FGetter Getter;
-			Getter.BindLambda([Func]()
+			Getter.BindLambda([Function]()
 				{
-					const char* Result = Func();
-					return Result ? FText::FromString(Result) : FText();
+					std::string Ret = Function.Func<std::string>();
+					FString String = UTF8_TO_TCHAR(Ret.c_str());
+					return FText::FromString(String);
 				});
 			Arguments._HighlightText.Bind(Getter);
 		}
 	}
+
+
 	template<typename TArgumentType>
 	void Set_ColorAndOpacity(TArgumentType& Arguments, FJsObject JsObject, const char* VariableName)
 	{
-		v8::Local<v8::Value> Descriptor;
-		if (!JsObject.Has(VariableName, Descriptor)) return;
+		v8::Local<v8::Value> Value;
+		if (!JsObject.Has(VariableName, Value)) return;
 
-		if (Descriptor->IsString())
+		if (Value->IsString())
 		{
 			FString String = FString(JsObject.Get<std::string>(VariableName).c_str());
-			if (String.StartsWith(TEXT("#")))//"#5dc513"
-			{
-				FColor Color = FColor::FromHex(String);
-				Arguments.ColorAndOpacity(Color);
-			}
-			else if (String.StartsWith(TEXT("rgba")))//"rgba(128,19,115,0.3)"
-			{
-				//FString String = TEXT("rgba(128,19,115,0.3)");
-				// 分割字符串并提取RGB值
-				FString RGBAStripped = String.Mid(5, String.Len() - 6); // 去掉"rgba("和")"
-				TArray<FString> RGBAValues;
-				RGBAStripped.ParseIntoArray(RGBAValues, TEXT(","));
-
-				// 提取RGB值并转换为uint8
-				uint8 R = FCString::Atoi(*RGBAValues[0]);
-				uint8 G = FCString::Atoi(*RGBAValues[1]);
-				uint8 B = FCString::Atoi(*RGBAValues[2]);
-				uint8 A = FCString::Atoi(*RGBAValues[3]);
-
-				// 创建FColor对象，这里忽略alpha值
-				FColor Color(R, G, B, A);
-				Arguments.ColorAndOpacity(Color);
-			}
+			FColor Color = StringConverter::Converter<FColor>(String);
+			Arguments.ColorAndOpacity(Color);
 		}
-		else if (Descriptor->IsObject())
+		else if (Value->IsFunction())
 		{
-			FSlateColor ColorAndOpacity = JsObject.Get<FSlateColor>(VariableName);
+			auto Function = JsObject.Get<FJsObject>(VariableName);
+			TAttribute<FSlateColor>::FGetter Getter;
+			Getter.BindLambda([Function]()
+				{
+					FSlateColor ColorRet = Function.Func_CallBack<FSlateColor>([](v8::Local<v8::Context> Context, v8::Local<v8::Value> MaybeRet)
+						{
+							if (MaybeRet->IsString())
+							{
+								std::string str = puerts::converter::Converter<std::string>::toCpp(Context, MaybeRet);
+								FString String = FString(str.c_str());
+								FColor Color = StringConverter::Converter<FColor>(String);
+								return FSlateColor(Color);
+							}
+							if (MaybeRet->IsObject())
+							{
+								// @TODO 判断对象类型，是否是FLinearColor实例
+								FLinearColor LinearColor = puerts::converter::Converter<FLinearColor>::toCpp(Context, MaybeRet);
+								return FSlateColor(LinearColor);
+
+								// 如果不是则从{ R: number, G: number, B:number, A: number }取值
+							}
+
+							return FSlateColor();
+						});
+
+					return ColorRet;
+				});
+			Arguments._ColorAndOpacity.Bind(Getter);
+		}
+		else if (Value->IsObject())
+		{
+			FLinearColor ColorAndOpacity = JsObject.Get<FLinearColor>(VariableName);
 			Arguments.ColorAndOpacity(ColorAndOpacity);
 		}
 	}
 	template<typename TArgumentType>
 	void Set_OnClicked(TArgumentType& Arguments, FJsObject JsObject, const char* VariableName)
 	{
-		v8::Local<v8::Value> Descriptor;
-		if (!JsObject.Has(VariableName, Descriptor)) return;
+		v8::Local<v8::Value> Value;
+		if (!JsObject.Has(VariableName, Value)) return;
 
 		auto Func = JsObject.Get<std::function<void()>>(VariableName);
 		Arguments._OnClicked.BindLambda([Func]() { Func(); return FReply::Handled(); });
@@ -105,8 +118,8 @@ namespace WidgetArgument
 
 	void Set_OnClicked1(SButton::FArguments& Arguments, FJsObject JsObject, const char* VariableName)
 	{
-		v8::Local<v8::Value> Descriptor;
-		if (JsObject.Has(VariableName, Descriptor))
+		v8::Local<v8::Value> Value;
+		if (JsObject.Has(VariableName, Value))
 		{
 			auto ClickFunc = JsObject.Get<std::function<void()>>(VariableName);
 			//FOnClicked  Delegate = FOnClicked::CreateLambda([ClickFunc]() { ClickFunc(); return FReply::Handled(); });
@@ -117,4 +130,37 @@ namespace WidgetArgument
 		};
 	}
 
+};
+
+namespace StringConverter
+{
+	template<typename TType>
+	TType Converter(FString String)
+	{
+		return nullptr;
+	}
+
+	template<>
+	FColor Converter<FColor>(FString String)
+	{
+		if (String.StartsWith(TEXT("#")))//"#5dc513"
+		{
+			return FColor::FromHex(String);
+		}
+		else if (String.StartsWith(TEXT("rgba")))//"rgba(128,19,115,0.3)"
+		{
+			FString RGBAStripped = String.Mid(5, String.Len() - 6);
+			TArray<FString> RGBAValues;
+			RGBAStripped.ParseIntoArray(RGBAValues, TEXT(","));
+
+			uint8 R = FCString::Atoi(*RGBAValues[0]);
+			uint8 G = FCString::Atoi(*RGBAValues[1]);
+			uint8 B = FCString::Atoi(*RGBAValues[2]);
+			uint8 A = FCString::Atoi(*RGBAValues[3]);
+
+			return FColor(R, G, B, A);
+		}
+
+		return FColor();
+	}
 };

@@ -60,7 +60,8 @@ struct AutoRegisterWidget_STextBlock
 		FWidgetArguments Arg;
 		REGISTER_WIDGET_ARGUMENT_TYPE__Text();
 		//Arg.Add("Text", "string | () => string");
-		Arg.Add("ColorAndOpacity", "cpp.SlateColor");
+		//Arg.Add("ColorAndOpacity", "cpp.SlateColor");
+		REGISTER_WIDGET_ARGUMENT_TYPE__ColorAndOpacity();
 		REGISTER_WIDGET_ARGUMENT_TYPE__Margin();
 		//Arg.Add("Margin", "UE.Margin");
 		Arg.Add("WrapTextAt", "number");
