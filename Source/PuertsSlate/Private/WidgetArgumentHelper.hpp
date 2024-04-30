@@ -13,11 +13,6 @@ namespace WidgetArgument
 		v8::Local<v8::Value> Descriptor;
 		if (!JsObject.Has(VariableName, Descriptor)) return;
 
-		//v8::Local<v8::Object> des = static_cast<v8::Local<v8::Object>(Descriptor);
-		//if (des->IsString())
-		//{
-		//	UE_LOG(LogTemp, Log, TEXT("dddddddddd"));
-		//}
 		if (Descriptor->IsString())
 		{
 			FString TextString = FString(JsObject.Get<std::string>(VariableName).c_str());
@@ -25,9 +20,14 @@ namespace WidgetArgument
 		}
 		else if (Descriptor->IsFunction())
 		{
-			auto Func = JsObject.Get<std::function<char* ()>>(VariableName);
+			auto Function = JsObject.Get<FJsObject>(VariableName);
 			TAttribute<FText>::FGetter Getter;
-			Getter.BindLambda([Func]() { const char* Result = Func(); return Result ? FText::FromString(Result) : FText(); });
+			Getter.BindLambda([Function]()
+				{
+					std::string Ret = Function.Func<std::string>();
+					FString String = UTF8_TO_TCHAR(Ret.c_str());
+					return FText::FromString(String);
+				});
 			Arguments._Text.Bind(Getter);
 		}
 	}
@@ -46,7 +46,11 @@ namespace WidgetArgument
 		{
 			auto Func = JsObject.Get<std::function<char* ()>>(VariableName);
 			TAttribute<FText>::FGetter Getter;
-			Getter.BindLambda([Func]() { const char* Result = Func(); return Result ? FText::FromString(Result) : FText(); });
+			Getter.BindLambda([Func]()
+				{
+					const char* Result = Func();
+					return Result ? FText::FromString(Result) : FText();
+				});
 			Arguments._HighlightText.Bind(Getter);
 		}
 	}
@@ -59,7 +63,29 @@ namespace WidgetArgument
 		if (Descriptor->IsString())
 		{
 			FString String = FString(JsObject.Get<std::string>(VariableName).c_str());
+			if (String.StartsWith(TEXT("#")))//"#5dc513"
+			{
+				FColor Color = FColor::FromHex(String);
+				Arguments.ColorAndOpacity(Color);
+			}
+			else if (String.StartsWith(TEXT("rgba")))//"rgba(128,19,115,0.3)"
+			{
+				//FString String = TEXT("rgba(128,19,115,0.3)");
+				// 分割字符串并提取RGB值
+				FString RGBAStripped = String.Mid(5, String.Len() - 6); // 去掉"rgba("和")"
+				TArray<FString> RGBAValues;
+				RGBAStripped.ParseIntoArray(RGBAValues, TEXT(","));
 
+				// 提取RGB值并转换为uint8
+				uint8 R = FCString::Atoi(*RGBAValues[0]);
+				uint8 G = FCString::Atoi(*RGBAValues[1]);
+				uint8 B = FCString::Atoi(*RGBAValues[2]);
+				uint8 A = FCString::Atoi(*RGBAValues[3]);
+
+				// 创建FColor对象，这里忽略alpha值
+				FColor Color(R, G, B, A);
+				Arguments.ColorAndOpacity(Color);
+			}
 		}
 		else if (Descriptor->IsObject())
 		{
