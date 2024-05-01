@@ -76,13 +76,16 @@ struct STextBlock_Extension
 		//else CALL_SET_ATTRIBUTE_FUNCTION(FSlateColor, SetColorAndOpacity)
 
 		if (FunctionName == "SetText") {
-			TAttribute<FText> Parameter = WidgetFunctionCall::MakeAttribute<FText>(JsObject); Widget->SetText(Parameter);
+			TAttribute<FText> Parameter = WidgetAttribute::MakeAttribute_3<FText>(JsObject); Widget->SetText(Parameter);
+			//TAttribute<FText> Parameter = WidgetAttribute::MakeAttribute_4<FText>(JsObject, v8::Undefined(JsObject.GetIsolate())); Widget->SetText(Parameter);
 		}
 		else if (FunctionName == "SetWrapTextAt") {
-			TAttribute<float> Parameter = WidgetFunctionCall::MakeAttribute<float>(JsObject); Widget->SetWrapTextAt(Parameter);
+			TAttribute<float> Parameter = WidgetAttribute::MakeAttribute_3<float>(JsObject); Widget->SetWrapTextAt(Parameter);
+			//TAttribute<float> Parameter = WidgetAttribute::MakeAttribute_4<float>(JsObject, v8::Undefined(JsObject.GetIsolate())); Widget->SetWrapTextAt(Parameter);
 		}
 		else if (FunctionName == "SetColorAndOpacity") {
-			TAttribute<FSlateColor> Parameter = WidgetFunctionCall::MakeAttribute<FSlateColor>(JsObject); Widget->SetColorAndOpacity(Parameter);
+			TAttribute<FSlateColor> Parameter = WidgetAttribute::MakeAttribute_3<FSlateColor>(JsObject); Widget->SetColorAndOpacity(Parameter);
+			//TAttribute<FSlateColor> Parameter = WidgetAttribute::MakeAttribute_4<FSlateColor>(JsObject, v8::Undefined(JsObject.GetIsolate())); Widget->SetColorAndOpacity(Parameter);
 		}
 	}
 };

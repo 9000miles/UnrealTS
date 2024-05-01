@@ -2,6 +2,7 @@
 #include "JsObject.h"
 #include "v8.h"
 #include "V8Utils.h"
+#include "Converter.hpp"
 
 #define SET_WIDGET_ARGUMENT_VARIABLE(Name);\
 WidgetArgument::Set_##Name(Arguments, JsObject, #Name)
@@ -13,6 +14,30 @@ namespace WidgetArgument
 	{
 		v8::Local<v8::Value> Value;
 		if (!JsObject.Has(VariableName, Value)) return;
+
+
+
+		//v8::Local<v8::Object> JsValue1 = JsObject.GetJsObject();
+		//v8::Local<v8::String> Type1 = JsValue1->TypeOf(JsObject.GetIsolate());
+		//FString TypeString1 = puerts::FV8Utils::ToFString(JsObject.GetIsolate(), Type1);
+
+		//Arguments._Text = WidgetAttribute::MakeAttribute_4<FText>(JsObject, Value);
+		//return;
+
+		//auto Context = GContext.Get(JsObject.GetIsolate());
+
+
+		//v8::Object StringValue = Value.As<v8::Object>();
+		//v8::Local<v8::Object> StringValue = v8::Local<v8::Local<v8::Object>>::Cast(*Value);
+
+		v8::Local<v8::Object> Object = Value.As<v8::Object>();
+		FJsObject JsText = FJsObject(JsObject.GetContext(), Object);
+
+
+		//FJsObject ArgJsObject = FJsObject(JsObject.GetContext(), Value);
+		Arguments._Text = WidgetAttribute::MakeAttribute_3<FText>(JsText);
+		//Arguments._Text = WidgetAttribute::MakeAttribute1<FText>(JsObject.GetIsolate(), JsObject.GetContext(), Value);
+		return;
 
 		if (Value->IsString())
 		{
@@ -623,25 +648,157 @@ namespace WidgetArgument
 
 };
 
-namespace WidgetFunctionCall
+namespace WidgetAttribute
 {
 	template<typename TType>
-	TAttribute<TType> MakeAttribute(FJsObject JsObject)
+	TAttribute<TType> MakeAttribute_4(FJsObject& JsObject, v8::Local<v8::Value> Value) { return TAttribute<TType>(); }
+	template<>
+	TAttribute<FText> MakeAttribute_4(FJsObject& InJsObject, v8::Local<v8::Value> InValue)
 	{
-		if (JsObject.GetJsObject()->IsString())
-		{
+		v8::Local<v8::Object> JsValue1 = InJsObject.GetJsObject();
+		v8::Local<v8::String> Type1 = JsValue1->TypeOf(InJsObject.GetIsolate());
+		FString TypeString1 = puerts::FV8Utils::ToFString(InJsObject.GetIsolate(), Type1);
 
+		FJsObject JsObject = InJsObject;
+		v8::Local<v8::Object> JsValue = InValue.As<v8::Object>();
+		if (InValue->IsUndefined())
+		{
+			v8::Local<v8::Object> Object = InValue.As<v8::Object>();
+			JsObject = FJsObject(InJsObject.GetContext(), Object);
+			JsValue = JsObject.GetJsObject();
 		}
 
-		return TAttribute<TType>();
+		v8::Local<v8::String> Type = JsValue->TypeOf(InJsObject.GetIsolate());
+		FString TypeString = puerts::FV8Utils::ToFString(InJsObject.GetIsolate(), Type);
+
+		if (JsValue->IsString())
+		{
+			FString TextString = puerts::FV8Utils::ToFString(JsObject.GetIsolate(), JsValue);
+			FText Text = FText::FromString(TextString);
+			return TAttribute<FText>(Text);
+		}
+		else if (JsValue->IsFunction())
+		{
+			TAttribute<FText>::FGetter Getter;
+			Getter.BindLambda([&JsObject]()
+				{
+					std::string Ret = JsObject.Func<std::string>();
+					FString String = UTF8_TO_TCHAR(Ret.c_str());
+					return FText::FromString(String);
+				});
+			return TAttribute<FText>::Create(Getter);
+		}
+		return TAttribute<FText>();
 	}
+
+
+	template<typename TType>
+	TAttribute<TType> MakeAttribute_3(FJsObject& JsObject) { return TAttribute<TType>(); }
+	template<>
+	TAttribute<FText> MakeAttribute_3(FJsObject& JsObject)
+	{
+
+		v8::Local<v8::Object> Value = JsObject.GetJsObject();
+
+		//v8::Local<v8::Object> JsValue1 = JsObject.GetJsObject();
+		v8::Local<v8::String> Type1 = Value->TypeOf(JsObject.GetIsolate());
+		FString TypeString1 = puerts::FV8Utils::ToFString(JsObject.GetIsolate(), Type1);
+
+		if (Value->IsString())
+		{
+			FString TextString = puerts::FV8Utils::ToFString(JsObject.GetIsolate(), Value);
+			FText Text = FText::FromString(TextString);
+			return TAttribute<FText>(Text);
+		}
+		else if (Value->IsFunction())
+		{
+			TAttribute<FText>::FGetter Getter;
+			Getter.BindLambda([JsObject]()
+				{
+					std::string Ret = JsObject.Func<std::string>();
+					FString String = UTF8_TO_TCHAR(Ret.c_str());
+					return FText::FromString(String);
+				});
+			return TAttribute<FText>::Create(Getter);
+		}
+		return TAttribute<FText>();
+	}
+
+	template<typename TType>
+	TAttribute<TType> MakeAttribute1(v8::Isolate* Isolate, v8::Local<v8::Context> Context, v8::Local<v8::Value> Value) { return TAttribute<TType>(); }
+	template<>
+	TAttribute<FText> MakeAttribute1(v8::Isolate* Isolate, v8::Local<v8::Context> Context, v8::Local<v8::Value> Value)
+	{
+		if (Value->IsString())
+		{
+			FString TextString = puerts::FV8Utils::ToFString(Isolate, Value);
+			FText Text = FText::FromString(TextString);
+			return TAttribute<FText>(Text);
+		}
+		else if (Value->IsFunction())
+		{
+			v8::Local<v8::Function> Function = Value.As<v8::Function>();
+			FJsObject JsObject = FJsObject(Context, Function);
+			std::string Ret = JsObject.Func<std::string>();
+
+			TAttribute<FText>::FGetter Getter;
+			Getter.BindLambda([Function, &Context, Isolate]()
+				{
+					v8::MaybeLocal<v8::Value> MaybeRet = Function->Call(Context, v8::Undefined(Isolate), 0, nullptr);
+					std::string std_str = puerts::converter::Converter<std::string>::toCpp(Context, MaybeRet.ToLocalChecked());
+					FString String = UTF8_TO_TCHAR(std_str.c_str());
+					return FText::FromString(String);
+				});
+			return TAttribute<FText>::Create(Getter);
+
+			Getter.BindLambda([Value, &Context]()
+				{
+					v8::Local<v8::Function> Function = Value.As<v8::Function>();
+					FJsObject JsObject = FJsObject(Context, Function);
+					std::string Ret = JsObject.Func<std::string>();
+					FString String = UTF8_TO_TCHAR(Ret.c_str());
+					return FText::FromString(String);
+				});
+			return TAttribute<FText>::Create(Getter);
+
+			//v8::Local<v8::Context> Context = Isolate->GetIncumbentContext();
+			//v8::Local<v8::Function> Function = Value.As<v8::Function>();
+			//TAttribute<FText>::FGetter Getter;
+			Getter.BindLambda([Function, Context, Isolate]()
+				{
+					v8::Isolate::Scope IsolateScope(Isolate);
+					v8::HandleScope HandleScope(Isolate);
+					//auto Context = GContext.Get(Isolate);
+					v8::Context::Scope ContextScope(Context);
+
+					v8::MaybeLocal<v8::Value> MaybeRet = Function->Call(Context, v8::Undefined(Isolate), 0, nullptr);
+					std::string std_str = puerts::converter::Converter<std::string>::toCpp(Context, MaybeRet.ToLocalChecked());
+					FString String = UTF8_TO_TCHAR(std_str.c_str());
+					return FText::FromString(String);
+				});
+			return TAttribute<FText>::Create(Getter);
+		}
+
+		return TAttribute<FText>();
+	}
+
+
+	template<typename TType>
+	TAttribute<TType> MakeAttribute0(FJsObject JsObject) { return TAttribute<TType>(); }
+	template<>
+	TAttribute<FText> MakeAttribute0(FJsObject JsObject)
+	{
+		return MakeAttribute1<FText>(JsObject.GetIsolate(), JsObject.GetContext(), JsObject.GetJsObject());
+	}
+
+	template<typename TType>
+	TAttribute<TType> MakeAttribute(FJsObject JsObject) { return TAttribute<TType>(); }
 	template<>
 	TAttribute<FText> MakeAttribute(FJsObject JsObject)
 	{
 		if (JsObject.GetJsObject()->IsString())
 		{
-			v8::Local<v8::String> Value = JsObject.GetJsObject().As<v8::String>();
-			FString TextString = puerts::FV8Utils::ToFString(JsObject.GetIsolate(), Value);
+			FString TextString = puerts::FV8Utils::ToFString(JsObject.GetIsolate(), JsObject.GetJsObject());
 			FText Text = FText::FromString(TextString);
 			return TAttribute<FText>(Text);
 		}
@@ -659,38 +816,5 @@ namespace WidgetFunctionCall
 		}
 
 		return TAttribute<FText>();
-	}
-};
-
-namespace StringConverter
-{
-	template<typename TType>
-	TType Converter(std::string std_str)
-	{
-		return nullptr;
-	}
-	template<>
-	FColor Converter<FColor>(std::string std_str)
-	{
-		FString String = FString(std_str.c_str());
-		if (String.StartsWith(TEXT("#")))//"#5dc513"
-		{
-			return FColor::FromHex(String);
-		}
-		else if (String.StartsWith(TEXT("rgba")))//"rgba(128,19,115,0.3)"
-		{
-			FString RGBAStripped = String.Mid(5, String.Len() - 6);
-			TArray<FString> RGBAValues;
-			RGBAStripped.ParseIntoArray(RGBAValues, TEXT(","));
-
-			uint8 R = FCString::Atoi(*RGBAValues[0]);
-			uint8 G = FCString::Atoi(*RGBAValues[1]);
-			uint8 B = FCString::Atoi(*RGBAValues[2]);
-			uint8 A = FCString::Atoi(*RGBAValues[3]);
-
-			return FColor(R, G, B, A);
-		}
-
-		return FColor();
 	}
 };
