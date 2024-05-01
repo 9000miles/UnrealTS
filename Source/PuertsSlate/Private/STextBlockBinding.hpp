@@ -25,31 +25,65 @@ struct STextBlock_Extension
 	static TSharedPtr<STextBlock> $SNew(FJsObject JsObject, FString Filename = "")
 	{
 		STextBlock::FArguments Arguments;
-
 		SET_WIDGET_ARGUMENT_VARIABLE(Text);
-		//WidgetArgument::Set_Text<STextBlock::FArguments>(Arguments, JsObject, "Text");
+		SET_WIDGET_ARGUMENT_VARIABLE(TextStyle);
+		SET_WIDGET_ARGUMENT_VARIABLE(Font);
+		SET_WIDGET_ARGUMENT_VARIABLE(StrikeBrush);
 		SET_WIDGET_ARGUMENT_VARIABLE(ColorAndOpacity);
-
-		//const char* Arg_Name_Text = "Text";
-		//if (JsObject.Has(Arg_Name_Text))
-		//{
-		//	FString TextString = FString(JsObject.Get<std::string>(Arg_Name_Text).c_str());
-		//	Arguments.Text(FText::FromString(TextString));
-		//}
-
-		//const char* Arg_Name_ColorAndOpacity = "ColorAndOpacity";
-		//if (JsObject.Has(Arg_Name_ColorAndOpacity))
-		//{
-		//	FSlateColor ColorAndOpacity = JsObject.Get<FSlateColor>(Arg_Name_ColorAndOpacity);
-		//	Arguments.ColorAndOpacity(ColorAndOpacity);
-		//}
-
+		SET_WIDGET_ARGUMENT_VARIABLE(ShadowOffset);
+		SET_WIDGET_ARGUMENT_VARIABLE(ShadowColorAndOpacity);
+		SET_WIDGET_ARGUMENT_VARIABLE(HighlightColor);
+		SET_WIDGET_ARGUMENT_VARIABLE(HighlightShape);
+		SET_WIDGET_ARGUMENT_VARIABLE(HighlightText);
+		SET_WIDGET_ARGUMENT_VARIABLE(WrapTextAt);
+		SET_WIDGET_ARGUMENT_VARIABLE(AutoWrapText);
+		SET_WIDGET_ARGUMENT_VARIABLE(WrappingPolicy);
+		SET_WIDGET_ARGUMENT_VARIABLE(TransformPolicy);
+		SET_WIDGET_ARGUMENT_VARIABLE(Margin);
+		SET_WIDGET_ARGUMENT_VARIABLE(LineHeightPercentage);
+		SET_WIDGET_ARGUMENT_VARIABLE(Justification);
+		SET_WIDGET_ARGUMENT_VARIABLE(MinDesiredWidth);
+		SET_WIDGET_ARGUMENT_VARIABLE(TextShapingMethod);
+		SET_WIDGET_ARGUMENT_VARIABLE(TextFlowDirection);
+		SET_WIDGET_ARGUMENT_VARIABLE(LineBreakPolicy);
+		SET_WIDGET_ARGUMENT_VARIABLE(OverflowPolicy);
+		SET_WIDGET_ARGUMENT_VARIABLE(SimpleTextMode);
+		SET_WIDGET_ARGUMENT_VARIABLE(OnDoubleClicked);
 		return MakeTDecl<STextBlock>("STextBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
 	}
 	static void SetText(const TSharedPtr<STextBlock> TextBlock, const FText Text)
 	{
 		if (!TextBlock.IsValid()) return;
 		TextBlock->SetText(Text);
+	}
+	static void CallFunction_Attribute(const TSharedPtr<STextBlock> Widget, FJsObject JsObject, const FString& FunctionName)
+	{
+		if (!Widget.IsValid()) return;
+
+
+		//if (FunctionName == "SetText")
+		//{
+		//	TAttribute<FText> Parameter = WidgetFunctionCall::MakeAttribute<FText>(JsObject);
+		//	TextBlock->SetText(Parameter);
+		//}
+		//else if (FunctionName == "SetColorAndOpacity")
+		//{
+		//	TAttribute<FSlateColor> Parameter = WidgetFunctionCall::MakeAttribute<FSlateColor>(JsObject);
+		//	TextBlock->SetColorAndOpacity(Parameter);
+		//}
+		//CALL_SET_ATTRIBUTE_FUNCTION(FText, SetText)
+		//else CALL_SET_ATTRIBUTE_FUNCTION(float, SetWrapTextAt)
+		//else CALL_SET_ATTRIBUTE_FUNCTION(FSlateColor, SetColorAndOpacity)
+
+		if (FunctionName == "SetText") {
+			TAttribute<FText> Parameter = WidgetFunctionCall::MakeAttribute<FText>(JsObject); Widget->SetText(Parameter);
+		}
+		else if (FunctionName == "SetWrapTextAt") {
+			TAttribute<float> Parameter = WidgetFunctionCall::MakeAttribute<float>(JsObject); Widget->SetWrapTextAt(Parameter);
+		}
+		else if (FunctionName == "SetColorAndOpacity") {
+			TAttribute<FSlateColor> Parameter = WidgetFunctionCall::MakeAttribute<FSlateColor>(JsObject); Widget->SetColorAndOpacity(Parameter);
+		}
 	}
 };
 
@@ -59,15 +93,29 @@ struct AutoRegisterWidget_STextBlock
 	{
 		FWidgetArguments Arg;
 		REGISTER_WIDGET_ARGUMENT_TYPE__Text();
-		//Arg.Add("Text", "string | () => string");
-		//Arg.Add("ColorAndOpacity", "cpp.SlateColor");
+		REGISTER_WIDGET_ARGUMENT_TYPE__TextStyle();
+		REGISTER_WIDGET_ARGUMENT_TYPE__Font();
+		REGISTER_WIDGET_ARGUMENT_TYPE__StrikeBrush();
 		REGISTER_WIDGET_ARGUMENT_TYPE__ColorAndOpacity();
+		REGISTER_WIDGET_ARGUMENT_TYPE__ShadowOffset();
+		REGISTER_WIDGET_ARGUMENT_TYPE__ShadowColorAndOpacity();
+		REGISTER_WIDGET_ARGUMENT_TYPE__HighlightColor();
+		REGISTER_WIDGET_ARGUMENT_TYPE__HighlightShape();
+		REGISTER_WIDGET_ARGUMENT_TYPE__HighlightText();
+		REGISTER_WIDGET_ARGUMENT_TYPE__WrapTextAt();
+		REGISTER_WIDGET_ARGUMENT_TYPE__AutoWrapText();
+		REGISTER_WIDGET_ARGUMENT_TYPE__WrappingPolicy();
+		REGISTER_WIDGET_ARGUMENT_TYPE__TransformPolicy();
 		REGISTER_WIDGET_ARGUMENT_TYPE__Margin();
-		//Arg.Add("Margin", "UE.Margin");
-		Arg.Add("WrapTextAt", "number");
-		Arg.Add("AutoWrapText", "boolean");
-		Arg.Add("MinDesiredWidth", "number");
-
+		REGISTER_WIDGET_ARGUMENT_TYPE__LineHeightPercentage();
+		REGISTER_WIDGET_ARGUMENT_TYPE__Justification();
+		REGISTER_WIDGET_ARGUMENT_TYPE__MinDesiredWidth();
+		REGISTER_WIDGET_ARGUMENT_TYPE__TextShapingMethod();
+		REGISTER_WIDGET_ARGUMENT_TYPE__TextFlowDirection();
+		REGISTER_WIDGET_ARGUMENT_TYPE__LineBreakPolicy();
+		REGISTER_WIDGET_ARGUMENT_TYPE__OverflowPolicy();
+		REGISTER_WIDGET_ARGUMENT_TYPE__SimpleTextMode();
+		REGISTER_WIDGET_ARGUMENT_TYPE__OnDoubleClicked();
 		UTemplateBindingGenerator::RegisterWidgetArgumentType("STextBlock", Arg);
 	}
 
@@ -85,7 +133,10 @@ struct AutoRegisterWidget_STextBlock
 			//不能直接传string，需要TAtrribute
 			//.Method("SetText", MakeFunction(&STextBlock::SetText))
 			//扩展函数self传递有问题
-			.Method("SetText", MakeExtension(&STextBlock_Extension::SetText))
+			//.Method("SetText", MakeExtension(&STextBlock_Extension::SetText))
+			.Method("SetText", MakeExtension(&STextBlock_Extension::CallFunction_Attribute, FJsObject(), "SetText"))
+			.Method("SetColorAndOpacity", MakeExtension(&STextBlock_Extension::CallFunction_Attribute, FJsObject(), "SetColorAndOpacity"))
+			.Method("SetWrapTextAt", MakeExtension(&STextBlock_Extension::CallFunction_Attribute, FJsObject(), "SetWrapTextAt"))
 			.Register();
 
 		RegisterTSharedPtr(STextBlock);
