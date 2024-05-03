@@ -71,14 +71,14 @@ struct AutoRegisterWidget_SButton
 {
 	void DefineArguments()
 	{
-		FWidgetArguments Arg;
-		Arg.Add("Text", "string");
-		Arg.Add("IsFocusable", "boolean");
-		Arg.Add("HAlign", _EHorizontalAlignment_);
-		Arg.Add("VAlign", _EVerticalAlignment_);
-		Arg.Add("OnClicked", "() => void");
+		FWidgetArguments Arguments;
+		Arguments.Add("Text", "string");
+		Arguments.Add("IsFocusable", "boolean");
+		Arguments.Add("HAlign", _EHorizontalAlignment_);
+		Arguments.Add("VAlign", _EVerticalAlignment_);
+		Arguments.Add("OnClicked", "() => void");
 
-		UTemplateBindingGenerator::RegisterWidgetArgumentType("SButton", Arg);
+		UTemplateBindingGenerator::RegisterWidgetArgumentType("SButton", Arguments);
 	}
 
 	AutoRegisterWidget_SButton()
