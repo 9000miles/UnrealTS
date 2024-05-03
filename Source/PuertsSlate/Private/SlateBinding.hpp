@@ -1,4 +1,5 @@
 ﻿//#include "ScriptBackend.hpp"
+#include "Input/Reply.h"
 #include "Widgets/Input/SButton.h"
 #include "Widgets/Layout/SBorder.h"
 #include "Binding.hpp"
@@ -35,8 +36,11 @@ UsingTSharedPtr(SCompoundWidget);
 UsingCppType(SLeafWidget);
 UsingTSharedPtr(SLeafWidget);
 
-UsingUStruct(FMargin);
 UsingTSharedPtr(FVector);
+
+//UsingCppType(FReplyBase);
+//UsingCppType(TReplyBase<FReply>);
+UsingCppType(FReply);
 
 
 class TType {
@@ -52,8 +56,8 @@ struct AutoRegisterForSlate
 {
 	AutoRegisterForSlate()
 	{
-		//puerts::DefineClass<TType>()
-		//	.Register();
+		puerts::DefineClass<FReply>()
+			.Register();
 
 		puerts::DefineClass<FSlateWidgetClassData>()
 			.Method("GetWidgetType", MakeFunction(&FSlateWidgetClassData::GetWidgetType))

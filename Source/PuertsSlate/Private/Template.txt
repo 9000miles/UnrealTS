@@ -32,9 +32,9 @@ struct AutoRegisterWidget_$WidgetClass$
 {
 	void DefineArguments()
 	{
-		FWidgetArguments Arg;
+		FWidgetArguments Arguments;
 
-		UTemplateBindingGenerator::RegisterWidgetArgumentType("$WidgetClass$", Arg);
+		UTemplateBindingGenerator::RegisterWidgetArgumentType("$WidgetClass$", Arguments);
 	}
 
 	AutoRegisterWidget_$WidgetClass$()

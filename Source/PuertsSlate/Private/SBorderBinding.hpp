@@ -37,13 +37,13 @@ struct AutoRegisterWidget_SBorder
 {
 	void DefineArguments()
 	{
-		FWidgetArguments Arg;
-		Arg.Add("HAlign", _EHorizontalAlignment_);
-		Arg.Add("VAlign", _EVerticalAlignment_);
-		Arg.Add("Padding", "UE.Margin");
-		Arg.Add("OnMouseButtonDown", "(Geometry: cpp.Geometry, MouseEvent: cpp.PointerEvent, InAssociation: cpp.MaterialParameterAssociation, InIndex: number) => void");
+		FWidgetArguments Arguments;
+		Arguments.Add("HAlign", _EHorizontalAlignment_);
+		Arguments.Add("VAlign", _EVerticalAlignment_);
+		Arguments.Add("Padding", "UE.Margin");
+		Arguments.Add("OnMouseButtonDown", "(Geometry: cpp.Geometry, MouseEvent: cpp.PointerEvent, InAssociation: cpp.MaterialParameterAssociation, InIndex: number) => void");
 
-		UTemplateBindingGenerator::RegisterWidgetArgumentType("SBorder", Arg);
+		UTemplateBindingGenerator::RegisterWidgetArgumentType("SBorder", Arguments);
 	}
 
 	AutoRegisterWidget_SBorder()
