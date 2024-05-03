@@ -901,6 +901,23 @@ namespace WidgetAttribute2
 	//		bool Ret = puerts::converter::Converter<bool>::toCpp(JsObject.GetContext(), Value); return TAttribute<bool>(Ret);
 	//	} return TAttribute<bool>();
 	//};
+
+	template<typename TType>
+	TOptional<TType> MakeOptional(FJsObject& JsObject) { return TAttribute<TType>(); }
+	template<> TOptional<FSlateSound> MakeOptional(FJsObject& JsObject)
+	{
+		return TOptional<FSlateSound>();
+	}
+
+	FSimpleDelegate MakeSimpleDelegate(FJsObject& JsObject)
+	{
+		return FSimpleDelegate();
+	}
+
+	FOnClicked MakeOnClicked(FJsObject& JsObject)
+	{
+		return FOnClicked();
+	}
 }
 
 namespace WidgetAttribute1

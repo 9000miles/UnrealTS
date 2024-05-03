@@ -65,31 +65,75 @@ struct SButton_Extension
 		//	.OnClicked_Lambda([ClickFunc]() {ClickFunc(); return FReply::Handled(); })
 		//	;
 	}
+	static void CallFunction_Attribute(const TSharedPtr<SButton> Widget, FJsObject JsObject, const FString& FunctionName)
+	{
+		if (!Widget.IsValid()) return;
+
+		CALL_FUNCTION_SET__Attribute(FMargin, SetContentPadding);
+		CALL_FUNCTION_SET__Optional(FSlateSound, SetHoveredSound);
+		CALL_FUNCTION_SET__Optional(FSlateSound, SetPressedSound);
+		CALL_FUNCTION_SET__OnClicked(FOnClicked, SetOnClicked);
+		CALL_FUNCTION_SET__SimpleDelegate(FSimpleDelegate, SetOnHovered);
+		CALL_FUNCTION_SET__SimpleDelegate(FSimpleDelegate, SetOnUnhovered);
+		//else CALL_FUNCTION_SET_Attribute(const FButtonStyle*, SetButtonStyle)
+	}
 };
 
 struct AutoRegisterWidget_SButton
 {
-	void DefineArguments()
+	void RegisterArguments()
 	{
 		FWidgetArguments Arguments;
-		Arguments.Add("Text", "string");
-		Arguments.Add("IsFocusable", "boolean");
-		Arguments.Add("HAlign", _EHorizontalAlignment_);
-		Arguments.Add("VAlign", _EVerticalAlignment_);
-		Arguments.Add("OnClicked", "() => void");
-
+		REGISTER_WIDGET_ARGUMENT_TYPE__ButtonStyle(ESlateArgumentType::SLATE_STYLE_ARGUMENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__TextStyle(ESlateArgumentType::SLATE_STYLE_ARGUMENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__HAlign(ESlateArgumentType::SLATE_ARGUMENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__VAlign(ESlateArgumentType::SLATE_ARGUMENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__ContentPadding(ESlateArgumentType::SLATE_ATTRIBUTE);
+		REGISTER_WIDGET_ARGUMENT_TYPE__Text(ESlateArgumentType::SLATE_ATTRIBUTE);
+		REGISTER_WIDGET_ARGUMENT_TYPE__OnClicked(ESlateArgumentType::SLATE_EVENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__OnPressed(ESlateArgumentType::SLATE_EVENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__OnReleased(ESlateArgumentType::SLATE_EVENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__OnHovered(ESlateArgumentType::SLATE_EVENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__ClickMethod(ESlateArgumentType::SLATE_ARGUMENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__TouchMethod(ESlateArgumentType::SLATE_ARGUMENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__PressMethod(ESlateArgumentType::SLATE_ARGUMENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__DesiredSizeScale(ESlateArgumentType::SLATE_ATTRIBUTE);
+		REGISTER_WIDGET_ARGUMENT_TYPE__ContentScale(ESlateArgumentType::SLATE_ATTRIBUTE);
+		REGISTER_WIDGET_ARGUMENT_TYPE__ButtonColorAndOpacity(ESlateArgumentType::SLATE_ATTRIBUTE);
+		REGISTER_WIDGET_ARGUMENT_TYPE__ForegroundColor(ESlateArgumentType::SLATE_ATTRIBUTE);
+		REGISTER_WIDGET_ARGUMENT_TYPE__IsFocusable(ESlateArgumentType::SLATE_ARGUMENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__PressedSoundOverride(ESlateArgumentType::SLATE_ARGUMENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__HoveredSoundOverride(ESlateArgumentType::SLATE_ARGUMENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__TextShapingMethod(ESlateArgumentType::SLATE_ARGUMENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__TextFlowDirection(ESlateArgumentType::SLATE_ARGUMENT);
 		UTemplateBindingGenerator::RegisterWidgetArgumentType("SButton", Arguments);
 	}
 
 	AutoRegisterWidget_SButton()
 	{
-		DefineArguments();
+		RegisterArguments();
 
 		puerts::DefineClass<SButton>()
 			.Extends<SBorder>()
 			.Function("SNew", MakeFunction(&SButton_Extension::$SNew))
 			.Function("SAssignNew", MakeFunction(&SButton_Extension::$SAssignNew))
 			.Function("MakeShared", MakeFunction(&SButton_Extension::$MakeShared))
+
+			//.Method("GetForegroundColor", MakeFunction(&SButton::GetForegroundColor))
+			//.Method("GetDisabledForegroundColor", MakeFunction(&SButton::GetDisabledForegroundColor))
+			.Method("IsPressed", MakeFunction(&SButton::IsPressed))
+
+			.Method("SetContentPadding", MakeExtension(&SButton_Extension::CallFunction_Attribute, FJsObject(), "SetContentPadding"))
+			.Method("SetHoveredSound", MakeExtension(&SButton_Extension::CallFunction_Attribute, FJsObject(), "SetHoveredSound"))
+			.Method("SetPressedSound", MakeExtension(&SButton_Extension::CallFunction_Attribute, FJsObject(), "SetPressedSound"))
+			.Method("SetOnClicked", MakeExtension(&SButton_Extension::CallFunction_Attribute, FJsObject(), "SetOnClicked"))
+			.Method("SetOnHovered", MakeExtension(&SButton_Extension::CallFunction_Attribute, FJsObject(), "SetOnHovered"))
+			.Method("SetOnUnhovered", MakeExtension(&SButton_Extension::CallFunction_Attribute, FJsObject(), "SetOnUnhovered"))
+			.Method("SetButtonStyle", MakeExtension(&SButton_Extension::CallFunction_Attribute, FJsObject(), "SetButtonStyle"))
+			.Method("SetClickMethod", MakeFunction(&SButton::SetClickMethod))
+			.Method("SetTouchMethod", MakeFunction(&SButton::SetTouchMethod))
+			.Method("SetPressMethod", MakeFunction(&SButton::SetPressMethod))
+
 			.Register();
 
 		RegisterTSharedPtr(SButton);

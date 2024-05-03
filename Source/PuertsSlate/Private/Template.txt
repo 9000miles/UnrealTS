@@ -30,7 +30,7 @@ struct $WidgetClass$_Extension
 
 struct AutoRegisterWidget_$WidgetClass$
 {
-	void DefineArguments()
+	void RegisterArguments()
 	{
 		FWidgetArguments Arguments;
 
@@ -39,7 +39,7 @@ struct AutoRegisterWidget_$WidgetClass$
 
 	AutoRegisterWidget_$WidgetClass$()
 	{
-		DefineArguments();
+		RegisterArguments();
 
 		puerts::DefineClass<$WidgetClass$>()
 			//.Extends<ParentClass>()

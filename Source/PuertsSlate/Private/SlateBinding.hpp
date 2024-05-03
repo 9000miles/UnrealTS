@@ -57,6 +57,8 @@ struct AutoRegisterForSlate
 	AutoRegisterForSlate()
 	{
 		puerts::DefineClass<FReply>()
+			//.Function("Handled", MakeFunction(&FReply::Handled))
+			//.Function("Unhandled", MakeFunction(&FReply::Unhandled))
 			.Register();
 
 		puerts::DefineClass<FSlateWidgetClassData>()

@@ -9,6 +9,7 @@
 
 UsingCppType(SBorder);
 UsingTSharedPtr(SBorder);
+UsingTSharedRef(SBorder);
 
 struct SBorder_Extension
 {
@@ -31,30 +32,57 @@ struct SBorder_Extension
 		//	<<= SBorder::FArguments()
 		//	;
 	}
+	static void CallFunction_Attribute(const TSharedPtr<STextBlock> Widget, FJsObject JsObject, const FString& FunctionName)
+	{
+		if (!Widget.IsValid()) return;
+	}
 };
 
 struct AutoRegisterWidget_SBorder
 {
-	void DefineArguments()
+	void RegisterArguments()
 	{
 		FWidgetArguments Arguments;
-		Arguments.Add("HAlign", _EHorizontalAlignment_);
-		Arguments.Add("VAlign", _EVerticalAlignment_);
-		Arguments.Add("Padding", "UE.Margin");
-		Arguments.Add("OnMouseButtonDown", "(Geometry: cpp.Geometry, MouseEvent: cpp.PointerEvent, InAssociation: cpp.MaterialParameterAssociation, InIndex: number) => void");
-
+		REGISTER_WIDGET_ARGUMENT_TYPE__HAlign(ESlateArgumentType::SLATE_ARGUMENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__VAlign(ESlateArgumentType::SLATE_ARGUMENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__Padding(ESlateArgumentType::SLATE_ATTRIBUTE);
+		REGISTER_WIDGET_ARGUMENT_TYPE__OnMouseButtonDown(ESlateArgumentType::SLATE_EVENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__OnMouseButtonUp(ESlateArgumentType::SLATE_EVENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__OnMouseMove(ESlateArgumentType::SLATE_EVENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__OnMouseDoubleClick(ESlateArgumentType::SLATE_EVENT);
+		REGISTER_WIDGET_ARGUMENT_TYPE__BorderImage(ESlateArgumentType::SLATE_ATTRIBUTE);
+		REGISTER_WIDGET_ARGUMENT_TYPE__ContentScale(ESlateArgumentType::SLATE_ATTRIBUTE);
+		REGISTER_WIDGET_ARGUMENT_TYPE__DesiredSizeScale(ESlateArgumentType::SLATE_ATTRIBUTE);
+		REGISTER_WIDGET_ARGUMENT_TYPE__ColorAndOpacity(ESlateArgumentType::SLATE_ATTRIBUTE);
+		REGISTER_WIDGET_ARGUMENT_TYPE__BorderBackgroundColor(ESlateArgumentType::SLATE_ATTRIBUTE);
+		REGISTER_WIDGET_ARGUMENT_TYPE__ForegroundColor(ESlateArgumentType::SLATE_ATTRIBUTE);
+		REGISTER_WIDGET_ARGUMENT_TYPE__ShowEffectWhenDisabled(ESlateArgumentType::SLATE_ATTRIBUTE);
+		REGISTER_WIDGET_ARGUMENT_TYPE__FlipForRightToLeftFlowDirection(ESlateArgumentType::SLATE_ARGUMENT);
 		UTemplateBindingGenerator::RegisterWidgetArgumentType("SBorder", Arguments);
 	}
 
 	AutoRegisterWidget_SBorder()
 	{
-		DefineArguments();
+		RegisterArguments();
 
 		puerts::DefineClass<SBorder>()
 			.Extends<SCompoundWidget>()
 			.Function("SNew", MakeFunction(&SBorder_Extension::$SNew))
 			.Function("SAssignNew", MakeFunction(&SBorder_Extension::$SAssignNew))
 			.Function("MakeShared", MakeFunction(&SBorder_Extension::$MakeShared))
+
+			//.Method("SetContent", MakeFunction(&SBorder::SetContent))
+			//.Method("GetContent", MakeFunction(&SBorder::GetContent))
+			//.Method("GetBorderBackgroundColor", MakeFunction(&SBorder::GetBorderBackgroundColor))
+
+			.Method("SetBorderBackgroundColor", MakeExtension(&SBorder_Extension::CallFunction_Attribute, FJsObject(), "SetBorderBackgroundColor"))
+			.Method("SetDesiredSizeScale", MakeExtension(&SBorder_Extension::CallFunction_Attribute, FJsObject(), "SetDesiredSizeScale"))
+			.Method("SetHAlign", MakeExtension(&SBorder_Extension::CallFunction_Attribute, FJsObject(), "SetHAlign"))
+			.Method("SetVAlign", MakeExtension(&SBorder_Extension::CallFunction_Attribute, FJsObject(), "SetVAlign"))
+			.Method("SetPadding", MakeExtension(&SBorder_Extension::CallFunction_Attribute, FJsObject(), "SetPadding"))
+			.Method("SetShowEffectWhenDisabled", MakeExtension(&SBorder_Extension::CallFunction_Attribute, FJsObject(), "SetShowEffectWhenDisabled"))
+			.Method("SetBorderImage", MakeExtension(&SBorder_Extension::CallFunction_Attribute, FJsObject(), "SetBorderImage"))
+
 			.Register();
 
 		RegisterTSharedPtr(SBorder);
