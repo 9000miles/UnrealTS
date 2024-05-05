@@ -1,16 +1,16 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "PuertsSlate.h"
+#include "SlateTS.h"
 #include "SlateBinding.hpp"
 
-#define LOCTEXT_NAMESPACE "FPuertsSlateModule"
+#define LOCTEXT_NAMESPACE "FSlateTSModule"
 
-void FPuertsSlateModule::StartupModule()
+void FSlateTSModule::StartupModule()
 {
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
 }
 
-void FPuertsSlateModule::ShutdownModule()
+void FSlateTSModule::ShutdownModule()
 {
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
@@ -18,4 +18,4 @@ void FPuertsSlateModule::ShutdownModule()
 
 #undef LOCTEXT_NAMESPACE
 	
-IMPLEMENT_MODULE(FPuertsSlateModule, PuertsSlate)
+IMPLEMENT_MODULE(FSlateTSModule, SlateTS)

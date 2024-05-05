@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class PuertsSlate : ModuleRules
+public class SlateTS : ModuleRules
 {
-    public PuertsSlate(ReadOnlyTargetRules Target) : base(Target)
+    public SlateTS(ReadOnlyTargetRules Target) : base(Target)
     {
         PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
         bEnableUndefinedIdentifierWarnings = false;

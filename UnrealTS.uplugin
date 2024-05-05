@@ -2,7 +2,7 @@
   "FileVersion": 3,
   "Version": 1,
   "VersionName": "1.0",
-  "FriendlyName": "PuertsSlate",
+  "FriendlyName": "UnrealTS",
   "Description": "",
   "Category": "Other",
   "CreatedBy": "",
@@ -16,7 +16,12 @@
   "Installed": false,
   "Modules": [
     {
-      "Name": "PuertsSlate",
+      "Name": "UnrealTS",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    },
+    {
+      "Name": "SlateTS",
       "Type": "Runtime",
       "LoadingPhase": "Default"
     }

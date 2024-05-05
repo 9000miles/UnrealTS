@@ -45,10 +45,10 @@ TSharedPtr<STextBlock> UTestPuertsSlateGameInstance::GetTextBlock()
 	return MyTextBlock;
 }
 
-void UTestPuertsSlateGameInstance::SetScriptClass(ChildClass* cc)
-{
-	cc->Tick(23.34f);
-}
+//void UTestPuertsSlateGameInstance::SetScriptClass(ChildClass* cc)
+//{
+//	cc->Tick(23.34f);
+//}
 
 void UTestPuertsSlateGameInstance::OnStart()
 {
@@ -132,7 +132,7 @@ struct AutoRegisterMyTest
 		puerts::DefineClass<UTestPuertsSlateGameInstance>()
 			.Method("GetTextBlock", MakeFunction(&UTestPuertsSlateGameInstance::GetTextBlock))
 			.Method("SetTestWidget", MakeFunction(&UTestPuertsSlateGameInstance::SetTestWidget))
-			.Method("SetScriptClass", MakeFunction(&UTestPuertsSlateGameInstance::SetScriptClass))
+			//.Method("SetScriptClass", MakeFunction(&UTestPuertsSlateGameInstance::SetScriptClass))
 			.Register();
 
 	}

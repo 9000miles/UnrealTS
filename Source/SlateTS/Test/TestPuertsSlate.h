@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
 #include "JsEnv.h"
-#include "../Private/ScriptClass.hpp"
 #include "TestPuertsSlate.generated.h"
 
 /**
@@ -31,7 +30,7 @@ public:
 	TSharedPtr<STextBlock> GetTextBlock();
 
 public:
-	void SetScriptClass(ChildClass* cc);
+	//void SetScriptClass(ChildClass* cc);
 
 protected:
 

@@ -1,3 +1,6 @@
+
+#pragma once
+
 #include "JsObject.h"
 #include "v8.h"
 
