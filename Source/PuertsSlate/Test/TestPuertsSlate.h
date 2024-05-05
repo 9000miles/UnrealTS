@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
 #include "JsEnv.h"
+#include "../Private/ScriptClass.hpp"
 #include "TestPuertsSlate.generated.h"
 
 /**
@@ -28,6 +29,9 @@ public:
 public:
 	void SetTestWidget(TSharedPtr<SWidget> Widget);
 	TSharedPtr<STextBlock> GetTextBlock();
+
+public:
+	void SetScriptClass(ChildClass* cc);
 
 protected:
 

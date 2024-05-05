@@ -801,9 +801,9 @@ namespace WidgetArgument3
 		if (Value->IsFunction())
 		{
 			auto Function = JsObject.Get<FJsObject>(VariableName);
-			Arguments._OnDoubleClicked.BindLambda([Function](const FGeometry& Geometry, const FPointerEvent& PointerEvent)
+			Arguments._OnDoubleClicked.BindLambda([Function, &JsObject](const FGeometry& Geometry, const FPointerEvent& PointerEvent)
 				{
-					return *Function.Func<FReply*>(Geometry, PointerEvent);
+					return *Function.Func<FReply*>(&JsObject, Geometry, PointerEvent);
 				});
 		}
 	}
@@ -835,7 +835,7 @@ namespace WidgetAttribute2
 		if (Value->IsFunction())\
 		{\
 			TAttribute<Type>::FGetter Getter;\
-			Getter.BindLambda([JsObject]() { return JsObject.Func<Type>(); });\
+			Getter.BindLambda([&JsObject]() { return JsObject.Func<Type>(&JsObject); });\
 			return TAttribute<Type>::Create(Getter);\
 		}\
 		if (puerts::converter::Converter<Type>::accept(JsObject.GetContext(), Value))\
@@ -938,9 +938,9 @@ namespace WidgetAttribute1
 		else if (Value->IsFunction())
 		{
 			TAttribute<FText>::FGetter Getter;
-			Getter.BindLambda([JsObject]()
+			Getter.BindLambda([&JsObject]()
 				{
-					std::string Ret = JsObject.Func<std::string>();
+					std::string Ret = JsObject.Func<std::string>(&JsObject);
 					FString String = UTF8_TO_TCHAR(Ret.c_str());
 					return FText::FromString(String);
 				});
@@ -959,9 +959,9 @@ namespace WidgetAttribute1
 		else if (Value->IsFunction())
 		{
 			TAttribute<float>::FGetter Getter;
-			Getter.BindLambda([JsObject]()
+			Getter.BindLambda([&JsObject]()
 				{
-					return JsObject.Func<float>();
+					return JsObject.Func<float>(&JsObject);
 				});
 			return TAttribute<float>::Create(Getter);
 		}
@@ -978,9 +978,9 @@ namespace WidgetAttribute1
 		else if (Value->IsFunction())
 		{
 			TAttribute<bool>::FGetter Getter;
-			Getter.BindLambda([JsObject]()
+			Getter.BindLambda([&JsObject]()
 				{
-					return JsObject.Func<bool>();
+					return JsObject.Func<bool>(&JsObject);
 				});
 			return TAttribute<bool>::Create(Getter);
 		}
@@ -992,9 +992,9 @@ namespace WidgetAttribute1
 		if (Value->IsFunction())
 		{
 			TAttribute<FVector2D>::FGetter Getter;
-			Getter.BindLambda([JsObject]()
+			Getter.BindLambda([&JsObject]()
 				{
-					return JsObject.Func<FVector2D>();
+					return JsObject.Func<FVector2D>(&JsObject);
 				});
 			return TAttribute<FVector2D>::Create(Getter);
 		}
@@ -1062,9 +1062,9 @@ namespace WidgetAttribute1
 		if (Value->IsFunction())
 		{
 			TAttribute<FSlateBrush>::FGetter Getter;
-			Getter.BindLambda([JsObject]()
+			Getter.BindLambda([&JsObject]()
 				{
-					return JsObject.Func<FSlateBrush>();
+					return JsObject.Func<FSlateBrush>(&JsObject);
 				});
 			return TAttribute<FSlateBrush>::Create(Getter);
 		}
@@ -1083,9 +1083,9 @@ namespace WidgetAttribute1
 		if (Value->IsFunction())\
 		{\
 			TAttribute<Type>::FGetter Getter;\
-			Getter.BindLambda([JsObject]()\
+			Getter.BindLambda([&JsObject]()\
 				{\
-					return JsObject.Func<Type>();\
+					return JsObject.Func<Type>(&JsObject);\
 				});\
 			return TAttribute<Type>::Create(Getter);\
 		}\
@@ -1135,7 +1135,7 @@ namespace WidgetAttribute
 			TAttribute<FText>::FGetter Getter;
 			Getter.BindLambda([&JsObject]()
 				{
-					std::string Ret = JsObject.Func<std::string>();
+					std::string Ret = JsObject.Func<std::string>(&JsObject);
 					FString String = UTF8_TO_TCHAR(Ret.c_str());
 					return FText::FromString(String);
 				});
@@ -1160,7 +1160,7 @@ namespace WidgetAttribute
 		{
 			v8::Local<v8::Function> Function = Value.As<v8::Function>();
 			FJsObject JsObject = FJsObject(Context, Function);
-			std::string Ret = JsObject.Func<std::string>();
+			std::string Ret = JsObject.Func<std::string>(&JsObject);
 
 			TAttribute<FText>::FGetter Getter;
 			Getter.BindLambda([Function, &Context, Isolate]()
@@ -1176,7 +1176,7 @@ namespace WidgetAttribute
 				{
 					v8::Local<v8::Function> Function = Value.As<v8::Function>();
 					FJsObject JsObject = FJsObject(Context, Function);
-					std::string Ret = JsObject.Func<std::string>();
+					std::string Ret = JsObject.Func<std::string>(&JsObject);
 					FString String = UTF8_TO_TCHAR(Ret.c_str());
 					return FText::FromString(String);
 				});
@@ -1227,9 +1227,9 @@ namespace WidgetAttribute
 		{
 			auto Function = JsObject;
 			TAttribute<FText>::FGetter Getter;
-			Getter.BindLambda([Function]()
+			Getter.BindLambda([Function, &JsObject]()
 				{
-					std::string Ret = Function.Func<std::string>();
+					std::string Ret = Function.Func<std::string>(&JsObject);
 					FString String = UTF8_TO_TCHAR(Ret.c_str());
 					return FText::FromString(String);
 				});
