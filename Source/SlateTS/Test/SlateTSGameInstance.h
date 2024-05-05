@@ -5,13 +5,13 @@
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
 #include "JsEnv.h"
-#include "TestPuertsSlate.generated.h"
+#include "SlateTSGameInstance.generated.h"
 
 /**
  *Comment
  */
 UCLASS(BlueprintType, Blueprintable)
-class UTestPuertsSlateGameInstance : public UGameInstance
+class USlateTSGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
 

@@ -1,13 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-#include "TestPuertsSlate.h"
+#include "SlateTSGameInstance.h"
 #include "Interfaces/IPluginManager.h"
 
-void UTestPuertsSlateGameInstance::Init()
+void USlateTSGameInstance::Init()
 {
 
 }
 
-void UTestPuertsSlateGameInstance::Shutdown()
+void USlateTSGameInstance::Shutdown()
 {
 	Super::Shutdown();
 
@@ -18,7 +18,7 @@ void UTestPuertsSlateGameInstance::Shutdown()
 	}
 }
 
-void UTestPuertsSlateGameInstance::CopyFiles()
+void USlateTSGameInstance::CopyFiles()
 {
 	TSharedPtr<IPlugin> Plugin = IPluginManager::Get().FindPlugin(TEXT("Puerts"));
 	if (!Plugin.IsValid()) return;
@@ -34,13 +34,13 @@ void UTestPuertsSlateGameInstance::CopyFiles()
 }
 
 
-void UTestPuertsSlateGameInstance::SetTestWidget(TSharedPtr<SWidget> Widget)
+void USlateTSGameInstance::SetTestWidget(TSharedPtr<SWidget> Widget)
 {
 	TestWidget = Widget;
 	AddToWidget();
 }
 
-TSharedPtr<STextBlock> UTestPuertsSlateGameInstance::GetTextBlock()
+TSharedPtr<STextBlock> USlateTSGameInstance::GetTextBlock()
 {
 	return MyTextBlock;
 }
@@ -50,7 +50,7 @@ TSharedPtr<STextBlock> UTestPuertsSlateGameInstance::GetTextBlock()
 //	cc->Tick(23.34f);
 //}
 
-void UTestPuertsSlateGameInstance::OnStart()
+void USlateTSGameInstance::OnStart()
 {
 	Super::OnStart();
 	StartScript();
@@ -61,7 +61,7 @@ void UTestPuertsSlateGameInstance::OnStart()
 }
 
 
-void UTestPuertsSlateGameInstance::AddToWidget()
+void USlateTSGameInstance::AddToWidget()
 {
 	if (!TestWidget.IsValid())
 	{
@@ -75,7 +75,7 @@ void UTestPuertsSlateGameInstance::AddToWidget()
 	this->GetGameViewportClient()->AddViewportWidgetContent(TestWidget.ToSharedRef());
 }
 
-void UTestPuertsSlateGameInstance::StartScript()
+void USlateTSGameInstance::StartScript()
 {
 
 #if WITH_EDITOR
@@ -123,15 +123,15 @@ void UTestPuertsSlateGameInstance::StartScript()
 }
 
 
-UsingUClass(UTestPuertsSlateGameInstance);
+UsingUClass(USlateTSGameInstance);
 
 struct AutoRegisterMyTest
 {
 	AutoRegisterMyTest()
 	{
-		puerts::DefineClass<UTestPuertsSlateGameInstance>()
-			.Method("GetTextBlock", MakeFunction(&UTestPuertsSlateGameInstance::GetTextBlock))
-			.Method("SetTestWidget", MakeFunction(&UTestPuertsSlateGameInstance::SetTestWidget))
+		puerts::DefineClass<USlateTSGameInstance>()
+			.Method("GetTextBlock", MakeFunction(&USlateTSGameInstance::GetTextBlock))
+			.Method("SetTestWidget", MakeFunction(&USlateTSGameInstance::SetTestWidget))
 			//.Method("SetScriptClass", MakeFunction(&UTestPuertsSlateGameInstance::SetScriptClass))
 			.Register();
 
