@@ -26,27 +26,21 @@ public:
 };
 
 
-class Script_ChildClass;
-struct FChildClass_Proxy;
+class $ChildClass;
+struct ChildClassHelper;
 
 
-struct FChildClass_Proxy
+struct ChildClassHelper
 {
-	FChildClass_Proxy(Script_ChildClass* Ptr) :ScriptClass(Ptr) {  }
+	ChildClassHelper($ChildClass* Ptr) :ScriptClass(Ptr) {  }
 	void Tick(float d);
-	Script_ChildClass* ScriptClass;
+	$ChildClass* ScriptClass;
 };
-class Script_ChildClass :public ChildClass
+class $ChildClass :public ChildClass
 {
 public:
-	Script_ChildClass(const FJsObject& JsObject)
-		:JsThis(JsObject),
-		Super(new FChildClass_Proxy(this))
-	{
-
-	}
-
-	void Register(FJsObject JsObject)
+	$ChildClass(const FJsObject& JsObject) : Super(new ChildClassHelper(this)), JsThis(JsObject) {  }
+	void __bind__(FJsObject JsObject)
 	{
 		JsThis = JsObject;
 	}
@@ -61,34 +55,36 @@ public:
 		return;
 #endif
 
+#if 0
 		v8::Local<v8::Value> Value;
-		if (!JsThis.Has("Tick", Value)) return;
+		if (!JsThis->Has("Tick", Value)) return;
 
 		v8::Local<v8::Function> Function = Value.As<v8::Function>();
-		v8::Local<v8::Value> Args[1] = { puerts::converter::Converter<float>::toScript(JsThis.GetContext(), Detail) };
-		v8::Local<v8::Value> JS = { puerts::converter::Converter<FJsObject>::toScript(JsThis.GetContext(), JsThis) };
-		Function->CallAsFunction(JsThis.GetContext(), v8::Undefined(JsThis.GetIsolate()), 1, Args);
+		v8::Local<v8::Value> Args[1] = { puerts::converter::Converter<float>::toScript(JsThis->GetContext(), Detail) };
+		v8::Local<v8::Value> JS = { puerts::converter::Converter<FJsObject>::toScript(JsThis->GetContext(), *JsThis) };
+		Function->CallAsFunction(JsThis->GetContext(), v8::Undefined(JsThis->GetIsolate()), 1, Args);
+#endif
 		//Function->CallAsFunction(JsThis.GetContext(), JS, 1, Args);
 		//Function->Call(JsThis.GetContext(), JS, 1, Args);
 		//Function->Call(JsThis.GetContext(), v8::Undefined(JsThis.GetIsolate()), 1, Args);
 	}
 public:
-	FChildClass_Proxy* Super;
+	ChildClassHelper* Super;
 
 private:
 	FJsObject JsThis;
 };
 
 
-void FChildClass_Proxy::Tick(float d)
+void ChildClassHelper::Tick(float d)
 {
 	ScriptClass->ChildClass::Tick(d);
 }
 
 UsingCppType(BaseClass);
 UsingCppType(ChildClass);
-UsingCppType(Script_ChildClass);
-UsingCppType(FChildClass_Proxy);
+UsingCppType($ChildClass);
+UsingCppType(ChildClassHelper);
 
 struct AutoRegister_ScriptClass
 {
@@ -104,16 +100,16 @@ struct AutoRegister_ScriptClass
 			.Extends<BaseClass>()
 			.Register();
 
-		puerts::DefineClass<Script_ChildClass>()
+		puerts::DefineClass<$ChildClass>()
 			.Constructor<FJsObject>()
 			.Extends<ChildClass>()
 			//.Method("Tick", MakeFunction(&Script_ChildClass::Tick))
-			.Method("Register", MakeFunction(&Script_ChildClass::Register))
-			.Property("Super", MakeProperty(&Script_ChildClass::Super))
+			.Method("__bind__", MakeFunction(&$ChildClass::__bind__))
+			.Property("Super", MakeProperty(&$ChildClass::Super))
 			.Register();
 
-		puerts::DefineClass<FChildClass_Proxy>()
-			.Method("Tick", MakeFunction(&FChildClass_Proxy::Tick))
+		puerts::DefineClass<ChildClassHelper>()
+			.Method("Tick", MakeFunction(&ChildClassHelper::Tick))
 			.Register();
 	}
 };
