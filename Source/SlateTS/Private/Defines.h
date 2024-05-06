@@ -1,9 +1,5 @@
 #pragma once
 
-// **************************** WIDGET_ARGUMENT_ENUM ****************************
-#define _EHorizontalAlignment_ "\"Fill\" | \"Left\" | \"Center\"| \"Right\""
-#define _EVerticalAlignment_ "\"Fill\" | \"Top\" | \"Center\" | \"Bottom\""
-
 // **************************** CALL_SET_ATTRIBUTE_FUNCTION ****************************
 #define CALL_FUNCTION_SET__Attribute(Type, Name)\
 if (FunctionName == #Name)\
@@ -30,10 +26,12 @@ if (FunctionName == #Name)\
 	Widget->##Name(Delegate);\
 }
 
-#define TS_FUNCTION_RET_ANY FString( " | (() => any)")
-#define TS_ATTRIBUTE_TYPE_Vector2D FString("UE.Vector2D | {X: number, Y: number}") + TS_FUNCTION_RET_ANY
-#define TS_ATTRIBUTE_TYPE_Vector3 FString("UE.Vector3 | {X: number, Y: number, Z: number}") + TS_FUNCTION_RET_ANY
+// **************************** DEFINE_ATTRIBUTE_FUNCTION ****************************
+#define DEFINE_ATTRIBUTE_FUNCTION(FunctionName, Type)\
+void $##FunctionName(FJsObject JsObject) { FunctionName(WidgetAttribute2::MakeAttribute<Type>(JsObject)); }
 
+
+// **************************** TypeScript Type ****************************
 #define TS_string "string"
 #define TS_boolean "boolean"
 #define TS_number "number"

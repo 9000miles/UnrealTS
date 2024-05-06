@@ -835,7 +835,7 @@ namespace WidgetAttribute2
 		if (Value->IsFunction())\
 		{\
 			TAttribute<Type>::FGetter Getter;\
-			Getter.BindLambda([&JsObject]() { return JsObject.Func<Type>(&JsObject); });\
+			Getter.BindLambda([JsObject]() { return JsObject.Func<Type>(nullptr); });\
 			return TAttribute<Type>::Create(Getter);\
 		}\
 		if (puerts::converter::Converter<Type>::accept(JsObject.GetContext(), Value))\

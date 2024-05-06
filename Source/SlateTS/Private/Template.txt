@@ -3,32 +3,35 @@
 #include "CoreMinimal.h"
 #include "JsObject.h"
 #include "Binding.hpp"
-#include "PuertsSlateDefines.h"
+#include "Defines.h"
 #include "TemplateBindingGenerator.h"
 
 UsingCppType($WidgetClass$);
 UsingTSharedPtr($WidgetClass$);
+UsingTSharedRef($WidgetClass$);
 
-struct $WidgetClass$_Extension
+class $$WidgetClass$
 {
-	$WidgetClass$_Extension() { }
-	static TSharedPtr<$WidgetClass$> $MakeShared()
-	{
-		return ::MakeShared<$WidgetClass$>();
-	}
-	static void $SAssignNew(TSharedPtr<$WidgetClass$>&ExposeAs, FJsObject JsObject, FString Filename = "")
-	{
-		ExposeAs = $SNew(JsObject, Filename);
-	}
+public:
 	static TSharedPtr<$WidgetClass$> $SNew(FJsObject JsObject, FString Filename = "")
 	{
 		$WidgetClass$::FArguments Arguments;
 
 		return MakeTDecl<$WidgetClass$>("$WidgetClass$", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
 	}
+	static void $SAssignNew(TSharedPtr<$WidgetClass$>&ExposeAs, FJsObject JsObject, FString Filename = "")
+	{
+		ExposeAs = $SNew(JsObject, Filename);
+	}
+	static TSharedPtr<$WidgetClass$> $MakeShared()
+	{
+		return ::MakeShared<$WidgetClass$>();
+	}
+
+public:
 };
 
-struct AutoRegisterWidget_$WidgetClass$
+struct AutoRegister_$WidgetClass$
 {
 	void RegisterArguments()
 	{
@@ -37,20 +40,19 @@ struct AutoRegisterWidget_$WidgetClass$
 		UTemplateBindingGenerator::RegisterWidgetArgumentType("$WidgetClass$", Arguments);
 	}
 
-	AutoRegisterWidget_$WidgetClass$()
+	AutoRegister_$WidgetClass$()
 	{
 		RegisterArguments();
 
 		puerts::DefineClass<$WidgetClass$>()
 			//.Extends<ParentClass>()
-			.Function("SNew", MakeFunction(&$WidgetClass$_Extension::$SNew))
-			.Function("SAssignNew", MakeFunction(&$WidgetClass$_Extension::$SAssignNew))
-			.Function("MakeShared", MakeFunction(&$WidgetClass$_Extension::$MakeShared))
+			.Function("SNew", MakeFunction(&$$WidgetClass$::$SNew))
+			.Function("SAssignNew", MakeFunction(&$$WidgetClass$::$SAssignNew))
+			.Function("MakeShared", MakeFunction(&$$WidgetClass$::$MakeShared))
 			.Register();
 
 		RegisterTSharedPtr($WidgetClass$);
 	}
 };
 
-AutoRegisterWidget_$WidgetClass$ _AutoRegisterWidget_$WidgetClass$;
-
+AutoRegister_$WidgetClass$ _AutoRegister_$WidgetClass$;

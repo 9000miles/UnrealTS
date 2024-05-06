@@ -3,16 +3,16 @@
 #include "CoreMinimal.h"
 #include "JsObject.h"
 #include "Binding.hpp"
-#include "PuertsSlateDefines.h"
+#include "Defines.h"
 #include "TemplateBindingGenerator.h"
 #include "Widgets/Input/SButton.h"
 
 UsingCppType(SButton);
 UsingTSharedPtr(SButton);
 
-struct SButton_Extension
+struct SButtonExtension
 {
-	SButton_Extension() { }
+	SButtonExtension() { }
 	static TSharedPtr<SButton> $MakeShared()
 	{
 		return ::MakeShared<SButton>();
@@ -79,7 +79,7 @@ struct SButton_Extension
 	}
 };
 
-struct AutoRegisterWidget_SButton
+struct AutoRegister_SButton
 {
 	void RegisterArguments()
 	{
@@ -109,27 +109,27 @@ struct AutoRegisterWidget_SButton
 		UTemplateBindingGenerator::RegisterWidgetArgumentType("SButton", Arguments);
 	}
 
-	AutoRegisterWidget_SButton()
+	AutoRegister_SButton()
 	{
 		RegisterArguments();
 
 		puerts::DefineClass<SButton>()
 			.Extends<SBorder>()
-			.Function("SNew", MakeFunction(&SButton_Extension::$SNew))
-			.Function("SAssignNew", MakeFunction(&SButton_Extension::$SAssignNew))
-			.Function("MakeShared", MakeFunction(&SButton_Extension::$MakeShared))
+			.Function("SNew", MakeFunction(&SButtonExtension::$SNew))
+			.Function("SAssignNew", MakeFunction(&SButtonExtension::$SAssignNew))
+			.Function("MakeShared", MakeFunction(&SButtonExtension::$MakeShared))
 
 			//.Method("GetForegroundColor", MakeFunction(&SButton::GetForegroundColor))
 			//.Method("GetDisabledForegroundColor", MakeFunction(&SButton::GetDisabledForegroundColor))
 			.Method("IsPressed", MakeFunction(&SButton::IsPressed))
 
-			.Method("SetContentPadding", MakeExtension(&SButton_Extension::CallFunction_Attribute, FJsObject(), "SetContentPadding"))
-			.Method("SetHoveredSound", MakeExtension(&SButton_Extension::CallFunction_Attribute, FJsObject(), "SetHoveredSound"))
-			.Method("SetPressedSound", MakeExtension(&SButton_Extension::CallFunction_Attribute, FJsObject(), "SetPressedSound"))
-			.Method("SetOnClicked", MakeExtension(&SButton_Extension::CallFunction_Attribute, FJsObject(), "SetOnClicked"))
-			.Method("SetOnHovered", MakeExtension(&SButton_Extension::CallFunction_Attribute, FJsObject(), "SetOnHovered"))
-			.Method("SetOnUnhovered", MakeExtension(&SButton_Extension::CallFunction_Attribute, FJsObject(), "SetOnUnhovered"))
-			.Method("SetButtonStyle", MakeExtension(&SButton_Extension::CallFunction_Attribute, FJsObject(), "SetButtonStyle"))
+			.Method("SetContentPadding", MakeExtension(&SButtonExtension::CallFunction_Attribute, FJsObject(), "SetContentPadding"))
+			.Method("SetHoveredSound", MakeExtension(&SButtonExtension::CallFunction_Attribute, FJsObject(), "SetHoveredSound"))
+			.Method("SetPressedSound", MakeExtension(&SButtonExtension::CallFunction_Attribute, FJsObject(), "SetPressedSound"))
+			.Method("SetOnClicked", MakeExtension(&SButtonExtension::CallFunction_Attribute, FJsObject(), "SetOnClicked"))
+			.Method("SetOnHovered", MakeExtension(&SButtonExtension::CallFunction_Attribute, FJsObject(), "SetOnHovered"))
+			.Method("SetOnUnhovered", MakeExtension(&SButtonExtension::CallFunction_Attribute, FJsObject(), "SetOnUnhovered"))
+			.Method("SetButtonStyle", MakeExtension(&SButtonExtension::CallFunction_Attribute, FJsObject(), "SetButtonStyle"))
 			.Method("SetClickMethod", MakeFunction(&SButton::SetClickMethod))
 			.Method("SetTouchMethod", MakeFunction(&SButton::SetTouchMethod))
 			.Method("SetPressMethod", MakeFunction(&SButton::SetPressMethod))
@@ -140,5 +140,5 @@ struct AutoRegisterWidget_SButton
 	}
 };
 
-AutoRegisterWidget_SButton _AutoRegisterWidget_SButton;
+AutoRegister_SButton _AutoRegister_SButton;
 

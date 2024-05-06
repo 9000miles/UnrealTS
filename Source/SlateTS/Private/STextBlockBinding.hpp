@@ -3,17 +3,46 @@
 #include "CoreMinimal.h"
 #include "JsObject.h"
 #include "Binding.hpp"
-#include "PuertsSlateDefines.h"
+#include "Defines.h"
 #include "TemplateBindingGenerator.h"
 #include "Widgets/Text/STextBlock.h"
 #include "WidgetArgumentHelper.hpp"
 
+class $STextBlock;
+
 UsingCppType(STextBlock);
 UsingTSharedPtr(STextBlock);
+UsingTSharedRef(STextBlock);
 
-struct STextBlock_Extension
+struct STextBlockHelper
 {
-	STextBlock_Extension() { }
+	STextBlockHelper($STextBlock* InInstance) :Instance(InInstance) {  }
+
+	int32 OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeometry, const FSlateRect& MyCullingRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, const FWidgetStyle& InWidgetStyle, bool bParentEnabled) const;
+private:
+	$STextBlock* Instance;
+};
+UsingCppType(STextBlockHelper);
+
+class $STextBlock :public STextBlock
+{
+public:
+	STextBlockHelper* Super;
+private:
+	FJsObject JsThis;
+
+public:
+	$STextBlock(const FJsObject& JsObject) : Super(new STextBlockHelper(this)), JsThis(JsObject) {  }
+	void __bind__(FJsObject JsObject) { JsThis = JsObject; }
+
+	int32 OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeometry, const FSlateRect& MyCullingRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, const FWidgetStyle& InWidgetStyle, bool bParentEnabled) const
+	{
+		FJsObject FuncObj = JsThis.Get<FJsObject>("OnPaint");
+		//return FuncObj.Func<int32, const FPaintArgs&, const FGeometry&, const FSlateRect&, FSlateWindowElementList&, int32, const FWidgetStyle&, bool>(&JsThis, Args, AllottedGeometry, MyCullingRect, OutDrawElements, LayerId, InWidgetStyle, bParentEnabled);
+		return 22;
+	}
+
+public:
 	static TSharedPtr<STextBlock> $MakeShared()
 	{
 		return ::MakeShared<STextBlock>();
@@ -51,50 +80,33 @@ struct STextBlock_Extension
 		SET_WIDGET_ARGUMENT_VARIABLE(OnDoubleClicked);
 		return MakeTDecl<STextBlock>("STextBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
 	}
-	static void SetText(const TSharedPtr<STextBlock> TextBlock, const FText Text)
-	{
-		if (!TextBlock.IsValid()) return;
-		TextBlock->SetText(Text);
-	}
-	static void CallFunction_Attribute(const TSharedPtr<STextBlock> Widget, FJsObject JsObject, const FString& FunctionName)
-	{
-		if (!Widget.IsValid()) return;
 
-		//if (FunctionName == "SetText") {
-		//	TAttribute<FText> Parameter = WidgetAttribute2::MakeAttribute<FText>(JsObject); Widget->SetText(Parameter);
-		//}
-		//else if (FunctionName == "SetWrapTextAt") {
-		//	TAttribute<float> Parameter = WidgetAttribute2::MakeAttribute<float>(JsObject); Widget->SetWrapTextAt(Parameter);
-		//}
-		//else if (FunctionName == "SetColorAndOpacity") {
-		//	TAttribute<FSlateColor> Parameter = WidgetAttribute2::MakeAttribute<FSlateColor>(JsObject); Widget->SetColorAndOpacity(Parameter);
-		//}
+public:
+	DEFINE_ATTRIBUTE_FUNCTION(SetText, FText);
+	DEFINE_ATTRIBUTE_FUNCTION(SetHighlightText, FText);
+	DEFINE_ATTRIBUTE_FUNCTION(SetFont, FSlateFontInfo);
+	DEFINE_ATTRIBUTE_FUNCTION(SetColorAndOpacity, FSlateColor);
+	DEFINE_ATTRIBUTE_FUNCTION(SetWrapTextAt, float);
+	DEFINE_ATTRIBUTE_FUNCTION(SetAutoWrapText, bool);
+	DEFINE_ATTRIBUTE_FUNCTION(SetWrappingPolicy, ETextWrappingPolicy);
+	DEFINE_ATTRIBUTE_FUNCTION(SetTransformPolicy, ETextTransformPolicy);
+	DEFINE_ATTRIBUTE_FUNCTION(SetShadowOffset, FVector2D);
+	DEFINE_ATTRIBUTE_FUNCTION(SetShadowColorAndOpacity, FLinearColor);
+	DEFINE_ATTRIBUTE_FUNCTION(SetHighlightColor, FLinearColor);
+	DEFINE_ATTRIBUTE_FUNCTION(SetMinDesiredWidth, float);
+	DEFINE_ATTRIBUTE_FUNCTION(SetLineHeightPercentage, float);
+	DEFINE_ATTRIBUTE_FUNCTION(SetMargin, FMargin);
+	DEFINE_ATTRIBUTE_FUNCTION(SetJustification, ETextJustify::Type);
 
-		CALL_FUNCTION_SET__Attribute(FText, SetText);
-		CALL_FUNCTION_SET__Attribute(FText, SetHighlightText);
-		CALL_FUNCTION_SET__Attribute(FSlateFontInfo, SetFont);
-		//CALL_SET_ATTRIBUTE_FUNCTION(const FSlateBrush*, SetStrikeBrush);
-		CALL_FUNCTION_SET__Attribute(FSlateColor, SetColorAndOpacity);
-		//CALL_SET_ATTRIBUTE_FUNCTION(const FTextBlockStyle*, SetTextStyle);
-		//CALL_SET_ATTRIBUTE_FUNCTION(ETextShapingMethod, SetTextShapingMethod);
-		//CALL_SET_ATTRIBUTE_FUNCTION(ETextFlowDirection, SetTextFlowDirection);
-		CALL_FUNCTION_SET__Attribute(float, SetWrapTextAt);
-		CALL_FUNCTION_SET__Attribute(bool, SetAutoWrapText);
-		CALL_FUNCTION_SET__Attribute(ETextWrappingPolicy, SetWrappingPolicy);
-		CALL_FUNCTION_SET__Attribute(ETextTransformPolicy, SetTransformPolicy);
-		//CALL_SET_ATTRIBUTE_FUNCTION(ETextOverflowPolicy, SetOverflowPolicy);
-		CALL_FUNCTION_SET__Attribute(FVector2D, SetShadowOffset);
-		CALL_FUNCTION_SET__Attribute(FLinearColor, SetShadowColorAndOpacity);
-		CALL_FUNCTION_SET__Attribute(FLinearColor, SetHighlightColor);
-		CALL_FUNCTION_SET__Attribute(const FSlateBrush*, SetHighlightShape);
-		CALL_FUNCTION_SET__Attribute(float, SetMinDesiredWidth);
-		CALL_FUNCTION_SET__Attribute(float, SetLineHeightPercentage);
-		CALL_FUNCTION_SET__Attribute(FMargin, SetMargin);
-		CALL_FUNCTION_SET__Attribute(ETextJustify::Type, SetJustification);
-	}
 };
+UsingCppType($STextBlock);
 
-struct AutoRegisterWidget_STextBlock
+int32 STextBlockHelper::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeometry, const FSlateRect& MyCullingRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, const FWidgetStyle& InWidgetStyle, bool bParentEnabled) const
+{
+	return Instance->STextBlock::OnPaint(Args, AllottedGeometry, MyCullingRect, OutDrawElements, LayerId, InWidgetStyle, bParentEnabled);
+}
+
+struct AutoRegister_STextBlock
 {
 	void RegisterArguments()
 	{
@@ -126,15 +138,19 @@ struct AutoRegisterWidget_STextBlock
 		UTemplateBindingGenerator::RegisterWidgetArgumentType("STextBlock", Arguments);
 	}
 
-	AutoRegisterWidget_STextBlock()
+	AutoRegister_STextBlock()
 	{
 		RegisterArguments();
 
 		puerts::DefineClass<STextBlock>()
+			//.Constructor<FJsObject>()//添加报错
 			.Extends<SLeafWidget>()
-			.Function("SNew", MakeFunction(&STextBlock_Extension::$SNew))
-			.Function("SAssignNew", MakeFunction(&STextBlock_Extension::$SAssignNew))
-			.Function("MakeShared", MakeFunction(&STextBlock_Extension::$MakeShared))
+			.Property("Super", MakeProperty(&$STextBlock::Super))
+			.Method("__bind__", MakeFunction(&$STextBlock::__bind__))
+			.Function("SNew", MakeFunction(&$STextBlock::$SNew))
+			.Function("SAssignNew", MakeFunction(&$STextBlock::$SAssignNew))
+			.Function("MakeShared", MakeFunction(&$STextBlock::$MakeShared))
+
 
 			.Method("GetText", MakeFunction(&STextBlock::GetText))
 			//不能直接传string，需要TAtrribute
@@ -142,26 +158,29 @@ struct AutoRegisterWidget_STextBlock
 			//扩展函数self传递有问题
 			//.Method("SetText", MakeExtension(&STextBlock_Extension::SetText))
 
-			.Method("SetText", MakeExtension(&STextBlock_Extension::CallFunction_Attribute, FJsObject(), "SetText"))
-			.Method("SetHighlightText", MakeExtension(&STextBlock_Extension::CallFunction_Attribute, FJsObject(), "SetHighlightText"))
-			.Method("SetFont", MakeExtension(&STextBlock_Extension::CallFunction_Attribute, FJsObject(), "SetFont"))
-			.Method("SetColorAndOpacity", MakeExtension(&STextBlock_Extension::CallFunction_Attribute, FJsObject(), "SetColorAndOpacity"))
-			.Method("SetWrapTextAt", MakeExtension(&STextBlock_Extension::CallFunction_Attribute, FJsObject(), "SetWrapTextAt"))
-			.Method("SetAutoWrapText", MakeExtension(&STextBlock_Extension::CallFunction_Attribute, FJsObject(), "SetAutoWrapText"))
-			.Method("SetWrappingPolicy", MakeExtension(&STextBlock_Extension::CallFunction_Attribute, FJsObject(), "SetWrappingPolicy"))
-			.Method("SetTransformPolicy", MakeExtension(&STextBlock_Extension::CallFunction_Attribute, FJsObject(), "SetTransformPolicy"))
-			.Method("SetShadowOffset", MakeExtension(&STextBlock_Extension::CallFunction_Attribute, FJsObject(), "SetShadowOffset"))
-			.Method("SetShadowColorAndOpacity", MakeExtension(&STextBlock_Extension::CallFunction_Attribute, FJsObject(), "SetShadowColorAndOpacity"))
-			.Method("SetHighlightColor", MakeExtension(&STextBlock_Extension::CallFunction_Attribute, FJsObject(), "SetHighlightColor"))
-			.Method("SetMinDesiredWidth", MakeExtension(&STextBlock_Extension::CallFunction_Attribute, FJsObject(), "SetMinDesiredWidth"))
-			.Method("SetLineHeightPercentage", MakeExtension(&STextBlock_Extension::CallFunction_Attribute, FJsObject(), "SetLineHeightPercentage"))
-			.Method("SetMargin", MakeExtension(&STextBlock_Extension::CallFunction_Attribute, FJsObject(), "SetMargin"))
-			.Method("SetJustification", MakeExtension(&STextBlock_Extension::CallFunction_Attribute, FJsObject(), "SetJustification"))
+			.Method("SetText", MakeFunction(&$STextBlock::$SetText))
+			.Method("SetHighlightText", MakeFunction(&$STextBlock::$SetHighlightText))
+			.Method("SetFont", MakeFunction(&$STextBlock::$SetFont))
+			.Method("SetColorAndOpacity", MakeFunction(&$STextBlock::$SetColorAndOpacity))
+			.Method("SetWrapTextAt", MakeFunction(&$STextBlock::$SetWrapTextAt))
+			.Method("SetAutoWrapText", MakeFunction(&$STextBlock::$SetAutoWrapText))
+			.Method("SetWrappingPolicy", MakeFunction(&$STextBlock::$SetWrappingPolicy))
+			.Method("SetTransformPolicy", MakeFunction(&$STextBlock::$SetTransformPolicy))
+			.Method("SetShadowOffset", MakeFunction(&$STextBlock::$SetShadowOffset))
+			.Method("SetShadowColorAndOpacity", MakeFunction(&$STextBlock::$SetShadowColorAndOpacity))
+			.Method("SetHighlightColor", MakeFunction(&$STextBlock::$SetHighlightColor))
+			.Method("SetMinDesiredWidth", MakeFunction(&$STextBlock::$SetMinDesiredWidth))
+			.Method("SetLineHeightPercentage", MakeFunction(&$STextBlock::$SetLineHeightPercentage))
+			.Method("SetMargin", MakeFunction(&$STextBlock::$SetMargin))
+			.Method("SetJustification", MakeFunction(&$STextBlock::$SetJustification))
+			.Register();
 
+		puerts::DefineClass<STextBlockHelper>()
+			//.Method("OnPaint", MakeFunction(&STextBlockHelper::OnPaint))
 			.Register();
 
 		RegisterTSharedPtr(STextBlock);
 	}
 };
 
-AutoRegisterWidget_STextBlock _AutoRegisterWidget_STextBlock;
+AutoRegister_STextBlock _AutoRegister_STextBlock;
