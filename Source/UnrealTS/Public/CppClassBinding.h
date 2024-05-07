@@ -5,6 +5,41 @@
 #include "v8.h"
 
 
+template<typename T>
+class ClassHelper
+{
+public:
+	ClassHelper(T* ptr) :Instance(ptr) {}
+	template<typename MemFn, typename... Args>
+	void Call(MemFn memFn, Args&&... args)
+	{
+		static_assert(std::is_member_function_pointer<MemFn>::value, "memFn must be a member function pointer");
+		(Instance->*memFn)(std::forward<Args>(args)...);
+	}
+private:
+	T* Instance;
+};
+
+class MyClass
+{
+public:
+	void SetA(int32 a) {}
+	void SetB(float a) {}
+	void SetC(bool a) {}
+	void SetD(void* a) {}
+};
+
+int mymain()
+{
+	MyClass* mc = new MyClass();
+	ClassHelper<MyClass>* cs = new ClassHelper<MyClass>(mc);
+	cs->Call(&MyClass::SetA, 32);
+	cs->Call(&MyClass::SetB, 56.0f);
+	cs->Call(&MyClass::SetC, false);
+	cs->Call(&MyClass::SetD, reinterpret_cast<void*>(32));
+	return 2;
+}
+
 class BaseClass
 {
 public:
