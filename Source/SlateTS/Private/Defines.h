@@ -26,8 +26,12 @@ if (FunctionName == #Name)\
 	Widget->##Name(Delegate);\
 }
 
+// **************************** RETURN_MAKE_SHARED_WIDGET_PTR ****************************
+#define RETURN_MAKE_SHARED_WIDGET_PTR(WidgetType)\
+return MakeTDecl<WidgetType>(#WidgetType, TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+
 // **************************** DEFINE_ATTRIBUTE_FUNCTION ****************************
-#define DEFINE_ATTRIBUTE_FUNCTION(FunctionName, Type)\
+#define CALL_SET_ATTRIBUTE_FUNCTION(FunctionName, Type)\
 void $##FunctionName(FJsObject JsObject) { FunctionName(WidgetAttribute2::MakeAttribute<Type>(JsObject)); }
 
 

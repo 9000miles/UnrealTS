@@ -10,7 +10,7 @@ UsingCppType($WidgetClass$);
 UsingTSharedPtr($WidgetClass$);
 UsingTSharedRef($WidgetClass$);
 
-class $$WidgetClass$
+class $$WidgetClass$ :public $WidgetClass$
 {
 public:
 	static TSharedPtr<$WidgetClass$> $SNew(FJsObject JsObject, FString Filename = "")
@@ -30,6 +30,7 @@ public:
 
 public:
 };
+UsingCppType($$WidgetClass$);
 
 struct AutoRegister_$WidgetClass$
 {

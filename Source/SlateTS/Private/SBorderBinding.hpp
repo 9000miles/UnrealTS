@@ -14,13 +14,6 @@ UsingTSharedRef(SBorder);
 class $SBorder :public SBorder
 {
 public:
-	void $SetContent(TSharedPtr<SWidget> Widget) { SetContent(Widget.ToSharedRef()); }
-};
-UsingCppType($SBorder);
-
-struct SBorderExtension
-{
-	SBorderExtension() { }
 	static TSharedPtr<SBorder> $MakeShared()
 	{
 		return ::MakeShared<SBorder>();
@@ -34,16 +27,17 @@ struct SBorderExtension
 		SBorder::FArguments Arguments;
 
 		return MakeTDecl<SBorder>("SBorder", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+	}
 
-		//return MakeTDecl<SBorder>("SBorder", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs())
-		//	<<= SBorder::FArguments()
-		//	;
-	}
-	static void CallFunction_Attribute(const TSharedPtr<STextBlock> Widget, FJsObject JsObject, const FString& FunctionName)
-	{
-		if (!Widget.IsValid()) return;
-	}
+public:
+	CALL_SET_ATTRIBUTE_FUNCTION(SetBorderBackgroundColor, FSlateColor);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetDesiredSizeScale, FVector2D);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetPadding, FMargin);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetShowEffectWhenDisabled, bool);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetBorderImage,const FSlateBrush*);
+	void $SetContent(TSharedPtr<SWidget> Content) { SetContent(Content.ToSharedRef()); }
 };
+UsingCppType($SBorder);
 
 struct AutoRegister_SBorder
 {
@@ -74,21 +68,21 @@ struct AutoRegister_SBorder
 
 		puerts::DefineClass<SBorder>()
 			.Extends<SCompoundWidget>()
-			.Function("SNew", MakeFunction(&SBorderExtension::$SNew))
-			.Function("SAssignNew", MakeFunction(&SBorderExtension::$SAssignNew))
-			.Function("MakeShared", MakeFunction(&SBorderExtension::$MakeShared))
+			.Function("SNew", MakeFunction(&$SBorder::$SNew))
+			.Function("SAssignNew", MakeFunction(&$SBorder::$SAssignNew))
+			.Function("MakeShared", MakeFunction(&$SBorder::$MakeShared))
 
 			//.Method("SetContent", MakeFunction(&SBorder::SetContent))
-			//.Method("GetContent", MakeFunction(&SBorder::GetContent))
+			.Method("GetContent", MakeFunction(&SBorder::GetContent))
 			//.Method("GetBorderBackgroundColor", MakeFunction(&SBorder::GetBorderBackgroundColor))
 
-			.Method("SetBorderBackgroundColor", MakeExtension(&SBorderExtension::CallFunction_Attribute, FJsObject(), "SetBorderBackgroundColor"))
-			.Method("SetDesiredSizeScale", MakeExtension(&SBorderExtension::CallFunction_Attribute, FJsObject(), "SetDesiredSizeScale"))
-			.Method("SetHAlign", MakeExtension(&SBorderExtension::CallFunction_Attribute, FJsObject(), "SetHAlign"))
-			.Method("SetVAlign", MakeExtension(&SBorderExtension::CallFunction_Attribute, FJsObject(), "SetVAlign"))
-			.Method("SetPadding", MakeExtension(&SBorderExtension::CallFunction_Attribute, FJsObject(), "SetPadding"))
-			.Method("SetShowEffectWhenDisabled", MakeExtension(&SBorderExtension::CallFunction_Attribute, FJsObject(), "SetShowEffectWhenDisabled"))
-			.Method("SetBorderImage", MakeExtension(&SBorderExtension::CallFunction_Attribute, FJsObject(), "SetBorderImage"))
+			.Method("SetBorderBackgroundColor", MakeFunction(&$SBorder::$SetBorderBackgroundColor))
+			.Method("SetDesiredSizeScale", MakeFunction(&$SBorder::$SetDesiredSizeScale))
+			.Method("SetHAlign", MakeFunction(&SBorder::SetHAlign))
+			.Method("SetVAlign", MakeFunction(&SBorder::SetVAlign))
+			.Method("SetPadding", MakeFunction(&$SBorder::$SetPadding))
+			.Method("SetShowEffectWhenDisabled", MakeFunction(&$SBorder::$SetShowEffectWhenDisabled))
+			.Method("SetBorderImage", MakeFunction(&$SBorder::$SetBorderImage))
 
 			.Register();
 

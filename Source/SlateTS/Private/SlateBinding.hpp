@@ -29,6 +29,7 @@ UsingCppType(FSlateWidgetClassData);
 UsingCppType(FSlateControlledConstruction);
 UsingCppType(SWidget);
 UsingTSharedPtr(SWidget);
+UsingTSharedRef(SWidget);
 
 UsingCppType(SCompoundWidget);
 UsingTSharedPtr(SCompoundWidget);
@@ -75,6 +76,8 @@ struct AutoRegisterForSlate
 			//.Function("StaticWidgetClass", MakeFunction(&SWidget::StaticWidgetClass))
 			//.Method("GetWidgetClass", MakeFunction(&SWidget::GetWidgetClass))
 			.Register();
+		RegisterTSharedPtr(SWidget);
+		RegisterTSharedRef(SWidget);
 
 		puerts::DefineClass<SCompoundWidget>()
 			.Extends<SWidget>()

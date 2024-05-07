@@ -82,21 +82,21 @@ public:
 	}
 
 public:
-	DEFINE_ATTRIBUTE_FUNCTION(SetText, FText);
-	DEFINE_ATTRIBUTE_FUNCTION(SetHighlightText, FText);
-	DEFINE_ATTRIBUTE_FUNCTION(SetFont, FSlateFontInfo);
-	DEFINE_ATTRIBUTE_FUNCTION(SetColorAndOpacity, FSlateColor);
-	DEFINE_ATTRIBUTE_FUNCTION(SetWrapTextAt, float);
-	DEFINE_ATTRIBUTE_FUNCTION(SetAutoWrapText, bool);
-	DEFINE_ATTRIBUTE_FUNCTION(SetWrappingPolicy, ETextWrappingPolicy);
-	DEFINE_ATTRIBUTE_FUNCTION(SetTransformPolicy, ETextTransformPolicy);
-	DEFINE_ATTRIBUTE_FUNCTION(SetShadowOffset, FVector2D);
-	DEFINE_ATTRIBUTE_FUNCTION(SetShadowColorAndOpacity, FLinearColor);
-	DEFINE_ATTRIBUTE_FUNCTION(SetHighlightColor, FLinearColor);
-	DEFINE_ATTRIBUTE_FUNCTION(SetMinDesiredWidth, float);
-	DEFINE_ATTRIBUTE_FUNCTION(SetLineHeightPercentage, float);
-	DEFINE_ATTRIBUTE_FUNCTION(SetMargin, FMargin);
-	DEFINE_ATTRIBUTE_FUNCTION(SetJustification, ETextJustify::Type);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetText, FText);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetHighlightText, FText);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetFont, FSlateFontInfo);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetColorAndOpacity, FSlateColor);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetWrapTextAt, float);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetAutoWrapText, bool);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetWrappingPolicy, ETextWrappingPolicy);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetTransformPolicy, ETextTransformPolicy);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetShadowOffset, FVector2D);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetShadowColorAndOpacity, FLinearColor);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetHighlightColor, FLinearColor);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetMinDesiredWidth, float);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetLineHeightPercentage, float);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetMargin, FMargin);
+	CALL_SET_ATTRIBUTE_FUNCTION(SetJustification, ETextJustify::Type);
 
 };
 UsingCppType($STextBlock);
@@ -145,8 +145,6 @@ struct AutoRegister_STextBlock
 		puerts::DefineClass<STextBlock>()
 			//.Constructor<FJsObject>()//添加报错
 			.Extends<SLeafWidget>()
-			.Property("Super", MakeProperty(&$STextBlock::Super))
-			.Method("__bind__", MakeFunction(&$STextBlock::__bind__))
 			.Function("SNew", MakeFunction(&$STextBlock::$SNew))
 			.Function("SAssignNew", MakeFunction(&$STextBlock::$SAssignNew))
 			.Function("MakeShared", MakeFunction(&$STextBlock::$MakeShared))
@@ -175,9 +173,9 @@ struct AutoRegister_STextBlock
 			.Method("SetJustification", MakeFunction(&$STextBlock::$SetJustification))
 			.Register();
 
-		puerts::DefineClass<STextBlockHelper>()
-			//.Method("OnPaint", MakeFunction(&STextBlockHelper::OnPaint))
-			.Register();
+		//puerts::DefineClass<STextBlockHelper>()
+		//	//.Method("OnPaint", MakeFunction(&STextBlockHelper::OnPaint))
+		//	.Register();
 
 		RegisterTSharedPtr(STextBlock);
 	}
