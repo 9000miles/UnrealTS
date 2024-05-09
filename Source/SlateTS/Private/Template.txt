@@ -13,19 +13,19 @@ UsingTSharedRef($WidgetClass$);
 class $$WidgetClass$ :public $WidgetClass$
 {
 public:
-	static TSharedPtr<$WidgetClass$> $SNew(FJsObject JsObject, FString Filename = "")
+	static TSharedPtr<$WidgetClass$> $MakeShared()
 	{
-		$WidgetClass$::FArguments Arguments;
-
-		return MakeTDecl<$WidgetClass$>("$WidgetClass$", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+		return ::MakeShared<$WidgetClass$>();
 	}
 	static void $SAssignNew(TSharedPtr<$WidgetClass$>&ExposeAs, FJsObject JsObject, FString Filename = "")
 	{
 		ExposeAs = $SNew(JsObject, Filename);
 	}
-	static TSharedPtr<$WidgetClass$> $MakeShared()
+	static TSharedPtr<$WidgetClass$> $SNew(FJsObject JsObject, FString Filename = "")
 	{
-		return ::MakeShared<$WidgetClass$>();
+		$WidgetClass$::FArguments Arguments;
+
+		return MakeTDecl<$WidgetClass$>("$WidgetClass$", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
 	}
 
 public:

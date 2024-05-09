@@ -14,6 +14,7 @@
 #include "STextBlockBinding.hpp"
 #include "SButtonBinding.hpp"
 #include "SBorderBinding.hpp"
+#include "SCheckBoxBinding.hpp"
 
 
 
