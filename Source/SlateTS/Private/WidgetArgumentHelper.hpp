@@ -726,6 +726,7 @@ namespace WidgetArgument2
 
 namespace WidgetArgument3
 {
+	/** ======================= SLATE_ATTRIBUTE ======================= **/
 #define SET_SLATE_ATTRIBUTE(Name, Type)\
 	template<typename TArgumentType>\
 	void Set_##Name(TArgumentType& Arguments, FJsObject JsObject, const char* VariableName)\
@@ -737,17 +738,6 @@ namespace WidgetArgument3
 		Arguments._##Name = WidgetAttribute2::MakeAttribute<Type>(JsValue);\
 	}
 
-#define SET_SLATE_ARUMENT(Name, Type)\
-	template<typename TArgumentType>\
-	void Set_##Name(TArgumentType& Arguments, FJsObject JsObject, const char* VariableName)\
-	{\
-		v8::Local<v8::Value> Value;\
-		if (!JsObject.Has(VariableName, Value)) return;\
-		if (puerts::converter::Converter<ETextFlowDirection>::accept(JsObject.GetContext(), Value))\
-			Arguments._TextFlowDirection = puerts::converter::Converter<ETextFlowDirection>::toCpp(JsObject.GetContext(), Value);\
-	}
-
-	/** ======================= SLATE_ATTRIBUTE ======================= **/
 	SET_SLATE_ATTRIBUTE(Text, FText);
 	template<typename TArgumentType> void Set_TextStyle(TArgumentType& Arguments, FJsObject JsObject, const char* VariableName)
 	{
@@ -775,8 +765,21 @@ namespace WidgetArgument3
 	SET_SLATE_ATTRIBUTE(LineHeightPercentage, float);
 	SET_SLATE_ATTRIBUTE(Justification, ETextJustify::Type);
 	SET_SLATE_ATTRIBUTE(MinDesiredWidth, float);
+	SET_SLATE_ATTRIBUTE(DesiredSizeScale, FVector2D);
+	SET_SLATE_ATTRIBUTE(ContentScale, FVector2D);
+	SET_SLATE_ATTRIBUTE(ButtonColorAndOpacity, FSlateColor);
+	SET_SLATE_ATTRIBUTE(ForegroundColor, FSlateColor);
 
 	/** ======================= SLATE_ARGUMENT ======================= **/
+#define SET_SLATE_ARUMENT(Name, Type)\
+	template<typename TArgumentType>\
+	void Set_##Name(TArgumentType& Arguments, FJsObject JsObject, const char* VariableName)\
+	{\
+		v8::Local<v8::Value> Value;\
+		if (!JsObject.Has(VariableName, Value)) return;\
+		if (puerts::converter::Converter<Type>::accept(JsObject.GetContext(), Value))\
+			Arguments._##Name = puerts::converter::Converter<Type>::toCpp(JsObject.GetContext(), Value);\
+	}
 	SET_SLATE_ARUMENT(TextShapingMethod, ETextShapingMethod);
 	SET_SLATE_ARUMENT(TextFlowDirection, ETextFlowDirection);
 	template<typename TArgumentType> void Set_LineBreakPolicy(TArgumentType& Arguments, FJsObject JsObject, const char* VariableName)
@@ -791,8 +794,39 @@ namespace WidgetArgument3
 	}
 	SET_SLATE_ARUMENT(OverflowPolicy, ETextOverflowPolicy);
 	SET_SLATE_ARUMENT(SimpleTextMode, bool);
+	SET_SLATE_ARUMENT(ButtonStyle, FButtonStyle*);
+	SET_SLATE_ARUMENT(HAlign, EHorizontalAlignment);
+	SET_SLATE_ARUMENT(VAlign, EVerticalAlignment);
+	SET_SLATE_ARUMENT(ContentPadding, FMargin);
+	SET_SLATE_ARUMENT(ClickMethod, EButtonClickMethod::Type);
+	SET_SLATE_ARUMENT(TouchMethod, EButtonTouchMethod::Type);
+	SET_SLATE_ARUMENT(PressMethod, EButtonPressMethod::Type);
+	SET_SLATE_ARUMENT(IsFocusable, bool);
+	SET_SLATE_ARUMENT(PressedSoundOverride, FSlateSound);
+	SET_SLATE_ARUMENT(HoveredSoundOverride, FSlateSound);
 
 	/** ======================= SLATE_EVENT ======================= **/
+#define SET_SLATE_EVENT_SIMPLE_DELEGATE(Name,Type)\
+	template<typename TArgumentType>\
+	void Set_##Name(TArgumentType& Arguments, FJsObject JsObject, const char* VariableName)\
+	{\
+		v8::Local<v8::Value> Value;\
+		if (!JsObject.Has(VariableName, Value)) return;\
+		if (Value->IsFunction())\
+		{\
+			auto Function = JsObject.Get<FJsObject>(VariableName);\
+			Arguments._##Name.BindLambda([Function]()\
+				{\
+					Function.Action(nullptr);\
+				});\
+		}\
+	}
+
+	SET_SLATE_EVENT_SIMPLE_DELEGATE(OnPressed, FSimpleDelegate);
+	SET_SLATE_EVENT_SIMPLE_DELEGATE(OnReleased, FSimpleDelegate);
+	SET_SLATE_EVENT_SIMPLE_DELEGATE(OnHovered, FSimpleDelegate);
+	SET_SLATE_EVENT_SIMPLE_DELEGATE(OnUnhovered, FSimpleDelegate);
+
 	template<typename TArgumentType>
 	void Set_OnDoubleClicked(TArgumentType& Arguments, FJsObject JsObject, const char* VariableName)
 	{
@@ -807,9 +841,6 @@ namespace WidgetArgument3
 				});
 		}
 	}
-
-
-
 	template<typename TArgumentType>
 	void Set_OnClicked(TArgumentType& Arguments, FJsObject JsObject, const char* VariableName)
 	{
@@ -819,6 +850,9 @@ namespace WidgetArgument3
 		auto Func = JsObject.Get<std::function<void()>>(VariableName);
 		Arguments._OnClicked.BindLambda([Func]() { Func(); return FReply::Handled(); });
 	}
+
+
+
 
 };
 
@@ -1239,3 +1273,24 @@ namespace WidgetAttribute
 		return TAttribute<FText>();
 	}
 };
+
+namespace WidgetOptional
+{
+	template<typename TType>
+	TOptional<TType> MakeOptional(FJsObject& JsObject) { return TOptional<TType>(); }
+
+	template<>	TOptional<FSlateSound> MakeOptional(FJsObject& JsObject) { return TOptional<FSlateSound>(); }
+}
+
+namespace WidgetDelegate
+{
+	FSimpleDelegate MakeSimpleDelegate(FJsObject& JsObject)
+	{
+		return FSimpleDelegate();
+	}
+
+	FOnClicked MakeOnClicked(FJsObject& JsObject)
+	{
+		return FOnClicked();
+	}
+}

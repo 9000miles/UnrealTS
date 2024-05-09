@@ -1,4 +1,4 @@
-#pragma once
+ #pragma once
 
 #include "CoreMinimal.h"
 #include "JsObject.h"
@@ -74,7 +74,9 @@ struct AutoRegister_SBorder
 
 			//.Method("SetContent", MakeFunction(&SBorder::SetContent))
 			.Method("GetContent", MakeFunction(&SBorder::GetContent))
-			//.Method("GetBorderBackgroundColor", MakeFunction(&SBorder::GetBorderBackgroundColor))
+			.Method("ClearContent", MakeFunction(&SBorder::ClearContent))
+			.Method("GetBorderBackgroundColor", MakeFunction(&SBorder::GetBorderBackgroundColor))
+			//.Method("GetBorderImage", MakeFunction(&SBorder::GetBorderImage))
 
 			.Method("SetBorderBackgroundColor", MakeFunction(&$SBorder::$SetBorderBackgroundColor))
 			.Method("SetDesiredSizeScale", MakeFunction(&$SBorder::$SetDesiredSizeScale))

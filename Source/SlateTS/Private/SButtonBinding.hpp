@@ -10,9 +10,9 @@
 UsingCppType(SButton);
 UsingTSharedPtr(SButton);
 
-struct SButtonExtension
+class $SButton :public SButton
 {
-	SButtonExtension() { }
+public:
 	static TSharedPtr<SButton> $MakeShared()
 	{
 		return ::MakeShared<SButton>();
@@ -25,59 +25,41 @@ struct SButtonExtension
 	{
 		SButton::FArguments Arguments;
 
+		SET_WIDGET_ARGUMENT_VARIABLE(ButtonStyle);
+		SET_WIDGET_ARGUMENT_VARIABLE(TextStyle);
+		SET_WIDGET_ARGUMENT_VARIABLE(HAlign);
+		SET_WIDGET_ARGUMENT_VARIABLE(VAlign);
+		SET_WIDGET_ARGUMENT_VARIABLE(ContentPadding);
 		SET_WIDGET_ARGUMENT_VARIABLE(Text);
 		SET_WIDGET_ARGUMENT_VARIABLE(OnClicked);
-		//WidgetArgument::Set_OnClicked1(Arguments, JsObject, "OnClicked");;
-		//WidgetArgument::Set_OnClicked<SButton::FArguments >(Arguments, JsObject, "OnClicked");;
-		//const char* VariableName = "OnClicked";
-		//if (JsObject.Has(VariableName))
-		//{
-		//	auto ClickFunc = JsObject.Get<std::function<void()>>(VariableName);
-		//	Arguments.OnClicked_Lambda([ClickFunc]() { ClickFunc(); return FReply::Handled(); });
-		//};
-
-		//WidgetArgument::Set_Text<STextBlock::FArguments>(Arguments, JsObject, "Text");
-		//SET_WIDGET_ARGUMENT_VARIABLE(ColorAndOpacity);
-
-		//const char* Arg_Name_Text = "Text";
-		//if (JsObject.Has(Arg_Name_Text))
-		//{
-		//	FString TextString = FString(JsObject.Get<std::string>(Arg_Name_Text).c_str());
-		//	Arguments.Text(FText::FromString(TextString));
-		//}
-
-		//const char* Arg_Name_ColorAndOpacity = "ColorAndOpacity";
-		//if (JsObject.Has(Arg_Name_ColorAndOpacity))
-		//{
-		//	FSlateColor ColorAndOpacity = JsObject.Get<FSlateColor>(Arg_Name_ColorAndOpacity);
-		//	Arguments.ColorAndOpacity(ColorAndOpacity);
-		//}
-
+		SET_WIDGET_ARGUMENT_VARIABLE(OnPressed);
+		SET_WIDGET_ARGUMENT_VARIABLE(OnReleased);
+		SET_WIDGET_ARGUMENT_VARIABLE(OnHovered);
+		SET_WIDGET_ARGUMENT_VARIABLE(OnUnhovered);
+		SET_WIDGET_ARGUMENT_VARIABLE(ClickMethod);
+		SET_WIDGET_ARGUMENT_VARIABLE(TouchMethod);
+		SET_WIDGET_ARGUMENT_VARIABLE(PressMethod);
+		SET_WIDGET_ARGUMENT_VARIABLE(DesiredSizeScale);
+		SET_WIDGET_ARGUMENT_VARIABLE(ContentScale);
+		SET_WIDGET_ARGUMENT_VARIABLE(ButtonColorAndOpacity);
+		SET_WIDGET_ARGUMENT_VARIABLE(ForegroundColor);
+		SET_WIDGET_ARGUMENT_VARIABLE(IsFocusable);
+		SET_WIDGET_ARGUMENT_VARIABLE(PressedSoundOverride);
+		SET_WIDGET_ARGUMENT_VARIABLE(HoveredSoundOverride);
+		SET_WIDGET_ARGUMENT_VARIABLE(TextShapingMethod);
+		SET_WIDGET_ARGUMENT_VARIABLE(TextFlowDirection);
 		return MakeTDecl<SButton>("SButton", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
-
-
-		//auto ClickFunc = JsObject.Get< std::function<void()>>("OnClicked");
-		//FString  Text = FString(JsObject.Get<std::string>("Text").c_str());
-
-		//return MakeTDecl<SButton>("SButton", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs())
-		//	<<= SButton::FArguments()
-		//	.Text(FText::FromString(Text))
-		//	.OnClicked_Lambda([ClickFunc]() {ClickFunc(); return FReply::Handled(); })
-		//	;
 	}
-	static void CallFunction_Attribute(const TSharedPtr<SButton> Widget, FJsObject JsObject, const FString& FunctionName)
-	{
-		if (!Widget.IsValid()) return;
 
-		CALL_FUNCTION_SET__Attribute(FMargin, SetContentPadding);
-		CALL_FUNCTION_SET__Optional(FSlateSound, SetHoveredSound);
-		CALL_FUNCTION_SET__Optional(FSlateSound, SetPressedSound);
-		CALL_FUNCTION_SET__OnClicked(FOnClicked, SetOnClicked);
-		CALL_FUNCTION_SET__SimpleDelegate(FSimpleDelegate, SetOnHovered);
-		CALL_FUNCTION_SET__SimpleDelegate(FSimpleDelegate, SetOnUnhovered);
-		//else CALL_FUNCTION_SET_Attribute(const FButtonStyle*, SetButtonStyle)
-	}
+public:
+	CALL_SET_ATTRIBUTE_FUNCTION(SetContentPadding, FMargin);
+	CALL_SET_OPTIONAL_FUNCTION(SetHoveredSound, FSlateSound);
+	CALL_SET_OPTIONAL_FUNCTION(SetPressedSound, FSlateSound);
+	CALL_SET_ON_CLICKED_FUNCTION(SetOnClicked);
+	CALL_SET_SIMPLE_DELEGATE_FUNCTION(SetOnHovered);
+	CALL_SET_SIMPLE_DELEGATE_FUNCTION(SetOnUnhovered);
 };
+UsingCppType($SButton);
 
 struct AutoRegister_SButton
 {
@@ -115,21 +97,21 @@ struct AutoRegister_SButton
 
 		puerts::DefineClass<SButton>()
 			.Extends<SBorder>()
-			.Function("SNew", MakeFunction(&SButtonExtension::$SNew))
-			.Function("SAssignNew", MakeFunction(&SButtonExtension::$SAssignNew))
-			.Function("MakeShared", MakeFunction(&SButtonExtension::$MakeShared))
+			.Function("SNew", MakeFunction(&$SButton::$SNew))
+			.Function("SAssignNew", MakeFunction(&$SButton::$SAssignNew))
+			.Function("MakeShared", MakeFunction(&$SButton::$MakeShared))
 
 			//.Method("GetForegroundColor", MakeFunction(&SButton::GetForegroundColor))
 			//.Method("GetDisabledForegroundColor", MakeFunction(&SButton::GetDisabledForegroundColor))
 			.Method("IsPressed", MakeFunction(&SButton::IsPressed))
 
-			.Method("SetContentPadding", MakeExtension(&SButtonExtension::CallFunction_Attribute, FJsObject(), "SetContentPadding"))
-			.Method("SetHoveredSound", MakeExtension(&SButtonExtension::CallFunction_Attribute, FJsObject(), "SetHoveredSound"))
-			.Method("SetPressedSound", MakeExtension(&SButtonExtension::CallFunction_Attribute, FJsObject(), "SetPressedSound"))
-			.Method("SetOnClicked", MakeExtension(&SButtonExtension::CallFunction_Attribute, FJsObject(), "SetOnClicked"))
-			.Method("SetOnHovered", MakeExtension(&SButtonExtension::CallFunction_Attribute, FJsObject(), "SetOnHovered"))
-			.Method("SetOnUnhovered", MakeExtension(&SButtonExtension::CallFunction_Attribute, FJsObject(), "SetOnUnhovered"))
-			.Method("SetButtonStyle", MakeExtension(&SButtonExtension::CallFunction_Attribute, FJsObject(), "SetButtonStyle"))
+			.Method("SetContentPadding", MakeFunction(&$SButton::$SetContentPadding))
+			.Method("SetHoveredSound", MakeFunction(&$SButton::$SetHoveredSound))
+			.Method("SetPressedSound", MakeFunction(&$SButton::$SetPressedSound))
+			.Method("SetOnClicked", MakeFunction(&$SButton::$SetOnClicked))
+			.Method("SetOnHovered", MakeFunction(&$SButton::$SetOnHovered))
+			.Method("SetOnUnhovered", MakeFunction(&$SButton::$SetOnUnhovered))
+			.Method("SetButtonStyle", MakeFunction(&$SButton::SetButtonStyle))
 			.Method("SetClickMethod", MakeFunction(&SButton::SetClickMethod))
 			.Method("SetTouchMethod", MakeFunction(&SButton::SetTouchMethod))
 			.Method("SetPressMethod", MakeFunction(&SButton::SetPressMethod))

@@ -33,6 +33,12 @@ return MakeTDecl<WidgetType>(#WidgetType, TCHAR_TO_ANSI(*Filename), 0, RequiredA
 // **************************** DEFINE_ATTRIBUTE_FUNCTION ****************************
 #define CALL_SET_ATTRIBUTE_FUNCTION(FunctionName, Type)\
 void $##FunctionName(FJsObject JsObject) { FunctionName(WidgetAttribute2::MakeAttribute<Type>(JsObject)); }
+#define CALL_SET_OPTIONAL_FUNCTION(FunctionName, Type)\
+void $##FunctionName(FJsObject JsObject) { FunctionName(WidgetOptional::MakeOptional<Type>(JsObject)); }
+#define CALL_SET_SIMPLE_DELEGATE_FUNCTION(FunctionName)\
+void $##FunctionName(FJsObject JsObject) { FunctionName(WidgetDelegate::MakeSimpleDelegate(JsObject)); }
+#define CALL_SET_ON_CLICKED_FUNCTION(FunctionName)\
+void $##FunctionName(FJsObject JsObject) { FunctionName(WidgetDelegate::MakeOnClicked(JsObject)); }
 
 
 // **************************** TypeScript Type ****************************

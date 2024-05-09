@@ -90,3 +90,34 @@ struct AutoRegisterForSlate
 };
 
 AutoRegisterForSlate __AutoRegisterForSlate__;
+
+
+namespace puerts
+{
+	template <> struct ScriptTypeName<FSlateColor> { static constexpr auto value() { return Literal("object"); } };
+	template <> struct ScriptTypeName<const FSlateBrush*> { static constexpr auto value() { return Literal("object"); } };
+	template <> struct ScriptTypeName<const FButtonStyle*> { static constexpr auto value() { return Literal("object"); } };
+
+	namespace converter
+	{
+		//template <>
+		//struct Converter<FSlateColor>
+		//{
+		//	static v8::Local<v8::Value> toScript(v8::Local<v8::Context> context, FJsObject value)
+		//	{
+		//		return value.GetJsObject();
+		//	}
+
+		//	static FSlateColor toCpp(v8::Local<v8::Context> context, const v8::Local<v8::Value>& value)
+		//	{
+		//		return FSlateColor();
+		//		//return FSlateColor(context, value.As<v8::Object>());
+		//	}
+
+		//	static bool accept(v8::Local<v8::Context> context, const v8::Local<v8::Value>& value)
+		//	{
+		//		return value->IsObject();
+		//	}
+		//};
+	}    // namespace converter
+}    // namespace puerts
