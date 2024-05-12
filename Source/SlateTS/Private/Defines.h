@@ -122,3 +122,18 @@ void $##FunctionName(FJsObject JsObject) { FunctionName(WidgetDelegate::MakeOnCl
 // @TODO
 #define REGISTER_WIDGET_ARGUMENT_TYPE__OnCheckStateChanged(Type)				Arguments.Add("OnCheckStateChanged", "(Geometry: UE.Geometry, PointerEvent: UE.PointerEvent) => cpp.FReply", Type)
 #define REGISTER_WIDGET_ARGUMENT_TYPE__OnGetMenuContent(Type)					Arguments.Add("OnGetMenuContent", "(Geometry: UE.Geometry, PointerEvent: UE.PointerEvent) => cpp.FReply", Type)
+
+namespace WidgetStatic
+{
+	//template<typename T> static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info) { }
+	//template<typename T> static void $MakeShared(const v8::FunctionCallbackInfo<v8::Value>& Info) { return MakeShared<T>(); }
+	//template<typename T> static void $SAssignNew(const v8::FunctionCallbackInfo<v8::Value>& Info) {
+	//	ExposeAs = $SNew(JsObject, Filename);
+	//}
+}
+
+struct FWidgetFunctions
+{
+
+	TMap<FString, FString> Functions;
+};

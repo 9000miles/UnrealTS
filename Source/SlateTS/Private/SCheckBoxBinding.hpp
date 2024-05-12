@@ -66,7 +66,7 @@ struct AutoRegister_SCheckBox
 {
 	void RegisterArguments()
 	{
-		FWidgetArguments Arguments;
+		FArgumentsDTS Arguments;
 		REGISTER_WIDGET_ARGUMENT_TYPE__Style(ESlateArgumentType::SLATE_STYLE_ARGUMENT);
 		REGISTER_WIDGET_ARGUMENT_TYPE__Type(ESlateArgumentType::SLATE_ARGUMENT);
 		REGISTER_WIDGET_ARGUMENT_TYPE__IsChecked(ESlateArgumentType::SLATE_ATTRIBUTE);

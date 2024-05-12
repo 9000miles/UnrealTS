@@ -43,7 +43,7 @@ struct AutoRegister_SBorder
 {
 	void RegisterArguments()
 	{
-		FWidgetArguments Arguments;
+		FArgumentsDTS Arguments;
 		REGISTER_WIDGET_ARGUMENT_TYPE__HAlign(ESlateArgumentType::SLATE_ARGUMENT);
 		REGISTER_WIDGET_ARGUMENT_TYPE__VAlign(ESlateArgumentType::SLATE_ARGUMENT);
 		REGISTER_WIDGET_ARGUMENT_TYPE__Padding(ESlateArgumentType::SLATE_ATTRIBUTE);

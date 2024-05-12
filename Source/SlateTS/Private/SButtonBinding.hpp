@@ -65,7 +65,7 @@ struct AutoRegister_SButton
 {
 	void RegisterArguments()
 	{
-		FWidgetArguments Arguments;
+		FArgumentsDTS Arguments;
 		REGISTER_WIDGET_ARGUMENT_TYPE__ButtonStyle(ESlateArgumentType::SLATE_STYLE_ARGUMENT);
 		REGISTER_WIDGET_ARGUMENT_TYPE__TextStyle(ESlateArgumentType::SLATE_STYLE_ARGUMENT);
 		REGISTER_WIDGET_ARGUMENT_TYPE__HAlign(ESlateArgumentType::SLATE_ARGUMENT);

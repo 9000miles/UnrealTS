@@ -11,10 +11,10 @@
 #include "V8Utils.h"
 #include "TemplateBindingGenerator.h"
 
-#include "STextBlockBinding.hpp"
-#include "SButtonBinding.hpp"
-#include "SBorderBinding.hpp"
-#include "SCheckBoxBinding.hpp"
+#include "STextBlockGlue.hpp"
+//#include "SButtonBinding.hpp"
+//#include "SBorderBinding.hpp"
+//#include "SCheckBoxBinding.hpp"
 
 
 
