@@ -109,12 +109,7 @@ struct AutoRegister_STextBlock
 		ClassDTS.Super = "SLeafWidget";
 		RegisterArguments(ClassDTS.Arguments);
 
-		WidgetHelper::FFunctionDTS Func_GetText;
-		Func_GetText.Name = "GetText";
-		Func_GetText.ReturnPara = { "", "string" };
-
-		ClassDTS.Functions.Add(
-			{
+		ClassDTS.Functions.Add({
 				"SNew",
 				{
 					{ "Arguments", "STextBlock.Arguments" },
@@ -123,7 +118,6 @@ struct AutoRegister_STextBlock
 				{ "UE.TSharedPtr<cpp.STextBlock>" } ,
 				true
 			});
-
 		ClassDTS.Functions.Add({
 				"SAssignNew",
 				{
@@ -134,13 +128,16 @@ struct AutoRegister_STextBlock
 				{ "void" } ,
 				true
 			});
-
 		ClassDTS.Functions.Add({
 				"MakeShared",
-				{
-				},
+				{ },
 				{ "UE.TSharedPtr<cpp.STextBlock>" } ,
 				true
+			});
+		ClassDTS.Functions.Add({
+				"GetText",
+				{ },
+				{ TS_string }
 			});
 
 		GenWidgetDTS.Add(ClassDTS);

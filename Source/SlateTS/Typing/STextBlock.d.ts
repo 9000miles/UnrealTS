@@ -30,4 +30,5 @@
 		static SNew(Arguments: STextBlock.Arguments, Filename: string): UE.TSharedPtr<cpp.STextBlock>;
 		static SAssignNew(WidgetRef: $Ref<UE.TSharedPtr<cpp.STextBlock>>, Arguments: STextBlock.Arguments, Filename: string): void;
 		static MakeShared(): UE.TSharedPtr<cpp.STextBlock>;
+		GetText(): string;
 	}
