@@ -34,33 +34,42 @@ namespace $STextBlock
 		}
 
 		STextBlock::FArguments Arguments;
-		SET_WIDGET_ARGUMENT_VARIABLE_A(Text);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(TextStyle);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(Font);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(StrikeBrush);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(ColorAndOpacity);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(ShadowOffset);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(ShadowColorAndOpacity);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(HighlightColor);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(HighlightShape);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(HighlightText);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(WrapTextAt);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(AutoWrapText);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(WrappingPolicy);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(TransformPolicy);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(Margin);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(LineHeightPercentage);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(Justification);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(MinDesiredWidth);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(TextShapingMethod);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(TextFlowDirection);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(LineBreakPolicy);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(OverflowPolicy);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(SimpleTextMode);
-		SET_WIDGET_ARGUMENT_VARIABLE_A(OnDoubleClicked);
+		//@TODO 实现从Info读取数据，并赋值到Arguments
+		if (Info[0]->IsObject())
+		{
+			v8::Local<v8::Object> JsObject = Info[0].As<v8::Object>();
+
+			v8::Local<v8::Value> JsValue = JsObject->Get(Context, puerts::FV8Utils::ToV8String(Isolate, "Text")).ToLocalChecked();
+			if (JsValue->IsString())
+			{
+				Arguments._Text = FText::FromString(puerts::FV8Utils::ToFString(Isolate, JsValue));
+			}
+			else if (JsValue->IsFunction())
+			{
+				v8::Isolate::Scope IsolateScope(Isolate);
+				v8::HandleScope HandleScope(Isolate);
+				v8::Context::Scope ContextScope(Context);
+				v8::Local<v8::Function> Function = JsValue.As<v8::Function>();
+
+				TAttribute<FText>::FGetter Getter;
+				Getter.BindLambda([Function, Context, Isolate]()
+					{
+						v8::Local<v8::Value> JsRet = Function->Call(Context, v8::Undefined(Isolate), 0, nullptr).ToLocalChecked();
+						std::string Ret = puerts::converter::Converter<std::string>::toCpp(Context, JsRet);
+						FString String = UTF8_TO_TCHAR(Ret.c_str());
+						return FText::FromString(String);
+					});
+				Arguments._Text.Bind(Getter);
+			}
+
+		}
+
 		TSharedPtr<STextBlock> Widget = MakeTDecl<STextBlock>("STextBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
-		//auto V8Result = puerts::DataTransfer::GetPointerFast<TSharedPtr<STextBlock>>(Info.Holder());
-		//Info.GetReturnValue().Set(V8Result);
+		auto V8Result = puerts::converter::Converter<TSharedPtr<STextBlock>>::toScript(Context, Widget);
+		//auto V8Result = puerts::DataTransfer::FindOrAddStruct<TSharedPtr<STextBlock>>(Isolate, Context, &Widget, true);
+
+		//auto V8Result = puerts::DataTransfer::FindOrAddCData(Isolate, Context, puerts::DynamicTypeId<TSharedPtr<STextBlock>>::get(&Widget), &Widget, true);
+		Info.GetReturnValue().Set(V8Result);
 	}
 	static void $MakeShared(const v8::FunctionCallbackInfo<v8::Value>& Info) { TSharedPtr<STextBlock> Widget = MakeShared<STextBlock>(); }
 	static void $SAssignNew(const v8::FunctionCallbackInfo<v8::Value>& Info) { $SNew(Info); }
@@ -165,6 +174,7 @@ struct AutoRegister_STextBlock
 		};
 
 		Def.ScriptName = "STextBlock";
+		Def.TypeId = puerts::StaticTypeId<STextBlock>::get();
 		Def.SuperTypeId = puerts::StaticTypeId<SLeafWidget>::get();
 		Def.Methods = Methods;
 		Def.Functions = Functions;
