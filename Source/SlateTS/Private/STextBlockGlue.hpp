@@ -38,6 +38,10 @@ namespace $STextBlock
 		if (Info[0]->IsObject())
 		{
 			v8::Local<v8::Object> JsObject = Info[0].As<v8::Object>();
+#if 1
+			SET_WIDGET_ARGUMENT_VARIABLE_A(Text);
+#else
+			const bool bHas = JsObject->Has(Context, puerts::FV8Utils::ToV8String(Isolate, "Text")).FromMaybe(false);
 
 			v8::Local<v8::Value> JsValue = JsObject->Get(Context, puerts::FV8Utils::ToV8String(Isolate, "Text")).ToLocalChecked();
 			if (JsValue->IsString())
@@ -46,22 +50,18 @@ namespace $STextBlock
 			}
 			else if (JsValue->IsFunction())
 			{
-				v8::Isolate::Scope IsolateScope(Isolate);
-				v8::HandleScope HandleScope(Isolate);
-				v8::Context::Scope ContextScope(Context);
 				v8::Local<v8::Function> Function = JsValue.As<v8::Function>();
-
+				FJsObject JsFunction = FJsObject(Context, Function);
 				TAttribute<FText>::FGetter Getter;
-				Getter.BindLambda([Function, Context, Isolate]()
+				Getter.BindLambda([JsFunction]()
 					{
-						v8::Local<v8::Value> JsRet = Function->Call(Context, v8::Undefined(Isolate), 0, nullptr).ToLocalChecked();
-						std::string Ret = puerts::converter::Converter<std::string>::toCpp(Context, JsRet);
+						std::string Ret = JsFunction.Func<std::string>(nullptr);
 						FString String = UTF8_TO_TCHAR(Ret.c_str());
 						return FText::FromString(String);
 					});
 				Arguments._Text.Bind(Getter);
 			}
-
+#endif
 		}
 
 		TSharedPtr<STextBlock> Widget = MakeTDecl<STextBlock>("STextBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;

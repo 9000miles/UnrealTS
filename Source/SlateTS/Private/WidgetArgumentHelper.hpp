@@ -9,10 +9,10 @@ WidgetArgument3::Set_##Name(Arguments, JsObject, #Name)
 
 
 #define SET_WIDGET_ARGUMENT_VARIABLE_A(Name);\
-WidgetArgument4::Set_##Name(Arguments, Info, #Name, "")
+WidgetArgument4::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
 
 #define SET_WIDGET_ARGUMENT_VARIABLE_A_Type(Name, Type);\
-WidgetArgument4::Set_##Name<Type>(Arguments, Info, #Type)
+WidgetArgument4::Set_##Name<Type>(Arguments, Info,JsObject, #Type)
 
 
 namespace WidgetArgument4
@@ -22,8 +22,13 @@ namespace WidgetArgument4
 	 */
 #define SET_SLATE_ATTRIBUTE(Name, Type)\
 	template<typename TArgumentType>\
-	void Set_##Name(TArgumentType& Arguments, const v8::FunctionCallbackInfo<v8::Value>& Info, const char* VariableName, const char* WidgetClass = "")\
+	void Set_##Name(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "")\
 	{\
+		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();\
+		const bool bHas = JsObject->Has(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).FromMaybe(false);\
+		if (!bHas) return;\
+		v8::Local<v8::Value> JsValue = JsObject->Get(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).ToLocalChecked();\
+		Arguments._##Name = WidgetAttribute3::MakeAttribute<Type>(Context, JsValue, WidgetClass);\
 	}
 
 	SET_SLATE_ATTRIBUTE(Text, FText);
@@ -989,6 +994,45 @@ namespace WidgetArgument3
 
 };
 
+
+namespace WidgetAttribute3
+{
+	template<typename TType>
+	TAttribute<TType> MakeAttribute(v8::Local<v8::Context>& Context, v8::Local<v8::Value>& Value, const char* WidgetClass = "") { return TAttribute<TType>(); }
+
+	/** ======================= MakeAttribute ======================= **/
+#define MAKE_ATTRIBUTE(Type)\
+	template<> TAttribute<Type> MakeAttribute(v8::Local<v8::Context>& Context, v8::Local<v8::Value>& Value, const char* WidgetClass)\
+	{\
+		if (Value->IsFunction())\
+		{\
+			v8::Local<v8::Function> Function = Value.As<v8::Function>();\
+			FJsObject JsObject = FJsObject(Context, Function);\
+			TAttribute<Type>::FGetter Getter;\
+			Getter.BindLambda([JsObject]() { return JsObject.Func<Type>(nullptr); });\
+			return TAttribute<Type>::Create(Getter);\
+		}\
+		if (puerts::converter::Converter<Type>::accept(Context, Value))\
+		{\
+			Type Ret = puerts::converter::Converter<Type>::toCpp(Context, Value);\
+			return TAttribute<Type>(Ret);\
+		}\
+		return TAttribute<Type>();\
+	}
+
+	MAKE_ATTRIBUTE(FText);
+	MAKE_ATTRIBUTE(float);
+	MAKE_ATTRIBUTE(bool);
+	MAKE_ATTRIBUTE(FSlateFontInfo);
+	MAKE_ATTRIBUTE(FSlateBrush*);
+	MAKE_ATTRIBUTE(FSlateColor);
+	MAKE_ATTRIBUTE(FVector2D);
+	MAKE_ATTRIBUTE(FLinearColor);
+	MAKE_ATTRIBUTE(ETextWrappingPolicy);
+	MAKE_ATTRIBUTE(ETextTransformPolicy);
+	MAKE_ATTRIBUTE(FMargin);
+	MAKE_ATTRIBUTE(ETextJustify::Type);
+};
 namespace WidgetAttribute2
 {
 	template<typename TType>
