@@ -28,7 +28,7 @@ namespace WidgetArgument4
 		const bool bHas = JsObject->Has(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).FromMaybe(false);\
 		if (!bHas) return;\
 		v8::Local<v8::Value> JsValue = JsObject->Get(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).ToLocalChecked();\
-		Arguments._##Name = WidgetAttribute3::MakeAttribute<Type>(Context, JsValue, WidgetClass);\
+		Arguments._##Name = WidgetAttribute4::MakeAttribute<Type>(Context, JsValue, WidgetClass);\
 	}
 
 	SET_SLATE_ATTRIBUTE(Text, FText);
@@ -59,8 +59,11 @@ namespace WidgetArgument4
 	/** ======================= SLATE_STYLE_ARGUMENT ======================= **/
 #define SET_SLATE_STYLE_ARGUMENT(Name, Type)\
 	template<typename TArgumentType>\
-	void Set_##Name(TArgumentType& Arguments, const v8::FunctionCallbackInfo<v8::Value>& Info, const char* VariableName, const char* WidgetClass = "")\
+	void Set_##Name(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "")\
 	{\
+		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();\
+		const bool bHas = JsObject->Has(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).FromMaybe(false);\
+		if (!bHas) return;\
 	}
 	SET_SLATE_STYLE_ARGUMENT(TextStyle, FTextBlockStyle);
 
@@ -68,12 +71,20 @@ namespace WidgetArgument4
 	/** ======================= SLATE_ARGUMENT ======================= **/
 #define SET_SLATE_ARUMENT(Name, Type)\
 	template<typename TArgumentType>\
-	void Set_##Name(TArgumentType& Arguments, const v8::FunctionCallbackInfo<v8::Value>& Info, const char* VariableName, const char* WidgetClass = "")\
+	void Set_##Name(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "")\
 	{\
+		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();\
+		const bool bHas = JsObject->Has(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).FromMaybe(false);\
+		if (!bHas) return;\
+		if (puerts::converter::Converter<Type>::accept(Context, JsObject))\
+		{\
+			Type Ret = puerts::converter::Converter<Type>::toCpp(Context, JsObject);\
+			Arguments._##Name = Ret;\
+		}\
 	}
 	SET_SLATE_ARUMENT(TextShapingMethod, ETextShapingMethod);
 	SET_SLATE_ARUMENT(TextFlowDirection, ETextFlowDirection);
-	SET_SLATE_ARUMENT(LineBreakPolicy, TSharedPtr<IBreakIterator>);
+	//SET_SLATE_ARUMENT(LineBreakPolicy, TSharedPtr<IBreakIterator>);
 	SET_SLATE_ARUMENT(OverflowPolicy, ETextOverflowPolicy);
 	SET_SLATE_ARUMENT(SimpleTextMode, bool);
 	SET_SLATE_ARUMENT(ButtonStyle, FButtonStyle*);
@@ -102,11 +113,17 @@ namespace WidgetArgument4
 	SET_SLATE_ARUMENT(BackgroundHoveredImage, const FSlateBrush*);
 	SET_SLATE_ARUMENT(BackgroundPressedImage, const FSlateBrush*);
 
-	/** ======================= SLATE_EVENT ======================= **/
+	/** ======================= SLATE_SIMPLE_DELEGATE_EVENT ======================= **/
 #define SET_SLATE_EVENT_SIMPLE_DELEGATE(Name,Type)\
 	template<typename TArgumentType>\
-	void Set_##Name(TArgumentType& Arguments, const v8::FunctionCallbackInfo<v8::Value>& Info, const char* VariableName, const char* WidgetClass = "")\
+	void Set_##Name(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "")\
 	{\
+		if (Value->IsFunction())\
+		{\
+			v8::Local<v8::Function> Function = Value.As<v8::Function>();\
+			FJsObject JsObject = FJsObject(Context, Function);\
+			Arguments._##Name.BindLambda([JsObject]() { return JsObject.Func<Type>(nullptr); });\
+		}\
 	}
 
 	SET_SLATE_EVENT_SIMPLE_DELEGATE(OnPressed, FSimpleDelegate);
@@ -123,8 +140,20 @@ namespace WidgetArgument4
 	{
 	}
 
-
-
+	/** ======================= SLATE_FPointerEventHandler_EVENT ======================= **/
+#define SET_SLATE_EVENT_PointerEventHandler(Name,Type)\
+	template<typename TArgumentType>\
+	void Set_##Name(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "")\
+	{\
+		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();\
+		if (JsObject->IsFunction())\
+		{\
+			v8::Local<v8::Function> Function = JsObject.As<v8::Function>();\
+			FJsObject JsObject = FJsObject(Context, Function);\
+			Arguments._##Name.BindLambda([JsObject]() { return JsObject.Func<Type>(nullptr); });\
+		}\
+	}
+	SET_SLATE_EVENT_PointerEventHandler(OnDoubleClicked, FPointerEventHandler);
 }
 
 namespace WidgetArgument
@@ -995,7 +1024,7 @@ namespace WidgetArgument3
 };
 
 
-namespace WidgetAttribute3
+namespace WidgetAttribute4
 {
 	template<typename TType>
 	TAttribute<TType> MakeAttribute(v8::Local<v8::Context>& Context, v8::Local<v8::Value>& Value, const char* WidgetClass = "") { return TAttribute<TType>(); }
