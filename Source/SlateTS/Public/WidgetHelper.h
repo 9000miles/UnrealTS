@@ -77,14 +77,14 @@ namespace DTS
 		private:
 			FString _Name;
 			TArray<Property> _Parameters;
-			Property _ReturnPara;
+			Property _Return;
 			bool _bStatic = false;
 			bool _bVirtual = false;
 
 		public:
 			Slot& Name(const FString& Value) { _Name = Value; return *this; }
 			Slot& Parameters(const TArray<Property>& Value) { _Parameters = Value; return *this; }
-			Slot& Return(const Property& Value) { _ReturnPara = Value; return *this; }
+			Slot& Return(const Property& Value) { _Return = Value; return *this; }
 			Slot& Static(const bool& Value) { _bStatic = Value; return *this; }
 			Slot& Virtual(const bool& Value) { _bVirtual = Value; return *this; }
 		};
