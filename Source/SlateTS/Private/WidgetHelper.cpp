@@ -63,7 +63,7 @@ FString DTS::Function::GenDTS()
 	Output += slot._bStatic ? "static " : "";
 	Output += slot._Name;
 	Output += FString::Printf(TEXT("(%s)"), *Paras);
-	FString Return = slot._ReturnPara.GenDTS();
+	FString Return = slot._Return.GenDTS();
 	Return.RemoveAt(Return.Len() - 2, 2);
 	Output += FString::Printf(TEXT(": %s"), *Return);
 
