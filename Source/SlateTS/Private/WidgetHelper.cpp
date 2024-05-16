@@ -1,6 +1,6 @@
 #include "WidgetHelper.h"
 
-FString WidgetHelper::FArgumentsDTS::FArgument::GetType()
+FString DTS::WidgetArguments::FArgument::GetType()
 {
 	switch (ArgType)
 	{
@@ -14,7 +14,7 @@ FString WidgetHelper::FArgumentsDTS::FArgument::GetType()
 	}
 }
 
-FString WidgetHelper::FArgumentsDTS::FArgument::GenDTS()
+FString DTS::WidgetArguments::FArgument::GenDTS()
 {
 	if (bOptional)
 		return FString::Printf(TEXT("%s?: %s"), *Name, *GetType());
@@ -22,12 +22,12 @@ FString WidgetHelper::FArgumentsDTS::FArgument::GenDTS()
 		return FString::Printf(TEXT("%s: %s"), *Name, *GetType());
 }
 
-void WidgetHelper::FArgumentsDTS::Add(FString InName, FString Type, ESlateArgumentType ArgType, const bool bOptional /*= true*/)
+void DTS::WidgetArguments::Add(FString InName, FString Type, ESlateArgumentType ArgType, const bool bOptional /*= true*/)
 {
 	Arguments.Add({ InName, Type, bOptional, ArgType });
 }
 
-FString WidgetHelper::FArgumentsDTS::GenDTS()
+FString DTS::WidgetArguments::GenDTS()
 {
 	FString Output;
 	Output += "\tnamespace ";
@@ -50,53 +50,53 @@ FString WidgetHelper::FArgumentsDTS::GenDTS()
 	return Output;
 }
 
-FString WidgetHelper::FFunctionDTS::GenDTS()
+FString DTS::Function::GenDTS()
 {
 	FString Paras;
-	for (FPropertyDTS Para : Parameters)
+	for (Property Para : slot._Parameters)
 		Paras += FString::Printf(TEXT("%s, "), *Para.GenDTS());
 	if (Paras.Len() > 0)
 		Paras.RemoveAt(Paras.Len() - 2, 2);
 
 	FString Output = FString();
-	Output += bVirtual ? "/** virtual **/ " : "";
-	Output += bStatic ? "static " : "";
-	Output += Name;
+	Output += slot._bVirtual ? "/** virtual **/ " : "";
+	Output += slot._bStatic ? "static " : "";
+	Output += slot._Name;
 	Output += FString::Printf(TEXT("(%s)"), *Paras);
-	FString Return = ReturnPara.GenDTS();
+	FString Return = slot._ReturnPara.GenDTS();
 	Return.RemoveAt(Return.Len() - 2, 2);
 	Output += FString::Printf(TEXT(": %s"), *Return);
 
 	return Output;
 }
 
-FString WidgetHelper::FPropertyDTS::GenDTS()
+FString DTS::Property::GenDTS()
 {
 	FString Output = FString();
-	Output += bStatic ? "static " : "";
-	Output += bReadonly ? "readonly " : "";
-	Output += Name.IsEmpty() ? "" : FString::Printf(TEXT("%s: "), *Name);
-	Output += bRef ? FString::Printf(TEXT("$Ref<%s>"), *Type) : Type;
+	Output += _bStatic ? "static " : "";
+	Output += _bReadonly ? "readonly " : "";
+	Output += _Name.IsEmpty() ? "" : FString::Printf(TEXT("%s: "), *_Name);
+	Output += _bRef ? FString::Printf(TEXT("$Ref<%s>"), *_Type) : _Type;
 	return Output;
 }
 
-FString WidgetHelper::FClassDTS::GenDTS()
+FString DTS::Class::GenDTS()
 {
 	FString Output;
-	Output += Arguments.GenDTS();
+	Output += _Arguments.GenDTS();
 
 	Output += "\tclass ";
-	Output += Name;
-	Output += Super.IsEmpty() ? "" : FString::Printf(TEXT(" extends %s"), *Super);
+	Output += _Name;
+	Output += _Super.IsEmpty() ? "" : FString::Printf(TEXT(" extends %s"), *_Super);
 	Output += " {\n";
 	{
-		for (FPropertyDTS Property : Properties)
+		for (Property Property : _Properties)
 		{
 			Output += FString::Printf(TEXT("\t\t%s"), *Property.GenDTS());
 			Output += ";\n";
 		}
 
-		for (FFunctionDTS Function : Functions)
+		for (Function Function : _Functions)
 		{
 			Output += FString::Printf(TEXT("\t\t%s"), *Function.GenDTS());
 			Output += ";\n";
@@ -107,17 +107,17 @@ FString WidgetHelper::FClassDTS::GenDTS()
 	return Output;
 }
 
-void WidgetHelper::FGenWidgetDTS::Add(const FClassDTS& Target)
+void DTS::FGenWidgetDTS::Add(const Class& Target)
 {
 	AllDts.Add(Target);
 }
 
-void WidgetHelper::FGenWidgetDTS::GenDTS()
+void DTS::FGenWidgetDTS::GenDTS()
 {
-	for (FClassDTS& dts : AllDts)
+	for (Class& dts : AllDts)
 	{
 		FString Content = dts.GenDTS();
-		FString Filename = FString::Printf(TEXT("M:/UE/5.1/UnrealTSDemo/Plugins/UnrealTS/Source/SlateTS/Typing/%s.d.ts"), *dts.Name);
+		FString Filename = FString::Printf(TEXT("M:/UE/5.1/UnrealTSDemo/Plugins/UnrealTS/Source/SlateTS/Typing/%s.d.ts"), *dts.GetName());
 		FFileHelper::SaveStringToFile(Content, *Filename);
 	}
 }
