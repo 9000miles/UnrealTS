@@ -1,6 +1,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "TypeInfo.hpp"
+#include "../Private/STextBlockBinding.hpp"
 
 enum ESlateArgumentType
 {
@@ -52,7 +54,7 @@ namespace DTS
 	{
 	private:
 		FString _Name;
-		FString _Type;
+		FString _Type = "void";
 		bool _bRef = false;
 		bool _bStatic = false;
 		bool _bReadonly = false;
@@ -130,7 +132,7 @@ DTS::FGenWidgetDTS GenWidgetDTS;
 
 void Plan()
 {
-	DTS::Class().Name("ClassA").Super("BaseClass")
+	DTS::Class CC = DTS::Class().Name("ClassA").Super("BaseClass")
 		.Arguments(DTS::WidgetArguments())
 		.Properties(DTS::Array<DTS::Property>()
 			+ DTS::Property().Name("P1").Type("bool").bOut(false).bStatic(true).bReadonly(true)
@@ -160,4 +162,54 @@ void Plan()
 					.bVirtual(true)
 			]
 		);
+
+#if 1
+#define TS_string ""
+	DTS::Class DTS_STextBlock = DTS::Class().Name("STextBlock").Super("SLeafWidget")
+		.Arguments(DTS::WidgetArguments())
+		.Properties(DTS::Array<DTS::Property>()
+			+ DTS::Property().Name("P1").Type("bool").bOut(false).bStatic(true).bReadonly(true)
+			+ DTS::Property().Name("P2").Type("bool").bOut(false).bStatic(true).bReadonly(true)
+		)
+		.Functions(DTS::Array<DTS::Function>()
+			+ DTS::Function()
+			[
+				DTS::Function::Slot().Name("SNew")
+					.Parameters(DTS::Array<DTS::Property>()
+						+ DTS::Property().Name("Arguments").Type("STextBlock.Arguments")
+						+ DTS::Property().Name("Filename").Type(TS_string)
+					)
+					.ReturnPara(DTS::Property().Type(PUERTS_NAMESPACE::ScriptTypeName<TSharedPtr<STextBlock>>::value().Data()))
+					.bStatic(true)
+			]
+			+ DTS::Function()
+			[
+				DTS::Function::Slot().Name("SAssignNew")
+					.Parameters(DTS::Array<DTS::Property>()
+						+ DTS::Property().Name("WidgetRef").Type(PUERTS_NAMESPACE::ScriptTypeName<TSharedPtr<STextBlock>>::value().Data()).bOut(true)
+						+ DTS::Property().Name("Arguments").Type("STextBlock.Arguments")
+						+ DTS::Property().Name("Filename").Type(TS_string)
+					)
+					.bStatic(true)
+			]
+			+ DTS::Function()
+			[
+				DTS::Function::Slot().Name("MakeShared")
+					.ReturnPara(DTS::Property().Type(PUERTS_NAMESPACE::ScriptTypeName<TSharedPtr<STextBlock>>::value().Data()))
+					.bStatic(true)
+			]
+			+ DTS::Function()
+			[
+				DTS::Function::Slot().Name("GetText")
+					.ReturnPara(DTS::Property().Type(TS_string))
+			]
+			+ DTS::Function()
+			[
+				DTS::Function::Slot().Name("SetText")
+					.Parameters(DTS::Array<DTS::Property>()
+						//+ DTS::Property().Name("Text").Type(PUERTS_NAMESPACE::ScriptTypeName<TAttribute<FText>>::value().Data())
+					)
+			]
+		);
+#endif
 }
