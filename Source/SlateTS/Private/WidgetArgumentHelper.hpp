@@ -122,14 +122,14 @@ namespace WidgetArgument4
 		{\
 			v8::Local<v8::Function> Function = Value.As<v8::Function>();\
 			FJsObject JsObject = FJsObject(Context, Function);\
-			Arguments._##Name.BindLambda([JsObject]() { return JsObject.Func<Type>(nullptr); });\
+			Arguments._##Name.BindLambda([JsObject]() { return JsObject.Action(nullptr); });\
 		}\
 	}
 
-	SET_SLATE_EVENT_SIMPLE_DELEGATE(OnPressed, FSimpleDelegate);
-	SET_SLATE_EVENT_SIMPLE_DELEGATE(OnReleased, FSimpleDelegate);
-	SET_SLATE_EVENT_SIMPLE_DELEGATE(OnHovered, FSimpleDelegate);
-	SET_SLATE_EVENT_SIMPLE_DELEGATE(OnUnhovered, FSimpleDelegate);
+	SET_SLATE_EVENT_SIMPLE_DELEGATE(OnPressed, void);
+	SET_SLATE_EVENT_SIMPLE_DELEGATE(OnReleased, void);
+	SET_SLATE_EVENT_SIMPLE_DELEGATE(OnHovered, void);
+	SET_SLATE_EVENT_SIMPLE_DELEGATE(OnUnhovered, void);
 
 	template<typename TArgumentType>
 	void Set_OnDoubleClicked(TArgumentType& Arguments, const v8::FunctionCallbackInfo<v8::Value>& Info, const char* VariableName, const char* WidgetClass = "")
@@ -150,10 +150,10 @@ namespace WidgetArgument4
 		{\
 			v8::Local<v8::Function> Function = JsObject.As<v8::Function>();\
 			FJsObject JsObject = FJsObject(Context, Function);\
-			Arguments._##Name.BindLambda([JsObject]() { return JsObject.Func<Type>(nullptr); });\
+			Arguments._##Name.BindLambda([JsObject](const FGeometry& Geomety, const FPointerEvent& PointerEvent) { return JsObject.Func<Type>(nullptr, Geomety, PointerEvent); });\
 		}\
 	}
-	SET_SLATE_EVENT_PointerEventHandler(OnDoubleClicked, FPointerEventHandler);
+	SET_SLATE_EVENT_PointerEventHandler(OnDoubleClicked, FReply);
 }
 
 namespace WidgetArgument
