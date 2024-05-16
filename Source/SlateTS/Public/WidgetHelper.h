@@ -1,5 +1,6 @@
 #pragma once
 
+#include "CoreMinimal.h"
 
 enum ESlateArgumentType
 {
@@ -9,9 +10,23 @@ enum ESlateArgumentType
 	SLATE_EVENT,
 };
 
-namespace WidgetHelper
+namespace DTS
 {
-	struct FArgumentsDTS
+	template<typename T>
+	struct Array
+	{
+		TArray<T> Items;
+
+		Array& operator+(const T& Element)
+		{
+			Items.Add(Element);
+			return *this;
+		}
+
+		operator TArray<T>() const { return Items; }
+	};
+
+	struct WidgetArguments
 	{
 		struct FArgument
 		{
@@ -33,46 +48,116 @@ namespace WidgetHelper
 		TArray<FArgument> Arguments;
 	};
 
-	struct FPropertyDTS
+	struct Property
 	{
-		FString Name;
-		FString Type;
-		bool bRef = false;
-		bool bStatic = false;
-		bool bReadonly = false;
+	private:
+		FString _Name;
+		FString _Type;
+		bool _bRef = false;
+		bool _bStatic = false;
+		bool _bReadonly = false;
+
+	public:
+		Property& Name(const FString& Value) { _Name = Value; return *this; }
+		Property& Type(const FString& Value) { _Type = Value; return *this; }
+		Property& bOut(const bool& Value) { _bRef = Value; return *this; }
+		Property& bStatic(const bool& Value) { _bStatic = Value; return *this; }
+		Property& bReadonly(const bool& Value) { _bReadonly = Value; return *this; }
 
 		FString GenDTS();
 	};
 
-	struct FFunctionDTS
+	struct Function
 	{
-		FString Name;
-		TArray<FPropertyDTS> Parameters;
-		FPropertyDTS ReturnPara;
-		bool bStatic = false;
-		bool bVirtual = false;
+		struct Slot
+		{
+			friend Function;
+		private:
+			FString _Name;
+			TArray<Property> _Parameters;
+			Property _ReturnPara;
+			bool _bStatic = false;
+			bool _bVirtual = false;
 
-		FString GenDTS();
+		public:
+			Slot& Name(const FString& Value) { _Name = Value; return *this; }
+			Slot& Parameters(const TArray<Property>& Value) { _Parameters = Value; return *this; }
+			Slot& ReturnPara(const Property& Value) { _ReturnPara = Value; return *this; }
+			Slot& bStatic(const bool& Value) { _bStatic = Value; return *this; }
+			Slot& bVirtual(const bool& Value) { _bVirtual = Value; return *this; }
+		};
+
+		Function& operator[](const Slot& Value)
+		{
+			slot = Value;
+			return *this;
+		}
+	private: Slot slot;
+	public: FString GenDTS();
 	};
 
-	struct FClassDTS
+	struct Class
 	{
-		FString Name;
-		FString Super;
-		FArgumentsDTS Arguments;
-		TArray<FPropertyDTS> Properties;
-		TArray<FFunctionDTS> Functions;
+	private:
+		FString _Name;
+		FString _Super;
+		WidgetArguments _Arguments;
+		TArray<Property> _Properties;
+		TArray<Function> _Functions;
+
+	public:
+		Class& Name(const FString& Value) { _Name = Value; return *this; }
+		Class& Super(const FString& Value) { _Super = Value; return *this; }
+		Class& Arguments(const WidgetArguments& Value) { _Arguments = Value; return *this; }
+		Class& Properties(const TArray<Property>& Value) { _Properties = Value; return *this; }
+		Class& Functions(const TArray<Function>& Value) { _Functions = Value; return *this; }
 
 		FString GenDTS();
+		FString GetName() { return _Name; };
 	};
 
 	struct FGenWidgetDTS
 	{
-		void Add(const FClassDTS& Target);
+		void Add(const Class& Target);
 		void GenDTS();
 	private:
-		TArray<FClassDTS> AllDts;
+		TArray<Class> AllDts;
 	};
 }
 
-WidgetHelper::FGenWidgetDTS GenWidgetDTS;
+DTS::FGenWidgetDTS GenWidgetDTS;
+
+
+void Plan()
+{
+	DTS::Class().Name("ClassA").Super("BaseClass")
+		.Arguments(DTS::WidgetArguments())
+		.Properties(DTS::Array<DTS::Property>()
+			+ DTS::Property().Name("P1").Type("bool").bOut(false).bStatic(true).bReadonly(true)
+			+ DTS::Property().Name("P2").Type("bool").bOut(false).bStatic(true).bReadonly(true)
+		)
+		.Functions(DTS::Array<DTS::Function>()
+			+ DTS::Function()
+			[
+				DTS::Function::Slot().Name("Func1")
+					.Parameters(DTS::Array<DTS::Property>()
+						+ DTS::Property().Name("P1").Type("bool").bOut(false).bStatic(true).bReadonly(true)
+						+ DTS::Property().Name("P2").Type("bool").bOut(false).bStatic(true).bReadonly(true)
+					)
+					.ReturnPara(DTS::Property().Type("float"))
+					.bStatic(true)
+					.bVirtual(true)
+			]
+			+ DTS::Function()
+			[
+				DTS::Function::Slot().Name("Func1")
+					.Parameters(DTS::Array<DTS::Property>()
+						+ DTS::Property().Name("P1").Type("bool").bOut(false).bStatic(true).bReadonly(true)
+						+ DTS::Property().Name("P2").Type("bool").bOut(false).bStatic(true).bReadonly(true)
+					)
+					.ReturnPara(DTS::Property().Type("float"))
+					.bStatic(true)
+					.bVirtual(true)
+			]
+		);
+}
