@@ -2,7 +2,6 @@
 
 #include "CoreMinimal.h"
 #include "TypeInfo.hpp"
-#include "../Private/STextBlockBinding.hpp"
 
 enum ESlateArgumentType
 {
@@ -42,7 +41,26 @@ namespace DTS
 			FString GenDTS();
 		};
 
-		void Add(FString Name, FString Type, ESlateArgumentType ArgType, const bool bOptional = true);
+		template<typename T>
+		void Add(FString InName, ESlateArgumentType ArgType, const bool bOptional = true)
+		{
+			Arguments.Add({ InName, puerts::ScriptTypeNameWithNamespace<T>::value()::Data(), bOptional, ArgType});
+		}
+		template<>
+		void Add<FOnClicked>(FString InName, ESlateArgumentType ArgType, const bool bOptional)
+		{
+			Arguments.Add({ InName, "cpp.FReply", bOptional, ArgType });
+		}
+		template<>
+		void Add<FSimpleDelegate>(FString InName, ESlateArgumentType ArgType, const bool bOptional)
+		{
+			Arguments.Add({ InName, "() => void", bOptional, ArgType});
+		}
+		template<>
+		void Add<FPointerEventHandler>(FString InName, ESlateArgumentType ArgType, const bool bOptional)
+		{
+			Arguments.Add({ InName, "(Geometry: UE.Geometry, PointerEvent : UE.PointerEvent) = > cpp.FReply", bOptional, ArgType });
+		}
 
 		FString GenDTS();
 
@@ -163,7 +181,7 @@ void Plan()
 			]
 		);
 
-#if 1
+#if 0
 #define TS_string ""
 	DTS::Class DTS_STextBlock = DTS::Class().Name("STextBlock").Super("SLeafWidget")
 		.Arguments(DTS::WidgetArguments())

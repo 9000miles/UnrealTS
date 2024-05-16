@@ -22,11 +22,6 @@ FString DTS::WidgetArguments::FArgument::GenDTS()
 		return FString::Printf(TEXT("%s: %s"), *Name, *GetType());
 }
 
-void DTS::WidgetArguments::Add(FString InName, FString Type, ESlateArgumentType ArgType, const bool bOptional /*= true*/)
-{
-	Arguments.Add({ InName, Type, bOptional, ArgType });
-}
-
 FString DTS::WidgetArguments::GenDTS()
 {
 	FString Output;
@@ -64,7 +59,6 @@ FString DTS::Function::GenDTS()
 	Output += slot._Name;
 	Output += FString::Printf(TEXT("(%s)"), *Paras);
 	FString Return = slot._Return.GenDTS();
-	Return.RemoveAt(Return.Len() - 2, 2);
 	Output += FString::Printf(TEXT(": %s"), *Return);
 
 	return Output;

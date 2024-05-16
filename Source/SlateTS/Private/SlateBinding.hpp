@@ -18,9 +18,9 @@
 
 
 
-UsingCppType(TAttribute<FText>);
-UsingCppType(TAttribute<FMargin>);
-UsingCppType(TAttribute<FVector2D>);
+//UsingCppType(TAttribute<FText>);
+//UsingCppType(TAttribute<FMargin>);
+//UsingCppType(TAttribute<FVector2D>);
 
 //UsingCppType(FMargin);
 

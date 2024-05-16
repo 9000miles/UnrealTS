@@ -1052,8 +1052,6 @@ namespace WidgetAttribute4_1
         // 添加针对 FSlateColor 类型的特定处理逻辑
         if (Value->IsString())
         {
-            FString StringValue = puerts::converter::Converter<FString>::toCpp(Context, Value);
-            return TAttribute<FSlateColor>(FSlateColor::FromString(StringValue));
         }
         // 其他类型处理逻辑...
         
@@ -1068,11 +1066,6 @@ namespace WidgetAttribute4_1
         // 添加针对 FLinearColor 类型的特定处理逻辑
         if (Value->IsArray())
         {
-            TArray<float> FloatArray = puerts::converter::Converter<TArray<float>>::toCpp(Context, Value);
-            if (FloatArray.Num() == 4)
-            {
-                return TAttribute<FLinearColor>(FLinearColor(FloatArray[0], FloatArray[1], FloatArray[2], FloatArray[3]));
-            }
         }
         // 其他类型处理逻辑...
         
