@@ -1023,6 +1023,63 @@ namespace WidgetArgument3
 
 };
 
+namespace WidgetAttribute4_1
+{
+    // 原始的通用模板
+    template<typename TType>
+    TAttribute<TType> MakeAttribute(v8::Local<v8::Context>& Context, v8::Local<v8::Value>& Value, const char* WidgetClass = "")
+    {
+        if (Value->IsFunction())
+        {
+            v8::Local<v8::Function> Function = Value.As<v8::Function>();
+            FJsObject JsObject = FJsObject(Context, Function);
+            TAttribute<TType>::FGetter Getter;
+            Getter.BindLambda([JsObject]() { return JsObject.Func<TType>(nullptr); });
+            return TAttribute<TType>::Create(Getter);
+        }
+        if (puerts::converter::Converter<TType>::accept(Context, Value))
+        {
+            TType Ret = puerts::converter::Converter<TType>::toCpp(Context, Value);
+            return TAttribute<TType>(Ret);
+        }
+        return TAttribute<TType>();
+    }
+    
+    // 模板特化：FSlateColor
+    template<>
+    TAttribute<FSlateColor> MakeAttribute<FSlateColor>(v8::Local<v8::Context>& Context, v8::Local<v8::Value>& Value, const char* WidgetClass)
+    {
+        // 添加针对 FSlateColor 类型的特定处理逻辑
+        if (Value->IsString())
+        {
+            FString StringValue = puerts::converter::Converter<FString>::toCpp(Context, Value);
+            return TAttribute<FSlateColor>(FSlateColor::FromString(StringValue));
+        }
+        // 其他类型处理逻辑...
+        
+        // 默认返回空属性
+        return TAttribute<FSlateColor>();
+    }
+    
+    // 模板特化：FLinearColor
+    template<>
+    TAttribute<FLinearColor> MakeAttribute<FLinearColor>(v8::Local<v8::Context>& Context, v8::Local<v8::Value>& Value, const char* WidgetClass)
+    {
+        // 添加针对 FLinearColor 类型的特定处理逻辑
+        if (Value->IsArray())
+        {
+            TArray<float> FloatArray = puerts::converter::Converter<TArray<float>>::toCpp(Context, Value);
+            if (FloatArray.Num() == 4)
+            {
+                return TAttribute<FLinearColor>(FLinearColor(FloatArray[0], FloatArray[1], FloatArray[2], FloatArray[3]));
+            }
+        }
+        // 其他类型处理逻辑...
+        
+        // 默认返回空属性
+        return TAttribute<FLinearColor>();
+    }
+}
 
 namespace WidgetAttribute4
 {
