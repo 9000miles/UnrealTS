@@ -22,7 +22,25 @@
 //UsingCppType(TAttribute<FMargin>);
 //UsingCppType(TAttribute<FVector2D>);
 
-//UsingCppType(FMargin);
+namespace puerts {
+#define DefineUEType(Type)\
+	template <> struct ScriptTypeName<Type> { static constexpr auto value() {\
+		if (std::is_enum<T>::value)\
+			return Literal("UE.") + Literal(#Type);\
+		return Literal("UE.") + Literal(#Type).Sub<1>();\
+	};
+
+	DefineUEType(FMargin);
+	DefineUEType(FTextBlockStyle);
+	DefineUEType(FSlateFontInfo);
+	DefineUEType(FSlateBrush);
+	DefineUEType(FLinearColor);
+	DefineUEType(FVector2D);
+	DefineUEType(ETextWrappingPolicy);
+}
+/* namespace puerts {
+template <> struct is_uetype<FMargin> : public std::true_type { };
+};*/
 
 UsingCppType(FSlateWidgetClassData);
 

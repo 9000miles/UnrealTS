@@ -132,30 +132,30 @@ struct AutoRegister_STextBlock
 	{
 		DTS::WidgetArguments Arguments;
 		Arguments.Name = "STextBlock";
-		REGISTER_WIDGET_ARGUMENT_TYPE__Text(ESlateArgumentType::SLATE_ATTRIBUTE);
-		REGISTER_WIDGET_ARGUMENT_TYPE__TextStyle(ESlateArgumentType::SLATE_STYLE_ARGUMENT);
-		REGISTER_WIDGET_ARGUMENT_TYPE__Font(ESlateArgumentType::SLATE_ATTRIBUTE);
-		REGISTER_WIDGET_ARGUMENT_TYPE__StrikeBrush(ESlateArgumentType::SLATE_ATTRIBUTE);
-		REGISTER_WIDGET_ARGUMENT_TYPE__ColorAndOpacity(ESlateArgumentType::SLATE_ATTRIBUTE);
-		REGISTER_WIDGET_ARGUMENT_TYPE__ShadowOffset(ESlateArgumentType::SLATE_ATTRIBUTE);
-		REGISTER_WIDGET_ARGUMENT_TYPE__ShadowColorAndOpacity(ESlateArgumentType::SLATE_ATTRIBUTE);
-		REGISTER_WIDGET_ARGUMENT_TYPE__HighlightColor(ESlateArgumentType::SLATE_ATTRIBUTE);
-		REGISTER_WIDGET_ARGUMENT_TYPE__HighlightShape(ESlateArgumentType::SLATE_ATTRIBUTE);
-		REGISTER_WIDGET_ARGUMENT_TYPE__HighlightText(ESlateArgumentType::SLATE_ATTRIBUTE);
-		REGISTER_WIDGET_ARGUMENT_TYPE__WrapTextAt(ESlateArgumentType::SLATE_ATTRIBUTE);
-		REGISTER_WIDGET_ARGUMENT_TYPE__AutoWrapText(ESlateArgumentType::SLATE_ATTRIBUTE);
-		REGISTER_WIDGET_ARGUMENT_TYPE__WrappingPolicy(ESlateArgumentType::SLATE_ATTRIBUTE);
-		REGISTER_WIDGET_ARGUMENT_TYPE__TransformPolicy(ESlateArgumentType::SLATE_ATTRIBUTE);
-		REGISTER_WIDGET_ARGUMENT_TYPE__Margin(ESlateArgumentType::SLATE_ATTRIBUTE);
-		REGISTER_WIDGET_ARGUMENT_TYPE__LineHeightPercentage(ESlateArgumentType::SLATE_ATTRIBUTE);
-		REGISTER_WIDGET_ARGUMENT_TYPE__Justification(ESlateArgumentType::SLATE_ATTRIBUTE);
-		REGISTER_WIDGET_ARGUMENT_TYPE__MinDesiredWidth(ESlateArgumentType::SLATE_ATTRIBUTE);
-		REGISTER_WIDGET_ARGUMENT_TYPE__TextShapingMethod(ESlateArgumentType::SLATE_ARGUMENT);
-		REGISTER_WIDGET_ARGUMENT_TYPE__TextFlowDirection(ESlateArgumentType::SLATE_ARGUMENT);
+		Arguments.Add<FText>("Text", ESlateArgumentType::SLATE_ATTRIBUTE);
+		Arguments.Add<FTextBlockStyle>("TextStyle", ESlateArgumentType::SLATE_STYLE_ARGUMENT);
+		Arguments.Add<FSlateFontInfo>("Font", ESlateArgumentType::SLATE_ATTRIBUTE);
+		Arguments.Add<FSlateBrush>("StrikeBrush", ESlateArgumentType::SLATE_ATTRIBUTE);
+		Arguments.Add<FLinearColor>("ColorAndOpacity", ESlateArgumentType::SLATE_ATTRIBUTE);
+		Arguments.Add<FVector2D>("ShadowOffset", ESlateArgumentType::SLATE_ATTRIBUTE);
+		Arguments.Add<FLinearColor>("ShadowColorAndOpacity", ESlateArgumentType::SLATE_ATTRIBUTE);
+		Arguments.Add<FLinearColor>("HighlightColor", ESlateArgumentType::SLATE_ATTRIBUTE);
+		Arguments.Add<FSlateBrush>("HighlightShape", ESlateArgumentType::SLATE_ATTRIBUTE);
+		Arguments.Add<FText>("HighlightText", ESlateArgumentType::SLATE_ATTRIBUTE);
+		Arguments.Add<float>("WrapTextAt", ESlateArgumentType::SLATE_ATTRIBUTE);
+		Arguments.Add<bool>("AutoWrapText", ESlateArgumentType::SLATE_ATTRIBUTE);
+		Arguments.Add<ETextWrappingPolicy>("WrappingPolicy", ESlateArgumentType::SLATE_ATTRIBUTE);
+		Arguments.Add<ETextTransformPolicy>("TransformPolicy", ESlateArgumentType::SLATE_ATTRIBUTE);
+		Arguments.Add<FMargin>("Margin", ESlateArgumentType::SLATE_ATTRIBUTE);
+		Arguments.Add<float>("LineHeightPercentage", ESlateArgumentType::SLATE_ATTRIBUTE);
+		Arguments.Add<ETextJustify::Type>("Justification", ESlateArgumentType::SLATE_ATTRIBUTE);
+		Arguments.Add<float>("MinDesiredWidth", ESlateArgumentType::SLATE_ATTRIBUTE);
+		Arguments.Add<ETextShapingMethod>("TextShapingMethod", ESlateArgumentType::SLATE_ARGUMENT);
+		Arguments.Add<ETextFlowDirection>("TextFlowDirection", ESlateArgumentType::SLATE_ARGUMENT);
 		//REGISTER_WIDGET_ARGUMENT_TYPE__LineBreakPolicy(ESlateArgumentType::SLATE_ARGUMENT);
-		REGISTER_WIDGET_ARGUMENT_TYPE__OverflowPolicy(ESlateArgumentType::SLATE_ARGUMENT);
-		REGISTER_WIDGET_ARGUMENT_TYPE__SimpleTextMode(ESlateArgumentType::SLATE_ARGUMENT);
-		REGISTER_WIDGET_ARGUMENT_TYPE__OnDoubleClicked(ESlateArgumentType::SLATE_EVENT);
+		Arguments.Add<ETextOverflowPolicy>("OverflowPolicy", ESlateArgumentType::SLATE_ARGUMENT);
+		Arguments.Add<bool>("SimpleTextMode", ESlateArgumentType::SLATE_ARGUMENT);
+		Arguments.Add<FPointerEventHandler>("OnDoubleClicked", ESlateArgumentType::SLATE_EVENT);
 		return Arguments;
 	}
 
@@ -163,10 +163,6 @@ struct AutoRegister_STextBlock
 	{
 		DTS::Class ClassDTS = DTS::Class().Name("STextBlock").Super("SLeafWidget")
 			.Arguments(RegisterArguments())
-			.Properties(DTS::Array<DTS::Property>()
-				+ DTS::Property().Name("P1").Type("bool").Out(false).Static(true).Readonly(true)
-				+ DTS::Property().Name("P2").Type("bool").Out(false).Static(true).Readonly(true)
-			)
 			.Functions(DTS::Array<DTS::Function>()
 				+ DTS::Function()
 				[

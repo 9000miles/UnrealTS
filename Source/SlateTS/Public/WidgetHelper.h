@@ -44,7 +44,7 @@ namespace DTS
 		template<typename T>
 		void Add(FString InName, ESlateArgumentType ArgType, const bool bOptional = true)
 		{
-			Arguments.Add({ InName, puerts::ScriptTypeNameWithNamespace<T>::value()::Data(), bOptional, ArgType});
+			Arguments.Add({ InName, puerts::ScriptTypeNameWithNamespace<T>::value().Data(), bOptional, ArgType});
 		}
 		template<>
 		void Add<FOnClicked>(FString InName, ESlateArgumentType ArgType, const bool bOptional)
@@ -59,7 +59,7 @@ namespace DTS
 		template<>
 		void Add<FPointerEventHandler>(FString InName, ESlateArgumentType ArgType, const bool bOptional)
 		{
-			Arguments.Add({ InName, "(Geometry: UE.Geometry, PointerEvent : UE.PointerEvent) = > cpp.FReply", bOptional, ArgType });
+			Arguments.Add({ InName, "(Geometry: UE.Geometry, PointerEvent : UE.PointerEvent) => cpp.FReply", bOptional, ArgType });
 		}
 
 		FString GenDTS();
