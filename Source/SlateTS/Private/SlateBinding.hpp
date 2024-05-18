@@ -24,11 +24,9 @@
 
 namespace puerts {
 #define DefineUEType(Type)\
-	template <> struct ScriptTypeName<Type> { static constexpr auto value() {\
-		if (std::is_enum<T>::value)\
-			return Literal("UE.") + Literal(#Type);\
-		return Literal("UE.") + Literal(#Type).Sub<1>();\
-	};
+	template <> struct ScriptTypeName<Type> { static constexpr auto value() { return Literal("UE.") + Literal(#Type).Sub<1>(); }};
+#define DefineUEType_Enum(Type)\
+	template <> struct ScriptTypeName<Type> { static constexpr auto value() { return Literal("UE.") + Literal(#Type); }};
 
 	DefineUEType(FMargin);
 	DefineUEType(FTextBlockStyle);
@@ -36,7 +34,11 @@ namespace puerts {
 	DefineUEType(FSlateBrush);
 	DefineUEType(FLinearColor);
 	DefineUEType(FVector2D);
-	DefineUEType(ETextWrappingPolicy);
+	DefineUEType_Enum(ETextWrappingPolicy);
+	DefineUEType_Enum(ETextTransformPolicy);
+	DefineUEType_Enum(ETextJustify::Type);
+	DefineUEType_Enum(ETextShapingMethod);
+	DefineUEType_Enum(ETextFlowDirection);
 }
 /* namespace puerts {
 template <> struct is_uetype<FMargin> : public std::true_type { };

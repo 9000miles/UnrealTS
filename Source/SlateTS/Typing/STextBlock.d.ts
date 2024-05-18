@@ -16,14 +16,13 @@
 			TransformPolicy?: UE.ETextTransformPolicy | (() => UE.ETextTransformPolicy)
 			Margin?: UE.Margin | (() => UE.Margin)
 			LineHeightPercentage?: number | (() => number)
-			Justification?: UE.ETextJustify | (() => UE.ETextJustify)
+			Justification?: UE.ETextJustify::Type | (() => UE.ETextJustify::Type)
 			MinDesiredWidth?: number | (() => number)
 			TextShapingMethod?: UE.ETextShapingMethod
 			TextFlowDirection?: UE.ETextFlowDirection
-			LineBreakPolicy?: cpp.IBreakIterator
-			OverflowPolicy?: UE.ETextOverflowPolicy
+			OverflowPolicy?: number
 			SimpleTextMode?: boolean
-			OnDoubleClicked?: () => cpp.FReply
+			OnDoubleClicked?: (Geometry: UE.Geometry, PointerEvent : UE.PointerEvent) => cpp.FReply
 		}
 	}
 	class STextBlock extends SLeafWidget {
@@ -31,4 +30,5 @@
 		static SAssignNew(WidgetRef: $Ref<UE.TSharedPtr<cpp.STextBlock>>, Arguments: STextBlock.Arguments, Filename: string): void;
 		static MakeShared(): UE.TSharedPtr<cpp.STextBlock>;
 		GetText(): string;
+		SetText(Text: string | (() => string)): void;
 	}
