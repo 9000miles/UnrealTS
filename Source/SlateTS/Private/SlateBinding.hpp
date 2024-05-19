@@ -27,6 +27,8 @@ namespace puerts {
 	template <> struct ScriptTypeName<Type> { static constexpr auto value() { return Literal("UE.") + Literal(#Type).Sub<1>(); }};
 #define DefineUEType_Enum(Type)\
 	template <> struct ScriptTypeName<Type> { static constexpr auto value() { return Literal("UE.") + Literal(#Type); }};
+#define DefineUEType_Enum_Type(Type)\
+	template <> struct ScriptTypeName<Type> { static constexpr auto value() { return Literal("UE.") + Literal(#Type).Sub<1, 5>(); }};
 
 	DefineUEType(FMargin);
 	DefineUEType(FTextBlockStyle);
@@ -36,7 +38,7 @@ namespace puerts {
 	DefineUEType(FVector2D);
 	DefineUEType_Enum(ETextWrappingPolicy);
 	DefineUEType_Enum(ETextTransformPolicy);
-	DefineUEType_Enum(ETextJustify::Type);
+	template <> struct ScriptTypeName<ETextJustify::Type> { static constexpr auto value() { return Literal("UE.") + Literal("ETextJustify"); } };
 	DefineUEType_Enum(ETextShapingMethod);
 	DefineUEType_Enum(ETextFlowDirection);
 }

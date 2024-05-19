@@ -16,28 +16,13 @@ UsingTSharedRef(STextBlock);
 
 namespace $STextBlock
 {
-	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)
+
+	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, STextBlock::FArguments& Arguments)
 	{
-		v8::Isolate* Isolate = Info.GetIsolate();
-		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
-
-		if (Info.Length() != 2)
-		{
-			puerts::DataTransfer::ThrowException(Isolate, "Invalid argument!");
-			return;
-		}
-
-		FString Filename;
-		if (Info[1]->IsString())
-		{
-			Filename = UTF8_TO_TCHAR(*(v8::String::Utf8Value(Isolate, Info[1])));
-		}
-
-		STextBlock::FArguments Arguments;
 		//@TODO 实现从Info读取数据，并赋值到Arguments
-		if (Info[0]->IsObject())
+		if (Info[ArgumentsIndex]->IsObject())
 		{
-			v8::Local<v8::Object> JsObject = Info[0].As<v8::Object>();
+			v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 #if 1
 			SET_WIDGET_ARGUMENT_VARIABLE_A(Text);
 			SET_WIDGET_ARGUMENT_VARIABLE_A(TextStyle);
@@ -86,12 +71,52 @@ namespace $STextBlock
 			}
 #endif
 		}
+	}
+
+	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)
+	{
+		v8::Isolate* Isolate = Info.GetIsolate();
+		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
+		const uint8 InfoLength = Info.Length();
+		if (InfoLength <= 1) { puerts::DataTransfer::ThrowException(Isolate, "Invalid argument!"); return; }
+
+		uint8 ExposeIndex = InfoLength == 3 ? 0 : -1;
+		uint8 ArgumentsIndex = InfoLength == 3 ? 1 : 0;
+		uint8 FilenameIndex = InfoLength == 3 ? 2 : 1;
+
+		STextBlock::FArguments Arguments;
+		$Arguments(Info, ArgumentsIndex, Context, Isolate, Arguments);
+
+		FString Filename;
+		if (Info[FilenameIndex]->IsString()) Filename = UTF8_TO_TCHAR(*(v8::String::Utf8Value(Isolate, Info[FilenameIndex])));
 
 		TSharedPtr<STextBlock> Widget = MakeTDecl<STextBlock>("STextBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+		if (InfoLength == 2)
+		{
+			auto V8Result = puerts::converter::Converter<TSharedPtr<STextBlock>>::toScript(Context, Widget);
+			Info.GetReturnValue().Set(V8Result); return;
+		}
+
+		if (InfoLength == 3)
+		{
+			auto RefObject = puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex]);
+			if (Info[ExposeIndex]->IsObject() && RefObject->IsObject() &&
+				puerts::DataTransfer::IsInstanceOf(Isolate, puerts::StaticTypeId<TSharedPtr<STextBlock>>::get(), RefObject->ToObject(Context).ToLocalChecked()))
+			{
+				TSharedPtr<STextBlock>* Arg1 = puerts::DataTransfer::GetPointerFast<TSharedPtr<STextBlock>>(puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex])->ToObject(Context).ToLocalChecked());
+				*Arg1 = Widget; return;
+			}
+		}
+	}
+	static void $MakeShared(const v8::FunctionCallbackInfo<v8::Value>& Info)
+	{
+		v8::Isolate* Isolate = Info.GetIsolate();
+		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
+
+		TSharedPtr<STextBlock> Widget = MakeShared<STextBlock>();
 		auto V8Result = puerts::converter::Converter<TSharedPtr<STextBlock>>::toScript(Context, Widget);
 		Info.GetReturnValue().Set(V8Result);
 	}
-	static void $MakeShared(const v8::FunctionCallbackInfo<v8::Value>& Info) { TSharedPtr<STextBlock> Widget = MakeShared<STextBlock>(); }
 	static void $SAssignNew(const v8::FunctionCallbackInfo<v8::Value>& Info) { $SNew(Info); }
 
 	static void GetText(const v8::FunctionCallbackInfo<v8::Value>& Info)

@@ -16,7 +16,7 @@
 			TransformPolicy?: UE.ETextTransformPolicy | (() => UE.ETextTransformPolicy)
 			Margin?: UE.Margin | (() => UE.Margin)
 			LineHeightPercentage?: number | (() => number)
-			Justification?: UE.ETextJustify::Type | (() => UE.ETextJustify::Type)
+			Justification?: UE.ETextJustify | (() => UE.ETextJustify)
 			MinDesiredWidth?: number | (() => number)
 			TextShapingMethod?: UE.ETextShapingMethod
 			TextFlowDirection?: UE.ETextFlowDirection
