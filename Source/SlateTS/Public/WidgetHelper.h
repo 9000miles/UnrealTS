@@ -2,14 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "TypeInfo.hpp"
-
-enum ESlateArgumentType
-{
-	SLATE_ATTRIBUTE,
-	SLATE_ARGUMENT,
-	SLATE_STYLE_ARGUMENT,
-	SLATE_EVENT,
-};
+#include "WidgetArguments.h"
 
 namespace DTS
 {
@@ -25,47 +18,6 @@ namespace DTS
 		}
 
 		operator TArray<T>() const { return Items; }
-	};
-
-	struct WidgetArguments
-	{
-		struct FArgument
-		{
-			FString Name;
-			FString Type;
-			bool bOptional = true;
-			ESlateArgumentType ArgType;
-		private:
-			FString GetType();
-		public:
-			FString GenDTS();
-		};
-
-		template<typename T>
-		void Add(FString InName, ESlateArgumentType ArgType, const bool bOptional = true)
-		{
-			Arguments.Add({ InName, puerts::ScriptTypeNameWithNamespace<T>::value().Data(), bOptional, ArgType});
-		}
-		template<>
-		void Add<FOnClicked>(FString InName, ESlateArgumentType ArgType, const bool bOptional)
-		{
-			Arguments.Add({ InName, "cpp.FReply", bOptional, ArgType });
-		}
-		template<>
-		void Add<FSimpleDelegate>(FString InName, ESlateArgumentType ArgType, const bool bOptional)
-		{
-			Arguments.Add({ InName, "() => void", bOptional, ArgType});
-		}
-		template<>
-		void Add<FPointerEventHandler>(FString InName, ESlateArgumentType ArgType, const bool bOptional)
-		{
-			Arguments.Add({ InName, "(Geometry: UE.Geometry, PointerEvent : UE.PointerEvent) => cpp.FReply", bOptional, ArgType });
-		}
-
-		FString GenDTS();
-
-		FString Name;
-		TArray<FArgument> Arguments;
 	};
 
 	struct Property
@@ -121,7 +73,7 @@ namespace DTS
 	private:
 		FString _Name;
 		FString _Super;
-		WidgetArguments _Arguments;
+		WidgetArguments _Arguments = WidgetArguments("");
 		TArray<Property> _Properties;
 		TArray<Function> _Functions;
 
@@ -151,7 +103,7 @@ DTS::FGenWidgetDTS GenWidgetDTS;
 void Plan()
 {
 	DTS::Class CC = DTS::Class().Name("ClassA").Super("BaseClass")
-		.Arguments(DTS::WidgetArguments())
+		.Arguments(DTS::WidgetArguments("Test"))
 		.Properties(DTS::Array<DTS::Property>()
 			+ DTS::Property().Name("P1").Type("bool").Out(false).Static(true).Readonly(true)
 			+ DTS::Property().Name("P2").Type("bool").Out(false).Static(true).Readonly(true)

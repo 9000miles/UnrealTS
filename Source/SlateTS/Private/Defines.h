@@ -137,3 +137,13 @@ struct FWidgetFunctions
 
 	TMap<FString, FString> Functions;
 };
+
+
+
+enum ESlateArgumentType
+{
+	SLATE_ATTRIBUTE,
+	SLATE_ARGUMENT,
+	SLATE_STYLE_ARGUMENT,
+	SLATE_EVENT,
+};

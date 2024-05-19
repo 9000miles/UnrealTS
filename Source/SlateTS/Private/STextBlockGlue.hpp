@@ -16,7 +16,6 @@ UsingTSharedRef(STextBlock);
 
 namespace $STextBlock
 {
-
 	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, STextBlock::FArguments& Arguments)
 	{
 		//@TODO 实现从Info读取数据，并赋值到Arguments
@@ -155,33 +154,32 @@ struct AutoRegister_STextBlock
 {
 	DTS::WidgetArguments RegisterArguments()
 	{
-		DTS::WidgetArguments Arguments;
-		Arguments.Name = "STextBlock";
-		Arguments.Add<FText>("Text", ESlateArgumentType::SLATE_ATTRIBUTE);
-		Arguments.Add<FTextBlockStyle>("TextStyle", ESlateArgumentType::SLATE_STYLE_ARGUMENT);
-		Arguments.Add<FSlateFontInfo>("Font", ESlateArgumentType::SLATE_ATTRIBUTE);
-		Arguments.Add<FSlateBrush>("StrikeBrush", ESlateArgumentType::SLATE_ATTRIBUTE);
-		Arguments.Add<FLinearColor>("ColorAndOpacity", ESlateArgumentType::SLATE_ATTRIBUTE);
-		Arguments.Add<FVector2D>("ShadowOffset", ESlateArgumentType::SLATE_ATTRIBUTE);
-		Arguments.Add<FLinearColor>("ShadowColorAndOpacity", ESlateArgumentType::SLATE_ATTRIBUTE);
-		Arguments.Add<FLinearColor>("HighlightColor", ESlateArgumentType::SLATE_ATTRIBUTE);
-		Arguments.Add<FSlateBrush>("HighlightShape", ESlateArgumentType::SLATE_ATTRIBUTE);
-		Arguments.Add<FText>("HighlightText", ESlateArgumentType::SLATE_ATTRIBUTE);
-		Arguments.Add<float>("WrapTextAt", ESlateArgumentType::SLATE_ATTRIBUTE);
-		Arguments.Add<bool>("AutoWrapText", ESlateArgumentType::SLATE_ATTRIBUTE);
-		Arguments.Add<ETextWrappingPolicy>("WrappingPolicy", ESlateArgumentType::SLATE_ATTRIBUTE);
-		Arguments.Add<ETextTransformPolicy>("TransformPolicy", ESlateArgumentType::SLATE_ATTRIBUTE);
-		Arguments.Add<FMargin>("Margin", ESlateArgumentType::SLATE_ATTRIBUTE);
-		Arguments.Add<float>("LineHeightPercentage", ESlateArgumentType::SLATE_ATTRIBUTE);
-		Arguments.Add<ETextJustify::Type>("Justification", ESlateArgumentType::SLATE_ATTRIBUTE);
-		Arguments.Add<float>("MinDesiredWidth", ESlateArgumentType::SLATE_ATTRIBUTE);
-		Arguments.Add<ETextShapingMethod>("TextShapingMethod", ESlateArgumentType::SLATE_ARGUMENT);
-		Arguments.Add<ETextFlowDirection>("TextFlowDirection", ESlateArgumentType::SLATE_ARGUMENT);
+		DTS::WidgetArguments DTSArgs = DTS::WidgetArguments("STextBlock");
+		DTSArgs.Add<FText>("Text", ESlateArgumentType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<FTextBlockStyle>("TextStyle", ESlateArgumentType::SLATE_STYLE_ARGUMENT);
+		DTSArgs.Add<FSlateFontInfo>("Font", ESlateArgumentType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<FSlateBrush>("StrikeBrush", ESlateArgumentType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<FLinearColor>("ColorAndOpacity", ESlateArgumentType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<FVector2D>("ShadowOffset", ESlateArgumentType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<FLinearColor>("ShadowColorAndOpacity", ESlateArgumentType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<FLinearColor>("HighlightColor", ESlateArgumentType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<FSlateBrush>("HighlightShape", ESlateArgumentType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<FText>("HighlightText", ESlateArgumentType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<float>("WrapTextAt", ESlateArgumentType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<bool>("AutoWrapText", ESlateArgumentType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<ETextWrappingPolicy>("WrappingPolicy", ESlateArgumentType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<ETextTransformPolicy>("TransformPolicy", ESlateArgumentType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<FMargin>("Margin", ESlateArgumentType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<float>("LineHeightPercentage", ESlateArgumentType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<ETextJustify::Type>("Justification", ESlateArgumentType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<float>("MinDesiredWidth", ESlateArgumentType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<ETextShapingMethod>("TextShapingMethod", ESlateArgumentType::SLATE_ARGUMENT);
+		DTSArgs.Add<ETextFlowDirection>("TextFlowDirection", ESlateArgumentType::SLATE_ARGUMENT);
+		DTSArgs.Add<ETextOverflowPolicy>("OverflowPolicy", ESlateArgumentType::SLATE_ARGUMENT);
+		DTSArgs.Add<bool>("SimpleTextMode", ESlateArgumentType::SLATE_ARGUMENT);
+		DTSArgs.Add<FPointerEventHandler>("OnDoubleClicked", ESlateArgumentType::SLATE_EVENT);
 		//REGISTER_WIDGET_ARGUMENT_TYPE__LineBreakPolicy(ESlateArgumentType::SLATE_ARGUMENT);
-		Arguments.Add<ETextOverflowPolicy>("OverflowPolicy", ESlateArgumentType::SLATE_ARGUMENT);
-		Arguments.Add<bool>("SimpleTextMode", ESlateArgumentType::SLATE_ARGUMENT);
-		Arguments.Add<FPointerEventHandler>("OnDoubleClicked", ESlateArgumentType::SLATE_EVENT);
-		return Arguments;
+		return DTSArgs;
 	}
 
 	void GenDTS()

@@ -1,4 +1,7 @@
-﻿//#include "ScriptBackend.hpp"
+﻿#pragma once
+
+
+//#include "ScriptBackend.hpp"
 #include "Input/Reply.h"
 #include "Widgets/Input/SButton.h"
 #include "Widgets/Layout/SBorder.h"
@@ -36,11 +39,16 @@ namespace puerts {
 	DefineUEType(FSlateBrush);
 	DefineUEType(FLinearColor);
 	DefineUEType(FVector2D);
+	DefineUEType(FCheckBoxStyle);
+	DefineUEType(TOptional<FSlateSound>);
+	DefineUEType(TOptional<ESlateCheckBoxType::Type>);
+
 	DefineUEType_Enum(ETextWrappingPolicy);
 	DefineUEType_Enum(ETextTransformPolicy);
-	template <> struct ScriptTypeName<ETextJustify::Type> { static constexpr auto value() { return Literal("UE.") + Literal("ETextJustify"); } };
 	DefineUEType_Enum(ETextShapingMethod);
 	DefineUEType_Enum(ETextFlowDirection);
+
+	template <> struct ScriptTypeName<ETextJustify::Type> { static constexpr auto value() { return Literal("UE.") + Literal("ETextJustify"); } };
 }
 /* namespace puerts {
 template <> struct is_uetype<FMargin> : public std::true_type { };
@@ -52,7 +60,21 @@ UsingCppType(FSlateWidgetClassData);
 UsingCppType(FSlateControlledConstruction);
 UsingCppType(SWidget);
 UsingTSharedPtr(SWidget);
-UsingTSharedRef(SWidget);
+namespace puerts {
+	template <> struct is_objecttype<TSharedRef<SWidget>> : public std::true_type { };
+} namespace puerts {
+	namespace converter {
+		template <> struct Converter<TSharedRef<SWidget>*> {
+			static v8::Local<v8::Value> toScript(v8::Local<v8::Context> context, TSharedRef<SWidget>* value) {
+				return ::puerts::DataTransfer::FindOrAddCData(context->GetIsolate(), context, puerts::DynamicTypeId<TSharedRef<SWidget>>::get(value), value, true);
+			} static TSharedRef<SWidget>* toCpp(v8::Local<v8::Context> context, const v8::Local<v8::Value>& value) {
+				return ::puerts::DataTransfer::GetPointerFast<TSharedRef<SWidget>>(value.As<v8::Object>());
+			} static bool accept(v8::Local<v8::Context> context, const v8::Local<v8::Value>& value) {
+				return ::puerts::DataTransfer::IsInstanceOf(context->GetIsolate(), puerts::StaticTypeId<TSharedRef<SWidget>>::get(), value.As<v8::Object>());
+			}
+		};
+	}
+};
 
 UsingCppType(SCompoundWidget);
 UsingTSharedPtr(SCompoundWidget);
