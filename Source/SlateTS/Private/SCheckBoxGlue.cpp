@@ -9,7 +9,6 @@
 #include "WidgetHelper.h"
 #include "TypeInfo.hpp"
 #include "UEDataBinding.hpp"
-#include "IScriptGlue.h"
 #include "WidgetArgumentHelper.hpp"
 #include "SlateBinding.hpp"
 
@@ -107,7 +106,7 @@ namespace $SCheckBox
 		if (Info.Length() == 0)
 		{
 			auto Self = puerts::converter::Converter<SCheckBox*>::toCpp(Context, Info.Holder());
-			if (!Self) { puerts::DataTransfer::ThrowException(Isolate, "[SCheckBox::GetText] Attempt to access a NULL self pointer"); return; }
+			if (!Self) { puerts::DataTransfer::ThrowException(Isolate, "Attempt to access a NULL self pointer"); return; }
 
 			auto MethodResult = Self->IsChecked();
 			auto V8Result = puerts::converter::Converter<bool>::toScript(Context, MethodResult);
@@ -122,7 +121,7 @@ namespace $SCheckBox
 		if (Info.Length() == 0)
 		{
 			auto Self = puerts::converter::Converter<SCheckBox*>::toCpp(Context, Info.Holder());
-			if (!Self) { puerts::DataTransfer::ThrowException(Isolate, "[SCheckBox::GetText] Attempt to access a NULL self pointer"); return; }
+			if (!Self) { puerts::DataTransfer::ThrowException(Isolate, "Attempt to access a NULL self pointer"); return; }
 
 			auto MethodResult = Self->GetCheckedState();
 			auto V8Result = puerts::converter::Converter<ECheckBoxState>::toScript(Context, MethodResult);
@@ -137,7 +136,7 @@ namespace $SCheckBox
 		if (Info.Length() == 0)
 		{
 			auto Self = puerts::converter::Converter<SCheckBox*>::toCpp(Context, Info.Holder());
-			if (!Self) { puerts::DataTransfer::ThrowException(Isolate, "[SCheckBox::GetText] Attempt to access a NULL self pointer"); return; }
+			if (!Self) { puerts::DataTransfer::ThrowException(Isolate, "Attempt to access a NULL self pointer"); return; }
 
 			auto MethodResult = Self->IsPressed();
 			auto V8Result = puerts::converter::Converter<bool>::toScript(Context, MethodResult);
@@ -152,7 +151,7 @@ namespace $SCheckBox
 		if (Info.Length() == 0)
 		{
 			auto Self = puerts::converter::Converter<SCheckBox*>::toCpp(Context, Info.Holder());
-			if (!Self) { puerts::DataTransfer::ThrowException(Isolate, "[SCheckBox::GetText] Attempt to access a NULL self pointer"); return; }
+			if (!Self) { puerts::DataTransfer::ThrowException(Isolate, "Attempt to access a NULL self pointer"); return; }
 
 			Self->ToggleCheckedState();
 		}
@@ -162,10 +161,10 @@ namespace $SCheckBox
 	{
 		v8::Isolate* Isolate = Info.GetIsolate();
 		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
-		if (Info.Length() == 0)
+		if (Info.Length() == 1)
 		{
 			auto Self = puerts::converter::Converter<SCheckBox*>::toCpp(Context, Info.Holder());
-			if (!Self) { puerts::DataTransfer::ThrowException(Isolate, "[SCheckBox::GetText] Attempt to access a NULL self pointer"); return; }
+			if (!Self) { puerts::DataTransfer::ThrowException(Isolate, "Attempt to access a NULL self pointer"); return; }
 
 			TAttribute<ECheckBoxState> Value = WidgetAttribute4::MakeAttribute<ECheckBoxState>(Context, Info[0]);
 			Self->SetIsChecked(Value);
@@ -176,10 +175,10 @@ namespace $SCheckBox
 	{
 		v8::Isolate* Isolate = Info.GetIsolate();
 		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
-		if (Info.Length() == 0)
+		if (Info.Length() == 1)
 		{
 			auto Self = puerts::converter::Converter<SCheckBox*>::toCpp(Context, Info.Holder());
-			if (!Self) { puerts::DataTransfer::ThrowException(Isolate, "[SCheckBox::GetText] Attempt to access a NULL self pointer"); return; }
+			if (!Self) { puerts::DataTransfer::ThrowException(Isolate, "Attempt to access a NULL self pointer"); return; }
 
 			TSharedRef<SWidget>* Value = puerts::converter::Converter<TSharedRef<SWidget>*>::toCpp(Context, Info[0]);
 			Self->SetContent(*Value);
@@ -190,10 +189,10 @@ namespace $SCheckBox
 	{
 		v8::Isolate* Isolate = Info.GetIsolate();
 		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
-		if (Info.Length() == 0)
+		if (Info.Length() == 1)
 		{
 			auto Self = puerts::converter::Converter<SCheckBox*>::toCpp(Context, Info.Holder());
-			if (!Self) { puerts::DataTransfer::ThrowException(Isolate, "[SCheckBox::GetText] Attempt to access a NULL self pointer"); return; }
+			if (!Self) { puerts::DataTransfer::ThrowException(Isolate, "Attempt to access a NULL self pointer"); return; }
 
 			FCheckBoxStyle* Value = puerts::converter::Converter<FCheckBoxStyle*>::toCpp(Context, Info[0]);
 			Self->SetStyle(Value);

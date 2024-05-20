@@ -177,7 +177,7 @@ namespace WidgetArgument4
 		{\
 			v8::Local<v8::Function> Function = JsObject.As<v8::Function>();\
 			FJsObject JsObject = FJsObject(Context, Function);\
-			Arguments._##Name.BindLambda([JsObject](ECheckBoxState InNewState) { return JsObject.Action(nullptr, InNewState); });\
+			Arguments._##Name.BindLambda([JsObject](ECheckBoxState InNewState) { JsObject.Action(nullptr, InNewState); });\
 		}\
 	}
 	SET_SLATE_EVENT_FOnCheckStateChanged(OnCheckStateChanged, void);
