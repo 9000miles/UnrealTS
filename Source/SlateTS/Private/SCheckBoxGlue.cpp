@@ -20,7 +20,7 @@ namespace $SCheckBox
 {
 	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, SCheckBox::FArguments& Arguments)
 	{
-		if (Info[ArgumentsIndex]->IsObject()) return;
+		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		SET_WIDGET_ARGUMENT_VARIABLE_A(Style);
@@ -35,7 +35,7 @@ namespace $SCheckBox
 		SET_WIDGET_ARGUMENT_VARIABLE_A(ForegroundColor);
 		SET_WIDGET_ARGUMENT_VARIABLE_A(BorderBackgroundColor);
 		SET_WIDGET_ARGUMENT_VARIABLE_A(IsFocusable);
-		//SET_WIDGET_ARGUMENT_VARIABLE_A(OnGetMenuContent);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(OnGetMenuContent);
 		SET_WIDGET_ARGUMENT_VARIABLE_A(CheckedSoundOverride);
 		SET_WIDGET_ARGUMENT_VARIABLE_A(UncheckedSoundOverride);
 		SET_WIDGET_ARGUMENT_VARIABLE_A(HoveredSoundOverride);
@@ -302,7 +302,7 @@ struct AutoRegister_SCheckBox
 			{0, 0}
 		};
 
-		Def.ScriptName = "$SCheckBox";
+		Def.ScriptName = "SCheckBox";
 		Def.TypeId = puerts::StaticTypeId<SCheckBox>::get();
 		Def.SuperTypeId = puerts::StaticTypeId<SCompoundWidget>::get();
 		Def.Methods = Methods;

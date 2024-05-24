@@ -35,7 +35,7 @@ namespace WidgetArgument4
 		v8::Local<v8::Value> JsValue = JsObject->Get(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).ToLocalChecked();\
 		Arguments._##Name = WidgetAttribute4::MakeAttribute<Type>(Context, JsValue, WidgetClass);\
 	}
-	
+
 	SET_SLATE_ATTRIBUTE(Text, FText);
 	SET_SLATE_ATTRIBUTE(Font, FSlateFontInfo);
 	SET_SLATE_ATTRIBUTE(StrikeBrush, const FSlateBrush*);
@@ -196,7 +196,27 @@ namespace WidgetArgument4
 			Arguments._##Name.BindLambda([JsObject]() { return JsObject.Func<Type>(nullptr); });\
 		}\
 	}
-	SET_SLATE_EVENT_FOnGetContent(OnGetMenuContent, TSharedRef<SWidget>);
+	template<typename TArgumentType> void Set_OnGetMenuContent(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "") {
+		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
+		const bool bHas = JsObject->Has(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).FromMaybe(false);
+		if (!bHas) return;
+
+		v8::Local<v8::Value> JsValue = JsObject->Get(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).ToLocalChecked();
+		if (!JsValue->IsFunction()) return;
+
+		v8::Local<v8::Function> Function = JsValue.As<v8::Function>();
+		FJsObject JsFunction = FJsObject(Context, Function);
+		Arguments._OnGetMenuContent.BindLambda([JsFunction]()
+			{
+				return *JsFunction.Func<TSharedRef<SWidget>*>(nullptr);
+				//return JsFunction.Func_SWidgetRef(nullptr);
+				//v8::Local<v8::Object> Object = JsFunction.GetJsObject();
+				//auto MaybeRet = Object.As<v8::Function>()->Call(JsFunction.GetContext(), v8::Undefined(JsFunction.GetIsolate()), 0, nullptr);
+				//if (!MaybeRet.IsEmpty())
+				//	return *puerts::DataTransfer::GetPointerFast<TSharedRef<SWidget>>(MaybeRet.ToLocalChecked().As<v8::Object>());
+				//return SNullWidget::NullWidget;
+			});
+	};
 }
 
 namespace WidgetAttribute4
