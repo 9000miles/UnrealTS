@@ -14,7 +14,7 @@
 		const bool bHas = JsObject->Has(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).FromMaybe(false);\
 		if (!bHas) return;\
 		v8::Local<v8::Value> JsValue = JsObject->Get(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).ToLocalChecked();\
-		Arguments._##Name = WidgetAttribute4::MakeAttribute<Type>(Context, JsValue, WidgetClass);\
+		Arguments._##Name = WidgetAttribute::MakeAttribute<Type>(Context, JsValue, WidgetClass);\
 	}
 
  /** ======================= SET_SLATE_ATTRIBUTE ======================= **/

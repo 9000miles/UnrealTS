@@ -6,7 +6,8 @@
 #include "Defines.h"
 #include "TypeInfo.hpp"
 #include "UEDataBinding.hpp"
-#include "Helper/WidgetArgumentHelper.hpp"
+#include "Helper/WidgetHelper.hpp"
+#include "Helper/WidgetAttribute.hpp"
 #include "DTSHelper.h"
 #include "PuertsEx.h"
 #include "GlueCode/SlateCoreGlue.h"
@@ -167,7 +168,7 @@ namespace $SCheckBox
 			auto Self = puerts::converter::Converter<SCheckBox*>::toCpp(Context, Info.Holder());
 			if (!Self) { puerts::DataTransfer::ThrowException(Isolate, "Attempt to access a NULL self pointer"); return; }
 
-			TAttribute<ECheckBoxState> Value = WidgetAttribute4::MakeAttribute<ECheckBoxState>(Context, Info[0]);
+			TAttribute<ECheckBoxState> Value = WidgetAttribute::MakeAttribute<ECheckBoxState>(Context, Info[0]);
 			Self->SetIsChecked(Value);
 		}
 		puerts::DataTransfer::ThrowException(Isolate, "Invalid argument!");

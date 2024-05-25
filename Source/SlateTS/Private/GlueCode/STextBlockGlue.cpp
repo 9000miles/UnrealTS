@@ -7,7 +7,7 @@
 #include "TypeInfo.hpp"
 #include "DTSHelper.h"
 #include "PuertsEx.h"
-#include "Helper/WidgetArgumentHelper.hpp"
+#include "Helper/WidgetHelper.hpp"
 
 #include "Widgets/Text/STextBlock.h"
 
@@ -120,7 +120,7 @@ namespace $STextBlock
 			if (!Self) { puerts::DataTransfer::ThrowException(Isolate, "[STextBlock::GetText] Attempt to access a NULL self pointer"); return; }
 
 			v8::Local<v8::Value> JsObject = Info[0].As<v8::Value>();
-			auto Ret = WidgetAttribute4::MakeAttribute<FText>(Context, JsObject, "");
+			auto Ret = WidgetAttribute::MakeAttribute<FText>(Context, JsObject, "");
 			Self->SetText(Ret); return;
 		}
 		puerts::DataTransfer::ThrowException(Isolate, "Invalid argument!");
