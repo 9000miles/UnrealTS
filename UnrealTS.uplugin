@@ -24,6 +24,16 @@
       "Name": "SlateTS",
       "Type": "Runtime",
       "LoadingPhase": "Default"
+    },
+    {
+      "Name": "DTS",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    },
+    {
+      "Name": "PuertsEx",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
     }
   ],
   "Plugins": [

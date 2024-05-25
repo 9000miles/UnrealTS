@@ -4,12 +4,12 @@
 #include "JsObject.h"
 #include "Binding.hpp"
 #include "Defines.h"
-#include "TemplateBindingGenerator.h"
-#include "Widgets/Text/STextBlock.h"
-#include "WidgetArgumentHelper.hpp"
 #include "TypeInfo.hpp"
-#include "WidgetHelper.h"
 #include "DTSHelper.h"
+#include "PuertsEx.h"
+#include "Helper/WidgetArgumentHelper.hpp"
+
+#include "Widgets/Text/STextBlock.h"
 
 UsingCppType(STextBlock);
 UsingTSharedPtr(STextBlock);
@@ -20,57 +20,33 @@ namespace $STextBlock
 	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, STextBlock::FArguments& Arguments)
 	{
 		//@TODO 实现从Info读取数据，并赋值到Arguments
-		if (Info[ArgumentsIndex]->IsObject())
-		{
-			v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-#if 1
-			SET_WIDGET_ARGUMENT_VARIABLE_A(Text);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(TextStyle);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(Font);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(StrikeBrush);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(ColorAndOpacity);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(ShadowOffset);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(ShadowColorAndOpacity);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(HighlightColor);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(HighlightShape);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(HighlightText);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(WrapTextAt);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(AutoWrapText);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(WrappingPolicy);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(TransformPolicy);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(Margin);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(LineHeightPercentage);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(Justification);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(MinDesiredWidth);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(TextShapingMethod);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(TextFlowDirection);
-			//SET_WIDGET_ARGUMENT_VARIABLE_A(LineBreakPolicy);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(OverflowPolicy);
-			SET_WIDGET_ARGUMENT_VARIABLE_A(SimpleTextMode);
-			//SET_WIDGET_ARGUMENT_VARIABLE_A(OnDoubleClicked);
-#else
-			const bool bHas = JsObject->Has(Context, puerts::FV8Utils::ToV8String(Isolate, "Text")).FromMaybe(false);
+		if (!Info[ArgumentsIndex]->IsObject()) return;
 
-			v8::Local<v8::Value> JsValue = JsObject->Get(Context, puerts::FV8Utils::ToV8String(Isolate, "Text")).ToLocalChecked();
-			if (JsValue->IsString())
-			{
-				Arguments._Text = FText::FromString(puerts::FV8Utils::ToFString(Isolate, JsValue));
-			}
-			else if (JsValue->IsFunction())
-			{
-				v8::Local<v8::Function> Function = JsValue.As<v8::Function>();
-				FJsObject JsFunction = FJsObject(Context, Function);
-				TAttribute<FText>::FGetter Getter;
-				Getter.BindLambda([JsFunction]()
-					{
-						std::string Ret = JsFunction.Func<std::string>(nullptr);
-						FString String = UTF8_TO_TCHAR(Ret.c_str());
-						return FText::FromString(String);
-					});
-				Arguments._Text.Bind(Getter);
-			}
-#endif
-		}
+		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
+		SET_WIDGET_ARGUMENT_VARIABLE_A(Text);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(TextStyle);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(Font);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(StrikeBrush);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(ColorAndOpacity);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(ShadowOffset);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(ShadowColorAndOpacity);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(HighlightColor);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(HighlightShape);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(HighlightText);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(WrapTextAt);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(AutoWrapText);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(WrappingPolicy);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(TransformPolicy);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(Margin);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(LineHeightPercentage);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(Justification);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(MinDesiredWidth);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(TextShapingMethod);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(TextFlowDirection);
+		//SET_WIDGET_ARGUMENT_VARIABLE_A(LineBreakPolicy);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(OverflowPolicy);
+		SET_WIDGET_ARGUMENT_VARIABLE_A(SimpleTextMode);
+		//SET_WIDGET_ARGUMENT_VARIABLE_A(OnDoubleClicked);
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

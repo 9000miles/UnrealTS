@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class DTS : ModuleRules
+public class PuertsEx : ModuleRules
 {
-    public DTS(ReadOnlyTargetRules Target) : base(Target)
+    public PuertsEx(ReadOnlyTargetRules Target) : base(Target)
     {
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
         //OptimizeCode = CodeOptimization.InShippingBuildsOnly;
@@ -25,6 +25,8 @@ public class DTS : ModuleRules
             new string[]
             {
                 "Core",
+                "Puerts",
+                "JsEnv",
 			    // ... add other public dependencies that you statically link with here ...
 		    }
             );
@@ -36,8 +38,7 @@ public class DTS : ModuleRules
                 "Engine",
                 "Slate",
                 "SlateCore",
-                "DeclarationGenerator",
-                "PuertsEx",
+                "InputCore",
 			    // ... add private dependencies that you statically link with here ...
 		    }
             );

@@ -4,14 +4,14 @@
 #include "JsObject.h"
 #include "Binding.hpp"
 #include "Defines.h"
-#include "TemplateBindingGenerator.h"
-#include "Widgets/Input/SCheckBox.h"
-#include "WidgetHelper.h"
 #include "TypeInfo.hpp"
 #include "UEDataBinding.hpp"
-#include "WidgetArgumentHelper.hpp"
-#include "SlateBinding.hpp"
+#include "Helper/WidgetArgumentHelper.hpp"
 #include "DTSHelper.h"
+#include "PuertsEx.h"
+#include "GlueCode/SlateCoreGlue.h"
+
+#include "Widgets/Input/SCheckBox.h"
 
 UsingCppType(SCheckBox);
 UsingTSharedPtr(SCheckBox);

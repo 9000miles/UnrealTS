@@ -47,6 +47,7 @@ public class SlateTS : ModuleRules
                 "Projects",
                 "DeclarationGenerator",
                 "DTS",
+                "PuertsEx",
 				// ... add private dependencies that you statically link with here ...	
 			}
             );

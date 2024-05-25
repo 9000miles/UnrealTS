@@ -66,7 +66,7 @@ void DTS::FClassDTS::GenDTS()
 	for (Class& dts : AllDts)
 	{
 		FString Content = dts.GenDTS();
-		FString Filename = FString::Printf(TEXT("M:/UE/5.1/UnrealTSDemo/Plugins/UnrealTS/Source/SlateTS/Typing/%s.d.ts"), *dts.GetName());
+		FString Filename = FString::Printf(TEXT("M:/UE/5.1/UnrealTSDemo/Plugins/UnrealTS/Typing/%s.d.ts"), *dts.GetName());
 		FFileHelper::SaveStringToFile(Content, *Filename);
 	}
 }
