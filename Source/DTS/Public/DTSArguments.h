@@ -1,11 +1,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "../Private/Defines.h"
+#include "DTSDefine.h"
 
 namespace DTS
 {
-	struct WidgetArguments
+	struct DTSArguments
 	{
 		struct FArgument
 		{
@@ -19,7 +19,7 @@ namespace DTS
 			FString GenDTS();
 		};
 
-		WidgetArguments(FString InName) :Name(InName) {}
+		DTSArguments(FString InName) :Name(InName) {}
 
 		template<typename T> void Add(FString InName, ESlateArgumentType ArgType, const bool bOptional = true) { _Arguments.Add({ InName, puerts::ScriptTypeNameWithNamespace<T>::value().Data(), bOptional, ArgType }); }
 		template<> void Add<FOnClicked>(FString InName, ESlateArgumentType ArgType, const bool bOptional) { _Arguments.Add({ InName, "cpp.FReply", bOptional, ArgType }); } 	

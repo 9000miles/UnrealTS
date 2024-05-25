@@ -1,6 +1,6 @@
-#include "WidgetArguments.h"
+#include "DTSArguments.h"
 
-FString DTS::WidgetArguments::FArgument::GetType()
+FString DTS::DTSArguments::FArgument::GetType()
 {
 	switch (ArgType)
 	{
@@ -14,7 +14,7 @@ FString DTS::WidgetArguments::FArgument::GetType()
 	}
 }
 
-FString DTS::WidgetArguments::FArgument::GenDTS()
+FString DTS::DTSArguments::FArgument::GenDTS()
 {
 	if (bOptional)
 		return FString::Printf(TEXT("%s?: %s"), *Name, *GetType());
@@ -22,7 +22,7 @@ FString DTS::WidgetArguments::FArgument::GenDTS()
 		return FString::Printf(TEXT("%s: %s"), *Name, *GetType());
 }
 
-FString DTS::WidgetArguments::GenDTS()
+FString DTS::DTSArguments::GenDTS()
 {
 	FString Output;
 	Output += "\tnamespace ";

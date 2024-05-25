@@ -11,6 +11,7 @@
 #include "UEDataBinding.hpp"
 #include "WidgetArgumentHelper.hpp"
 #include "SlateBinding.hpp"
+#include "DTSHelper.h"
 
 UsingCppType(SCheckBox);
 UsingTSharedPtr(SCheckBox);
@@ -203,9 +204,9 @@ namespace $SCheckBox
 
 struct AutoRegister_SCheckBox
 {
-	DTS::WidgetArguments RegisterArguments()
+	DTS::DTSArguments RegisterArguments()
 	{
-		DTS::WidgetArguments DTSArgs = DTS::WidgetArguments("SCheckBox");
+		DTS::DTSArguments DTSArgs = DTS::DTSArguments("SCheckBox");
 		DTSArgs.Add<FCheckBoxStyle>("Style", ESlateArgumentType::SLATE_STYLE_ARGUMENT);
 		DTSArgs.Add<TOptional<ESlateCheckBoxType::Type>>("Type", ESlateArgumentType::SLATE_ARGUMENT);
 		DTSArgs.Add<FOnCheckStateChanged>("OnCheckStateChanged", ESlateArgumentType::SLATE_ARGUMENT);
@@ -273,7 +274,7 @@ struct AutoRegister_SCheckBox
 				]
 			);
 
-		GenWidgetDTS.Add(ClassDTS);
+		GenClassDTS.Add(ClassDTS);
 	}
 
 	AutoRegister_SCheckBox()

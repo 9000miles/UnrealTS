@@ -9,6 +9,7 @@
 #include "WidgetArgumentHelper.hpp"
 #include "TypeInfo.hpp"
 #include "WidgetHelper.h"
+#include "DTSHelper.h"
 
 UsingCppType(STextBlock);
 UsingTSharedPtr(STextBlock);
@@ -152,9 +153,9 @@ namespace $STextBlock
 
 struct AutoRegister_STextBlock
 {
-	DTS::WidgetArguments RegisterArguments()
+	DTS::DTSArguments RegisterArguments()
 	{
-		DTS::WidgetArguments DTSArgs = DTS::WidgetArguments("STextBlock");
+		DTS::DTSArguments DTSArgs = DTS::DTSArguments("STextBlock");
 		DTSArgs.Add<FText>("Text", ESlateArgumentType::SLATE_ATTRIBUTE);
 		DTSArgs.Add<FTextBlockStyle>("TextStyle", ESlateArgumentType::SLATE_STYLE_ARGUMENT);
 		DTSArgs.Add<FSlateFontInfo>("Font", ESlateArgumentType::SLATE_ATTRIBUTE);
@@ -224,7 +225,7 @@ struct AutoRegister_STextBlock
 				]
 			);
 
-		GenWidgetDTS.Add(ClassDTS);
+		GenClassDTS.Add(ClassDTS);
 	}
 
 	AutoRegister_STextBlock()
