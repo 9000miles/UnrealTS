@@ -21,13 +21,13 @@
 /** ======================= SLATE_ARGUMENT ======================= **/
 namespace WidgetArgument4
 {
-	SET_SLATE_ARUMENT(Type, TOptional<ESlateCheckBoxType::Type>);
+	SET_SLATE_ARUMENT(Type, ESlateCheckBoxType::Type);//支持TOptional<ESlateCheckBoxType::Type>
 	SET_SLATE_ARUMENT(TextShapingMethod, ETextShapingMethod);
 	SET_SLATE_ARUMENT(TextFlowDirection, ETextFlowDirection);
 	//SET_SLATE_ARUMENT(LineBreakPolicy, TSharedPtr<IBreakIterator>);
 	SET_SLATE_ARUMENT(OverflowPolicy, ETextOverflowPolicy);
 	SET_SLATE_ARUMENT(SimpleTextMode, bool);
-	SET_SLATE_ARUMENT(ButtonStyle, FButtonStyle*);
+	//SET_SLATE_ARUMENT(ButtonStyle, FButtonStyle*);
 	SET_SLATE_ARUMENT(HAlign, EHorizontalAlignment);
 	SET_SLATE_ARUMENT(VAlign, EVerticalAlignment);
 	SET_SLATE_ARUMENT(ContentPadding, FMargin);
@@ -54,6 +54,6 @@ namespace WidgetArgument4
 	SET_SLATE_ARUMENT(BackgroundPressedImage, const FSlateBrush*);
 	SET_SLATE_ARUMENT(FlipForRightToLeftFlowDirection, bool);
 	SET_SLATE_ARUMENT(HasDownArrow, bool);
-	SET_SLATE_ARUMENT(Method, TOptional<EPopupMethod>);
+	SET_SLATE_ARUMENT(Method, EPopupMethod);
 	SET_SLATE_ARUMENT(CollapseMenuOnParentFocus, bool);
 }

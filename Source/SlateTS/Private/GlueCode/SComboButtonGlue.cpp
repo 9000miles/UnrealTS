@@ -23,10 +23,10 @@ namespace $SComboButton
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		SET_WIDGET_ARGUMENT_VARIABLE(ComboButtonStyle);
 		SET_WIDGET_ARGUMENT_VARIABLE(ButtonStyle);
-		//SET_WIDGET_ARGUMENT_VARIABLE_A(ButtonContent);
-		//SET_WIDGET_ARGUMENT_VARIABLE_A(MenuContent);
+		SET_WIDGET_ARGUMENT_VARIABLE(ButtonContent);
+		SET_WIDGET_ARGUMENT_VARIABLE(MenuContent);
 		SET_WIDGET_ARGUMENT_VARIABLE(OnGetMenuContent);
-		//SET_WIDGET_ARGUMENT_VARIABLE_A(OnMenuOpenChanged);
+		SET_WIDGET_ARGUMENT_VARIABLE(OnMenuOpenChanged);
 		SET_WIDGET_ARGUMENT_VARIABLE(OnComboBoxOpened);
 		SET_WIDGET_ARGUMENT_VARIABLE(IsFocusable);
 		SET_WIDGET_ARGUMENT_VARIABLE(HasDownArrow);
@@ -36,7 +36,7 @@ namespace $SComboButton
 		SET_WIDGET_ARGUMENT_VARIABLE(MenuPlacement);
 		SET_WIDGET_ARGUMENT_VARIABLE(HAlign);
 		SET_WIDGET_ARGUMENT_VARIABLE(VAlign);
-		//SET_WIDGET_ARGUMENT_VARIABLE_A(Method);
+		SET_WIDGET_ARGUMENT_VARIABLE(Method);
 		SET_WIDGET_ARGUMENT_VARIABLE(CollapseMenuOnParentFocus);
 	}
 
@@ -92,6 +92,23 @@ struct AutoRegister_SComboButton
 	DTS::DTSArguments RegisterArguments()
 	{
 		DTS::DTSArguments DTSArgs = DTS::DTSArguments("SComboButton");
+		DTSArgs.Add<FComboButtonStyle>("ComboButtonStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT);
+		DTSArgs.Add<FButtonStyle>("ButtonStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT);
+		DTSArgs.Add<DTS::FSlate_Named_Slot>("ButtonContent", DTS::EArgType::SLATE_NAMED_SLOT);
+		DTSArgs.Add<DTS::FSlate_Named_Slot>("MenuContent", DTS::EArgType::SLATE_NAMED_SLOT);
+		DTSArgs.Add<FOnGetContent>("OnGetMenuContent", DTS::EArgType::SLATE_EVENT);
+		DTSArgs.Add<FOnIsOpenChanged>("OnMenuOpenChanged", DTS::EArgType::SLATE_EVENT);
+		DTSArgs.Add<FOnComboBoxOpened>("OnComboBoxOpened", DTS::EArgType::SLATE_EVENT);
+		DTSArgs.Add<bool>("IsFocusable", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<bool>("HasDownArrow", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<FSlateColor>("ForegroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<FSlateColor>("ButtonColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<FMargin>("ContentPadding", DTS::EArgType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<EMenuPlacement>("MenuPlacement", DTS::EArgType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<EHorizontalAlignment>("HAlign", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<EVerticalAlignment>("VAlign", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<TOptional<EPopupMethod>>("Method", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<bool>("CollapseMenuOnParentFocus", DTS::EArgType::SLATE_ARGUMENT);
 		return DTSArgs;
 	}
 

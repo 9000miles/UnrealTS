@@ -2,13 +2,18 @@
 
 #include "CoreMinimal.h"
 
-enum ESlateArgumentType
+namespace DTS
 {
-	SLATE_DEFAULT_SLOT,
-	SLATE_ATTRIBUTE,
-	SLATE_ARGUMENT,
-	SLATE_STYLE_ARGUMENT,
-	SLATE_EVENT,
-};
+	enum EArgType
+	{
+		SLATE_NAMED_SLOT,
+		SLATE_DEFAULT_SLOT,
+		SLATE_ATTRIBUTE,
+		SLATE_ARGUMENT,
+		SLATE_STYLE_ARGUMENT,
+		SLATE_EVENT,
+	};
 
-struct FSlate_Default_Slot {};
+	struct FSlate_Named_Slot {};
+	struct FSlate_Default_Slot {};
+}

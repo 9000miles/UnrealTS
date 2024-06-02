@@ -13,6 +13,7 @@
 #include "GlueCode/SlateCoreGlue.h"
 
 #include "Widgets/Input/SCheckBox.h"
+#include "DTSDefine.h"
 
 UsingCppType(SCheckBox);
 UsingTSharedPtr(SCheckBox);
@@ -25,8 +26,9 @@ namespace $SCheckBox
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		SET_WIDGET_ARGUMENT_VARIABLE(Style);
-		//SET_WIDGET_ARGUMENT_VARIABLE_A(Type);
+		SET_WIDGET_ARGUMENT_VARIABLE(Content);
+		SET_WIDGET_ARGUMENT_VARIABLE_WITH_TYPE(Style, FCheckBoxStyle);
+		SET_WIDGET_ARGUMENT_VARIABLE(Type);
 		SET_WIDGET_ARGUMENT_VARIABLE(OnCheckStateChanged);
 		SET_WIDGET_ARGUMENT_VARIABLE(IsChecked);
 		SET_WIDGET_ARGUMENT_VARIABLE(HAlign);
@@ -208,35 +210,36 @@ struct AutoRegister_SCheckBox
 	DTS::DTSArguments RegisterArguments()
 	{
 		DTS::DTSArguments DTSArgs = DTS::DTSArguments("SCheckBox");
-		DTSArgs.Add<FCheckBoxStyle>("Style", ESlateArgumentType::SLATE_STYLE_ARGUMENT);
-		DTSArgs.Add<TOptional<ESlateCheckBoxType::Type>>("Type", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<FOnCheckStateChanged>("OnCheckStateChanged", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<ECheckBoxState>("IsChecked", ESlateArgumentType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<EHorizontalAlignment>("HAlign", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<bool>("CheckBoxContentUsesAutoWidth", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<FMargin>("Padding", ESlateArgumentType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<EButtonClickMethod::Type>("ClickMethod", ESlateArgumentType::SLATE_EVENT);
-		DTSArgs.Add<EButtonTouchMethod::Type>("TouchMethod", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<EButtonPressMethod::Type>("PressMethod", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<FSlateColor>("ForegroundColor", ESlateArgumentType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FSlateColor>("BorderBackgroundColor", ESlateArgumentType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<bool>("IsFocusable", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<FOnGetContent>("OnGetMenuContent", ESlateArgumentType::SLATE_EVENT);
-		DTSArgs.Add<TOptional<FSlateSound>>("CheckedSoundOverride", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<TOptional<FSlateSound>>("UncheckedSoundOverride", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<TOptional<FSlateSound>>("HoveredSoundOverride", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("UncheckedImage", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("UncheckedHoveredImage", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("UncheckedPressedImage", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("CheckedImage", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("CheckedHoveredImage", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("CheckedPressedImage", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("UndeterminedImage", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("UndeterminedHoveredImage", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("UndeterminedPressedImage", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("BackgroundImage", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("BackgroundHoveredImage", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("BackgroundPressedImage", ESlateArgumentType::SLATE_ARGUMENT);
+		DTSArgs.Add<DTS::FSlate_Default_Slot>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
+		DTSArgs.Add<FCheckBoxStyle>("Style", DTS::EArgType::SLATE_STYLE_ARGUMENT);
+		DTSArgs.Add<TOptional<ESlateCheckBoxType::Type>>("Type", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<FOnCheckStateChanged>("OnCheckStateChanged", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<ECheckBoxState>("IsChecked", DTS::EArgType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<EHorizontalAlignment>("HAlign", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<bool>("CheckBoxContentUsesAutoWidth", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<FMargin>("Padding", DTS::EArgType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<EButtonClickMethod::Type>("ClickMethod", DTS::EArgType::SLATE_EVENT);
+		DTSArgs.Add<EButtonTouchMethod::Type>("TouchMethod", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<EButtonPressMethod::Type>("PressMethod", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<FSlateColor>("ForegroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<FSlateColor>("BorderBackgroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<bool>("IsFocusable", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<FOnGetContent>("OnGetMenuContent", DTS::EArgType::SLATE_EVENT);
+		DTSArgs.Add<TOptional<FSlateSound>>("CheckedSoundOverride", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<TOptional<FSlateSound>>("UncheckedSoundOverride", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<TOptional<FSlateSound>>("HoveredSoundOverride", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<const FSlateBrush*>("UncheckedImage", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<const FSlateBrush*>("UncheckedHoveredImage", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<const FSlateBrush*>("UncheckedPressedImage", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<const FSlateBrush*>("CheckedImage", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<const FSlateBrush*>("CheckedHoveredImage", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<const FSlateBrush*>("CheckedPressedImage", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<const FSlateBrush*>("UndeterminedImage", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<const FSlateBrush*>("UndeterminedHoveredImage", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<const FSlateBrush*>("UndeterminedPressedImage", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<const FSlateBrush*>("BackgroundImage", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<const FSlateBrush*>("BackgroundHoveredImage", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<const FSlateBrush*>("BackgroundPressedImage", DTS::EArgType::SLATE_ARGUMENT);
 		return DTSArgs;
 	}
 

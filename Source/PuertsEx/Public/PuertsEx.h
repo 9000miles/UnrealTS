@@ -19,6 +19,7 @@ namespace puerts
 	DefineUEType(FMargin);
 	DefineUEType(FTextBlockStyle);
 	DefineUEType(FButtonStyle);
+	DefineUEType(FComboButtonStyle);
 	DefineUEType(FSlateFontInfo);
 	DefineUEType(FSlateBrush);
 	DefineUEType(FLinearColor);

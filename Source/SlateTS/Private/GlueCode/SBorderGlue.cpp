@@ -11,6 +11,7 @@
 #include "PuertsEx.h"
 
 #include "Widgets/Layout/SBorder.h"
+#include "DTSDefine.h"
 
 UsingCppType(SBorder);
 UsingTSharedPtr(SBorder);
@@ -92,22 +93,22 @@ struct AutoRegister_SBorder
 	DTS::DTSArguments RegisterArguments()
 	{
 		DTS::DTSArguments DTSArgs = DTS::DTSArguments("SBorder");
-		DTSArgs.Add<FSlate_Default_Slot>("Content", ESlateArgumentType::SLATE_DEFAULT_SLOT);
-		DTSArgs.Add<EHorizontalAlignment>("HAlign", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<EVerticalAlignment>("VAlign", ESlateArgumentType::SLATE_ARGUMENT);
-		DTSArgs.Add<FMargin>("Padding", ESlateArgumentType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FPointerEventHandler>("OnMouseButtonDown", ESlateArgumentType::SLATE_EVENT);
-		DTSArgs.Add<FPointerEventHandler>("OnMouseButtonUp", ESlateArgumentType::SLATE_EVENT);
-		DTSArgs.Add<FPointerEventHandler>("OnMouseMove", ESlateArgumentType::SLATE_EVENT);
-		DTSArgs.Add<FPointerEventHandler>("OnMouseDoubleClick", ESlateArgumentType::SLATE_EVENT);
-		DTSArgs.Add<const FSlateBrush*>("BorderImage", ESlateArgumentType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FVector2D>("ContentScale", ESlateArgumentType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FVector2D>("DesiredSizeScale", ESlateArgumentType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FLinearColor>("ColorAndOpacity", ESlateArgumentType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FSlateColor>("BorderBackgroundColor", ESlateArgumentType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FSlateColor>("ForegroundColor", ESlateArgumentType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<bool>("ShowEffectWhenDisabled", ESlateArgumentType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<bool>("FlipForRightToLeftFlowDirection", ESlateArgumentType::SLATE_ARGUMENT);
+		DTSArgs.Add<DTS::FSlate_Default_Slot>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
+		DTSArgs.Add<EHorizontalAlignment>("HAlign", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<EVerticalAlignment>("VAlign", DTS::EArgType::SLATE_ARGUMENT);
+		DTSArgs.Add<FMargin>("Padding", DTS::EArgType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<FPointerEventHandler>("OnMouseButtonDown", DTS::EArgType::SLATE_EVENT);
+		DTSArgs.Add<FPointerEventHandler>("OnMouseButtonUp", DTS::EArgType::SLATE_EVENT);
+		DTSArgs.Add<FPointerEventHandler>("OnMouseMove", DTS::EArgType::SLATE_EVENT);
+		DTSArgs.Add<FPointerEventHandler>("OnMouseDoubleClick", DTS::EArgType::SLATE_EVENT);
+		DTSArgs.Add<const FSlateBrush*>("BorderImage", DTS::EArgType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<FVector2D>("ContentScale", DTS::EArgType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<FVector2D>("DesiredSizeScale", DTS::EArgType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<FLinearColor>("ColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<FSlateColor>("BorderBackgroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<FSlateColor>("ForegroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<bool>("ShowEffectWhenDisabled", DTS::EArgType::SLATE_ATTRIBUTE);
+		DTSArgs.Add<bool>("FlipForRightToLeftFlowDirection", DTS::EArgType::SLATE_ARGUMENT);
 		return DTSArgs;
 	}
 

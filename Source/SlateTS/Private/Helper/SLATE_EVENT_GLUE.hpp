@@ -121,7 +121,7 @@ namespace WidgetArgument4
 
 namespace WidgetArgument4
 {
-#define SET_SLATE_EVENT_FOnIsOpenChanged(Name, RetType)\
+#define SET_SLATE_EVENT_FOnIsOpenChanged(Name)\
 	template<typename TArgumentType>\
 	void Set_##Name(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "")\
 	{\
@@ -130,10 +130,10 @@ namespace WidgetArgument4
 		{\
 			v8::Local<v8::Function> Function = JsObject.As<v8::Function>();\
 			FJsObject JsFunction = FJsObject(Context, Function);\
-			Arguments._##Name.BindLambda([JsFunction]() { return JsFunction.Func<RetType>(nullptr); });\
+			Arguments._##Name.BindLambda([JsFunction](bool bIsOpenChanged) { return JsFunction.Action(nullptr, bIsOpenChanged); });\
 		}\
 	}
-	SET_SLATE_EVENT_FOnIsOpenChanged(OnMenuOpenChanged, bool);
+	SET_SLATE_EVENT_FOnIsOpenChanged(OnMenuOpenChanged);
 
 
 
@@ -149,8 +149,8 @@ namespace WidgetArgument4
 		if (JsObject->IsFunction())\
 		{\
 			v8::Local<v8::Function> Function = JsObject.As<v8::Function>();\
-			FJsObject JsObject = FJsObject(Context, Function);\
-			Arguments._##Name.BindLambda([JsObject]() { return JsObject.Action(nullptr); });\
+			FJsObject JsFunction = FJsObject(Context, Function);\
+			Arguments._##Name.BindLambda([JsFunction]() { return JsFunction.Action(nullptr); });\
 		}\
 	}
 
