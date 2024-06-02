@@ -77,7 +77,7 @@ namespace WidgetArgument4
 		{\
 			v8::Local<v8::Function> Function = JsValue.As<v8::Function>();\
 			FJsObject JsFunction = FJsObject(Context, Function);\
-			Arguments._##Name.BindLambda([JsFunction](const FGeometry& Geomety, const FPointerEvent& PointerEvent) { return JsFunction.Func<RetType>(nullptr, Geomety, PointerEvent); });\
+			Arguments._##Name.BindLambda([JsFunction](const FGeometry& Geomety, const FPointerEvent& PointerEvent) { return *JsFunction.Func<RetType*>(nullptr, Geomety, PointerEvent); });\
 		}\
 	}
 	SET_SLATE_EVENT_PointerEventHandler(OnDoubleClicked, FReply);

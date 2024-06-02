@@ -7,13 +7,18 @@
 #include "V8Utils.h"
 #include "Converter.hpp"
 #include "Styling/SlateTypes.h"
+
 #include "SLATE_ATTRIBUTE.hpp"
 #include "SLATE_ARGUMENT.hpp"
 #include "SLATE_STYLE_ARGUMENT.hpp"
 #include "SLATE_EVENT_GLUE.hpp"
+#include "SLATE_DEFAULT_SLOT.hpp"
 
-#define SET_WIDGET_ARGUMENT_VARIABLE_A(Name);\
+#define SET_WIDGET_ARGUMENT_VARIABLE(Name);\
 WidgetArgument4::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
+
+#define SET_WIDGET_ARGUMENT_VARIABLE_WITH_TYPE(Name, Type);\
+WidgetArgument4::Set_##Name##Type(Arguments, Isolate, JsObject, #Name, "")
 
 #define SET_WIDGET_ARGUMENT_VARIABLE_A_Type(Name, Type);\
 WidgetArgument4::Set_##Name<Type>(Arguments, Info,JsObject, #Type)
