@@ -131,7 +131,7 @@ struct AutoRegister_SMenuAnchor
 				]
 			);
 
-		GenClassDTS.Add(ClassDTS);
+		DTS::FClassDTS::Add(ClassDTS);
 	}
 
 	AutoRegister_SMenuAnchor()

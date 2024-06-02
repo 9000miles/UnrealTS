@@ -142,7 +142,7 @@ struct AutoRegister_SComboButton
 				]
 			);
 
-		GenClassDTS.Add(ClassDTS);
+		DTS::FClassDTS::Add(ClassDTS);
 	}
 
 	AutoRegister_SComboButton()

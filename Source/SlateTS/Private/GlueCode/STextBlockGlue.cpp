@@ -202,7 +202,7 @@ struct AutoRegister_STextBlock
 				]
 			);
 
-		GenClassDTS.Add(ClassDTS);
+		DTS::FClassDTS::Add(ClassDTS);
 	}
 
 	AutoRegister_STextBlock()

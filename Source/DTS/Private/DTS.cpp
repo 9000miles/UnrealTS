@@ -8,17 +8,12 @@
 void FDTSModule::StartupModule()
 {
 #if WITH_EDITOR
-	UTemplateBindingGenerator::OnGen.BindRaw(this, &FDTSModule::GenDTS);
+	UTemplateBindingGenerator::OnGen.BindStatic(&DTS::FClassDTS::GenDTS);
 #endif
 }
 
 void FDTSModule::ShutdownModule()
 {
-}
-
-void FDTSModule::GenDTS()
-{
-	GenClassDTS.GenDTS();
 }
 
 #undef LOCTEXT_NAMESPACE

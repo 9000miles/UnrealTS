@@ -142,7 +142,7 @@ struct AutoRegister_SBorder
 				]
 			);
 
-		GenClassDTS.Add(ClassDTS);
+		DTS::FClassDTS::Add(ClassDTS);
 	}
 
 	AutoRegister_SBorder()

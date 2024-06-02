@@ -108,7 +108,7 @@ struct AutoRegister_$WidgetClass$
 				]
 			);
 
-		GenClassDTS.Add(ClassDTS);
+		DTS::FClassDTS::Add(ClassDTS);
 	}
 
 	AutoRegister_$WidgetClass$()

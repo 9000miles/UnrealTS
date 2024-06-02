@@ -279,7 +279,7 @@ struct AutoRegister_SCheckBox
 				]
 			);
 
-		GenClassDTS.Add(ClassDTS);
+		DTS::FClassDTS::Add(ClassDTS);
 	}
 
 	AutoRegister_SCheckBox()

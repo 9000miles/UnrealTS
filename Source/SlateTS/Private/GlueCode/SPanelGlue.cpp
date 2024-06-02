@@ -109,7 +109,7 @@ struct AutoRegister_SPanel
 				]
 			)*/;
 
-		GenClassDTS.Add(ClassDTS);
+		DTS::FClassDTS::Add(ClassDTS);
 	}
 
 	AutoRegister_SPanel()

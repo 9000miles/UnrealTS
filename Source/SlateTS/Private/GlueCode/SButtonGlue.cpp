@@ -157,7 +157,7 @@ struct AutoRegister_SButton
 				]
 			);
 
-		GenClassDTS.Add(ClassDTS);
+		DTS::FClassDTS::Add(ClassDTS);
 	}
 
 	AutoRegister_SButton()

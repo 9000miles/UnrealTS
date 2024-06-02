@@ -58,14 +58,20 @@ FString DTS::Class::GenDTS()
 
 void DTS::FClassDTS::Add(Class& Target)
 {
-	AllDts.Add(Target);
+	GenClassDTS.AllDts.Add(Target);
+}
 
-	FString DtsContent = Target.GenDTS();
+void DTS::FClassDTS::GenDTS()
+{
 	FString PluginTypingDir = FPaths::Combine(FPaths::ProjectPluginsDir(), "UnrealTS/Typing/widget");
-	FString Filename = FString::Printf(TEXT("%s/index.d.ts"), *PluginTypingDir);
+	FString PluginTypingFilename = FString::Printf(TEXT("%s/index.d.ts"), *PluginTypingDir);
 	FString FileContent;
-	if (FFileHelper::LoadFileToString(FileContent, *Filename))
+	FString AllFile;
+	if (!FFileHelper::LoadFileToString(FileContent, *PluginTypingFilename)) return;
+
+	for (Class& Target : GenClassDTS.AllDts)
 	{
+		FString DtsContent = Target.GenDTS();
 		FileContent.InsertAt(FileContent.Len() - 2, DtsContent);
 		FString TypingDir = FPaths::Combine(FPaths::ProjectDir(), "Typing/widget");
 		FString TypingFilename = FString::Printf(TEXT("%s/index.d.ts"), *TypingDir);
@@ -73,15 +79,4 @@ void DTS::FClassDTS::Add(Class& Target)
 	}
 }
 
-void DTS::FClassDTS::GenDTS()
-{
-	for (Class& dts : AllDts)
-	{
-		FString Content = dts.GenDTS();
-		FString TypingDir = FPaths::Combine(FPaths::ProjectPluginsDir(), "UnrealTS/Typing");
-		FString Filename = FString::Printf(TEXT("%s/%s.d.ts"), *TypingDir, *dts.GetName());
-		FFileHelper::SaveStringToFile(Content, *Filename);
-	}
-}
-
-//DTS::FClassDTS GenClassDTS;
+DTS::FClassDTS DTS::FClassDTS::GenClassDTS;
