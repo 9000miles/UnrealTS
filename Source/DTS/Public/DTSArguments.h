@@ -48,7 +48,7 @@ namespace DTS
 		}
 		template<> void Add<FOnCheckStateChanged>(FString InName, DTS::EArgType ArgType, const bool bOptional)
 		{
-			_Arguments.Add({ InName, "(UE.ECheckBoxState InNewState) => void", bOptional, ArgType });
+			_Arguments.Add({ InName, "(UE.ECheckBoxState: InNewState) => void", bOptional, ArgType });
 		}
 		template<> void Add<FOnGetContent>(FString InName, DTS::EArgType ArgType, const bool bOptional)
 		{
@@ -56,12 +56,12 @@ namespace DTS
 		}
 		template<> void Add<FOnIsOpenChanged>(FString InName, DTS::EArgType ArgType, const bool bOptional)
 		{
-			_Arguments.Add({ InName, "(boolean bIsOpenChanged) => void", bOptional, ArgType });
+			_Arguments.Add({ InName, "(boolean: bIsOpenChanged) => void", bOptional, ArgType });
 		}
-		//template<> void Add<TSharedPtr<SWidget>>(FString InName, DTS::EArgType ArgType, const bool bOptional)
-		//{
-		//	_Arguments.Add({ InName, "() => void", bOptional, ArgType });
-		//}
+		template<> void Add<TOptional<ESlateCheckBoxType::Type>>(FString InName, DTS::EArgType ArgType, const bool bOptional)
+		{
+			_Arguments.Add({ InName, "UE.ESlateCheckBoxType", bOptional, ArgType });
+		}
 
 		FString GenDTS();
 

@@ -56,9 +56,14 @@ FString DTS::Class::GenDTS()
 	return Output;
 }
 
-void DTS::FClassDTS::Add(const Class& Target)
+void DTS::FClassDTS::Add(Class& Target)
 {
 	AllDts.Add(Target);
+
+	FString Content = Target.GenDTS();
+	FString TypingDir = FPaths::Combine(FPaths::ProjectPluginsDir(), "UnrealTS/Typing");
+	FString Filename = FString::Printf(TEXT("%s/%s.d.ts"), *TypingDir, *Target.GetName());
+	FFileHelper::SaveStringToFile(Content, *Filename);
 }
 
 void DTS::FClassDTS::GenDTS()
@@ -66,8 +71,10 @@ void DTS::FClassDTS::GenDTS()
 	for (Class& dts : AllDts)
 	{
 		FString Content = dts.GenDTS();
-		FString Filename = FString::Printf(TEXT("M:/UE/5.1/UnrealTSDemo/Plugins/UnrealTS/Typing/%s.d.ts"), *dts.GetName());
+		FString TypingDir = FPaths::Combine(FPaths::ProjectPluginsDir(), "UnrealTS/Typing");
+		FString Filename = FString::Printf(TEXT("%s/%s.d.ts"), *TypingDir, *dts.GetName());
 		FFileHelper::SaveStringToFile(Content, *Filename);
 	}
 }
 
+//DTS::FClassDTS GenClassDTS;

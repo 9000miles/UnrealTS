@@ -97,11 +97,11 @@ namespace DTS
 
 	struct DTS_API FClassDTS
 	{
-		void Add(const Class& Target);
+		void Add(Class& Target);
 		void GenDTS();
 	private:
 		TArray<Class> AllDts;
 	};
 }
 
-DTS::FClassDTS GenClassDTS;
+static DTS::FClassDTS GenClassDTS;
