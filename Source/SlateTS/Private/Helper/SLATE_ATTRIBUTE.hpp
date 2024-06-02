@@ -53,4 +53,5 @@ namespace $Arguments__SLATE_ATTRIBUTE
 	SET_SLATE_ATTRIBUTE(MenuPlacement, EMenuPlacement, );
 	SET_SLATE_ATTRIBUTE(BorderImage, const FSlateBrush*, );
 	SET_SLATE_ATTRIBUTE(ContentPadding, FMargin, );
+	SET_SLATE_ATTRIBUTE(Placement, EMenuPlacement, );
 }

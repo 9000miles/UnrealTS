@@ -35,6 +35,7 @@ namespace $Arguments__SLATE_ARGUMENT
 	SET_SLATE_ARUMENT(HAlign, EHorizontalAlignment);
 	SET_SLATE_ARUMENT(VAlign, EVerticalAlignment);
 	SET_SLATE_ARUMENT(ContentPadding, FMargin);
+	SET_SLATE_ARUMENT(Padding, FMargin);
 	SET_SLATE_ARUMENT(ClickMethod, EButtonClickMethod::Type);
 	SET_SLATE_ARUMENT(TouchMethod, EButtonTouchMethod::Type);
 	SET_SLATE_ARUMENT(PressMethod, EButtonPressMethod::Type);
@@ -66,4 +67,5 @@ namespace $Arguments__SLATE_ARGUMENT
 	SET_SLATE_ARUMENT(UseApplicationMenuStack, bool);
 	SET_SLATE_ARUMENT(IsCollapsedByParent, bool);
 	SET_SLATE_ARUMENT(ApplyWidgetStyleToMenu, bool);
+	SET_SLATE_ARUMENT(MenuContent, TSharedPtr<SWidget>);
 }
