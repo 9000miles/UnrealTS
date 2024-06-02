@@ -58,7 +58,7 @@ namespace DTS
 		{
 			_Arguments.Add({ InName, "(boolean bIsOpenChanged) => void", bOptional, ArgType });
 		}
-		//template<> void Add<FOnComboBoxOpened>(FString InName, DTS::EArgType ArgType, const bool bOptional)
+		//template<> void Add<TSharedPtr<SWidget>>(FString InName, DTS::EArgType ArgType, const bool bOptional)
 		//{
 		//	_Arguments.Add({ InName, "() => void", bOptional, ArgType });
 		//}

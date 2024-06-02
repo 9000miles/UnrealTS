@@ -8,6 +8,7 @@
 #include "UEDataBinding.hpp"
 #include "Helper/WidgetHelper.hpp"
 #include "DTSHelper.h"
+#include "DTSDefine.h"
 #include "PuertsEx.h"
 
 UsingCppType($WidgetClass$);

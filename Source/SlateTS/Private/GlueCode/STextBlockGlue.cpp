@@ -10,6 +10,7 @@
 #include "Helper/WidgetHelper.hpp"
 
 #include "Widgets/Text/STextBlock.h"
+#include "../Helper/WidgetAttribute.hpp"
 
 UsingCppType(STextBlock);
 UsingTSharedPtr(STextBlock);
@@ -23,30 +24,30 @@ namespace $STextBlock
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		SET_WIDGET_ARGUMENT_VARIABLE(Text);
-		SET_WIDGET_ARGUMENT_VARIABLE(TextStyle);
-		SET_WIDGET_ARGUMENT_VARIABLE(Font);
-		SET_WIDGET_ARGUMENT_VARIABLE(StrikeBrush);
-		SET_WIDGET_ARGUMENT_VARIABLE_WITH_TYPE(ColorAndOpacity, FSlateColor);
-		SET_WIDGET_ARGUMENT_VARIABLE(ShadowOffset);
-		SET_WIDGET_ARGUMENT_VARIABLE(ShadowColorAndOpacity);
-		SET_WIDGET_ARGUMENT_VARIABLE(HighlightColor);
-		SET_WIDGET_ARGUMENT_VARIABLE(HighlightShape);
-		SET_WIDGET_ARGUMENT_VARIABLE(HighlightText);
-		SET_WIDGET_ARGUMENT_VARIABLE(WrapTextAt);
-		SET_WIDGET_ARGUMENT_VARIABLE(AutoWrapText);
-		SET_WIDGET_ARGUMENT_VARIABLE(WrappingPolicy);
-		SET_WIDGET_ARGUMENT_VARIABLE(TransformPolicy);
-		SET_WIDGET_ARGUMENT_VARIABLE(Margin);
-		SET_WIDGET_ARGUMENT_VARIABLE(LineHeightPercentage);
-		SET_WIDGET_ARGUMENT_VARIABLE(Justification);
-		SET_WIDGET_ARGUMENT_VARIABLE(MinDesiredWidth);
-		SET_WIDGET_ARGUMENT_VARIABLE(TextShapingMethod);
-		SET_WIDGET_ARGUMENT_VARIABLE(TextFlowDirection);
-		//SET_WIDGET_ARGUMENT_VARIABLE_A(LineBreakPolicy);
-		SET_WIDGET_ARGUMENT_VARIABLE(OverflowPolicy);
-		SET_WIDGET_ARGUMENT_VARIABLE(SimpleTextMode);
-		SET_WIDGET_ARGUMENT_VARIABLE(OnDoubleClicked);
+		SET_VARIABLE__SLATE_ATTRIBUTE(Text);
+		SET_VARIABLE__SLATE_STYLE_ARGUMENT(TextStyle);
+		SET_VARIABLE__SLATE_ATTRIBUTE(Font);
+		SET_VARIABLE__SLATE_ATTRIBUTE(StrikeBrush);
+		SET_VARIABLE__SLATE_ATTRIBUTE_WITH_TYPE(ColorAndOpacity, FSlateColor);
+		SET_VARIABLE__SLATE_ATTRIBUTE(ShadowOffset);
+		SET_VARIABLE__SLATE_ATTRIBUTE(ShadowColorAndOpacity);
+		SET_VARIABLE__SLATE_ATTRIBUTE(HighlightColor);
+		SET_VARIABLE__SLATE_ATTRIBUTE(HighlightShape);
+		SET_VARIABLE__SLATE_ATTRIBUTE(HighlightText);
+		SET_VARIABLE__SLATE_ATTRIBUTE(WrapTextAt);
+		SET_VARIABLE__SLATE_ATTRIBUTE(AutoWrapText);
+		SET_VARIABLE__SLATE_ATTRIBUTE(WrappingPolicy);
+		SET_VARIABLE__SLATE_ATTRIBUTE(TransformPolicy);
+		SET_VARIABLE__SLATE_ATTRIBUTE(Margin);
+		SET_VARIABLE__SLATE_ATTRIBUTE(LineHeightPercentage);
+		SET_VARIABLE__SLATE_ATTRIBUTE(Justification);
+		SET_VARIABLE__SLATE_ATTRIBUTE(MinDesiredWidth);
+		SET_VARIABLE__SLATE_ARGUMENT(TextShapingMethod);
+		SET_VARIABLE__SLATE_ARGUMENT(TextFlowDirection);
+		//SET_VARIABLESLATE_ARGUMENT___A(LineBreakPolicy);
+		SET_VARIABLE__SLATE_ARGUMENT(OverflowPolicy);
+		SET_VARIABLE__SLATE_ARGUMENT(SimpleTextMode);
+		SET_VARIABLE__SLATE_EVENT(OnDoubleClicked);
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

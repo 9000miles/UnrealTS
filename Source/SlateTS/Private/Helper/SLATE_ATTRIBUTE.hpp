@@ -3,9 +3,16 @@
 #include "v8.h"
 #include "V8Utils.h"
 #include "Converter.hpp"
-/**
- * WidgetClass 用于判断同名属性，但是不同类型的处理，比如：Style
- */
+
+#define SET_VARIABLE__SLATE_ATTRIBUTE(Name)\
+$Arguments__SLATE_ATTRIBUTE::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
+
+#define SET_VARIABLE__SLATE_ATTRIBUTE_WITH_TYPE(Name, Type);\
+$Arguments__SLATE_ATTRIBUTE::Set_##Name##Type(Arguments, Isolate, JsObject, #Name, "")
+
+ /** ======================= SET_SLATE_ATTRIBUTE ======================= **/
+namespace $Arguments__SLATE_ATTRIBUTE
+{
 #define SET_SLATE_ATTRIBUTE(Name, Type, ArgType)\
 	template<typename TArgumentType>\
 	void Set_##Name##ArgType(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "")\
@@ -17,9 +24,6 @@
 		Arguments._##Name = WidgetAttribute::MakeAttribute<Type>(Context, JsValue, WidgetClass);\
 	}
 
- /** ======================= SET_SLATE_ATTRIBUTE ======================= **/
-namespace WidgetArgument4
-{
 	SET_SLATE_ATTRIBUTE(Text, FText, );
 	SET_SLATE_ATTRIBUTE(Font, FSlateFontInfo, );
 	SET_SLATE_ATTRIBUTE(StrikeBrush, const FSlateBrush*, );
@@ -48,4 +52,5 @@ namespace WidgetArgument4
 	SET_SLATE_ATTRIBUTE(ShowEffectWhenDisabled, bool, );
 	SET_SLATE_ATTRIBUTE(MenuPlacement, EMenuPlacement, );
 	SET_SLATE_ATTRIBUTE(BorderImage, const FSlateBrush*, );
+	SET_SLATE_ATTRIBUTE(ContentPadding, FMargin, );
 }

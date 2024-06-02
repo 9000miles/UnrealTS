@@ -3,6 +3,13 @@
 #include "v8.h"
 #include "V8Utils.h"
 #include "Converter.hpp"
+
+#define SET_VARIABLE__SLATE_STYLE_ARGUMENT(Name)\
+$Arguments__SLATE_STYLE_ARGUMENT::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
+
+/** ======================= SLATE_STYLE_ARGUMENT ======================= **/
+namespace $Arguments__SLATE_STYLE_ARGUMENT
+{
 #define SET_SLATE_STYLE_ARGUMENT(Name, Type, ArgType)\
 	template<typename TArgumentType>\
 	void Set_##Name##ArgType(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "")\
@@ -16,12 +23,9 @@
 			Arguments._##Name = Ret;\
 		}\
 	}
-/** ======================= SLATE_STYLE_ARGUMENT ======================= **/
-namespace WidgetArgument4
-{
 
 	SET_SLATE_STYLE_ARGUMENT(TextStyle, FTextBlockStyle, );
-	SET_SLATE_STYLE_ARGUMENT(Style, FCheckBoxStyle, FCheckBoxStyle);
+	SET_SLATE_STYLE_ARGUMENT(Style, FCheckBoxStyle, );
 	//SET_SLATE_STYLE_ARGUMENT(Style, FCheckBoxStyle, );
 	SET_SLATE_STYLE_ARGUMENT(ComboButtonStyle, FComboButtonStyle, );
 	SET_SLATE_STYLE_ARGUMENT(ButtonStyle, FButtonStyle, );

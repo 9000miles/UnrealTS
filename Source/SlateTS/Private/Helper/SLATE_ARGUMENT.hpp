@@ -3,6 +3,13 @@
 #include "v8.h"
 #include "V8Utils.h"
 #include "Converter.hpp"
+
+#define SET_VARIABLE__SLATE_ARGUMENT(Name)\
+$Arguments__SLATE_ARGUMENT::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
+
+/** ======================= SLATE_ARGUMENT ======================= **/
+namespace $Arguments__SLATE_ARGUMENT
+{
 #define SET_SLATE_ARUMENT(Name, Type)\
 	template<typename TArgumentType>\
 	void Set_##Name(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "")\
@@ -18,9 +25,6 @@
 		}\
 	}
 
-/** ======================= SLATE_ARGUMENT ======================= **/
-namespace WidgetArgument4
-{
 	SET_SLATE_ARUMENT(Type, ESlateCheckBoxType::Type);//支持TOptional<ESlateCheckBoxType::Type>
 	SET_SLATE_ARUMENT(TextShapingMethod, ETextShapingMethod);
 	SET_SLATE_ARUMENT(TextFlowDirection, ETextFlowDirection);
@@ -56,4 +60,10 @@ namespace WidgetArgument4
 	SET_SLATE_ARUMENT(HasDownArrow, bool);
 	SET_SLATE_ARUMENT(Method, EPopupMethod);
 	SET_SLATE_ARUMENT(CollapseMenuOnParentFocus, bool);
+	SET_SLATE_ARUMENT(Placement, EMenuPlacement);
+	SET_SLATE_ARUMENT(FitInWindow, bool);
+	SET_SLATE_ARUMENT(ShouldDeferPaintingAfterWindowContent, bool);
+	SET_SLATE_ARUMENT(UseApplicationMenuStack, bool);
+	SET_SLATE_ARUMENT(IsCollapsedByParent, bool);
+	SET_SLATE_ARUMENT(ApplyWidgetStyleToMenu, bool);
 }
