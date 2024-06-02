@@ -88,7 +88,6 @@ struct AutoRegister_SMenuAnchor
 	{
 		DTS::DTSArguments DTSArgs = DTS::DTSArguments("SMenuAnchor");
 		DTSArgs.Add<DTS::FSlate_Default_Slot>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
-		DTSArgs.Add<FMargin>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
 		DTSArgs.Add<TSharedPtr<SWidget>>("MenuContent", DTS::EArgType::SLATE_ARGUMENT);
 		DTSArgs.Add<FOnGetContent>("OnGetMenuContent", DTS::EArgType::SLATE_ARGUMENT);
 		DTSArgs.Add<FOnIsOpenChanged>("OnMenuOpenChanged", DTS::EArgType::SLATE_EVENT);
