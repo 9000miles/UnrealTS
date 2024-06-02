@@ -22,13 +22,14 @@ namespace $SButton
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
+		SET_WIDGET_ARGUMENT_VARIABLE(Content);
 		SET_WIDGET_ARGUMENT_VARIABLE(ButtonStyle);
 		SET_WIDGET_ARGUMENT_VARIABLE(TextStyle);
 		SET_WIDGET_ARGUMENT_VARIABLE(HAlign);
 		SET_WIDGET_ARGUMENT_VARIABLE(VAlign);
 		SET_WIDGET_ARGUMENT_VARIABLE(ContentPadding);
 		SET_WIDGET_ARGUMENT_VARIABLE(Text);
-		//SET_WIDGET_ARGUMENT_VARIABLE_A(OnClicked);
+		SET_WIDGET_ARGUMENT_VARIABLE(OnClicked);
 		SET_WIDGET_ARGUMENT_VARIABLE(OnPressed);
 		SET_WIDGET_ARGUMENT_VARIABLE(OnReleased);
 		SET_WIDGET_ARGUMENT_VARIABLE(OnHovered);
@@ -99,6 +100,7 @@ struct AutoRegister_SButton
 	DTS::DTSArguments RegisterArguments()
 	{
 		DTS::DTSArguments DTSArgs = DTS::DTSArguments("SButton");
+		DTSArgs.Add<FSlate_Default_Slot>("Content", ESlateArgumentType::SLATE_DEFAULT_SLOT);
 		DTSArgs.Add<FButtonStyle>("ButtonStyle", ESlateArgumentType::SLATE_STYLE_ARGUMENT);
 		DTSArgs.Add<FTextBlockStyle>("TextStyle", ESlateArgumentType::SLATE_STYLE_ARGUMENT);
 		DTSArgs.Add<EHorizontalAlignment>("HAlign", ESlateArgumentType::SLATE_ARGUMENT);

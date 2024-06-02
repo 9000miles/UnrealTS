@@ -92,6 +92,7 @@ struct AutoRegister_SBorder
 	DTS::DTSArguments RegisterArguments()
 	{
 		DTS::DTSArguments DTSArgs = DTS::DTSArguments("SBorder");
+		DTSArgs.Add<FSlate_Default_Slot>("Content", ESlateArgumentType::SLATE_DEFAULT_SLOT);
 		DTSArgs.Add<EHorizontalAlignment>("HAlign", ESlateArgumentType::SLATE_ARGUMENT);
 		DTSArgs.Add<EVerticalAlignment>("VAlign", ESlateArgumentType::SLATE_ARGUMENT);
 		DTSArgs.Add<FMargin>("Padding", ESlateArgumentType::SLATE_ATTRIBUTE);

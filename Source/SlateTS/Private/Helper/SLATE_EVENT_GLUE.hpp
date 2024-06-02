@@ -156,3 +156,21 @@ namespace WidgetArgument4
 
 	SET_SLATE_EVENT_FOnComboBoxOpened(OnComboBoxOpened);
 }
+
+namespace WidgetArgument4
+{
+#define SET_SLATE_EVENT_FOnClicked(Name)\
+	template<typename TArgumentType>\
+	void Set_##Name(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "")\
+	{\
+		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();\
+		if (JsObject->IsFunction())\
+		{\
+			v8::Local<v8::Function> Function = JsObject.As<v8::Function>();\
+			FJsObject JsFunction = FJsObject(Context, Function);\
+			Arguments._##Name.BindLambda([JsFunction]() { return *JsFunction.Func<FReply*>(nullptr); });\
+		}\
+	}
+
+	SET_SLATE_EVENT_FOnClicked(OnClicked);
+}

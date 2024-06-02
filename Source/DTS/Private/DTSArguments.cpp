@@ -25,6 +25,8 @@ FString DTS::DTSArguments::FArgument::GenDTS()
 FString DTS::DTSArguments::GenDTS()
 {
 	FString Output;
+	if (_Arguments.IsEmpty()) return Output;
+
 	Output += "\tnamespace ";
 	Output += Name;
 	Output += " {\n";
