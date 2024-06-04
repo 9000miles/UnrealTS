@@ -4,7 +4,7 @@
 #include "V8Utils.h"
 #include "Converter.hpp"
 
-#define SET_VARIABLE__SLATE_EVENT(Name)\
+#define $SLATE_EVENT(Name)\
 $Arguments__SLATE_EVENT::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
 
 namespace $Arguments__SLATE_EVENT

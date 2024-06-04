@@ -23,29 +23,29 @@ namespace $SButton
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		SET_VARIABLE__SLATE_DEFAULT_SLOT(Content);
-		SET_VARIABLE__SLATE_STYLE_ARGUMENT(ButtonStyle);
-		SET_VARIABLE__SLATE_STYLE_ARGUMENT(TextStyle);
-		SET_VARIABLE__SLATE_ARGUMENT(HAlign);
-		SET_VARIABLE__SLATE_ARGUMENT(VAlign);
-		SET_VARIABLE__SLATE_ATTRIBUTE(ContentPadding);
-		SET_VARIABLE__SLATE_ATTRIBUTE(Text);
-		SET_VARIABLE__SLATE_EVENT(OnClicked);
-		SET_VARIABLE__SLATE_EVENT(OnPressed);
-		SET_VARIABLE__SLATE_EVENT(OnReleased);
-		SET_VARIABLE__SLATE_EVENT(OnHovered);
-		SET_VARIABLE__SLATE_EVENT(OnUnhovered);
-		SET_VARIABLE__SLATE_ARGUMENT(ClickMethod);
-		SET_VARIABLE__SLATE_ARGUMENT(TouchMethod);
-		SET_VARIABLE__SLATE_ARGUMENT(PressMethod);
-		SET_VARIABLE__SLATE_ATTRIBUTE(DesiredSizeScale);
-		SET_VARIABLE__SLATE_ATTRIBUTE(ContentScale);
-		SET_VARIABLE__SLATE_ATTRIBUTE(ButtonColorAndOpacity);
-		SET_VARIABLE__SLATE_ATTRIBUTE(ForegroundColor);
-		SET_VARIABLE__SLATE_ARGUMENT(IsFocusable);
-		SET_VARIABLE__SLATE_ARGUMENT(PressedSoundOverride);
-		SET_VARIABLE__SLATE_ARGUMENT(HoveredSoundOverride);
-		SET_VARIABLE__SLATE_ARGUMENT(TextShapingMethod);
-		SET_VARIABLE__SLATE_ARGUMENT(TextFlowDirection);
+		$SLATE_STYLE_ARGUMENT(ButtonStyle);
+		$SLATE_STYLE_ARGUMENT(TextStyle);
+		$SLATE_ARGUMENT(HAlign);
+		$SLATE_ARGUMENT(VAlign);
+		$SLATE_ATTRIBUTE(ContentPadding);
+		$SLATE_ATTRIBUTE(Text);
+		$SLATE_EVENT(OnClicked);
+		$SLATE_EVENT(OnPressed);
+		$SLATE_EVENT(OnReleased);
+		$SLATE_EVENT(OnHovered);
+		$SLATE_EVENT(OnUnhovered);
+		$SLATE_ARGUMENT(ClickMethod);
+		$SLATE_ARGUMENT(TouchMethod);
+		$SLATE_ARGUMENT(PressMethod);
+		$SLATE_ATTRIBUTE(DesiredSizeScale);
+		$SLATE_ATTRIBUTE(ContentScale);
+		$SLATE_ATTRIBUTE(ButtonColorAndOpacity);
+		$SLATE_ATTRIBUTE(ForegroundColor);
+		$SLATE_ARGUMENT(IsFocusable);
+		$SLATE_ARGUMENT(PressedSoundOverride);
+		$SLATE_ARGUMENT(HoveredSoundOverride);
+		$SLATE_ARGUMENT(TextShapingMethod);
+		$SLATE_ARGUMENT(TextFlowDirection);
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

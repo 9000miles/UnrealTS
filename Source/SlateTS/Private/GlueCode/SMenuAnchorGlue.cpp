@@ -22,17 +22,17 @@ namespace $SMenuAnchor
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		SET_VARIABLE__SLATE_DEFAULT_SLOT(Content);
-		SET_VARIABLE__SLATE_ARGUMENT(Padding);
-		SET_VARIABLE__SLATE_ARGUMENT(MenuContent);
-		SET_VARIABLE__SLATE_EVENT(OnGetMenuContent);
-		SET_VARIABLE__SLATE_EVENT(OnMenuOpenChanged);
-		SET_VARIABLE__SLATE_ATTRIBUTE(Placement);
-		SET_VARIABLE__SLATE_ARGUMENT(FitInWindow);
-		SET_VARIABLE__SLATE_ARGUMENT(Method);
-		SET_VARIABLE__SLATE_ARGUMENT(ShouldDeferPaintingAfterWindowContent);
-		SET_VARIABLE__SLATE_ARGUMENT(UseApplicationMenuStack);
-		SET_VARIABLE__SLATE_ARGUMENT(IsCollapsedByParent);
-		SET_VARIABLE__SLATE_ARGUMENT(ApplyWidgetStyleToMenu);
+		$SLATE_ARGUMENT(Padding);
+		$SLATE_ARGUMENT(MenuContent);
+		$SLATE_EVENT(OnGetMenuContent);
+		$SLATE_EVENT(OnMenuOpenChanged);
+		$SLATE_ATTRIBUTE(Placement);
+		$SLATE_ARGUMENT(FitInWindow);
+		$SLATE_ARGUMENT(Method);
+		$SLATE_ARGUMENT(ShouldDeferPaintingAfterWindowContent);
+		$SLATE_ARGUMENT(UseApplicationMenuStack);
+		$SLATE_ARGUMENT(IsCollapsedByParent);
+		$SLATE_ARGUMENT(ApplyWidgetStyleToMenu);
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

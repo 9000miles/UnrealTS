@@ -28,7 +28,7 @@ namespace $Arguments__SLATE_DEFAULT_SLOT
 }
 
 
-#define SET_VARIABLE__SLATE_NAMED_SLOT(Name)\
+#define $SLATE_NAMED_SLOT(Name)\
 $Arguments__SLATE_NAMED_SLOT::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
 
 namespace $Arguments__SLATE_NAMED_SLOT

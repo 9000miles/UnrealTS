@@ -22,24 +22,24 @@ namespace $SExpandableArea
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		SET_VARIABLE__SLATE_STYLE_ARGUMENT_WITH_TYPE(Style, FExpandableAreaStyle);
-		SET_VARIABLE__SLATE_ATTRIBUTE(BorderBackgroundColor);
-		SET_VARIABLE__SLATE_ATTRIBUTE(BorderImage);
-		SET_VARIABLE__SLATE_ATTRIBUTE(BodyBorderBackgroundColor);
-		SET_VARIABLE__SLATE_ARGUMENT(BodyBorderImage);
-		SET_VARIABLE__SLATE_NAMED_SLOT(HeaderContent);
-		SET_VARIABLE__SLATE_NAMED_SLOT(BodyContent);
-		SET_VARIABLE__SLATE_ATTRIBUTE(AreaTitle);
-		SET_VARIABLE__SLATE_ARGUMENT(InitiallyCollapsed);
-		SET_VARIABLE__SLATE_ARGUMENT(MinWidth);
-		SET_VARIABLE__SLATE_ARGUMENT(MaxHeight);
-		SET_VARIABLE__SLATE_ATTRIBUTE(AreaTitlePadding);
-		SET_VARIABLE__SLATE_ATTRIBUTE(HeaderPadding);
-		SET_VARIABLE__SLATE_ATTRIBUTE(Padding);
-		SET_VARIABLE__SLATE_EVENT(OnAreaExpansionChanged);
-		SET_VARIABLE__SLATE_ATTRIBUTE(AreaTitleFont);
-		SET_VARIABLE__SLATE_ATTRIBUTE(HeaderCursor);
-		SET_VARIABLE__SLATE_ARGUMENT(AllowAnimatedTransition);
+		$SLATE_STYLE_ARGUMENT_WITH_TYPE(Style, FExpandableAreaStyle);
+		$SLATE_ATTRIBUTE(BorderBackgroundColor);
+		$SLATE_ATTRIBUTE(BorderImage);
+		$SLATE_ATTRIBUTE(BodyBorderBackgroundColor);
+		$SLATE_ARGUMENT(BodyBorderImage);
+		$SLATE_NAMED_SLOT(HeaderContent);
+		$SLATE_NAMED_SLOT(BodyContent);
+		$SLATE_ATTRIBUTE(AreaTitle);
+		$SLATE_ARGUMENT(InitiallyCollapsed);
+		$SLATE_ARGUMENT(MinWidth);
+		$SLATE_ARGUMENT(MaxHeight);
+		$SLATE_ATTRIBUTE(AreaTitlePadding);
+		$SLATE_ATTRIBUTE(HeaderPadding);
+		$SLATE_ATTRIBUTE(Padding);
+		$SLATE_EVENT(OnAreaExpansionChanged);
+		$SLATE_ATTRIBUTE(AreaTitleFont);
+		$SLATE_ATTRIBUTE(HeaderCursor);
+		$SLATE_ARGUMENT(AllowAnimatedTransition);
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

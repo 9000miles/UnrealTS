@@ -24,30 +24,30 @@ namespace $STextBlock
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		SET_VARIABLE__SLATE_ATTRIBUTE(Text);
-		SET_VARIABLE__SLATE_STYLE_ARGUMENT(TextStyle);
-		SET_VARIABLE__SLATE_ATTRIBUTE(Font);
-		SET_VARIABLE__SLATE_ATTRIBUTE(StrikeBrush);
-		SET_VARIABLE__SLATE_ATTRIBUTE_WITH_TYPE(ColorAndOpacity, FSlateColor);
-		SET_VARIABLE__SLATE_ATTRIBUTE(ShadowOffset);
-		SET_VARIABLE__SLATE_ATTRIBUTE(ShadowColorAndOpacity);
-		SET_VARIABLE__SLATE_ATTRIBUTE(HighlightColor);
-		SET_VARIABLE__SLATE_ATTRIBUTE(HighlightShape);
-		SET_VARIABLE__SLATE_ATTRIBUTE(HighlightText);
-		SET_VARIABLE__SLATE_ATTRIBUTE(WrapTextAt);
-		SET_VARIABLE__SLATE_ATTRIBUTE(AutoWrapText);
-		SET_VARIABLE__SLATE_ATTRIBUTE(WrappingPolicy);
-		SET_VARIABLE__SLATE_ATTRIBUTE(TransformPolicy);
-		SET_VARIABLE__SLATE_ATTRIBUTE(Margin);
-		SET_VARIABLE__SLATE_ATTRIBUTE(LineHeightPercentage);
-		SET_VARIABLE__SLATE_ATTRIBUTE(Justification);
-		SET_VARIABLE__SLATE_ATTRIBUTE_WITH_TYPE(MinDesiredWidth, float);
-		SET_VARIABLE__SLATE_ARGUMENT(TextShapingMethod);
-		SET_VARIABLE__SLATE_ARGUMENT(TextFlowDirection);
+		$SLATE_ATTRIBUTE(Text);
+		$SLATE_STYLE_ARGUMENT(TextStyle);
+		$SLATE_ATTRIBUTE(Font);
+		$SLATE_ATTRIBUTE(StrikeBrush);
+		$SLATE_ATTRIBUTE_WITH_TYPE(ColorAndOpacity, FSlateColor);
+		$SLATE_ATTRIBUTE(ShadowOffset);
+		$SLATE_ATTRIBUTE(ShadowColorAndOpacity);
+		$SLATE_ATTRIBUTE(HighlightColor);
+		$SLATE_ATTRIBUTE(HighlightShape);
+		$SLATE_ATTRIBUTE(HighlightText);
+		$SLATE_ATTRIBUTE(WrapTextAt);
+		$SLATE_ATTRIBUTE(AutoWrapText);
+		$SLATE_ATTRIBUTE(WrappingPolicy);
+		$SLATE_ATTRIBUTE(TransformPolicy);
+		$SLATE_ATTRIBUTE(Margin);
+		$SLATE_ATTRIBUTE(LineHeightPercentage);
+		$SLATE_ATTRIBUTE(Justification);
+		$SLATE_ATTRIBUTE_WITH_TYPE(MinDesiredWidth, float);
+		$SLATE_ARGUMENT(TextShapingMethod);
+		$SLATE_ARGUMENT(TextFlowDirection);
 		//SET_VARIABLESLATE_ARGUMENT___A(LineBreakPolicy);
-		SET_VARIABLE__SLATE_ARGUMENT(OverflowPolicy);
-		SET_VARIABLE__SLATE_ARGUMENT(SimpleTextMode);
-		SET_VARIABLE__SLATE_EVENT(OnDoubleClicked);
+		$SLATE_ARGUMENT(OverflowPolicy);
+		$SLATE_ARGUMENT(SimpleTextMode);
+		$SLATE_EVENT(OnDoubleClicked);
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

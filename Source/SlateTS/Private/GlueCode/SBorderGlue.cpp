@@ -24,21 +24,21 @@ namespace $SBorder
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		SET_VARIABLE__SLATE_DEFAULT_SLOT(Content);
-		SET_VARIABLE__SLATE_ARGUMENT(HAlign);
-		SET_VARIABLE__SLATE_ARGUMENT(VAlign);
-		SET_VARIABLE__SLATE_ATTRIBUTE(Padding);
-		SET_VARIABLE__SLATE_EVENT(OnMouseButtonDown);
-		SET_VARIABLE__SLATE_EVENT(OnMouseButtonUp);
-		SET_VARIABLE__SLATE_EVENT(OnMouseMove);
-		SET_VARIABLE__SLATE_EVENT(OnMouseDoubleClick);
-		SET_VARIABLE__SLATE_ATTRIBUTE(BorderImage);
-		SET_VARIABLE__SLATE_ATTRIBUTE(ContentScale);
-		SET_VARIABLE__SLATE_ATTRIBUTE(DesiredSizeScale);
-		SET_VARIABLE__SLATE_ATTRIBUTE_WITH_TYPE(ColorAndOpacity, FLinearColor);
-		SET_VARIABLE__SLATE_ATTRIBUTE(BorderBackgroundColor);
-		SET_VARIABLE__SLATE_ATTRIBUTE(ForegroundColor);
-		SET_VARIABLE__SLATE_ATTRIBUTE(ShowEffectWhenDisabled);
-		SET_VARIABLE__SLATE_ARGUMENT(FlipForRightToLeftFlowDirection);
+		$SLATE_ARGUMENT(HAlign);
+		$SLATE_ARGUMENT(VAlign);
+		$SLATE_ATTRIBUTE(Padding);
+		$SLATE_EVENT(OnMouseButtonDown);
+		$SLATE_EVENT(OnMouseButtonUp);
+		$SLATE_EVENT(OnMouseMove);
+		$SLATE_EVENT(OnMouseDoubleClick);
+		$SLATE_ATTRIBUTE(BorderImage);
+		$SLATE_ATTRIBUTE(ContentScale);
+		$SLATE_ATTRIBUTE(DesiredSizeScale);
+		$SLATE_ATTRIBUTE_WITH_TYPE(ColorAndOpacity, FLinearColor);
+		$SLATE_ATTRIBUTE(BorderBackgroundColor);
+		$SLATE_ATTRIBUTE(ForegroundColor);
+		$SLATE_ATTRIBUTE(ShowEffectWhenDisabled);
+		$SLATE_ARGUMENT(FlipForRightToLeftFlowDirection);
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

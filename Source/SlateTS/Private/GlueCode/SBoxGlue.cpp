@@ -22,18 +22,18 @@ namespace $SBox
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		SET_VARIABLE__SLATE_ARGUMENT(HAlign);
-		SET_VARIABLE__SLATE_ARGUMENT(VAlign);
-		SET_VARIABLE__SLATE_ATTRIBUTE(Padding);
+		$SLATE_ARGUMENT(HAlign);
+		$SLATE_ARGUMENT(VAlign);
+		$SLATE_ATTRIBUTE(Padding);
 		SET_VARIABLE__SLATE_DEFAULT_SLOT(Content);
-		SET_VARIABLE__SLATE_ATTRIBUTE(WidthOverride);
-		SET_VARIABLE__SLATE_ATTRIBUTE(HeightOverride);
-		SET_VARIABLE__SLATE_ATTRIBUTE_WITH_TYPE(MinDesiredWidth, FOptionalSize);
-		SET_VARIABLE__SLATE_ATTRIBUTE(MinDesiredHeight);
-		SET_VARIABLE__SLATE_ATTRIBUTE(MaxDesiredWidth);
-		SET_VARIABLE__SLATE_ATTRIBUTE(MaxDesiredHeight);
-		SET_VARIABLE__SLATE_ATTRIBUTE(MinAspectRatio);
-		SET_VARIABLE__SLATE_ATTRIBUTE(MaxAspectRatio);
+		$SLATE_ATTRIBUTE(WidthOverride);
+		$SLATE_ATTRIBUTE(HeightOverride);
+		$SLATE_ATTRIBUTE_WITH_TYPE(MinDesiredWidth, FOptionalSize);
+		$SLATE_ATTRIBUTE(MinDesiredHeight);
+		$SLATE_ATTRIBUTE(MaxDesiredWidth);
+		$SLATE_ATTRIBUTE(MaxDesiredHeight);
+		$SLATE_ATTRIBUTE(MinAspectRatio);
+		$SLATE_ATTRIBUTE(MaxAspectRatio);
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

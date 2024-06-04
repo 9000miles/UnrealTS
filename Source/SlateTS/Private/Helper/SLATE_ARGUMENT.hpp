@@ -4,10 +4,10 @@
 #include "V8Utils.h"
 #include "Converter.hpp"
 
-#define SET_VARIABLE__SLATE_ARGUMENT(Name)\
+#define $SLATE_ARGUMENT(Name)\
 $Arguments__SLATE_ARGUMENT::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
 
-#define SET_VARIABLE__SLATE_ARGUMENT_WITH_TYPE(Name, Type);\
+#define $SLATE_ARGUMENT_WITH_TYPE(Name, Type);\
 $Arguments__SLATE_ARGUMENT::Set_##Name##Type(Arguments, Isolate, JsObject, #Name, "")
 
 /** ======================= SLATE_ARGUMENT ======================= **/

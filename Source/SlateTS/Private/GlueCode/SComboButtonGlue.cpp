@@ -21,23 +21,23 @@ namespace $SComboButton
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		SET_VARIABLE__SLATE_STYLE_ARGUMENT(ComboButtonStyle);
-		SET_VARIABLE__SLATE_STYLE_ARGUMENT(ButtonStyle);
-		SET_VARIABLE__SLATE_NAMED_SLOT(ButtonContent);
-		SET_VARIABLE__SLATE_NAMED_SLOT(MenuContent);
-		SET_VARIABLE__SLATE_EVENT(OnGetMenuContent);
-		SET_VARIABLE__SLATE_EVENT(OnMenuOpenChanged);
-		SET_VARIABLE__SLATE_EVENT(OnComboBoxOpened);
-		SET_VARIABLE__SLATE_ARGUMENT(IsFocusable);
-		SET_VARIABLE__SLATE_ARGUMENT(HasDownArrow);
-		SET_VARIABLE__SLATE_ATTRIBUTE(ForegroundColor);
-		SET_VARIABLE__SLATE_ATTRIBUTE(ButtonColorAndOpacity);
-		SET_VARIABLE__SLATE_ATTRIBUTE(ContentPadding);
-		SET_VARIABLE__SLATE_ATTRIBUTE(MenuPlacement);
-		SET_VARIABLE__SLATE_ARGUMENT(HAlign);
-		SET_VARIABLE__SLATE_ARGUMENT(VAlign);
-		SET_VARIABLE__SLATE_ARGUMENT(Method);
-		SET_VARIABLE__SLATE_ARGUMENT(CollapseMenuOnParentFocus);
+		$SLATE_STYLE_ARGUMENT(ComboButtonStyle);
+		$SLATE_STYLE_ARGUMENT(ButtonStyle);
+		$SLATE_NAMED_SLOT(ButtonContent);
+		$SLATE_NAMED_SLOT(MenuContent);
+		$SLATE_EVENT(OnGetMenuContent);
+		$SLATE_EVENT(OnMenuOpenChanged);
+		$SLATE_EVENT(OnComboBoxOpened);
+		$SLATE_ARGUMENT(IsFocusable);
+		$SLATE_ARGUMENT(HasDownArrow);
+		$SLATE_ATTRIBUTE(ForegroundColor);
+		$SLATE_ATTRIBUTE(ButtonColorAndOpacity);
+		$SLATE_ATTRIBUTE(ContentPadding);
+		$SLATE_ATTRIBUTE(MenuPlacement);
+		$SLATE_ARGUMENT(HAlign);
+		$SLATE_ARGUMENT(VAlign);
+		$SLATE_ARGUMENT(Method);
+		$SLATE_ARGUMENT(CollapseMenuOnParentFocus);
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)
