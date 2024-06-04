@@ -6,6 +6,7 @@ namespace DTS
 {
 	enum EArgType
 	{
+		SLATE_SLOT_ARGUMENT,
 		SLATE_NAMED_SLOT,
 		SLATE_DEFAULT_SLOT,
 		SLATE_ATTRIBUTE,
@@ -24,3 +25,4 @@ namespace DTS
 #define TS_number "number"
 
 struct FArguments { };
+struct FSlot { };

@@ -48,6 +48,8 @@ public class SlateTS : ModuleRules
                 "DeclarationGenerator",
                 "DTS",
                 "PuertsEx",
+                "WidgetCarousel",
+                "AppFramework",
 				// ... add private dependencies that you statically link with here ...	
 			}
             );
