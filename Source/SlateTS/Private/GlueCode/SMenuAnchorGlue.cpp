@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "JsObject.h"
 #include "Binding.hpp"
-#include "Defines.h"
+#include "DTSDefine.h"
 #include "TypeInfo.hpp"
 #include "UEDataBinding.hpp"
 #include "Helper/WidgetHelper.hpp"
@@ -86,19 +86,19 @@ struct AutoRegister_SMenuAnchor
 {
 	DTS::DTSArguments RegisterArguments()
 	{
-		DTS::DTSArguments DTSArgs = DTS::DTSArguments("SMenuAnchor");
-		DTSArgs.Add<DTS::FSlate_Default_Slot>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
-		DTSArgs.Add<TSharedPtr<SWidget>>("MenuContent", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<FOnGetContent>("OnGetMenuContent", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<FOnIsOpenChanged>("OnMenuOpenChanged", DTS::EArgType::SLATE_EVENT);
-		DTSArgs.Add<EMenuPlacement>("Placement", DTS::EArgType::SLATE_EVENT);
-		DTSArgs.Add<bool>("FitInWindow", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<TOptional<EPopupMethod>>("Method", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<bool>("ShouldDeferPaintingAfterWindowContent", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<bool>("UseApplicationMenuStack", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<bool>("IsCollapsedByParent", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<bool>("ApplyWidgetStyleToMenu", DTS::EArgType::SLATE_ARGUMENT);
-		return DTSArgs;
+		DTS::DTSArguments Args = DTS::DTSArguments("SMenuAnchor");
+		Args.Add<DTS::FSlate_Default_Slot>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
+		Args.Add<TSharedPtr<SWidget>>("MenuContent", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<FOnGetContent>("OnGetMenuContent", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<FOnIsOpenChanged>("OnMenuOpenChanged", DTS::EArgType::SLATE_EVENT);
+		Args.Add<EMenuPlacement>("Placement", DTS::EArgType::SLATE_EVENT);
+		Args.Add<bool>("FitInWindow", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<TOptional<EPopupMethod>>("Method", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<bool>("ShouldDeferPaintingAfterWindowContent", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<bool>("UseApplicationMenuStack", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<bool>("IsCollapsedByParent", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<bool>("ApplyWidgetStyleToMenu", DTS::EArgType::SLATE_ARGUMENT);
+		return Args;
 	}
 
 	void GenDTS()

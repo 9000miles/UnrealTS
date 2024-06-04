@@ -7,6 +7,9 @@
 #define SET_VARIABLE__SLATE_STYLE_ARGUMENT(Name)\
 $Arguments__SLATE_STYLE_ARGUMENT::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
 
+#define SET_VARIABLE__SLATE_STYLE_ARGUMENT_WITH_TYPE(Name, Type);\
+$Arguments__SLATE_STYLE_ARGUMENT::Set_##Name##Type(Arguments, Isolate, JsObject, #Name, "")
+
 /** ======================= SLATE_STYLE_ARGUMENT ======================= **/
 namespace $Arguments__SLATE_STYLE_ARGUMENT
 {
@@ -25,8 +28,8 @@ namespace $Arguments__SLATE_STYLE_ARGUMENT
 	}
 
 	SET_SLATE_STYLE_ARGUMENT(TextStyle, FTextBlockStyle, );
-	SET_SLATE_STYLE_ARGUMENT(Style, FCheckBoxStyle, );
-	//SET_SLATE_STYLE_ARGUMENT(Style, FCheckBoxStyle, );
+	SET_SLATE_STYLE_ARGUMENT(Style, FCheckBoxStyle, FCheckBoxStyle);
+	SET_SLATE_STYLE_ARGUMENT(Style, FExpandableAreaStyle, FExpandableAreaStyle);
 	SET_SLATE_STYLE_ARGUMENT(ComboButtonStyle, FComboButtonStyle, );
 	SET_SLATE_STYLE_ARGUMENT(ButtonStyle, FButtonStyle, );
 

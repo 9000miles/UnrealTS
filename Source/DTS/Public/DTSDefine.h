@@ -17,3 +17,8 @@ namespace DTS
 	struct FSlate_Named_Slot {};
 	struct FSlate_Default_Slot {};
 }
+
+// **************************** TypeScript Type ****************************
+#define TS_string "string"
+#define TS_boolean "boolean"
+#define TS_number "number"

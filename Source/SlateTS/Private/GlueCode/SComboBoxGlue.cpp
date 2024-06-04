@@ -3,7 +3,7 @@
 //#include "CoreMinimal.h"
 //#include "JsObject.h"
 //#include "Binding.hpp"
-//#include "Defines.h"
+//#include "DTSDefine.h"
 //#include "TypeInfo.hpp"
 //#include "UEDataBinding.hpp"
 //#include "Helper/WidgetHelper.hpp"
@@ -75,8 +75,8 @@
 //{
 //	DTS::DTSArguments RegisterArguments()
 //	{
-//		DTS::DTSArguments DTSArgs = DTS::DTSArguments("SComboBox");
-//		return DTSArgs;
+//		DTS::DTSArguments Args = DTS::DTSArguments("SComboBox");
+//		return Args;
 //	}
 //
 //	void GenDTS()

@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "JsObject.h"
 #include "Binding.hpp"
-#include "Defines.h"
+#include "DTSDefine.h"
 #include "TypeInfo.hpp"
 #include "UEDataBinding.hpp"
 #include "Helper/WidgetHelper.hpp"
@@ -27,7 +27,7 @@ namespace $SCheckBox
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		SET_VARIABLE__SLATE_DEFAULT_SLOT(Content);
-		SET_VARIABLE__SLATE_STYLE_ARGUMENT(Style);
+		SET_VARIABLE__SLATE_STYLE_ARGUMENT_WITH_TYPE(Style, FCheckBoxStyle);
 		SET_VARIABLE__SLATE_ARGUMENT(Type);
 		SET_VARIABLE__SLATE_EVENT(OnCheckStateChanged);
 		SET_VARIABLE__SLATE_ATTRIBUTE(IsChecked);
@@ -210,38 +210,38 @@ struct AutoRegister_SCheckBox
 {
 	DTS::DTSArguments RegisterArguments()
 	{
-		DTS::DTSArguments DTSArgs = DTS::DTSArguments("SCheckBox");
-		DTSArgs.Add<DTS::FSlate_Default_Slot>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
-		DTSArgs.Add<FCheckBoxStyle>("Style", DTS::EArgType::SLATE_STYLE_ARGUMENT);
-		DTSArgs.Add<TOptional<ESlateCheckBoxType::Type>>("Type", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<FOnCheckStateChanged>("OnCheckStateChanged", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<ECheckBoxState>("IsChecked", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<EHorizontalAlignment>("HAlign", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<bool>("CheckBoxContentUsesAutoWidth", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<FMargin>("Padding", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<EButtonClickMethod::Type>("ClickMethod", DTS::EArgType::SLATE_EVENT);
-		DTSArgs.Add<EButtonTouchMethod::Type>("TouchMethod", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<EButtonPressMethod::Type>("PressMethod", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<FSlateColor>("ForegroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FSlateColor>("BorderBackgroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<bool>("IsFocusable", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<FOnGetContent>("OnGetMenuContent", DTS::EArgType::SLATE_EVENT);
-		DTSArgs.Add<TOptional<FSlateSound>>("CheckedSoundOverride", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<TOptional<FSlateSound>>("UncheckedSoundOverride", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<TOptional<FSlateSound>>("HoveredSoundOverride", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("UncheckedImage", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("UncheckedHoveredImage", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("UncheckedPressedImage", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("CheckedImage", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("CheckedHoveredImage", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("CheckedPressedImage", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("UndeterminedImage", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("UndeterminedHoveredImage", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("UndeterminedPressedImage", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("BackgroundImage", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("BackgroundHoveredImage", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<const FSlateBrush*>("BackgroundPressedImage", DTS::EArgType::SLATE_ARGUMENT);
-		return DTSArgs;
+		DTS::DTSArguments Args = DTS::DTSArguments("SCheckBox");
+		Args.Add<DTS::FSlate_Default_Slot>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
+		Args.Add<FCheckBoxStyle>("Style", DTS::EArgType::SLATE_STYLE_ARGUMENT);
+		Args.Add<TOptional<ESlateCheckBoxType::Type>>("Type", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<FOnCheckStateChanged>("OnCheckStateChanged", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<ECheckBoxState>("IsChecked", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<EHorizontalAlignment>("HAlign", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<bool>("CheckBoxContentUsesAutoWidth", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<FMargin>("Padding", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<EButtonClickMethod::Type>("ClickMethod", DTS::EArgType::SLATE_EVENT);
+		Args.Add<EButtonTouchMethod::Type>("TouchMethod", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<EButtonPressMethod::Type>("PressMethod", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<FSlateColor>("ForegroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FSlateColor>("BorderBackgroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<bool>("IsFocusable", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<FOnGetContent>("OnGetMenuContent", DTS::EArgType::SLATE_EVENT);
+		Args.Add<TOptional<FSlateSound>>("CheckedSoundOverride", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<TOptional<FSlateSound>>("UncheckedSoundOverride", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<TOptional<FSlateSound>>("HoveredSoundOverride", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<const FSlateBrush*>("UncheckedImage", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<const FSlateBrush*>("UncheckedHoveredImage", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<const FSlateBrush*>("UncheckedPressedImage", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<const FSlateBrush*>("CheckedImage", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<const FSlateBrush*>("CheckedHoveredImage", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<const FSlateBrush*>("CheckedPressedImage", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<const FSlateBrush*>("UndeterminedImage", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<const FSlateBrush*>("UndeterminedHoveredImage", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<const FSlateBrush*>("UndeterminedPressedImage", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<const FSlateBrush*>("BackgroundImage", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<const FSlateBrush*>("BackgroundHoveredImage", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<const FSlateBrush*>("BackgroundPressedImage", DTS::EArgType::SLATE_ARGUMENT);
+		return Args;
 	}
 
 	void GenDTS()

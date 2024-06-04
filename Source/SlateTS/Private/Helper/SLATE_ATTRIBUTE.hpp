@@ -42,7 +42,7 @@ namespace $Arguments__SLATE_ATTRIBUTE
 	SET_SLATE_ATTRIBUTE(Padding, FMargin, );
 	SET_SLATE_ATTRIBUTE(LineHeightPercentage, float, );
 	SET_SLATE_ATTRIBUTE(Justification, ETextJustify::Type, );
-	SET_SLATE_ATTRIBUTE(MinDesiredWidth, float, );
+	SET_SLATE_ATTRIBUTE(MinDesiredWidth, float, float);
 	SET_SLATE_ATTRIBUTE(DesiredSizeScale, FVector2D, );
 	SET_SLATE_ATTRIBUTE(ContentScale, FVector2D, );
 	SET_SLATE_ATTRIBUTE(ButtonColorAndOpacity, FSlateColor, );
@@ -54,4 +54,18 @@ namespace $Arguments__SLATE_ATTRIBUTE
 	SET_SLATE_ATTRIBUTE(BorderImage, const FSlateBrush*, );
 	SET_SLATE_ATTRIBUTE(ContentPadding, FMargin, );
 	SET_SLATE_ATTRIBUTE(Placement, EMenuPlacement, );
+	SET_SLATE_ATTRIBUTE(WidthOverride, FOptionalSize, );
+	SET_SLATE_ATTRIBUTE(HeightOverride, FOptionalSize, );
+	SET_SLATE_ATTRIBUTE(MinDesiredHeight, FOptionalSize, );
+	SET_SLATE_ATTRIBUTE(MinDesiredWidth, FOptionalSize, FOptionalSize);
+	SET_SLATE_ATTRIBUTE(MaxDesiredWidth, FOptionalSize, );
+	SET_SLATE_ATTRIBUTE(MaxDesiredHeight, FOptionalSize, );
+	SET_SLATE_ATTRIBUTE(MinAspectRatio, FOptionalSize, );
+	SET_SLATE_ATTRIBUTE(MaxAspectRatio, FOptionalSize, );
+	SET_SLATE_ATTRIBUTE(BodyBorderBackgroundColor, FSlateColor, );
+	SET_SLATE_ATTRIBUTE(AreaTitle, FText, );
+	SET_SLATE_ATTRIBUTE(AreaTitlePadding, FMargin, );
+	SET_SLATE_ATTRIBUTE(HeaderPadding, FMargin, );
+	SET_SLATE_ATTRIBUTE(AreaTitleFont, FSlateFontInfo, );
+	SET_SLATE_ATTRIBUTE(HeaderCursor, TOptional<EMouseCursor::Type>, );
 }

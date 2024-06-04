@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "JsObject.h"
 #include "Binding.hpp"
-#include "Defines.h"
+#include "DTSDefine.h"
 #include "TypeInfo.hpp"
 #include "UEDataBinding.hpp"
 #include "Helper/WidgetHelper.hpp"
@@ -92,24 +92,24 @@ struct AutoRegister_SBorder
 {
 	DTS::DTSArguments RegisterArguments()
 	{
-		DTS::DTSArguments DTSArgs = DTS::DTSArguments("SBorder");
-		DTSArgs.Add<DTS::FSlate_Default_Slot>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
-		DTSArgs.Add<EHorizontalAlignment>("HAlign", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<EVerticalAlignment>("VAlign", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<FMargin>("Padding", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FPointerEventHandler>("OnMouseButtonDown", DTS::EArgType::SLATE_EVENT);
-		DTSArgs.Add<FPointerEventHandler>("OnMouseButtonUp", DTS::EArgType::SLATE_EVENT);
-		DTSArgs.Add<FPointerEventHandler>("OnMouseMove", DTS::EArgType::SLATE_EVENT);
-		DTSArgs.Add<FPointerEventHandler>("OnMouseDoubleClick", DTS::EArgType::SLATE_EVENT);
-		DTSArgs.Add<const FSlateBrush*>("BorderImage", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FVector2D>("ContentScale", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FVector2D>("DesiredSizeScale", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FLinearColor>("ColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FSlateColor>("BorderBackgroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FSlateColor>("ForegroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<bool>("ShowEffectWhenDisabled", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<bool>("FlipForRightToLeftFlowDirection", DTS::EArgType::SLATE_ARGUMENT);
-		return DTSArgs;
+		DTS::DTSArguments Args = DTS::DTSArguments("SBorder");
+		Args.Add<DTS::FSlate_Default_Slot>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
+		Args.Add<EHorizontalAlignment>("HAlign", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<EVerticalAlignment>("VAlign", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<FMargin>("Padding", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FPointerEventHandler>("OnMouseButtonDown", DTS::EArgType::SLATE_EVENT);
+		Args.Add<FPointerEventHandler>("OnMouseButtonUp", DTS::EArgType::SLATE_EVENT);
+		Args.Add<FPointerEventHandler>("OnMouseMove", DTS::EArgType::SLATE_EVENT);
+		Args.Add<FPointerEventHandler>("OnMouseDoubleClick", DTS::EArgType::SLATE_EVENT);
+		Args.Add<const FSlateBrush*>("BorderImage", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FVector2D>("ContentScale", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FVector2D>("DesiredSizeScale", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FLinearColor>("ColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FSlateColor>("BorderBackgroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FSlateColor>("ForegroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<bool>("ShowEffectWhenDisabled", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<bool>("FlipForRightToLeftFlowDirection", DTS::EArgType::SLATE_ARGUMENT);
+		return Args;
 	}
 
 	void GenDTS()

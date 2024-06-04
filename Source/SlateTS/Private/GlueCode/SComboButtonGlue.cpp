@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "JsObject.h"
 #include "Binding.hpp"
-#include "Defines.h"
+#include "DTSDefine.h"
 #include "TypeInfo.hpp"
 #include "UEDataBinding.hpp"
 #include "Helper/WidgetHelper.hpp"
@@ -91,25 +91,25 @@ struct AutoRegister_SComboButton
 {
 	DTS::DTSArguments RegisterArguments()
 	{
-		DTS::DTSArguments DTSArgs = DTS::DTSArguments("SComboButton");
-		DTSArgs.Add<FComboButtonStyle>("ComboButtonStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT);
-		DTSArgs.Add<FButtonStyle>("ButtonStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT);
-		DTSArgs.Add<DTS::FSlate_Named_Slot>("ButtonContent", DTS::EArgType::SLATE_NAMED_SLOT);
-		DTSArgs.Add<DTS::FSlate_Named_Slot>("MenuContent", DTS::EArgType::SLATE_NAMED_SLOT);
-		DTSArgs.Add<FOnGetContent>("OnGetMenuContent", DTS::EArgType::SLATE_EVENT);
-		DTSArgs.Add<FOnIsOpenChanged>("OnMenuOpenChanged", DTS::EArgType::SLATE_EVENT);
-		DTSArgs.Add<FOnComboBoxOpened>("OnComboBoxOpened", DTS::EArgType::SLATE_EVENT);
-		DTSArgs.Add<bool>("IsFocusable", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<bool>("HasDownArrow", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<FSlateColor>("ForegroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FSlateColor>("ButtonColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FMargin>("ContentPadding", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<EMenuPlacement>("MenuPlacement", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<EHorizontalAlignment>("HAlign", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<EVerticalAlignment>("VAlign", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<TOptional<EPopupMethod>>("Method", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<bool>("CollapseMenuOnParentFocus", DTS::EArgType::SLATE_ARGUMENT);
-		return DTSArgs;
+		DTS::DTSArguments Args = DTS::DTSArguments("SComboButton");
+		Args.Add<FComboButtonStyle>("ComboButtonStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT);
+		Args.Add<FButtonStyle>("ButtonStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT);
+		Args.Add<DTS::FSlate_Named_Slot>("ButtonContent", DTS::EArgType::SLATE_NAMED_SLOT);
+		Args.Add<DTS::FSlate_Named_Slot>("MenuContent", DTS::EArgType::SLATE_NAMED_SLOT);
+		Args.Add<FOnGetContent>("OnGetMenuContent", DTS::EArgType::SLATE_EVENT);
+		Args.Add<FOnIsOpenChanged>("OnMenuOpenChanged", DTS::EArgType::SLATE_EVENT);
+		Args.Add<FOnComboBoxOpened>("OnComboBoxOpened", DTS::EArgType::SLATE_EVENT);
+		Args.Add<bool>("IsFocusable", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<bool>("HasDownArrow", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<FSlateColor>("ForegroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FSlateColor>("ButtonColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FMargin>("ContentPadding", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<EMenuPlacement>("MenuPlacement", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<EHorizontalAlignment>("HAlign", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<EVerticalAlignment>("VAlign", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<TOptional<EPopupMethod>>("Method", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<bool>("CollapseMenuOnParentFocus", DTS::EArgType::SLATE_ARGUMENT);
+		return Args;
 	}
 
 	void GenDTS()

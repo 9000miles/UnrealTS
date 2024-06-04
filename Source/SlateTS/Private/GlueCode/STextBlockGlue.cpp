@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "JsObject.h"
 #include "Binding.hpp"
-#include "Defines.h"
+#include "DTSDefine.h"
 #include "TypeInfo.hpp"
 #include "DTSHelper.h"
 #include "PuertsEx.h"
@@ -41,7 +41,7 @@ namespace $STextBlock
 		SET_VARIABLE__SLATE_ATTRIBUTE(Margin);
 		SET_VARIABLE__SLATE_ATTRIBUTE(LineHeightPercentage);
 		SET_VARIABLE__SLATE_ATTRIBUTE(Justification);
-		SET_VARIABLE__SLATE_ATTRIBUTE(MinDesiredWidth);
+		SET_VARIABLE__SLATE_ATTRIBUTE_WITH_TYPE(MinDesiredWidth, float);
 		SET_VARIABLE__SLATE_ARGUMENT(TextShapingMethod);
 		SET_VARIABLE__SLATE_ARGUMENT(TextFlowDirection);
 		//SET_VARIABLESLATE_ARGUMENT___A(LineBreakPolicy);
@@ -132,32 +132,32 @@ struct AutoRegister_STextBlock
 {
 	DTS::DTSArguments RegisterArguments()
 	{
-		DTS::DTSArguments DTSArgs = DTS::DTSArguments("STextBlock");
-		DTSArgs.Add<FText>("Text", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FTextBlockStyle>("TextStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT);
-		DTSArgs.Add<FSlateFontInfo>("Font", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FSlateBrush>("StrikeBrush", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FLinearColor>("ColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FVector2D>("ShadowOffset", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FLinearColor>("ShadowColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FLinearColor>("HighlightColor", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FSlateBrush>("HighlightShape", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FText>("HighlightText", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<float>("WrapTextAt", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<bool>("AutoWrapText", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<ETextWrappingPolicy>("WrappingPolicy", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<ETextTransformPolicy>("TransformPolicy", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FMargin>("Margin", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<float>("LineHeightPercentage", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<ETextJustify::Type>("Justification", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<float>("MinDesiredWidth", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<ETextShapingMethod>("TextShapingMethod", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<ETextFlowDirection>("TextFlowDirection", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<ETextOverflowPolicy>("OverflowPolicy", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<bool>("SimpleTextMode", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<FPointerEventHandler>("OnDoubleClicked", DTS::EArgType::SLATE_EVENT);
+		DTS::DTSArguments Args = DTS::DTSArguments("STextBlock");
+		Args.Add<FText>("Text", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FTextBlockStyle>("TextStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT);
+		Args.Add<FSlateFontInfo>("Font", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FSlateBrush>("StrikeBrush", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FLinearColor>("ColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FVector2D>("ShadowOffset", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FLinearColor>("ShadowColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FLinearColor>("HighlightColor", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FSlateBrush>("HighlightShape", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FText>("HighlightText", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<float>("WrapTextAt", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<bool>("AutoWrapText", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<ETextWrappingPolicy>("WrappingPolicy", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<ETextTransformPolicy>("TransformPolicy", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FMargin>("Margin", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<float>("LineHeightPercentage", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<ETextJustify::Type>("Justification", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<float>("MinDesiredWidth", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<ETextShapingMethod>("TextShapingMethod", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<ETextFlowDirection>("TextFlowDirection", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<ETextOverflowPolicy>("OverflowPolicy", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<bool>("SimpleTextMode", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<FPointerEventHandler>("OnDoubleClicked", DTS::EArgType::SLATE_EVENT);
 		//REGISTER_WIDGET_ARGUMENT_TYPE__LineBreakPolicy(ESlateArgumentType::SLATE_ARGUMENT);
-		return DTSArgs;
+		return Args;
 	}
 
 	void GenDTS()

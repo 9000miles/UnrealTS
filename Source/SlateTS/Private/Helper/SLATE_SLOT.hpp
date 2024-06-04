@@ -49,4 +49,6 @@ namespace $Arguments__SLATE_NAMED_SLOT
 	SET_SLATE_SLOT(Content);
 	SET_SLATE_SLOT(ButtonContent);
 	SET_SLATE_SLOT(MenuContent);
+	SET_SLATE_SLOT(HeaderContent);
+	SET_SLATE_SLOT(BodyContent);
 }

@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "JsObject.h"
 #include "Binding.hpp"
-#include "Defines.h"
+#include "DTSDefine.h"
 #include "TypeInfo.hpp"
 #include "UEDataBinding.hpp"
 #include "Helper/WidgetHelper.hpp"
@@ -74,8 +74,8 @@ struct AutoRegister_SPanel
 {
 	DTS::DTSArguments RegisterArguments()
 	{
-		DTS::DTSArguments DTSArgs = DTS::DTSArguments("SPanel");
-		return DTSArgs;
+		DTS::DTSArguments Args = DTS::DTSArguments("SPanel");
+		return Args;
 	}
 
 	void GenDTS()

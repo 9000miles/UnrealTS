@@ -3,7 +3,7 @@
 #include "CoreMinimal.h"
 #include "JsObject.h"
 #include "Binding.hpp"
-#include "Defines.h"
+#include "DTSDefine.h"
 #include "TypeInfo.hpp"
 #include "UEDataBinding.hpp"
 #include "Helper/WidgetHelper.hpp"
@@ -99,32 +99,32 @@ struct AutoRegister_SButton
 {
 	DTS::DTSArguments RegisterArguments()
 	{
-		DTS::DTSArguments DTSArgs = DTS::DTSArguments("SButton");
-		DTSArgs.Add<DTS::FSlate_Default_Slot>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
-		DTSArgs.Add<FButtonStyle>("ButtonStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT);
-		DTSArgs.Add<FTextBlockStyle>("TextStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT);
-		DTSArgs.Add<EHorizontalAlignment>("HAlign", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<EVerticalAlignment>("VAlign", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<FMargin>("ContentPadding", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FText>("Text", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FOnClicked>("OnClicked", DTS::EArgType::SLATE_EVENT);
-		DTSArgs.Add<FSimpleDelegate>("OnPressed", DTS::EArgType::SLATE_EVENT);
-		DTSArgs.Add<FSimpleDelegate>("OnReleased", DTS::EArgType::SLATE_EVENT);
-		DTSArgs.Add<FSimpleDelegate>("OnHovered", DTS::EArgType::SLATE_EVENT);
-		DTSArgs.Add<FSimpleDelegate>("OnUnhovered", DTS::EArgType::SLATE_EVENT);
-		DTSArgs.Add<EButtonClickMethod::Type>("ClickMethod", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<EButtonClickMethod::Type>("TouchMethod", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<EButtonClickMethod::Type>("PressMethod", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<FVector2D>("DesiredSizeScale", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FVector2D>("ContentScale", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FSlateColor>("ButtonColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<FSlateColor>("ForegroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
-		DTSArgs.Add<bool>("IsFocusable", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<TOptional<FSlateSound>>("PressedSoundOverride", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<TOptional<FSlateSound>>("HoveredSoundOverride", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<TOptional<ETextShapingMethod>>("TextShapingMethod", DTS::EArgType::SLATE_ARGUMENT);
-		DTSArgs.Add<TOptional<ETextFlowDirection>>("TextFlowDirection", DTS::EArgType::SLATE_ARGUMENT);
-		return DTSArgs;
+		DTS::DTSArguments Args = DTS::DTSArguments("SButton");
+		Args.Add<DTS::FSlate_Default_Slot>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
+		Args.Add<FButtonStyle>("ButtonStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT);
+		Args.Add<FTextBlockStyle>("TextStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT);
+		Args.Add<EHorizontalAlignment>("HAlign", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<EVerticalAlignment>("VAlign", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<FMargin>("ContentPadding", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FText>("Text", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FOnClicked>("OnClicked", DTS::EArgType::SLATE_EVENT);
+		Args.Add<FSimpleDelegate>("OnPressed", DTS::EArgType::SLATE_EVENT);
+		Args.Add<FSimpleDelegate>("OnReleased", DTS::EArgType::SLATE_EVENT);
+		Args.Add<FSimpleDelegate>("OnHovered", DTS::EArgType::SLATE_EVENT);
+		Args.Add<FSimpleDelegate>("OnUnhovered", DTS::EArgType::SLATE_EVENT);
+		Args.Add<EButtonClickMethod::Type>("ClickMethod", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<EButtonClickMethod::Type>("TouchMethod", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<EButtonClickMethod::Type>("PressMethod", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<FVector2D>("DesiredSizeScale", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FVector2D>("ContentScale", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FSlateColor>("ButtonColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FSlateColor>("ForegroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<bool>("IsFocusable", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<TOptional<FSlateSound>>("PressedSoundOverride", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<TOptional<FSlateSound>>("HoveredSoundOverride", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<TOptional<ETextShapingMethod>>("TextShapingMethod", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<TOptional<ETextFlowDirection>>("TextFlowDirection", DTS::EArgType::SLATE_ARGUMENT);
+		return Args;
 	}
 
 	void GenDTS()

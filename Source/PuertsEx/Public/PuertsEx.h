@@ -30,7 +30,9 @@ namespace puerts
 	DefineUEType(TOptional<ETextShapingMethod>);
 	DefineUEType(TOptional<ETextFlowDirection>);
 	DefineUEType(TOptional<ESlateCheckBoxType::Type>);
+	DefineUEType(TOptional<EMouseCursor::Type>);
 	DefineUEType(TOptional<EPopupMethod>);
+	DefineUEType(FExpandableAreaStyle);
 
 	DefineUEType_Enum(ETextWrappingPolicy);
 	DefineUEType_Enum(ETextTransformPolicy);

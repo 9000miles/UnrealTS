@@ -177,3 +177,21 @@ namespace $Arguments__SLATE_EVENT
 
 	SET_SLATE_EVENT_FOnClicked(OnClicked);
 }
+
+namespace $Arguments__SLATE_EVENT
+{
+#define SET_SLATE_EVENT_FOnBooleanValueChanged(Name)\
+	template<typename TArgumentType>\
+	void Set_##Name(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "")\
+	{\
+		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();\
+		if (JsObject->IsFunction())\
+		{\
+			v8::Local<v8::Function> Function = JsObject.As<v8::Function>();\
+			FJsObject JsFunction = FJsObject(Context, Function);\
+			Arguments._##Name.BindLambda([JsFunction](bool V) { return JsFunction.Action(nullptr, V); });\
+		}\
+	}
+
+	SET_SLATE_EVENT_FOnBooleanValueChanged(OnAreaExpansionChanged);
+}
