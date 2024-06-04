@@ -10,21 +10,22 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
-#include "Widgets/Input/SComboBox.h"
 
-UsingCppType(SComboRow);
-UsingTSharedPtr(SComboRow);
+UsingCppType(SSubMenuHandler);
+UsingTSharedPtr(SSubMenuHandler);
 
-namespace $SComboRow
+namespace $SSubMenuHandler
 {
-	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, SComboRow::FArguments& Arguments)
+	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, SSubMenuHandler::FArguments& Arguments)
 	{
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_STYLE_ARGUMENT(Style);
 		$SLATE_DEFAULT_SLOT(Content);
-		$SLATE_ATTRIBUTE(Padding);
+		$SLATE_ARGUMENT(MenuAnchor);
+		$SLATE_ARGUMENT(MenuContent);
+		$SLATE_ATTRIBUTE(Placement);
+		$SLATE_EVENT(OnGetMenuContent);
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)
@@ -38,16 +39,16 @@ namespace $SComboRow
 		uint8 ArgumentsIndex = InfoLength == 3 ? 1 : 0;
 		uint8 FilenameIndex = InfoLength == 3 ? 2 : 1;
 
-		SComboRow::FArguments Arguments;
+		SSubMenuHandler::FArguments Arguments;
 		$Arguments(Info, ArgumentsIndex, Context, Isolate, Arguments);
 
 		FString Filename;
 		if (Info[FilenameIndex]->IsString()) Filename = UTF8_TO_TCHAR(*(v8::String::Utf8Value(Isolate, Info[FilenameIndex])));
 
-		TSharedPtr<SComboRow> Widget = MakeTDecl<SComboRow>("SComboRow", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+		TSharedPtr<SSubMenuHandler> Widget = MakeTDecl<SSubMenuHandler>("SSubMenuHandler", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
 		if (InfoLength == 2)
 		{
-			auto V8Result = puerts::converter::Converter<TSharedPtr<SComboRow>>::toScript(Context, Widget);
+			auto V8Result = puerts::converter::Converter<TSharedPtr<SSubMenuHandler>>::toScript(Context, Widget);
 			Info.GetReturnValue().Set(V8Result); return;
 		}
 
@@ -55,9 +56,9 @@ namespace $SComboRow
 		{
 			auto RefObject = puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex]);
 			if (Info[ExposeIndex]->IsObject() && RefObject->IsObject() &&
-				puerts::DataTransfer::IsInstanceOf(Isolate, puerts::StaticTypeId<TSharedPtr<SComboRow>>::get(), RefObject->ToObject(Context).ToLocalChecked()))
+				puerts::DataTransfer::IsInstanceOf(Isolate, puerts::StaticTypeId<TSharedPtr<SSubMenuHandler>>::get(), RefObject->ToObject(Context).ToLocalChecked()))
 			{
-				TSharedPtr<SComboRow>* Arg1 = puerts::DataTransfer::GetPointerFast<TSharedPtr<SComboRow>>(puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex])->ToObject(Context).ToLocalChecked());
+				TSharedPtr<SSubMenuHandler>* Arg1 = puerts::DataTransfer::GetPointerFast<TSharedPtr<SSubMenuHandler>>(puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex])->ToObject(Context).ToLocalChecked());
 				*Arg1 = Widget; return;
 			}
 		}
@@ -67,61 +68,63 @@ namespace $SComboRow
 		v8::Isolate* Isolate = Info.GetIsolate();
 		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
 
-		TSharedPtr<SComboRow> Widget = MakeShared<SComboRow>();
-		auto V8Result = puerts::converter::Converter<TSharedPtr<SComboRow>>::toScript(Context, Widget);
+		TSharedPtr<SSubMenuHandler> Widget = MakeShared<SSubMenuHandler>();
+		auto V8Result = puerts::converter::Converter<TSharedPtr<SSubMenuHandler>>::toScript(Context, Widget);
 		Info.GetReturnValue().Set(V8Result);
 	}
 	static void $SAssignNew(const v8::FunctionCallbackInfo<v8::Value>& Info) { $SNew(Info); }
 }
 
-struct AutoRegister_SComboRow
+struct AutoRegister_SSubMenuHandler
 {
 	DTS::DTSArguments RegisterArguments()
 	{
-		DTS::DTSArguments Args = DTS::DTSArguments("SComboRow");
-		Args.Add<FTableRowStyle>("Style", DTS::EArgType::SLATE_STYLE_ARGUMENT);
+		DTS::DTSArguments Args = DTS::DTSArguments("SSubMenuHandler");
 		Args.Add<FArguments>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
-		Args.Add<FMargin>("Padding", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<TSharedPtr<SMenuAnchor>>("MenuAnchor", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<TSharedPtr<SWidget>>("MenuContent", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<EMenuPlacement>("Placement", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FOnGetContent>("OnGetMenuContent", DTS::EArgType::SLATE_EVENT);
 		return Args;
 	}
 
 	void GenDTS()
 	{
-		DTS::Class ClassDTS = DTS::Class().Name("SComboRow").Super("STableRow")
+		DTS::Class ClassDTS = DTS::Class().Name("SSubMenuHandler").Super("SCompoundWidget")
 			.Arguments(RegisterArguments())
 			.Functions(DTS::Array<DTS::Function>()
 				+ DTS::Function()
 				[
 					DTS::Function::Slot().Name("SNew").Static(true)
 						.Parameters(DTS::Array<DTS::Property>()
-							+ DTS::Property().Name("Arguments").Type("SComboRow.Arguments")
+							+ DTS::Property().Name("Arguments").Type("SSubMenuHandler.Arguments")
 							+ DTS::Property().Name("Filename").Type(TS_string)
 						)
-						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SComboRow>>::value().Data()))
+						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SSubMenuHandler>>::value().Data()))
 				]
 				+ DTS::Function()
 				[
 					DTS::Function::Slot().Name("SAssignNew").Static(true)
 						.Parameters(DTS::Array<DTS::Property>()
-							+ DTS::Property().Name("WidgetRef").Type(puerts::ScriptTypeName<TSharedPtr<SComboRow>>::value().Data()).Out(true)
-							+ DTS::Property().Name("Arguments").Type("SComboRow.Arguments")
+							+ DTS::Property().Name("WidgetRef").Type(puerts::ScriptTypeName<TSharedPtr<SSubMenuHandler>>::value().Data()).Out(true)
+							+ DTS::Property().Name("Arguments").Type("SSubMenuHandler.Arguments")
 							+ DTS::Property().Name("Filename").Type(TS_string)
 						)
 				]
 				+ DTS::Function()
 				[
 					DTS::Function::Slot().Name("MakeShared").Static(true)
-						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SComboRow>>::value().Data()))
+						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SSubMenuHandler>>::value().Data()))
 				]
 			);
 
 		DTS::FClassDTS::Add(ClassDTS);
 	}
 
-	AutoRegister_SComboRow()
+	AutoRegister_SSubMenuHandler()
 	{
 		GenDTS();
-		RegisterTSharedPtr(SComboRow);
+		RegisterTSharedPtr(SSubMenuHandler);
 
 		puerts::JSClassDefinition Def = JSClassEmptyDefinition;
 
@@ -131,15 +134,15 @@ struct AutoRegister_SComboRow
 		};
 		static puerts::JSFunctionInfo Functions[] =
 		{
-			{"SNew", $SComboRow::$SNew},
-			{"SAssignNew", $SComboRow::$SAssignNew},
-			{"MakeShared", $SComboRow::$MakeShared},
+			{"SNew", $SSubMenuHandler::$SNew},
+			{"SAssignNew", $SSubMenuHandler::$SAssignNew},
+			{"MakeShared", $SSubMenuHandler::$MakeShared},
 			{0, 0}
 		};
 
-		Def.ScriptName = "SComboRow";
-		Def.TypeId = puerts::StaticTypeId<SComboRow>::get();
-		Def.SuperTypeId = puerts::StaticTypeId<STableRow>::get();
+		Def.ScriptName = "SSubMenuHandler";
+		Def.TypeId = puerts::StaticTypeId<SSubMenuHandler>::get();
+		Def.SuperTypeId = puerts::StaticTypeId<SCompoundWidget>::get();
 		Def.Methods = Methods;
 		Def.Functions = Functions;
 
@@ -147,4 +150,4 @@ struct AutoRegister_SComboRow
 	}
 };
 
-AutoRegister_SComboRow _AutoRegister_SComboRow;
+AutoRegister_SSubMenuHandler _AutoRegister_SSubMenuHandler;
