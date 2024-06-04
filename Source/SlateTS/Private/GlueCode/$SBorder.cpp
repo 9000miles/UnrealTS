@@ -8,10 +8,9 @@
 #include "UEDataBinding.hpp"
 #include "Helper/WidgetHelper.hpp"
 #include "DTSHelper.h"
-#include "PuertsEx.h"
-
-#include "Widgets/Layout/SBorder.h"
 #include "DTSDefine.h"
+#include "PuertsEx.h"
+#include "Widgets/Layout/SBorder.h"
 
 UsingCppType(SBorder);
 UsingTSharedPtr(SBorder);
@@ -93,7 +92,7 @@ struct AutoRegister_SBorder
 	DTS::DTSArguments RegisterArguments()
 	{
 		DTS::DTSArguments Args = DTS::DTSArguments("SBorder");
-		Args.Add<DTS::FSlate_Default_Slot>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
+		Args.Add<FArguments>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
 		Args.Add<EHorizontalAlignment>("HAlign", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<EVerticalAlignment>("VAlign", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<FMargin>("Padding", DTS::EArgType::SLATE_ATTRIBUTE);

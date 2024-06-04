@@ -7,17 +7,14 @@
 #include "TypeInfo.hpp"
 #include "UEDataBinding.hpp"
 #include "Helper/WidgetHelper.hpp"
-#include "Helper/WidgetAttribute.hpp"
 #include "DTSHelper.h"
+#include "DTSDefine.h"
 #include "PuertsEx.h"
 #include "GlueCode/SlateCoreGlue.h"
-
 #include "Widgets/Input/SCheckBox.h"
-#include "DTSDefine.h"
 
 UsingCppType(SCheckBox);
 UsingTSharedPtr(SCheckBox);
-UsingTSharedRef(SCheckBox);
 
 namespace $SCheckBox
 {
@@ -211,15 +208,15 @@ struct AutoRegister_SCheckBox
 	DTS::DTSArguments RegisterArguments()
 	{
 		DTS::DTSArguments Args = DTS::DTSArguments("SCheckBox");
-		Args.Add<DTS::FSlate_Default_Slot>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
+		Args.Add<FArguments>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
 		Args.Add<FCheckBoxStyle>("Style", DTS::EArgType::SLATE_STYLE_ARGUMENT);
 		Args.Add<TOptional<ESlateCheckBoxType::Type>>("Type", DTS::EArgType::SLATE_ARGUMENT);
-		Args.Add<FOnCheckStateChanged>("OnCheckStateChanged", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<FOnCheckStateChanged>("OnCheckStateChanged", DTS::EArgType::SLATE_EVENT);
 		Args.Add<ECheckBoxState>("IsChecked", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<EHorizontalAlignment>("HAlign", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<bool>("CheckBoxContentUsesAutoWidth", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<FMargin>("Padding", DTS::EArgType::SLATE_ATTRIBUTE);
-		Args.Add<EButtonClickMethod::Type>("ClickMethod", DTS::EArgType::SLATE_EVENT);
+		Args.Add<EButtonClickMethod::Type>("ClickMethod", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<EButtonTouchMethod::Type>("TouchMethod", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<EButtonPressMethod::Type>("PressMethod", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<FSlateColor>("ForegroundColor", DTS::EArgType::SLATE_ATTRIBUTE);

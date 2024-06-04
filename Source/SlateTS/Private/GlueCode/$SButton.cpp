@@ -8,8 +8,8 @@
 #include "UEDataBinding.hpp"
 #include "Helper/WidgetHelper.hpp"
 #include "DTSHelper.h"
+#include "DTSDefine.h"
 #include "PuertsEx.h"
-
 #include "Widgets/Input/SButton.h"
 
 UsingCppType(SButton);
@@ -100,7 +100,7 @@ struct AutoRegister_SButton
 	DTS::DTSArguments RegisterArguments()
 	{
 		DTS::DTSArguments Args = DTS::DTSArguments("SButton");
-		Args.Add<DTS::FSlate_Default_Slot>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
+		Args.Add<FArguments>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
 		Args.Add<FButtonStyle>("ButtonStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT);
 		Args.Add<FTextBlockStyle>("TextStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT);
 		Args.Add<EHorizontalAlignment>("HAlign", DTS::EArgType::SLATE_ARGUMENT);
@@ -113,8 +113,8 @@ struct AutoRegister_SButton
 		Args.Add<FSimpleDelegate>("OnHovered", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FSimpleDelegate>("OnUnhovered", DTS::EArgType::SLATE_EVENT);
 		Args.Add<EButtonClickMethod::Type>("ClickMethod", DTS::EArgType::SLATE_ARGUMENT);
-		Args.Add<EButtonClickMethod::Type>("TouchMethod", DTS::EArgType::SLATE_ARGUMENT);
-		Args.Add<EButtonClickMethod::Type>("PressMethod", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<EButtonTouchMethod::Type>("TouchMethod", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<EButtonPressMethod::Type>("PressMethod", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<FVector2D>("DesiredSizeScale", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FVector2D>("ContentScale", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FSlateColor>("ButtonColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
@@ -190,4 +190,3 @@ struct AutoRegister_SButton
 };
 
 AutoRegister_SButton _AutoRegister_SButton;
-

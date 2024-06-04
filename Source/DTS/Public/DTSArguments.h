@@ -26,6 +26,10 @@ namespace DTS
 		{
 			_Arguments.Add({ InName, puerts::ScriptTypeNameWithNamespace<T>::value().Data(), bOptional, ArgType });
 		}
+		template<> void Add<FArguments>(FString InName, DTS::EArgType ArgType, const bool bOptional)
+		{
+			_Arguments.Add({ InName, "() => cpp.TSharedRtr<SWidget>", bOptional, ArgType });
+		}
 		template<> void Add<DTS::FSlate_Default_Slot>(FString InName, DTS::EArgType ArgType, const bool bOptional)
 		{
 			_Arguments.Add({ InName, "() => cpp.TSharedRtr<SWidget>", bOptional, ArgType });

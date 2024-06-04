@@ -99,8 +99,8 @@ struct AutoRegister_SExpandableArea
 		Args.Add<const FSlateBrush*>("BorderImage", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FSlateColor>("BodyBorderBackgroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<const FSlateBrush*>("BodyBorderImage", DTS::EArgType::SLATE_ARGUMENT);
-		Args.Add<DTS::FSlate_Named_Slot>("HeaderContent", DTS::EArgType::SLATE_NAMED_SLOT);
-		Args.Add<DTS::FSlate_Named_Slot>("BodyContent", DTS::EArgType::SLATE_NAMED_SLOT);
+		Args.Add<FArguments>("HeaderContent", DTS::EArgType::SLATE_NAMED_SLOT);
+		Args.Add<FArguments>("BodyContent", DTS::EArgType::SLATE_NAMED_SLOT);
 		Args.Add<FText>("AreaTitle", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<bool>("InitiallyCollapsed", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<float>("MinWidth", DTS::EArgType::SLATE_ARGUMENT);

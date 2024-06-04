@@ -5,22 +5,21 @@
 #include "Binding.hpp"
 #include "DTSDefine.h"
 #include "TypeInfo.hpp"
-#include "DTSHelper.h"
-#include "PuertsEx.h"
+#include "UEDataBinding.hpp"
 #include "Helper/WidgetHelper.hpp"
-
+#include "DTSHelper.h"
+#include "DTSDefine.h"
+#include "PuertsEx.h"
 #include "Widgets/Text/STextBlock.h"
 #include "../Helper/WidgetAttribute.hpp"
 
 UsingCppType(STextBlock);
 UsingTSharedPtr(STextBlock);
-UsingTSharedRef(STextBlock);
 
 namespace $STextBlock
 {
 	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, STextBlock::FArguments& Arguments)
 	{
-		//@TODO 实现从Info读取数据，并赋值到Arguments
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
@@ -44,7 +43,7 @@ namespace $STextBlock
 		$SLATE_ATTRIBUTE_WITH_TYPE(MinDesiredWidth, float);
 		$SLATE_ARGUMENT(TextShapingMethod);
 		$SLATE_ARGUMENT(TextFlowDirection);
-		//SET_VARIABLESLATE_ARGUMENT___A(LineBreakPolicy);
+		$SLATE_ARGUMENT(LineBreakPolicy);
 		$SLATE_ARGUMENT(OverflowPolicy);
 		$SLATE_ARGUMENT(SimpleTextMode);
 		$SLATE_EVENT(OnDoubleClicked);
@@ -136,12 +135,12 @@ struct AutoRegister_STextBlock
 		Args.Add<FText>("Text", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FTextBlockStyle>("TextStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT);
 		Args.Add<FSlateFontInfo>("Font", DTS::EArgType::SLATE_ATTRIBUTE);
-		Args.Add<FSlateBrush>("StrikeBrush", DTS::EArgType::SLATE_ATTRIBUTE);
-		Args.Add<FLinearColor>("ColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<const FSlateBrush*>("StrikeBrush", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<FSlateColor>("ColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FVector2D>("ShadowOffset", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FLinearColor>("ShadowColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FLinearColor>("HighlightColor", DTS::EArgType::SLATE_ATTRIBUTE);
-		Args.Add<FSlateBrush>("HighlightShape", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<const FSlateBrush*>("HighlightShape", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FText>("HighlightText", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<float>("WrapTextAt", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<bool>("AutoWrapText", DTS::EArgType::SLATE_ATTRIBUTE);
@@ -151,12 +150,12 @@ struct AutoRegister_STextBlock
 		Args.Add<float>("LineHeightPercentage", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<ETextJustify::Type>("Justification", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<float>("MinDesiredWidth", DTS::EArgType::SLATE_ATTRIBUTE);
-		Args.Add<ETextShapingMethod>("TextShapingMethod", DTS::EArgType::SLATE_ARGUMENT);
-		Args.Add<ETextFlowDirection>("TextFlowDirection", DTS::EArgType::SLATE_ARGUMENT);
-		Args.Add<ETextOverflowPolicy>("OverflowPolicy", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<TOptional<ETextShapingMethod>>("TextShapingMethod", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<TOptional<ETextFlowDirection>>("TextFlowDirection", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<TSharedPtr<IBreakIterator>>("LineBreakPolicy", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<TOptional<ETextOverflowPolicy>>("OverflowPolicy", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<bool>("SimpleTextMode", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<FPointerEventHandler>("OnDoubleClicked", DTS::EArgType::SLATE_EVENT);
-		//REGISTER_WIDGET_ARGUMENT_TYPE__LineBreakPolicy(ESlateArgumentType::SLATE_ARGUMENT);
 		return Args;
 	}
 
@@ -209,7 +208,6 @@ struct AutoRegister_STextBlock
 	{
 		GenDTS();
 		RegisterTSharedPtr(STextBlock);
-
 
 		puerts::JSClassDefinition Def = JSClassEmptyDefinition;
 

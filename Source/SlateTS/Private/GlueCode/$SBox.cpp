@@ -91,7 +91,7 @@ struct AutoRegister_SBox
 		Args.Add<EHorizontalAlignment>("HAlign", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<EVerticalAlignment>("VAlign", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<FMargin>("Padding", DTS::EArgType::SLATE_ATTRIBUTE);
-		Args.Add<DTS::FSlate_Default_Slot>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
+		Args.Add<FArguments>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
 		Args.Add<FOptionalSize>("WidthOverride", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FOptionalSize>("HeightOverride", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FOptionalSize>("MinDesiredWidth", DTS::EArgType::SLATE_ATTRIBUTE);

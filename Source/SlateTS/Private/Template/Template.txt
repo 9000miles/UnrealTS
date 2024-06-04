@@ -21,7 +21,7 @@ namespace $$WidgetClass$
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SET_ARGUMENTS$
+$__ARGUMENTS__$
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)
@@ -76,7 +76,7 @@ struct AutoRegister_$WidgetClass$
 	DTS::DTSArguments RegisterArguments()
 	{
 		DTS::DTSArguments Args = DTS::DTSArguments("$WidgetClass$");
-        $SET_DTS_ARGS$
+$__DTS_ARGS__$
 		return Args;
 	}
 

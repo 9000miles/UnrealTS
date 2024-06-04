@@ -8,6 +8,7 @@
 #include "UEDataBinding.hpp"
 #include "Helper/WidgetHelper.hpp"
 #include "DTSHelper.h"
+#include "DTSDefine.h"
 #include "PuertsEx.h"
 #include "Widgets/Input/SComboButton.h"
 
@@ -94,8 +95,8 @@ struct AutoRegister_SComboButton
 		DTS::DTSArguments Args = DTS::DTSArguments("SComboButton");
 		Args.Add<FComboButtonStyle>("ComboButtonStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT);
 		Args.Add<FButtonStyle>("ButtonStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT);
-		Args.Add<DTS::FSlate_Named_Slot>("ButtonContent", DTS::EArgType::SLATE_NAMED_SLOT);
-		Args.Add<DTS::FSlate_Named_Slot>("MenuContent", DTS::EArgType::SLATE_NAMED_SLOT);
+		Args.Add<FArguments>("ButtonContent", DTS::EArgType::SLATE_NAMED_SLOT);
+		Args.Add<FArguments>("MenuContent", DTS::EArgType::SLATE_NAMED_SLOT);
 		Args.Add<FOnGetContent>("OnGetMenuContent", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FOnIsOpenChanged>("OnMenuOpenChanged", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FOnComboBoxOpened>("OnComboBoxOpened", DTS::EArgType::SLATE_EVENT);

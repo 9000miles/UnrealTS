@@ -87,12 +87,13 @@ struct AutoRegister_SMenuAnchor
 	DTS::DTSArguments RegisterArguments()
 	{
 		DTS::DTSArguments Args = DTS::DTSArguments("SMenuAnchor");
-		Args.Add<DTS::FSlate_Default_Slot>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
+		Args.Add<FArguments>("Content", DTS::EArgType::SLATE_DEFAULT_SLOT);
+		Args.Add<FMargin>("Padding", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<TSharedPtr<SWidget>>("MenuContent", DTS::EArgType::SLATE_ARGUMENT);
-		Args.Add<FOnGetContent>("OnGetMenuContent", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<FOnGetContent>("OnGetMenuContent", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FOnIsOpenChanged>("OnMenuOpenChanged", DTS::EArgType::SLATE_EVENT);
-		Args.Add<EMenuPlacement>("Placement", DTS::EArgType::SLATE_EVENT);
-		Args.Add<bool>("FitInWindow", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<EMenuPlacement>("Placement", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<bool>("FitInWindow", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<TOptional<EPopupMethod>>("Method", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<bool>("ShouldDeferPaintingAfterWindowContent", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<bool>("UseApplicationMenuStack", DTS::EArgType::SLATE_ARGUMENT);
