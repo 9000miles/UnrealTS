@@ -21,7 +21,7 @@ namespace $SMenuAnchor
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		SET_VARIABLE__SLATE_DEFAULT_SLOT(Content);
+		$SLATE_DEFAULT_SLOT(Content);
 		$SLATE_ARGUMENT(Padding);
 		$SLATE_ARGUMENT(MenuContent);
 		$SLATE_EVENT(OnGetMenuContent);

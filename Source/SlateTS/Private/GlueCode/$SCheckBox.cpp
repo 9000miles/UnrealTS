@@ -26,7 +26,7 @@ namespace $SCheckBox
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		SET_VARIABLE__SLATE_DEFAULT_SLOT(Content);
+		$SLATE_DEFAULT_SLOT(Content);
 		$SLATE_STYLE_ARGUMENT_WITH_TYPE(Style, FCheckBoxStyle);
 		$SLATE_ARGUMENT(Type);
 		$SLATE_EVENT(OnCheckStateChanged);

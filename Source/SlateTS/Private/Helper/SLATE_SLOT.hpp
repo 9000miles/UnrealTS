@@ -4,7 +4,7 @@
 #include "V8Utils.h"
 #include "Converter.hpp"
 
-#define SET_VARIABLE__SLATE_DEFAULT_SLOT(Name)\
+#define $SLATE_DEFAULT_SLOT(Name)\
 $Arguments__SLATE_DEFAULT_SLOT::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
 
 namespace $Arguments__SLATE_DEFAULT_SLOT

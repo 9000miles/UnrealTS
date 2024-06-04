@@ -45,4 +45,6 @@ namespace WidgetAttribute
 	MAKE_ATTRIBUTE(FMargin);
 	MAKE_ATTRIBUTE(ETextJustify::Type);
 	MAKE_ATTRIBUTE(ECheckBoxState);
+	MAKE_ATTRIBUTE(EMenuPlacement);
+	MAKE_ATTRIBUTE(EMouseCursor::Type);
 };

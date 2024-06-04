@@ -25,7 +25,7 @@ namespace $SBox
 		$SLATE_ARGUMENT(HAlign);
 		$SLATE_ARGUMENT(VAlign);
 		$SLATE_ATTRIBUTE(Padding);
-		SET_VARIABLE__SLATE_DEFAULT_SLOT(Content);
+		$SLATE_DEFAULT_SLOT(Content);
 		$SLATE_ATTRIBUTE(WidthOverride);
 		$SLATE_ATTRIBUTE(HeightOverride);
 		$SLATE_ATTRIBUTE_WITH_TYPE(MinDesiredWidth, FOptionalSize);

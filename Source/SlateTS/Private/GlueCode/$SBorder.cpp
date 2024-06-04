@@ -23,7 +23,7 @@ namespace $SBorder
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		SET_VARIABLE__SLATE_DEFAULT_SLOT(Content);
+		$SLATE_DEFAULT_SLOT(Content);
 		$SLATE_ARGUMENT(HAlign);
 		$SLATE_ARGUMENT(VAlign);
 		$SLATE_ATTRIBUTE(Padding);

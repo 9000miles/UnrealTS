@@ -22,7 +22,7 @@ namespace $SButton
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		SET_VARIABLE__SLATE_DEFAULT_SLOT(Content);
+		$SLATE_DEFAULT_SLOT(Content);
 		$SLATE_STYLE_ARGUMENT(ButtonStyle);
 		$SLATE_STYLE_ARGUMENT(TextStyle);
 		$SLATE_ARGUMENT(HAlign);
