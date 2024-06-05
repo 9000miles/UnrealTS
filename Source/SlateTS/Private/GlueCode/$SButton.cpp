@@ -22,30 +22,30 @@ namespace $SButton
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_DEFAULT_SLOT(Content);
-		$SLATE_STYLE_ARGUMENT(ButtonStyle);
-		$SLATE_STYLE_ARGUMENT(TextStyle);
-		$SLATE_ARGUMENT(HAlign);
-		$SLATE_ARGUMENT(VAlign);
-		$SLATE_ATTRIBUTE(ContentPadding);
-		$SLATE_ATTRIBUTE(Text);
-		$SLATE_EVENT(OnClicked);
-		$SLATE_EVENT(OnPressed);
-		$SLATE_EVENT(OnReleased);
-		$SLATE_EVENT(OnHovered);
-		$SLATE_EVENT(OnUnhovered);
-		$SLATE_ARGUMENT(ClickMethod);
-		$SLATE_ARGUMENT(TouchMethod);
-		$SLATE_ARGUMENT(PressMethod);
-		$SLATE_ATTRIBUTE(DesiredSizeScale);
-		$SLATE_ATTRIBUTE(ContentScale);
-		$SLATE_ATTRIBUTE(ButtonColorAndOpacity);
-		$SLATE_ATTRIBUTE(ForegroundColor);
-		$SLATE_ARGUMENT(IsFocusable);
-		$SLATE_ARGUMENT(PressedSoundOverride);
-		$SLATE_ARGUMENT(HoveredSoundOverride);
-		$SLATE_ARGUMENT(TextShapingMethod);
-		$SLATE_ARGUMENT(TextFlowDirection);
+		$SLATE_DEFAULT_SLOT(FArguments, Content, );
+		$SLATE_STYLE_ARGUMENT(FButtonStyle, ButtonStyle, );
+		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, );
+		$SLATE_ARGUMENT(EHorizontalAlignment, HAlign, );
+		$SLATE_ARGUMENT(EVerticalAlignment, VAlign, );
+		$SLATE_ATTRIBUTE(FMargin, ContentPadding, );
+		$SLATE_ATTRIBUTE(FText, Text, );
+		$SLATE_EVENT(FOnClicked, OnClicked, );
+		$SLATE_EVENT(FSimpleDelegate, OnPressed, );
+		$SLATE_EVENT(FSimpleDelegate, OnReleased, );
+		$SLATE_EVENT(FSimpleDelegate, OnHovered, );
+		$SLATE_EVENT(FSimpleDelegate, OnUnhovered, );
+		$SLATE_ARGUMENT(EButtonClickMethod::Type, ClickMethod, );
+		$SLATE_ARGUMENT(EButtonTouchMethod::Type, TouchMethod, );
+		$SLATE_ARGUMENT(EButtonPressMethod::Type, PressMethod, );
+		$SLATE_ATTRIBUTE(FVector2D, DesiredSizeScale, );
+		$SLATE_ATTRIBUTE(FVector2D, ContentScale, );
+		$SLATE_ATTRIBUTE(FSlateColor, ButtonColorAndOpacity, );
+		$SLATE_ATTRIBUTE(FSlateColor, ForegroundColor, );
+		$SLATE_ARGUMENT(bool, IsFocusable, );
+		$SLATE_ARGUMENT(TOptional<FSlateSound>, PressedSoundOverride, );
+		$SLATE_ARGUMENT(TOptional<FSlateSound>, HoveredSoundOverride, );
+		$SLATE_ARGUMENT(TOptional<ETextShapingMethod>, TextShapingMethod, );
+		$SLATE_ARGUMENT(TOptional<ETextFlowDirection>, TextFlowDirection, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

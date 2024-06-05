@@ -22,24 +22,24 @@ namespace $SExpandableArea
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_STYLE_ARGUMENT_WITH_TYPE(Style, FExpandableAreaStyle);
-		$SLATE_ATTRIBUTE(BorderBackgroundColor);
-		$SLATE_ATTRIBUTE(BorderImage);
-		$SLATE_ATTRIBUTE(BodyBorderBackgroundColor);
-		$SLATE_ARGUMENT(BodyBorderImage);
-		$SLATE_NAMED_SLOT(HeaderContent);
-		$SLATE_NAMED_SLOT(BodyContent);
-		$SLATE_ATTRIBUTE(AreaTitle);
-		$SLATE_ARGUMENT(InitiallyCollapsed);
-		$SLATE_ARGUMENT(MinWidth);
-		$SLATE_ARGUMENT(MaxHeight);
-		$SLATE_ATTRIBUTE(AreaTitlePadding);
-		$SLATE_ATTRIBUTE(HeaderPadding);
-		$SLATE_ATTRIBUTE(Padding);
-		$SLATE_EVENT(OnAreaExpansionChanged);
-		$SLATE_ATTRIBUTE(AreaTitleFont);
-		$SLATE_ATTRIBUTE(HeaderCursor);
-		$SLATE_ARGUMENT(AllowAnimatedTransition);
+		$SLATE_STYLE_ARGUMENT(FExpandableAreaStyle, Style, FExpandableAreaStyle);
+		$SLATE_ATTRIBUTE(FSlateColor, BorderBackgroundColor, );
+		$SLATE_ATTRIBUTE(const FSlateBrush*, BorderImage, );
+		$SLATE_ATTRIBUTE(FSlateColor, BodyBorderBackgroundColor, );
+		$SLATE_ARGUMENT(const FSlateBrush*, BodyBorderImage, );
+		$SLATE_NAMED_SLOT(FArguments, HeaderContent, );
+		$SLATE_NAMED_SLOT(FArguments, BodyContent, );
+		$SLATE_ATTRIBUTE(FText, AreaTitle, );
+		$SLATE_ARGUMENT(bool, InitiallyCollapsed, );
+		$SLATE_ARGUMENT(float, MinWidth, );
+		$SLATE_ARGUMENT(float, MaxHeight, );
+		$SLATE_ATTRIBUTE(FMargin, AreaTitlePadding, );
+		$SLATE_ATTRIBUTE(FMargin, HeaderPadding, );
+		$SLATE_ATTRIBUTE(FMargin, Padding, );
+		$SLATE_EVENT(FOnBooleanValueChanged, OnAreaExpansionChanged, );
+		$SLATE_ATTRIBUTE(FSlateFontInfo, AreaTitleFont, );
+		$SLATE_ATTRIBUTE(TOptional<EMouseCursor::Type>, HeaderCursor, );
+		$SLATE_ARGUMENT(bool, AllowAnimatedTransition, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

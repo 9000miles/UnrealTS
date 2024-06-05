@@ -22,22 +22,22 @@ namespace $SBorder
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_DEFAULT_SLOT(Content);
-		$SLATE_ARGUMENT(HAlign);
-		$SLATE_ARGUMENT(VAlign);
-		$SLATE_ATTRIBUTE(Padding);
-		$SLATE_EVENT(OnMouseButtonDown);
-		$SLATE_EVENT(OnMouseButtonUp);
-		$SLATE_EVENT(OnMouseMove);
-		$SLATE_EVENT(OnMouseDoubleClick);
-		$SLATE_ATTRIBUTE(BorderImage);
-		$SLATE_ATTRIBUTE(ContentScale);
-		$SLATE_ATTRIBUTE(DesiredSizeScale);
-		$SLATE_ATTRIBUTE_WITH_TYPE(ColorAndOpacity, FLinearColor);
-		$SLATE_ATTRIBUTE(BorderBackgroundColor);
-		$SLATE_ATTRIBUTE(ForegroundColor);
-		$SLATE_ATTRIBUTE(ShowEffectWhenDisabled);
-		$SLATE_ARGUMENT(FlipForRightToLeftFlowDirection);
+		$SLATE_DEFAULT_SLOT(FArguments, Content, );
+		$SLATE_ARGUMENT(EHorizontalAlignment, HAlign, );
+		$SLATE_ARGUMENT(EVerticalAlignment, VAlign, );
+		$SLATE_ATTRIBUTE(FMargin, Padding, );
+		$SLATE_EVENT(FPointerEventHandler, OnMouseButtonDown, );
+		$SLATE_EVENT(FPointerEventHandler, OnMouseButtonUp, );
+		$SLATE_EVENT(FPointerEventHandler, OnMouseMove, );
+		$SLATE_EVENT(FPointerEventHandler, OnMouseDoubleClick, );
+		$SLATE_ATTRIBUTE(const FSlateBrush*, BorderImage, );
+		$SLATE_ATTRIBUTE(FVector2D, ContentScale, );
+		$SLATE_ATTRIBUTE(FVector2D, DesiredSizeScale, );
+		$SLATE_ATTRIBUTE(FLinearColor, ColorAndOpacity, FLinearColor);
+		$SLATE_ATTRIBUTE(FSlateColor, BorderBackgroundColor, );
+		$SLATE_ATTRIBUTE(FSlateColor, ForegroundColor, );
+		$SLATE_ATTRIBUTE(bool, ShowEffectWhenDisabled, );
+		$SLATE_ARGUMENT(bool, FlipForRightToLeftFlowDirection, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

@@ -23,7 +23,7 @@ namespace $STextBlock
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(Text);
+		/*$SLATE_ATTRIBUTE(Text);
 		$SLATE_STYLE_ARGUMENT(TextStyle);
 		$SLATE_ATTRIBUTE(Font);
 		$SLATE_ATTRIBUTE(StrikeBrush);
@@ -46,7 +46,7 @@ namespace $STextBlock
 		$SLATE_ARGUMENT(LineBreakPolicy);
 		$SLATE_ARGUMENT(OverflowPolicy);
 		$SLATE_ARGUMENT(SimpleTextMode);
-		$SLATE_EVENT(OnDoubleClicked);
+		$SLATE_EVENT(OnDoubleClicked);*/
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)
@@ -120,8 +120,8 @@ namespace $STextBlock
 			if (!Self) { puerts::DataTransfer::ThrowException(Isolate, "[STextBlock::GetText] Attempt to access a NULL self pointer"); return; }
 
 			v8::Local<v8::Value> JsObject = Info[0].As<v8::Value>();
-			auto Ret = WidgetAttribute::MakeAttribute<FText>(Context, JsObject, "");
-			Self->SetText(Ret); return;
+			//auto Ret = WidgetAttribute::MakeAttribute<FText>(Context, JsObject, "");
+			//Self->SetText(Ret); return;
 		}
 		puerts::DataTransfer::ThrowException(Isolate, "Invalid argument!");
 	}
@@ -152,8 +152,8 @@ struct AutoRegister_STextBlock
 		Args.Add<float>("MinDesiredWidth", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<TOptional<ETextShapingMethod>>("TextShapingMethod", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<TOptional<ETextFlowDirection>>("TextFlowDirection", DTS::EArgType::SLATE_ARGUMENT);
-		Args.Add<TSharedPtr<IBreakIterator>>("LineBreakPolicy", DTS::EArgType::SLATE_ARGUMENT);
-		Args.Add<TOptional<ETextOverflowPolicy>>("OverflowPolicy", DTS::EArgType::SLATE_ARGUMENT);
+		//Args.Add<TSharedPtr<IBreakIterator>>("LineBreakPolicy", DTS::EArgType::SLATE_ARGUMENT);
+		//Args.Add<TOptional<ETextOverflowPolicy>>("OverflowPolicy", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<bool>("SimpleTextMode", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<FPointerEventHandler>("OnDoubleClicked", DTS::EArgType::SLATE_EVENT);
 		return Args;
