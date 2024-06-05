@@ -22,26 +22,26 @@ namespace $SColorPicker
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(TargetColorAttribute);
-		$SLATE_ATTRIBUTE(TargetFColors);
-		$SLATE_ATTRIBUTE(TargetLinearColors);
-		$SLATE_ATTRIBUTE(TargetColorChannels);
-		$SLATE_ATTRIBUTE(UseAlpha);
-		$SLATE_ATTRIBUTE(OnlyRefreshOnMouseUp);
-		$SLATE_ATTRIBUTE(OnlyRefreshOnOk);
-		$SLATE_EVENT(OnColorCommitted);
-		$SLATE_EVENT(PreColorCommitted);
-		$SLATE_EVENT(OnColorPickerCancelled);
-		$SLATE_EVENT(OnColorPickerWindowClosed);
-		$SLATE_EVENT(OnInteractivePickBegin);
-		$SLATE_EVENT(OnInteractivePickEnd);
-		$SLATE_ATTRIBUTE(ParentWindow);
-		$SLATE_ATTRIBUTE(DisplayGamma);
-		$SLATE_ARGUMENT(sRGBOverride);
-		$SLATE_ARGUMENT(DisplayInlineVersion);
-		$SLATE_ARGUMENT(OverrideColorPickerCreation);
-		$SLATE_ARGUMENT(ExpandAdvancedSection);
-		$SLATE_ATTRIBUTE(OptionalOwningDetailsView);
+		$SLATE_ATTRIBUTE(FLinearColor, TargetColorAttribute, );
+		$SLATE_ATTRIBUTE(TArray<FColor*>, TargetFColors, );
+		$SLATE_ATTRIBUTE(TArray<FLinearColor*>, TargetLinearColors, );
+		$SLATE_ATTRIBUTE(TArray<FColorChannels>, TargetColorChannels, );
+		$SLATE_ATTRIBUTE(bool, UseAlpha, );
+		$SLATE_ATTRIBUTE(bool, OnlyRefreshOnMouseUp, );
+		$SLATE_ATTRIBUTE(bool, OnlyRefreshOnOk, );
+		$SLATE_EVENT(FOnLinearColorValueChanged, OnColorCommitted, );
+		$SLATE_EVENT(FOnLinearColorValueChanged, PreColorCommitted, );
+		$SLATE_EVENT(FOnColorPickerCancelled, OnColorPickerCancelled, );
+		$SLATE_EVENT(FOnWindowClosed, OnColorPickerWindowClosed, );
+		$SLATE_EVENT(FSimpleDelegate, OnInteractivePickBegin, );
+		$SLATE_EVENT(FSimpleDelegate, OnInteractivePickEnd, );
+		$SLATE_ATTRIBUTE(TSharedPtr<SWindow>, ParentWindow, );
+		$SLATE_ATTRIBUTE(float, DisplayGamma, );
+		$SLATE_ARGUMENT(TOptional<bool>, sRGBOverride, );
+		$SLATE_ARGUMENT(bool, DisplayInlineVersion, );
+		$SLATE_ARGUMENT(bool, OverrideColorPickerCreation, );
+		$SLATE_ARGUMENT(bool, ExpandAdvancedSection, );
+		$SLATE_ATTRIBUTE(TSharedPtr<SWidget>, OptionalOwningDetailsView, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

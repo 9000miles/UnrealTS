@@ -21,21 +21,21 @@ namespace $STableRow
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_STYLE_ARGUMENT(Style);
-		$SLATE_ARGUMENT(ExpanderStyleSet);
-		$SLATE_EVENT(OnCanAcceptDrop);
-		$SLATE_EVENT(OnAcceptDrop);
-		$SLATE_EVENT(OnPaintDropIndicator);
-		$SLATE_EVENT(OnDragDetected);
-		$SLATE_EVENT(OnDragEnter);
-		$SLATE_EVENT(OnDragLeave);
-		$SLATE_EVENT(OnDrop);
-		$SLATE_ATTRIBUTE(Padding);
-		$SLATE_ARGUMENT(ShowSelection);
-		$SLATE_ARGUMENT(ShowWires);
-		$SLATE_ARGUMENT(bAllowPreselectedItemActivation);
-		$SLATE_ARGUMENT(SignalSelectionMode);
-		$SLATE_DEFAULT_SLOT(Content);
+		$SLATE_STYLE_ARGUMENT(FTableRowStyle, Style, FTableRowStyle);
+		$SLATE_ARGUMENT(const ISlateStyle*, ExpanderStyleSet, );
+		$SLATE_EVENT(FOnCanAcceptDrop, OnCanAcceptDrop, );
+		$SLATE_EVENT(FOnAcceptDrop, OnAcceptDrop, );
+		$SLATE_EVENT(FOnPaintDropIndicator, OnPaintDropIndicator, );
+		$SLATE_EVENT(FOnDragDetected, OnDragDetected, );
+		$SLATE_EVENT(FOnTableRowDragEnter, OnDragEnter, );
+		$SLATE_EVENT(FOnTableRowDragLeave, OnDragLeave, );
+		$SLATE_EVENT(FOnTableRowDrop, OnDrop, );
+		$SLATE_ATTRIBUTE(FMargin, Padding, );
+		$SLATE_ARGUMENT(bool, ShowSelection, );
+		$SLATE_ARGUMENT(bool, ShowWires, );
+		$SLATE_ARGUMENT(bool, bAllowPreselectedItemActivation, );
+		$SLATE_ARGUMENT(ETableRowSignalSelectionMode, SignalSelectionMode, );
+		$SLATE_DEFAULT_SLOT(typename STableRow<ItemType>::FArguments, Content, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

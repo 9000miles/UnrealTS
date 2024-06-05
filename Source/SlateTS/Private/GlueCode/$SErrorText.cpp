@@ -21,10 +21,10 @@ namespace $SErrorText
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT(ErrorText);
-		$SLATE_ATTRIBUTE(BackgroundColor);
-		$SLATE_ATTRIBUTE(Font);
-		$SLATE_ATTRIBUTE(AutoWrapText);
+		$SLATE_ARGUMENT(FText, ErrorText, );
+		$SLATE_ATTRIBUTE(FSlateColor, BackgroundColor, );
+		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
+		$SLATE_ATTRIBUTE(bool, AutoWrapText, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

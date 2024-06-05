@@ -22,12 +22,12 @@ namespace $SColorGradingWheel
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(SelectedColor);
-		$SLATE_ATTRIBUTE(DesiredWheelSize);
-		$SLATE_ATTRIBUTE(ExponentDisplacement);
-		$SLATE_EVENT(OnMouseCaptureBegin);
-		$SLATE_EVENT(OnMouseCaptureEnd);
-		$SLATE_EVENT(OnValueChanged);
+		$SLATE_ATTRIBUTE(FLinearColor, SelectedColor, );
+		$SLATE_ATTRIBUTE(int32, DesiredWheelSize, );
+		$SLATE_ATTRIBUTE(float, ExponentDisplacement, );
+		$SLATE_EVENT(FOnColorGradingWheelMouseCapture, OnMouseCaptureBegin, );
+		$SLATE_EVENT(FOnColorGradingWheelMouseCapture, OnMouseCaptureEnd, );
+		$SLATE_EVENT(FOnColorGradingWheelValueChanged, OnValueChanged, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

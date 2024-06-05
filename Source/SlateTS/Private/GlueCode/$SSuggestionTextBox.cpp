@@ -21,26 +21,26 @@ namespace $SSuggestionTextBox
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(BackgroundColor);
-		$SLATE_ARGUMENT(BackgroundImage);
-		$SLATE_ATTRIBUTE(ClearKeyboardFocusOnCommit);
-		$SLATE_ARGUMENT(ErrorReporting);
-		$SLATE_ATTRIBUTE(Font);
-		$SLATE_ATTRIBUTE(ForegroundColor);
-		$SLATE_ATTRIBUTE(HintText);
-		$SLATE_ATTRIBUTE(IsCaretMovedWhenGainFocus);
-		$SLATE_ATTRIBUTE(MinDesiredWidth);
-		$SLATE_EVENT(OnShowingHistory);
-		$SLATE_EVENT(OnShowingSuggestions);
-		$SLATE_EVENT(OnTextChanged);
-		$SLATE_EVENT(OnTextCommitted);
-		$SLATE_ATTRIBUTE(RevertTextOnEscape);
-		$SLATE_ATTRIBUTE(SelectAllTextOnCommit);
-		$SLATE_ATTRIBUTE(SelectAllTextWhenFocused);
-		$SLATE_STYLE_ARGUMENT(TextStyle);
-		$SLATE_STYLE_ARGUMENT(SuggestionTextStyle);
-		$SLATE_ATTRIBUTE(SuggestionListMaxHeight);
-		$SLATE_ATTRIBUTE(Text);
+		$SLATE_ATTRIBUTE(FSlateColor, BackgroundColor, );
+		$SLATE_ARGUMENT(const FSlateBrush*, BackgroundImage, );
+		$SLATE_ATTRIBUTE(bool, ClearKeyboardFocusOnCommit, );
+		$SLATE_ARGUMENT(TSharedPtr<class IErrorReportingWidget>, ErrorReporting, );
+		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
+		$SLATE_ATTRIBUTE(FSlateColor, ForegroundColor, );
+		$SLATE_ATTRIBUTE(FText, HintText, );
+		$SLATE_ATTRIBUTE(bool, IsCaretMovedWhenGainFocus, );
+		$SLATE_ATTRIBUTE(float, MinDesiredWidth, );
+		$SLATE_EVENT(FOnShowingHistory, OnShowingHistory, );
+		$SLATE_EVENT(FOnShowingSuggestions, OnShowingSuggestions, );
+		$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
+		$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
+		$SLATE_ATTRIBUTE(bool, RevertTextOnEscape, );
+		$SLATE_ATTRIBUTE(bool, SelectAllTextOnCommit, );
+		$SLATE_ATTRIBUTE(bool, SelectAllTextWhenFocused, );
+		$SLATE_STYLE_ARGUMENT(FEditableTextBoxStyle, TextStyle, );
+		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, SuggestionTextStyle, );
+		$SLATE_ATTRIBUTE(float, SuggestionListMaxHeight, );
+		$SLATE_ATTRIBUTE(FText, Text, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

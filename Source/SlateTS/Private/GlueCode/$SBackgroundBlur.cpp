@@ -22,15 +22,15 @@ namespace $SBackgroundBlur
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_DEFAULT_SLOT(Content);
-		$SLATE_ARGUMENT(HAlign);
-		$SLATE_ARGUMENT(VAlign);
-		$SLATE_ATTRIBUTE(Padding);
-		$SLATE_ARGUMENT(bApplyAlphaToBlur);
-		$SLATE_ATTRIBUTE(BlurStrength);
-		$SLATE_ATTRIBUTE(BlurRadius);
-		$SLATE_ATTRIBUTE(CornerRadius);
-		$SLATE_ARGUMENT(LowQualityFallbackBrush);
+		$SLATE_DEFAULT_SLOT(FArguments, Content, );
+		$SLATE_ARGUMENT(EHorizontalAlignment, HAlign, );
+		$SLATE_ARGUMENT(EVerticalAlignment, VAlign, );
+		$SLATE_ATTRIBUTE(FMargin, Padding, );
+		$SLATE_ARGUMENT(bool, bApplyAlphaToBlur, );
+		$SLATE_ATTRIBUTE(float, BlurStrength, );
+		$SLATE_ATTRIBUTE(TOptional<int32>, BlurRadius, );
+		$SLATE_ATTRIBUTE(FVector4, CornerRadius, );
+		$SLATE_ARGUMENT(const FSlateBrush*, LowQualityFallbackBrush, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

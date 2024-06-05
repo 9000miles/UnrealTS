@@ -21,9 +21,9 @@ namespace $SThrobber
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT(PieceImage);
-		$SLATE_ARGUMENT(NumPieces);
-		$SLATE_ARGUMENT(Animate);
+		$SLATE_ARGUMENT(const FSlateBrush*, PieceImage, );
+		$SLATE_ARGUMENT(int32, NumPieces, );
+		$SLATE_ARGUMENT(EAnimation, Animate, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

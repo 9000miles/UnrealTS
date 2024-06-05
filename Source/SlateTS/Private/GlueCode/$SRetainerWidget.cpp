@@ -21,13 +21,13 @@ namespace $SRetainerWidget
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_DEFAULT_SLOT(Content);
-		$SLATE_ARGUMENT(RenderOnPhase);
-		$SLATE_ARGUMENT(RenderOnInvalidation);
-		$SLATE_ARGUMENT(RenderWithLocalTransform);
-		$SLATE_ARGUMENT(Phase);
-		$SLATE_ARGUMENT(PhaseCount);
-		$SLATE_ARGUMENT(StatId);
+		$SLATE_DEFAULT_SLOT(FArguments, Content, );
+		$SLATE_ARGUMENT(bool, RenderOnPhase, );
+		$SLATE_ARGUMENT(bool, RenderOnInvalidation, );
+		$SLATE_ARGUMENT(bool, RenderWithLocalTransform, );
+		$SLATE_ARGUMENT(int32, Phase, );
+		$SLATE_ARGUMENT(int32, PhaseCount, );
+		$SLATE_ARGUMENT(FName, StatId, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

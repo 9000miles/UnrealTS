@@ -21,13 +21,13 @@ namespace $SToolTip
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(Text);
-		$SLATE_DEFAULT_SLOT(Content);
-		$SLATE_ATTRIBUTE(Font);
-		$SLATE_ATTRIBUTE(TextMargin);
-		$SLATE_ATTRIBUTE(BorderImage);
-		$SLATE_ATTRIBUTE(IsInteractive);
-		$SLATE_EVENT(OnSetInteractiveWindowLocation);
+		$SLATE_ATTRIBUTE(FText, Text, );
+		$SLATE_DEFAULT_SLOT(FArguments, Content, );
+		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
+		$SLATE_ATTRIBUTE(FMargin, TextMargin, );
+		$SLATE_ATTRIBUTE(const FSlateBrush*, BorderImage, );
+		$SLATE_ATTRIBUTE(bool, IsInteractive, );
+		$SLATE_EVENT(FOnSetInteractiveWindowLocation, OnSetInteractiveWindowLocation, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

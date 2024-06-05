@@ -21,8 +21,8 @@ namespace $SWidgetSwitcher
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_SLOT_ARGUMENT(Slots);
-		$SLATE_ATTRIBUTE(WidgetIndex);
+		$SLATE_SLOT_ARGUMENT(FSlot, Slots, );
+		$SLATE_ATTRIBUTE(int32, WidgetIndex, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

@@ -21,10 +21,10 @@ namespace $SWidgetCarouselWithNavigation
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_STYLE_ARGUMENT(NavigationBarStyle);
-		$SLATE_STYLE_ARGUMENT(NavigationButtonStyle);
-		$SLATE_EVENT(OnGenerateWidget);
-		$SLATE_ARGUMENT(WidgetItemsSource);
+		$SLATE_STYLE_ARGUMENT(FWidgetCarouselNavigationBarStyle, NavigationBarStyle, );
+		$SLATE_STYLE_ARGUMENT(FWidgetCarouselNavigationButtonStyle, NavigationButtonStyle, );
+		$SLATE_EVENT(FOnGenerateWidget, OnGenerateWidget, );
+		$SLATE_ARGUMENT(const TArray<ItemType>*, WidgetItemsSource, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

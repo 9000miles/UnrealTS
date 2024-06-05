@@ -21,18 +21,18 @@ namespace $SSafeZone
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT(HAlign);
-		$SLATE_ARGUMENT(VAlign);
-		$SLATE_ATTRIBUTE(Padding);
-		$SLATE_DEFAULT_SLOT(Content);
-		$SLATE_ARGUMENT(IsTitleSafe);
-		$SLATE_ARGUMENT(SafeAreaScale);
-		$SLATE_ARGUMENT(PadLeft);
-		$SLATE_ARGUMENT(PadRight);
-		$SLATE_ARGUMENT(PadTop);
-		$SLATE_ARGUMENT(PadBottom);
-		$SLATE_ARGUMENT(OverrideScreenSize);
-		$SLATE_ARGUMENT(OverrideDpiScale);
+		$SLATE_ARGUMENT(EHorizontalAlignment, HAlign, );
+		$SLATE_ARGUMENT(EVerticalAlignment, VAlign, );
+		$SLATE_ATTRIBUTE(FMargin, Padding, );
+		$SLATE_DEFAULT_SLOT(FArguments, Content, );
+		$SLATE_ARGUMENT(bool, IsTitleSafe, );
+		$SLATE_ARGUMENT(FMargin, SafeAreaScale, );
+		$SLATE_ARGUMENT(bool, PadLeft, );
+		$SLATE_ARGUMENT(bool, PadRight, );
+		$SLATE_ARGUMENT(bool, PadTop, );
+		$SLATE_ARGUMENT(bool, PadBottom, );
+		$SLATE_ARGUMENT(TOptional<FVector2D>, OverrideScreenSize, );
+		$SLATE_ARGUMENT(TOptional<float>, OverrideDpiScale, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

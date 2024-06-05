@@ -21,13 +21,13 @@ namespace $SNumericDropDown
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT(DropDownValues);
-		$SLATE_ATTRIBUTE(LabelText);
-		$SLATE_ATTRIBUTE(Orientation);
-		$SLATE_ATTRIBUTE(MinDesiredValueWidth);
-		$SLATE_ATTRIBUTE(bShowNamedValue);
-		$SLATE_ATTRIBUTE(Value);
-		$SLATE_EVENT(OnValueChanged);
+		$SLATE_ARGUMENT(TArray<FNamedValue>, DropDownValues, );
+		$SLATE_ATTRIBUTE(FText, LabelText, );
+		$SLATE_ATTRIBUTE(EOrientation, Orientation, );
+		$SLATE_ATTRIBUTE(float, MinDesiredValueWidth, );
+		$SLATE_ATTRIBUTE(bool, bShowNamedValue, );
+		$SLATE_ATTRIBUTE(NumericType, Value, );
+		$SLATE_EVENT(FOnValueChanged, OnValueChanged, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

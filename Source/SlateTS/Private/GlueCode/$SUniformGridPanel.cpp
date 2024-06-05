@@ -21,10 +21,10 @@ namespace $SUniformGridPanel
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_SLOT_ARGUMENT(Slots);
-		$SLATE_ATTRIBUTE(SlotPadding);
-		$SLATE_ATTRIBUTE(MinDesiredSlotWidth);
-		$SLATE_ATTRIBUTE(MinDesiredSlotHeight);
+		$SLATE_SLOT_ARGUMENT(FSlot, Slots, );
+		$SLATE_ATTRIBUTE(FMargin, SlotPadding, );
+		$SLATE_ATTRIBUTE(float, MinDesiredSlotWidth, );
+		$SLATE_ATTRIBUTE(float, MinDesiredSlotHeight, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

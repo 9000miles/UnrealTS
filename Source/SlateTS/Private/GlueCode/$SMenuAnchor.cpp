@@ -21,18 +21,18 @@ namespace $SMenuAnchor
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_DEFAULT_SLOT(Content);
-		$SLATE_ARGUMENT(Padding);
-		$SLATE_ARGUMENT(MenuContent);
-		$SLATE_EVENT(OnGetMenuContent);
-		$SLATE_EVENT(OnMenuOpenChanged);
-		$SLATE_ATTRIBUTE(Placement);
-		$SLATE_ARGUMENT(FitInWindow);
-		$SLATE_ARGUMENT(Method);
-		$SLATE_ARGUMENT(ShouldDeferPaintingAfterWindowContent);
-		$SLATE_ARGUMENT(UseApplicationMenuStack);
-		$SLATE_ARGUMENT(IsCollapsedByParent);
-		$SLATE_ARGUMENT(ApplyWidgetStyleToMenu);
+		$SLATE_DEFAULT_SLOT(FArguments, Content, );
+		$SLATE_ARGUMENT(FMargin, Padding, );
+		$SLATE_ARGUMENT(TSharedPtr<SWidget>, MenuContent, );
+		$SLATE_EVENT(FOnGetContent, OnGetMenuContent, );
+		$SLATE_EVENT(FOnIsOpenChanged, OnMenuOpenChanged, );
+		$SLATE_ATTRIBUTE(EMenuPlacement, Placement, );
+		$SLATE_ARGUMENT(bool, FitInWindow, );
+		$SLATE_ARGUMENT(TOptional<EPopupMethod>, Method, );
+		$SLATE_ARGUMENT(bool, ShouldDeferPaintingAfterWindowContent, );
+		$SLATE_ARGUMENT(bool, UseApplicationMenuStack, );
+		$SLATE_ARGUMENT(bool, IsCollapsedByParent, );
+		$SLATE_ARGUMENT(bool, ApplyWidgetStyleToMenu, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

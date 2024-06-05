@@ -21,15 +21,15 @@ namespace $SUniformToolbarPanel
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_SLOT_ARGUMENT(Slots);
-		$SLATE_ARGUMENT(StyleSet);
-		$SLATE_ARGUMENT(StyleName);
-		$SLATE_ARGUMENT(Orientation);
-		$SLATE_ATTRIBUTE(SlotPadding);
-		$SLATE_ATTRIBUTE(MinDesiredSlotSize);
-		$SLATE_ATTRIBUTE(MaxUniformSize);
-		$SLATE_ATTRIBUTE(MinUniformSize);
-		$SLATE_EVENT(OnDropdownOpened);
+		$SLATE_SLOT_ARGUMENT(FSlot, Slots, );
+		$SLATE_ARGUMENT(const ISlateStyle*, StyleSet, );
+		$SLATE_ARGUMENT(FName, StyleName, );
+		$SLATE_ARGUMENT(EOrientation, Orientation, );
+		$SLATE_ATTRIBUTE(FMargin, SlotPadding, );
+		$SLATE_ATTRIBUTE(FVector2D, MinDesiredSlotSize, );
+		$SLATE_ATTRIBUTE(float, MaxUniformSize, );
+		$SLATE_ATTRIBUTE(float, MinUniformSize, );
+		$SLATE_EVENT(FOnGetContent, OnDropdownOpened, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

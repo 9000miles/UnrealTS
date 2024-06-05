@@ -21,11 +21,11 @@ namespace $SOptionTableRow
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT(OwnerTableView);
-		$SLATE_ARGUMENT(Option);
-		$SLATE_EVENT(OnCheckStateChanged);
-		$SLATE_ATTRIBUTE(IsChecked);
-		$SLATE_EVENT(OnGenerateWidget);
+		$SLATE_ARGUMENT(TSharedPtr<STableViewBase>, OwnerTableView, );
+		$SLATE_ARGUMENT(OptionType, Option, );
+		$SLATE_EVENT(FOnCheckStateChanged, OnCheckStateChanged, );
+		$SLATE_ATTRIBUTE(ECheckBoxState, IsChecked, );
+		$SLATE_EVENT(FOnGenerateWidget, OnGenerateWidget, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

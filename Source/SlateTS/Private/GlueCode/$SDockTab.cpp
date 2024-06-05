@@ -22,26 +22,26 @@ namespace $SDockTab
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_DEFAULT_SLOT(Content);
-		$SLATE_NAMED_SLOT(TabWellContentLeft);
-		$SLATE_NAMED_SLOT(TabWellContentRight);
-		$SLATE_ATTRIBUTE(ContentPadding);
-		$SLATE_ARGUMENT(TabRole);
-		$SLATE_ATTRIBUTE(Label);
-		$SLATE_ATTRIBUTE(LabelSuffix);
-		$SLATE_EVENT(OnTabClosed);
-		$SLATE_EVENT(OnTabActivated);
-		$SLATE_EVENT(OnTabRelocated);
-		$SLATE_EVENT(OnTabDraggedOverDockArea);
-		$SLATE_ARGUMENT(ShouldAutosize);
-		$SLATE_EVENT(OnCanCloseTab);
-		$SLATE_ARGUMENT(CanEverClose);
-		$SLATE_EVENT(OnPersistVisualState);
-		$SLATE_EVENT(OnExtendContextMenu);
-		$SLATE_EVENT(OnTabDrawerClosed);
-		$SLATE_ATTRIBUTE(TabColorScale);
-		$SLATE_ATTRIBUTE(ForegroundColor);
-		$SLATE_ATTRIBUTE(IconColor);
+		$SLATE_DEFAULT_SLOT(FArguments, Content, );
+		$SLATE_NAMED_SLOT(FArguments, TabWellContentLeft, );
+		$SLATE_NAMED_SLOT(FArguments, TabWellContentRight, );
+		$SLATE_ATTRIBUTE(FMargin, ContentPadding, );
+		$SLATE_ARGUMENT(ETabRole, TabRole, );
+		$SLATE_ATTRIBUTE(FText, Label, );
+		$SLATE_ATTRIBUTE(FText, LabelSuffix, );
+		$SLATE_EVENT(FOnTabClosedCallback, OnTabClosed, );
+		$SLATE_EVENT(FOnTabActivatedCallback, OnTabActivated, );
+		$SLATE_EVENT(FSimpleDelegate, OnTabRelocated, );
+		$SLATE_EVENT(FSimpleDelegate, OnTabDraggedOverDockArea, );
+		$SLATE_ARGUMENT(bool, ShouldAutosize, );
+		$SLATE_EVENT(FCanCloseTab, OnCanCloseTab, );
+		$SLATE_ARGUMENT(bool, CanEverClose, );
+		$SLATE_EVENT(FOnPersistVisualState, OnPersistVisualState, );
+		$SLATE_EVENT(FExtendContextMenu, OnExtendContextMenu, );
+		$SLATE_EVENT(FSimpleDelegate, OnTabDrawerClosed, );
+		$SLATE_ATTRIBUTE(FLinearColor, TabColorScale, );
+		$SLATE_ATTRIBUTE(FSlateColor, ForegroundColor, );
+		$SLATE_ATTRIBUTE(FLinearColor, IconColor, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

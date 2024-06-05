@@ -21,14 +21,14 @@ namespace $STabDrawer
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_DEFAULT_SLOT(Content);
-		$SLATE_ARGUMENT(MinDrawerSize);
-		$SLATE_ARGUMENT(MaxDrawerSize);
-		$SLATE_ARGUMENT(TargetDrawerSize);
-		$SLATE_EVENT(OnTargetDrawerSizeChanged);
-		$SLATE_EVENT(OnDrawerFocusLost);
-		$SLATE_EVENT(OnDrawerClosed);
-		$SLATE_ARGUMENT(ShadowOffset);
+		$SLATE_DEFAULT_SLOT(FArguments, Content, );
+		$SLATE_ARGUMENT(float, MinDrawerSize, );
+		$SLATE_ARGUMENT(float, MaxDrawerSize, );
+		$SLATE_ARGUMENT(float, TargetDrawerSize, );
+		$SLATE_EVENT(FOnDrawerTargetSizeChanged, OnTargetDrawerSizeChanged, );
+		$SLATE_EVENT(FOnDrawerFocusLost, OnDrawerFocusLost, );
+		$SLATE_EVENT(FOnDrawerClosed, OnDrawerClosed, );
+		$SLATE_ARGUMENT(FVector2D, ShadowOffset, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

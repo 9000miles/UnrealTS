@@ -10,11 +10,11 @@
 namespace WidgetAttribute
 {
 	template<typename TType>
-	TAttribute<TType> MakeAttribute(v8::Local<v8::Context>& Context, v8::Local<v8::Value> Value, const char* WidgetClass = "") { return TAttribute<TType>(); }
+	TAttribute<TType> MakeAttribute(v8::Local<v8::Context>& Context, v8::Local<v8::Value> Value) { return TAttribute<TType>(); }
 
 	/** ======================= MakeAttribute ======================= **/
 #define MAKE_ATTRIBUTE(Type)\
-	template<> TAttribute<Type> MakeAttribute(v8::Local<v8::Context>& Context, v8::Local<v8::Value> Value, const char* WidgetClass)\
+	template<> TAttribute<Type> MakeAttribute(v8::Local<v8::Context>& Context, v8::Local<v8::Value> Value)\
 	{\
 		if (Value->IsFunction())\
 		{\

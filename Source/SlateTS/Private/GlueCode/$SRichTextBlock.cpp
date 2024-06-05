@@ -21,25 +21,25 @@ namespace $SRichTextBlock
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(Text);
-		$SLATE_ATTRIBUTE(HighlightText);
-		$SLATE_ATTRIBUTE(WrapTextAt);
-		$SLATE_ATTRIBUTE(AutoWrapText);
-		$SLATE_ATTRIBUTE(WrappingPolicy);
-		$SLATE_ATTRIBUTE(TransformPolicy);
-		$SLATE_ARGUMENT(Marshaller);
-		$SLATE_EVENT(CreateSlateTextLayout);
-		$SLATE_ARGUMENT(DecoratorStyleSet);
-		$SLATE_STYLE_ARGUMENT(TextStyle);
-		$SLATE_ATTRIBUTE(Margin);
-		$SLATE_ATTRIBUTE(LineHeightPercentage);
-		$SLATE_ATTRIBUTE(Justification);
-		$SLATE_ARGUMENT(TextShapingMethod);
-		$SLATE_ARGUMENT(TextFlowDirection);
-		$SLATE_ARGUMENT(Decorators);
-		$SLATE_ARGUMENT(Parser);
-		$SLATE_ARGUMENT(OverflowPolicy);
-		$SLATE_ATTRIBUTE(MinDesiredWidth);
+		$SLATE_ATTRIBUTE(FText, Text, );
+		$SLATE_ATTRIBUTE(FText, HighlightText, );
+		$SLATE_ATTRIBUTE(float, WrapTextAt, );
+		$SLATE_ATTRIBUTE(bool, AutoWrapText, );
+		$SLATE_ATTRIBUTE(ETextWrappingPolicy, WrappingPolicy, );
+		$SLATE_ATTRIBUTE(ETextTransformPolicy, TransformPolicy, );
+		$SLATE_ARGUMENT(TSharedPtr<class FRichTextLayoutMarshaller>, Marshaller, );
+		$SLATE_EVENT(FCreateSlateTextLayout, CreateSlateTextLayout, );
+		$SLATE_ARGUMENT(const ISlateStyle*, DecoratorStyleSet, );
+		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, );
+		$SLATE_ATTRIBUTE(FMargin, Margin, );
+		$SLATE_ATTRIBUTE(float, LineHeightPercentage, );
+		$SLATE_ATTRIBUTE(ETextJustify::Type, Justification, );
+		$SLATE_ARGUMENT(TOptional<ETextShapingMethod>, TextShapingMethod, );
+		$SLATE_ARGUMENT(TOptional<ETextFlowDirection>, TextFlowDirection, );
+		$SLATE_ARGUMENT(TArray< TSharedRef< class ITextDecorator > >, Decorators, );
+		$SLATE_ARGUMENT(TSharedPtr< class IRichTextMarkupParser >, Parser, );
+		$SLATE_ARGUMENT(TOptional<ETextOverflowPolicy>, OverflowPolicy, );
+		$SLATE_ATTRIBUTE(float, MinDesiredWidth, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

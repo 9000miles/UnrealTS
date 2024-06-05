@@ -4,10 +4,10 @@
 #include "V8Utils.h"
 #include "Converter.hpp"
 
-#define $SLATE_DEFAULT_SLOT(Name)\
-$Arguments__SLATE_DEFAULT_SLOT::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
+#define $SLATE_DEFAULT_SLOT(Type, Name, Tag)\
+$SLATE_DEFAULT_SLOT$::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
 
-namespace $Arguments__SLATE_DEFAULT_SLOT
+namespace $SLATE_DEFAULT_SLOT$
 {
 #define SET_SLATE_SLOT(Name)\
 	template<typename TArgumentType>\
@@ -28,10 +28,10 @@ namespace $Arguments__SLATE_DEFAULT_SLOT
 }
 
 
-#define $SLATE_NAMED_SLOT(Name)\
-$Arguments__SLATE_NAMED_SLOT::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
+#define $SLATE_NAMED_SLOT(Type, Name, Tag)\
+$SLATE_NAMED_SLOT$::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
 
-namespace $Arguments__SLATE_NAMED_SLOT
+namespace $SLATE_NAMED_SLOT$
 {
 #define SET_SLATE_SLOT(Name)\
 	template<typename TArgumentType>\

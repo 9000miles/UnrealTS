@@ -22,23 +22,23 @@ namespace $SComboButton
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_STYLE_ARGUMENT(ComboButtonStyle);
-		$SLATE_STYLE_ARGUMENT(ButtonStyle);
-		$SLATE_NAMED_SLOT(ButtonContent);
-		$SLATE_NAMED_SLOT(MenuContent);
-		$SLATE_EVENT(OnGetMenuContent);
-		$SLATE_EVENT(OnMenuOpenChanged);
-		$SLATE_EVENT(OnComboBoxOpened);
-		$SLATE_ARGUMENT(IsFocusable);
-		$SLATE_ARGUMENT(HasDownArrow);
-		$SLATE_ATTRIBUTE(ForegroundColor);
-		$SLATE_ATTRIBUTE(ButtonColorAndOpacity);
-		$SLATE_ATTRIBUTE(ContentPadding);
-		$SLATE_ATTRIBUTE(MenuPlacement);
-		$SLATE_ARGUMENT(HAlign);
-		$SLATE_ARGUMENT(VAlign);
-		$SLATE_ARGUMENT(Method);
-		$SLATE_ARGUMENT(CollapseMenuOnParentFocus);
+		$SLATE_STYLE_ARGUMENT(FComboButtonStyle, ComboButtonStyle, );
+		$SLATE_STYLE_ARGUMENT(FButtonStyle, ButtonStyle, );
+		$SLATE_NAMED_SLOT(FArguments, ButtonContent, );
+		$SLATE_NAMED_SLOT(FArguments, MenuContent, );
+		$SLATE_EVENT(FOnGetContent, OnGetMenuContent, );
+		$SLATE_EVENT(FOnIsOpenChanged, OnMenuOpenChanged, );
+		$SLATE_EVENT(FOnComboBoxOpened, OnComboBoxOpened, );
+		$SLATE_ARGUMENT(bool, IsFocusable, );
+		$SLATE_ARGUMENT(bool, HasDownArrow, );
+		$SLATE_ATTRIBUTE(FSlateColor, ForegroundColor, );
+		$SLATE_ATTRIBUTE(FSlateColor, ButtonColorAndOpacity, );
+		$SLATE_ATTRIBUTE(FMargin, ContentPadding, );
+		$SLATE_ATTRIBUTE(EMenuPlacement, MenuPlacement, );
+		$SLATE_ARGUMENT(EHorizontalAlignment, HAlign, );
+		$SLATE_ARGUMENT(EVerticalAlignment, VAlign, );
+		$SLATE_ARGUMENT(TOptional<EPopupMethod>, Method, );
+		$SLATE_ARGUMENT(bool, CollapseMenuOnParentFocus, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

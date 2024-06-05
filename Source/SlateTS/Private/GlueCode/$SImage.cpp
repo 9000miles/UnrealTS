@@ -21,11 +21,11 @@ namespace $SImage
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(Image);
-		$SLATE_ATTRIBUTE(ColorAndOpacity);
-		$SLATE_ATTRIBUTE(DesiredSizeOverride);
-		$SLATE_ARGUMENT(FlipForRightToLeftFlowDirection);
-		$SLATE_EVENT(OnMouseButtonDown);
+		$SLATE_ATTRIBUTE(const FSlateBrush*, Image, );
+		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, );
+		$SLATE_ATTRIBUTE(TOptional<FVector2D>, DesiredSizeOverride, );
+		$SLATE_ARGUMENT(bool, FlipForRightToLeftFlowDirection, );
+		$SLATE_EVENT(FPointerEventHandler, OnMouseButtonDown, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

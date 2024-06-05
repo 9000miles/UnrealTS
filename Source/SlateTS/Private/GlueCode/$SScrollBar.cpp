@@ -21,16 +21,16 @@ namespace $SScrollBar
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_STYLE_ARGUMENT(Style);
-		$SLATE_EVENT(OnUserScrolled);
-		$SLATE_ARGUMENT(AlwaysShowScrollbar);
-		$SLATE_ARGUMENT(AlwaysShowScrollbarTrack);
-		$SLATE_ARGUMENT(HideWhenNotInUse);
-		$SLATE_ARGUMENT(PreventThrottling);
-		$SLATE_ARGUMENT(Orientation);
-		$SLATE_ARGUMENT(DragFocusCause);
-		$SLATE_ATTRIBUTE(Thickness);
-		$SLATE_ATTRIBUTE(Padding);
+		$SLATE_STYLE_ARGUMENT(FScrollBarStyle, Style, FScrollBarStyle);
+		$SLATE_EVENT(FOnUserScrolled, OnUserScrolled, );
+		$SLATE_ARGUMENT(bool, AlwaysShowScrollbar, );
+		$SLATE_ARGUMENT(bool, AlwaysShowScrollbarTrack, );
+		$SLATE_ARGUMENT(bool, HideWhenNotInUse, );
+		$SLATE_ARGUMENT(bool, PreventThrottling, );
+		$SLATE_ARGUMENT(EOrientation, Orientation, );
+		$SLATE_ARGUMENT(EFocusCause, DragFocusCause, );
+		$SLATE_ATTRIBUTE(FVector2D, Thickness, );
+		$SLATE_ATTRIBUTE(FMargin, Padding, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

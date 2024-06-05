@@ -21,20 +21,20 @@ namespace $SInputKeySelector
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(SelectedKey);
-		$SLATE_ATTRIBUTE(Font);
-		$SLATE_ATTRIBUTE(Margin);
-		$SLATE_STYLE_ARGUMENT(ButtonStyle);
-		$SLATE_STYLE_ARGUMENT(TextStyle);
-		$SLATE_ARGUMENT(KeySelectionText);
-		$SLATE_ARGUMENT(NoKeySpecifiedText);
-		$SLATE_ARGUMENT(AllowModifierKeys);
-		$SLATE_ARGUMENT(AllowGamepadKeys);
-		$SLATE_ARGUMENT(EscapeCancelsSelection);
-		$SLATE_ARGUMENT(EscapeKeys);
-		$SLATE_EVENT(OnKeySelected);
-		$SLATE_EVENT(OnIsSelectingKeyChanged);
-		$SLATE_ARGUMENT(IsFocusable);
+		$SLATE_ATTRIBUTE(FInputChord, SelectedKey, );
+		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
+		$SLATE_ATTRIBUTE(FMargin, Margin, );
+		$SLATE_STYLE_ARGUMENT(FButtonStyle, ButtonStyle, );
+		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, );
+		$SLATE_ARGUMENT(FText, KeySelectionText, );
+		$SLATE_ARGUMENT(FText, NoKeySpecifiedText, );
+		$SLATE_ARGUMENT(bool, AllowModifierKeys, );
+		$SLATE_ARGUMENT(bool, AllowGamepadKeys, );
+		$SLATE_ARGUMENT(bool, EscapeCancelsSelection, );
+		$SLATE_ARGUMENT(TArray<FKey>, EscapeKeys, );
+		$SLATE_EVENT(FOnKeySelected, OnKeySelected, );
+		$SLATE_EVENT(FOnIsSelectingKeyChanged, OnIsSelectingKeyChanged, );
+		$SLATE_ARGUMENT(bool, IsFocusable, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

@@ -21,14 +21,14 @@ namespace $SHyperlink
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(Text);
-		$SLATE_STYLE_ARGUMENT(Style);
-		$SLATE_STYLE_ARGUMENT(TextStyle);
-		$SLATE_STYLE_ARGUMENT(UnderlineStyle);
-		$SLATE_ATTRIBUTE(Padding);
-		$SLATE_EVENT(OnNavigate);
-		$SLATE_ARGUMENT(TextShapingMethod);
-		$SLATE_ARGUMENT(TextFlowDirection);
+		$SLATE_ATTRIBUTE(FText, Text, );
+		$SLATE_STYLE_ARGUMENT(FHyperlinkStyle, Style, FHyperlinkStyle);
+		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, );
+		$SLATE_STYLE_ARGUMENT(FButtonStyle, UnderlineStyle, );
+		$SLATE_ATTRIBUTE(FMargin, Padding, );
+		$SLATE_EVENT(FSimpleDelegate, OnNavigate, );
+		$SLATE_ARGUMENT(TOptional<ETextShapingMethod>, TextShapingMethod, );
+		$SLATE_ARGUMENT(TOptional<ETextFlowDirection>, TextFlowDirection, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

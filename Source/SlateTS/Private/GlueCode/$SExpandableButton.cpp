@@ -21,14 +21,14 @@ namespace $SExpandableButton
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(CollapsedText);
-		$SLATE_ATTRIBUTE(ExpandedText);
-		$SLATE_NAMED_SLOT(CollapsedButtonContent);
-		$SLATE_NAMED_SLOT(ExpandedButtonContent);
-		$SLATE_NAMED_SLOT(ExpandedChildContent);
-		$SLATE_EVENT(OnExpansionClicked);
-		$SLATE_EVENT(OnCloseClicked);
-		$SLATE_ATTRIBUTE(IsExpanded);
+		$SLATE_ATTRIBUTE(FText, CollapsedText, );
+		$SLATE_ATTRIBUTE(FText, ExpandedText, );
+		$SLATE_NAMED_SLOT(FArguments, CollapsedButtonContent, );
+		$SLATE_NAMED_SLOT(FArguments, ExpandedButtonContent, );
+		$SLATE_NAMED_SLOT(FArguments, ExpandedChildContent, );
+		$SLATE_EVENT(FOnClicked, OnExpansionClicked, );
+		$SLATE_EVENT(FOnClicked, OnCloseClicked, );
+		$SLATE_ATTRIBUTE(bool, IsExpanded, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

@@ -22,10 +22,10 @@ namespace $SColorWheel
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(SelectedColor);
-		$SLATE_EVENT(OnMouseCaptureBegin);
-		$SLATE_EVENT(OnMouseCaptureEnd);
-		$SLATE_EVENT(OnValueChanged);
+		$SLATE_ATTRIBUTE(FLinearColor, SelectedColor, );
+		$SLATE_EVENT(FSimpleDelegate, OnMouseCaptureBegin, );
+		$SLATE_EVENT(FSimpleDelegate, OnMouseCaptureEnd, );
+		$SLATE_EVENT(FOnLinearColorValueChanged, OnValueChanged, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

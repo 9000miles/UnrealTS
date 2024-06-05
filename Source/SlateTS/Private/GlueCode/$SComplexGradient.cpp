@@ -22,10 +22,10 @@ namespace $SComplexGradient
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(GradientColors);
-		$SLATE_ARGUMENT(HasAlphaBackground);
-		$SLATE_ARGUMENT(Orientation);
-		$SLATE_ATTRIBUTE(DesiredSizeOverride);
+		$SLATE_ATTRIBUTE(TArray<FLinearColor>, GradientColors, );
+		$SLATE_ARGUMENT(bool, HasAlphaBackground, );
+		$SLATE_ARGUMENT(EOrientation, Orientation, );
+		$SLATE_ATTRIBUTE(TOptional<FVector2D>, DesiredSizeOverride, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

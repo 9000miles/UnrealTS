@@ -23,30 +23,30 @@ namespace $STextBlock
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		/*$SLATE_ATTRIBUTE(Text);
-		$SLATE_STYLE_ARGUMENT(TextStyle);
-		$SLATE_ATTRIBUTE(Font);
-		$SLATE_ATTRIBUTE(StrikeBrush);
-		$SLATE_ATTRIBUTE_WITH_TYPE(ColorAndOpacity, FSlateColor);
-		$SLATE_ATTRIBUTE(ShadowOffset);
-		$SLATE_ATTRIBUTE(ShadowColorAndOpacity);
-		$SLATE_ATTRIBUTE(HighlightColor);
-		$SLATE_ATTRIBUTE(HighlightShape);
-		$SLATE_ATTRIBUTE(HighlightText);
-		$SLATE_ATTRIBUTE(WrapTextAt);
-		$SLATE_ATTRIBUTE(AutoWrapText);
-		$SLATE_ATTRIBUTE(WrappingPolicy);
-		$SLATE_ATTRIBUTE(TransformPolicy);
-		$SLATE_ATTRIBUTE(Margin);
-		$SLATE_ATTRIBUTE(LineHeightPercentage);
-		$SLATE_ATTRIBUTE(Justification);
-		$SLATE_ATTRIBUTE_WITH_TYPE(MinDesiredWidth, float);
-		$SLATE_ARGUMENT(TextShapingMethod);
-		$SLATE_ARGUMENT(TextFlowDirection);
-		$SLATE_ARGUMENT(LineBreakPolicy);
-		$SLATE_ARGUMENT(OverflowPolicy);
-		$SLATE_ARGUMENT(SimpleTextMode);
-		$SLATE_EVENT(OnDoubleClicked);*/
+		$SLATE_ATTRIBUTE(FText, Text, );
+		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, );
+		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
+		$SLATE_ATTRIBUTE(const FSlateBrush*, StrikeBrush, );
+		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, FSlateColor);
+		$SLATE_ATTRIBUTE(FVector2D, ShadowOffset, );
+		$SLATE_ATTRIBUTE(FLinearColor, ShadowColorAndOpacity, );
+		$SLATE_ATTRIBUTE(FLinearColor, HighlightColor, );
+		$SLATE_ATTRIBUTE(const FSlateBrush*, HighlightShape, );
+		$SLATE_ATTRIBUTE(FText, HighlightText, );
+		$SLATE_ATTRIBUTE(float, WrapTextAt, );
+		$SLATE_ATTRIBUTE(bool, AutoWrapText, );
+		$SLATE_ATTRIBUTE(ETextWrappingPolicy, WrappingPolicy, );
+		$SLATE_ATTRIBUTE(ETextTransformPolicy, TransformPolicy, );
+		$SLATE_ATTRIBUTE(FMargin, Margin, );
+		$SLATE_ATTRIBUTE(float, LineHeightPercentage, );
+		$SLATE_ATTRIBUTE(ETextJustify::Type, Justification, );
+		$SLATE_ATTRIBUTE(float, MinDesiredWidth, float);
+		$SLATE_ARGUMENT(TOptional<ETextShapingMethod>, TextShapingMethod, );
+		$SLATE_ARGUMENT(TOptional<ETextFlowDirection>, TextFlowDirection, );
+		$SLATE_ARGUMENT(TSharedPtr<IBreakIterator>, LineBreakPolicy, );
+		$SLATE_ARGUMENT(TOptional<ETextOverflowPolicy>, OverflowPolicy, );
+		$SLATE_ARGUMENT(bool, SimpleTextMode, );
+		$SLATE_EVENT(FPointerEventHandler, OnDoubleClicked, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)
@@ -152,8 +152,8 @@ struct AutoRegister_STextBlock
 		Args.Add<float>("MinDesiredWidth", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<TOptional<ETextShapingMethod>>("TextShapingMethod", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<TOptional<ETextFlowDirection>>("TextFlowDirection", DTS::EArgType::SLATE_ARGUMENT);
-		//Args.Add<TSharedPtr<IBreakIterator>>("LineBreakPolicy", DTS::EArgType::SLATE_ARGUMENT);
-		//Args.Add<TOptional<ETextOverflowPolicy>>("OverflowPolicy", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<TSharedPtr<IBreakIterator>>("LineBreakPolicy", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<TOptional<ETextOverflowPolicy>>("OverflowPolicy", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<bool>("SimpleTextMode", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<FPointerEventHandler>("OnDoubleClicked", DTS::EArgType::SLATE_EVENT);
 		return Args;

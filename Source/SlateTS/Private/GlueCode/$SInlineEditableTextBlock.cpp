@@ -21,26 +21,26 @@ namespace $SInlineEditableTextBlock
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(Text);
-		$SLATE_STYLE_ARGUMENT(Style);
-		$SLATE_ATTRIBUTE(Font);
-		$SLATE_ATTRIBUTE(ColorAndOpacity);
-		$SLATE_ATTRIBUTE(ShadowOffset);
-		$SLATE_ATTRIBUTE(ShadowColorAndOpacity);
-		$SLATE_ATTRIBUTE(HighlightText);
-		$SLATE_ATTRIBUTE(WrapTextAt);
-		$SLATE_ATTRIBUTE(Justification);
-		$SLATE_ARGUMENT(LineBreakPolicy);
-		$SLATE_ATTRIBUTE(IsReadOnly);
-		$SLATE_ARGUMENT(MultiLine);
-		$SLATE_ARGUMENT(ModiferKeyForNewLine);
-		$SLATE_EVENT(OnBeginTextEdit);
-		$SLATE_EVENT(OnTextCommitted);
-		$SLATE_EVENT(OnEnterEditingMode);
-		$SLATE_EVENT(OnExitEditingMode);
-		$SLATE_EVENT(IsSelected);
-		$SLATE_EVENT(OnVerifyTextChanged);
-		$SLATE_ARGUMENT(OverflowPolicy);
+		$SLATE_ATTRIBUTE(FText, Text, );
+		$SLATE_STYLE_ARGUMENT(FInlineEditableTextBlockStyle, Style, FInlineEditableTextBlockStyle);
+		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
+		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, );
+		$SLATE_ATTRIBUTE(FVector2D, ShadowOffset, );
+		$SLATE_ATTRIBUTE(FLinearColor, ShadowColorAndOpacity, );
+		$SLATE_ATTRIBUTE(FText, HighlightText, );
+		$SLATE_ATTRIBUTE(float, WrapTextAt, );
+		$SLATE_ATTRIBUTE(ETextJustify::Type, Justification, );
+		$SLATE_ARGUMENT(TSharedPtr<IBreakIterator>, LineBreakPolicy, );
+		$SLATE_ATTRIBUTE(bool, IsReadOnly, );
+		$SLATE_ARGUMENT(bool, MultiLine, );
+		$SLATE_ARGUMENT(EModifierKey::Type, ModiferKeyForNewLine, );
+		$SLATE_EVENT(FOnBeginTextEdit, OnBeginTextEdit, );
+		$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
+		$SLATE_EVENT(FSimpleDelegate, OnEnterEditingMode, );
+		$SLATE_EVENT(FSimpleDelegate, OnExitEditingMode, );
+		$SLATE_EVENT(FIsSelected, IsSelected, );
+		$SLATE_EVENT(FOnVerifyTextChanged, OnVerifyTextChanged, );
+		$SLATE_ARGUMENT(TOptional<ETextOverflowPolicy>, OverflowPolicy, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

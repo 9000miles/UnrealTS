@@ -21,17 +21,17 @@ namespace $SVirtualKeyboardEntry
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(Text);
-		$SLATE_ATTRIBUTE(HintText);
-		$SLATE_ATTRIBUTE(Font);
-		$SLATE_ATTRIBUTE(ColorAndOpacity);
-		$SLATE_ATTRIBUTE(IsReadOnly);
-		$SLATE_ATTRIBUTE(ClearKeyboardFocusOnCommit);
-		$SLATE_EVENT(OnTextChanged);
-		$SLATE_EVENT(OnTextCommitted);
-		$SLATE_ATTRIBUTE(MinDesiredWidth);
-		$SLATE_ATTRIBUTE(KeyboardType);
-		$SLATE_ARGUMENT(VirtualKeyboardOptions);
+		$SLATE_ATTRIBUTE(FText, Text, );
+		$SLATE_ATTRIBUTE(FText, HintText, );
+		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
+		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, );
+		$SLATE_ATTRIBUTE(bool, IsReadOnly, );
+		$SLATE_ATTRIBUTE(bool, ClearKeyboardFocusOnCommit, );
+		$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
+		$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
+		$SLATE_ATTRIBUTE(float, MinDesiredWidth, );
+		$SLATE_ATTRIBUTE(EKeyboardType, KeyboardType, );
+		$SLATE_ARGUMENT(FVirtualKeyboardOptions, VirtualKeyboardOptions, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

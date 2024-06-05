@@ -21,29 +21,29 @@ namespace $SHeaderRow
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT(ColumnId);
-		$SLATE_ATTRIBUTE(DefaultLabel);
-		$SLATE_ATTRIBUTE(DefaultTooltip);
-		$SLATE_ATTRIBUTE(ToolTip);
-		$SLATE_ATTRIBUTE(FillWidth);
-		$SLATE_ARGUMENT(FixedWidth);
-		$SLATE_ATTRIBUTE(ManualWidth);
-		$SLATE_ARGUMENT(FillSized);
-		$SLATE_EVENT(OnWidthChanged);
-		$SLATE_DEFAULT_SLOT(HeaderContent);
-		$SLATE_ARGUMENT(HAlignHeader);
-		$SLATE_ARGUMENT(VAlignHeader);
-		$SLATE_ARGUMENT(HeaderContentPadding);
-		$SLATE_ARGUMENT(HeaderComboVisibility);
-		$SLATE_NAMED_SLOT(MenuContent);
-		$SLATE_EVENT(OnGetMenuContent);
-		$SLATE_ARGUMENT(HAlignCell);
-		$SLATE_ARGUMENT(VAlignCell);
-		$SLATE_ATTRIBUTE(InitialSortMode);
-		$SLATE_ATTRIBUTE(SortMode);
-		$SLATE_ATTRIBUTE(SortPriority);
-		$SLATE_EVENT(OnSort);
-		$SLATE_ATTRIBUTE(ShouldGenerateWidget);
+		$SLATE_ARGUMENT(FName, ColumnId, );
+		$SLATE_ATTRIBUTE(FText, DefaultLabel, );
+		$SLATE_ATTRIBUTE(FText, DefaultTooltip, );
+		$SLATE_ATTRIBUTE(TSharedPtr< IToolTip >, ToolTip, );
+		$SLATE_ATTRIBUTE(float, FillWidth, );
+		$SLATE_ARGUMENT(TOptional< float >, FixedWidth, );
+		$SLATE_ATTRIBUTE(float, ManualWidth, );
+		$SLATE_ARGUMENT(TOptional< float >, FillSized, );
+		$SLATE_EVENT(FOnWidthChanged, OnWidthChanged, );
+		$SLATE_DEFAULT_SLOT(FArguments, HeaderContent, );
+		$SLATE_ARGUMENT(EHorizontalAlignment, HAlignHeader, );
+		$SLATE_ARGUMENT(EVerticalAlignment, VAlignHeader, );
+		$SLATE_ARGUMENT(TOptional< FMargin >, HeaderContentPadding, );
+		$SLATE_ARGUMENT(EHeaderComboVisibility, HeaderComboVisibility, );
+		$SLATE_NAMED_SLOT(FArguments, MenuContent, );
+		$SLATE_EVENT(FOnGetContent, OnGetMenuContent, );
+		$SLATE_ARGUMENT(EHorizontalAlignment, HAlignCell, );
+		$SLATE_ARGUMENT(EVerticalAlignment, VAlignCell, );
+		$SLATE_ATTRIBUTE(EColumnSortMode::Type, InitialSortMode, );
+		$SLATE_ATTRIBUTE(EColumnSortMode::Type, SortMode, );
+		$SLATE_ATTRIBUTE(EColumnSortPriority::Type, SortPriority, );
+		$SLATE_EVENT(FOnSortModeChanged, OnSort, );
+		$SLATE_ATTRIBUTE(bool, ShouldGenerateWidget, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

@@ -21,10 +21,10 @@ namespace $SSpinningImage
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(Image);
-		$SLATE_ATTRIBUTE(ColorAndOpacity);
-		$SLATE_EVENT(OnMouseButtonDown);
-		$SLATE_ARGUMENT(Period);
+		$SLATE_ATTRIBUTE(const FSlateBrush*, Image, );
+		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, );
+		$SLATE_EVENT(FPointerEventHandler, OnMouseButtonDown, );
+		$SLATE_ARGUMENT(float, Period, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

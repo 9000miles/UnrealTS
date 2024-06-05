@@ -21,12 +21,12 @@ namespace $SListPanel
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_SLOT_ARGUMENT(Slots);
-		$SLATE_ATTRIBUTE(ItemWidth);
-		$SLATE_ATTRIBUTE(ItemHeight);
-		$SLATE_ATTRIBUTE(NumDesiredItems);
-		$SLATE_ATTRIBUTE(ItemAlignment);
-		$SLATE_ARGUMENT(ListOrientation);
+		$SLATE_SLOT_ARGUMENT(FSlot, Slots, );
+		$SLATE_ATTRIBUTE(float, ItemWidth, );
+		$SLATE_ATTRIBUTE(float, ItemHeight, );
+		$SLATE_ATTRIBUTE(int32, NumDesiredItems, );
+		$SLATE_ATTRIBUTE(EListItemAlignment, ItemAlignment, );
+		$SLATE_ARGUMENT(EOrientation, ListOrientation, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

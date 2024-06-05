@@ -21,12 +21,12 @@ namespace $SFrameRateEntryBox
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(Value);
-		$SLATE_EVENT(OnValueChanged);
-		$SLATE_ATTRIBUTE(HasMultipleValues);
-		$SLATE_STYLE_ARGUMENT(Style);
-		$SLATE_ATTRIBUTE(Font);
-		$SLATE_ATTRIBUTE(ForegroundColor);
+		$SLATE_ATTRIBUTE(FFrameRate, Value, );
+		$SLATE_EVENT(FOnValueChanged, OnValueChanged, );
+		$SLATE_ATTRIBUTE(bool, HasMultipleValues, );
+		$SLATE_STYLE_ARGUMENT(FEditableTextBoxStyle, Style, FEditableTextBoxStyle);
+		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
+		$SLATE_ATTRIBUTE(FSlateColor, ForegroundColor, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

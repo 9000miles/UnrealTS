@@ -21,13 +21,13 @@ namespace $SRadialBox
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_SLOT_ARGUMENT(Slots);
-		$SLATE_ATTRIBUTE(PreferredWidth);
-		$SLATE_ARGUMENT(UseAllottedWidth);
-		$SLATE_ARGUMENT(StartingAngle);
-		$SLATE_ARGUMENT(bDistributeItemsEvenly);
-		$SLATE_ARGUMENT(AngleBetweenItems);
-		$SLATE_ARGUMENT(SectorCentralAngle);
+		$SLATE_SLOT_ARGUMENT(FSlot, Slots, );
+		$SLATE_ATTRIBUTE(float, PreferredWidth, );
+		$SLATE_ARGUMENT(bool, UseAllottedWidth, );
+		$SLATE_ARGUMENT(float, StartingAngle, );
+		$SLATE_ARGUMENT(bool, bDistributeItemsEvenly, );
+		$SLATE_ARGUMENT(float, AngleBetweenItems, );
+		$SLATE_ARGUMENT(float, SectorCentralAngle, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

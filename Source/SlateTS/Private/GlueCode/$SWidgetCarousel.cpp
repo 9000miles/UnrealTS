@@ -21,15 +21,15 @@ namespace $SWidgetCarousel
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_EVENT(OnGenerateWidget);
-		$SLATE_EVENT(OnPageChanged);
-		$SLATE_ARGUMENT(WidgetItemsSource);
-		$SLATE_ATTRIBUTE(MoveSpeed);
-		$SLATE_ATTRIBUTE(SlideValueLeftLimit);
-		$SLATE_ATTRIBUTE(SlideValueRightLimit);
-		$SLATE_ATTRIBUTE(PeakValueLeftLimit);
-		$SLATE_ATTRIBUTE(PeakValueRightLimit);
-		$SLATE_ATTRIBUTE(FadeRate);
+		$SLATE_EVENT(FOnGenerateWidget, OnGenerateWidget, );
+		$SLATE_EVENT(FOnCarouselPageChanged, OnPageChanged, );
+		$SLATE_ARGUMENT(const TArray<ItemType>*, WidgetItemsSource, );
+		$SLATE_ATTRIBUTE(float, MoveSpeed, );
+		$SLATE_ATTRIBUTE(float, SlideValueLeftLimit, );
+		$SLATE_ATTRIBUTE(float, SlideValueRightLimit, );
+		$SLATE_ATTRIBUTE(float, PeakValueLeftLimit, );
+		$SLATE_ATTRIBUTE(float, PeakValueRightLimit, );
+		$SLATE_ATTRIBUTE(float, FadeRate, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

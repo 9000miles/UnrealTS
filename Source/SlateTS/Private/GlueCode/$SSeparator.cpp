@@ -21,10 +21,10 @@ namespace $SSeparator
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT(SeparatorImage);
-		$SLATE_ARGUMENT(Orientation);
-		$SLATE_ARGUMENT(Thickness);
-		$SLATE_ATTRIBUTE(ColorAndOpacity);
+		$SLATE_ARGUMENT(const FSlateBrush*, SeparatorImage, );
+		$SLATE_ARGUMENT(EOrientation, Orientation, );
+		$SLATE_ARGUMENT(float, Thickness, );
+		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

@@ -22,22 +22,22 @@ namespace $SColorGradingPicker
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT(ValueMin);
-		$SLATE_ARGUMENT(ValueMax);
-		$SLATE_ARGUMENT(SliderValueMin);
-		$SLATE_ARGUMENT(SliderValueMax);
-		$SLATE_ATTRIBUTE(AllowSpin);
-		$SLATE_ATTRIBUTE(SupportDynamicSliderMaxValue);
-		$SLATE_ATTRIBUTE(SupportDynamicSliderMinValue);
-		$SLATE_ARGUMENT(MainDelta);
-		$SLATE_ARGUMENT(MainShiftMouseMovePixelPerDelta);
-		$SLATE_ARGUMENT(ColorGradingModes);
-		$SLATE_EVENT(OnColorCommitted);
-		$SLATE_EVENT(OnQueryCurrentColor);
-		$SLATE_EVENT(OnBeginSliderMovement);
-		$SLATE_EVENT(OnEndSliderMovement);
-		$SLATE_EVENT(OnBeginMouseCapture);
-		$SLATE_EVENT(OnEndMouseCapture);
+		$SLATE_ARGUMENT(TOptional<float>, ValueMin, );
+		$SLATE_ARGUMENT(TOptional<float>, ValueMax, );
+		$SLATE_ARGUMENT(TOptional<float>, SliderValueMin, );
+		$SLATE_ARGUMENT(TOptional<float>, SliderValueMax, );
+		$SLATE_ATTRIBUTE(bool, AllowSpin, );
+		$SLATE_ATTRIBUTE(bool, SupportDynamicSliderMaxValue, );
+		$SLATE_ATTRIBUTE(bool, SupportDynamicSliderMinValue, );
+		$SLATE_ARGUMENT(float, MainDelta, );
+		$SLATE_ARGUMENT(int32, MainShiftMouseMovePixelPerDelta, );
+		$SLATE_ARGUMENT(EColorGradingModes, ColorGradingModes, );
+		$SLATE_EVENT(FOnColorGradingPickerValueChanged, OnColorCommitted, );
+		$SLATE_EVENT(FOnGetCurrentVector4Value, OnQueryCurrentColor, );
+		$SLATE_EVENT(FSimpleDelegate, OnBeginSliderMovement, );
+		$SLATE_EVENT(FSimpleDelegate, OnEndSliderMovement, );
+		$SLATE_EVENT(FSimpleDelegate, OnBeginMouseCapture, );
+		$SLATE_EVENT(FSimpleDelegate, OnEndMouseCapture, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

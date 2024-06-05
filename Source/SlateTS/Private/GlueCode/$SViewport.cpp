@@ -21,17 +21,17 @@ namespace $SViewport
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_DEFAULT_SLOT(Content);
-		$SLATE_ATTRIBUTE(ShowEffectWhenDisabled);
-		$SLATE_ARGUMENT(RenderDirectlyToWindow);
-		$SLATE_ARGUMENT(EnableGammaCorrection);
-		$SLATE_ARGUMENT(ReverseGammaCorrection);
-		$SLATE_ARGUMENT(EnableBlending);
-		$SLATE_ARGUMENT(EnableStereoRendering);
-		$SLATE_ARGUMENT(PreMultipliedAlpha);
-		$SLATE_ARGUMENT(IgnoreTextureAlpha);
-		$SLATE_ARGUMENT(ViewportInterface);
-		$SLATE_ATTRIBUTE(ViewportSize);
+		$SLATE_DEFAULT_SLOT(FArguments, Content, );
+		$SLATE_ATTRIBUTE(bool, ShowEffectWhenDisabled, );
+		$SLATE_ARGUMENT(bool, RenderDirectlyToWindow, );
+		$SLATE_ARGUMENT(bool, EnableGammaCorrection, );
+		$SLATE_ARGUMENT(bool, ReverseGammaCorrection, );
+		$SLATE_ARGUMENT(bool, EnableBlending, );
+		$SLATE_ARGUMENT(bool, EnableStereoRendering, );
+		$SLATE_ARGUMENT(bool, PreMultipliedAlpha, );
+		$SLATE_ARGUMENT(bool, IgnoreTextureAlpha, );
+		$SLATE_ARGUMENT(TSharedPtr<ISlateViewport>, ViewportInterface, );
+		$SLATE_ATTRIBUTE(FVector2D, ViewportSize, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

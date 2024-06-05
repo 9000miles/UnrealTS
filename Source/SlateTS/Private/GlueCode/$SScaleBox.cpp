@@ -21,14 +21,14 @@ namespace $SScaleBox
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_DEFAULT_SLOT(Content);
-		$SLATE_ARGUMENT(HAlign);
-		$SLATE_ARGUMENT(VAlign);
-		$SLATE_ATTRIBUTE(StretchDirection);
-		$SLATE_ATTRIBUTE(Stretch);
-		$SLATE_ATTRIBUTE(UserSpecifiedScale);
-		$SLATE_ATTRIBUTE(IgnoreInheritedScale);
-		$SLATE_ARGUMENT(OverrideScreenSize);
+		$SLATE_DEFAULT_SLOT(FArguments, Content, );
+		$SLATE_ARGUMENT(EHorizontalAlignment, HAlign, );
+		$SLATE_ARGUMENT(EVerticalAlignment, VAlign, );
+		$SLATE_ATTRIBUTE(EStretchDirection::Type, StretchDirection, );
+		$SLATE_ATTRIBUTE(EStretch::Type, Stretch, );
+		$SLATE_ATTRIBUTE(float, UserSpecifiedScale, );
+		$SLATE_ATTRIBUTE(bool, IgnoreInheritedScale, );
+		$SLATE_ARGUMENT(TOptional<FVector2D>, OverrideScreenSize, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

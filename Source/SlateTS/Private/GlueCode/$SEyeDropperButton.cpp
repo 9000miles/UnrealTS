@@ -21,10 +21,10 @@ namespace $SEyeDropperButton
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_EVENT(OnValueChanged);
-		$SLATE_EVENT(OnBegin);
-		$SLATE_EVENT(OnComplete);
-		$SLATE_ATTRIBUTE(DisplayGamma);
+		$SLATE_EVENT(FOnLinearColorValueChanged, OnValueChanged, );
+		$SLATE_EVENT(FSimpleDelegate, OnBegin, );
+		$SLATE_EVENT(FOnDropperComplete, OnComplete, );
+		$SLATE_ATTRIBUTE(float, DisplayGamma, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

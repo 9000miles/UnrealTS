@@ -21,24 +21,24 @@ namespace $SSlider
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(IndentHandle);
-		$SLATE_ARGUMENT(MouseUsesStep);
-		$SLATE_ARGUMENT(RequiresControllerLock);
-		$SLATE_ATTRIBUTE(Locked);
-		$SLATE_ARGUMENT(Orientation);
-		$SLATE_ATTRIBUTE(SliderBarColor);
-		$SLATE_ATTRIBUTE(SliderHandleColor);
-		$SLATE_STYLE_ARGUMENT(Style);
-		$SLATE_ATTRIBUTE(StepSize);
-		$SLATE_ATTRIBUTE(Value);
-		$SLATE_ARGUMENT(MinValue);
-		$SLATE_ARGUMENT(MaxValue);
-		$SLATE_ARGUMENT(IsFocusable);
-		$SLATE_EVENT(OnMouseCaptureBegin);
-		$SLATE_EVENT(OnMouseCaptureEnd);
-		$SLATE_EVENT(OnControllerCaptureBegin);
-		$SLATE_EVENT(OnControllerCaptureEnd);
-		$SLATE_EVENT(OnValueChanged);
+		$SLATE_ATTRIBUTE(bool, IndentHandle, );
+		$SLATE_ARGUMENT(bool, MouseUsesStep, );
+		$SLATE_ARGUMENT(bool, RequiresControllerLock, );
+		$SLATE_ATTRIBUTE(bool, Locked, );
+		$SLATE_ARGUMENT(EOrientation, Orientation, );
+		$SLATE_ATTRIBUTE(FSlateColor, SliderBarColor, );
+		$SLATE_ATTRIBUTE(FSlateColor, SliderHandleColor, );
+		$SLATE_STYLE_ARGUMENT(FSliderStyle, Style, FSliderStyle);
+		$SLATE_ATTRIBUTE(float, StepSize, );
+		$SLATE_ATTRIBUTE(float, Value, );
+		$SLATE_ARGUMENT(float, MinValue, );
+		$SLATE_ARGUMENT(float, MaxValue, );
+		$SLATE_ARGUMENT(bool, IsFocusable, );
+		$SLATE_EVENT(FSimpleDelegate, OnMouseCaptureBegin, );
+		$SLATE_EVENT(FSimpleDelegate, OnMouseCaptureEnd, );
+		$SLATE_EVENT(FSimpleDelegate, OnControllerCaptureBegin, );
+		$SLATE_EVENT(FSimpleDelegate, OnControllerCaptureEnd, );
+		$SLATE_EVENT(FOnFloatValueChanged, OnValueChanged, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

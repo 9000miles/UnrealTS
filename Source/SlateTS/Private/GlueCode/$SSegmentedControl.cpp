@@ -21,18 +21,18 @@ namespace $SSegmentedControl
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_SLOT_ARGUMENT(Slots);
-		$SLATE_STYLE_ARGUMENT(Style);
-		$SLATE_STYLE_ARGUMENT(TextStyle);
-		$SLATE_ARGUMENT(SupportsMultiSelection);
-		$SLATE_ARGUMENT(SupportsEmptySelection);
-		$SLATE_ATTRIBUTE(Value);
-		$SLATE_ATTRIBUTE(Values);
-		$SLATE_ATTRIBUTE(UniformPadding);
-		$SLATE_EVENT(OnValueChanged);
-		$SLATE_EVENT(OnValuesChanged);
-		$SLATE_EVENT(OnValueChecked);
-		$SLATE_ARGUMENT(MaxSegmentsPerLine);
+		$SLATE_SLOT_ARGUMENT(FSlot, Slots, );
+		$SLATE_STYLE_ARGUMENT(FSegmentedControlStyle, Style, FSegmentedControlStyle);
+		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, );
+		$SLATE_ARGUMENT(bool, SupportsMultiSelection, );
+		$SLATE_ARGUMENT(bool, SupportsEmptySelection, );
+		$SLATE_ATTRIBUTE(OptionType, Value, );
+		$SLATE_ATTRIBUTE(TArray<OptionType>, Values, );
+		$SLATE_ATTRIBUTE(FMargin, UniformPadding, );
+		$SLATE_EVENT(FOnValueChanged, OnValueChanged, );
+		$SLATE_EVENT(FOnValuesChanged, OnValuesChanged, );
+		$SLATE_EVENT(FOnValueChecked, OnValueChecked, );
+		$SLATE_ARGUMENT(int32, MaxSegmentsPerLine, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

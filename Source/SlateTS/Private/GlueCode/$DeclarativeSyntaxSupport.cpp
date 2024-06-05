@@ -21,8 +21,8 @@ namespace $SMyWidget
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(PreferredWidth);
-		$SLATE_ATTRIBUTE(ForegroundColor);
+		$SLATE_ATTRIBUTE(float, PreferredWidth, );
+		$SLATE_ATTRIBUTE(FSlateColor, ForegroundColor, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

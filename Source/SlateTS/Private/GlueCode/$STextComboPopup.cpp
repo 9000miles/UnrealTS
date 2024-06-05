@@ -21,10 +21,10 @@ namespace $STextComboPopup
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT(Label);
-		$SLATE_ARGUMENT(TextOptions);
-		$SLATE_EVENT(OnTextChosen);
-		$SLATE_ARGUMENT(AutoFocus);
+		$SLATE_ARGUMENT(FText, Label, );
+		$SLATE_ARGUMENT(TArray<FString>, TextOptions, );
+		$SLATE_EVENT(FOnTextChosen, OnTextChosen, );
+		$SLATE_ARGUMENT(bool, AutoFocus, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

@@ -21,10 +21,10 @@ namespace $SScrollBarTrack
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_NAMED_SLOT(TopSlot);
-		$SLATE_NAMED_SLOT(ThumbSlot);
-		$SLATE_NAMED_SLOT(BottomSlot);
-		$SLATE_ARGUMENT(Orientation);
+		$SLATE_NAMED_SLOT(FArguments, TopSlot, );
+		$SLATE_NAMED_SLOT(FArguments, ThumbSlot, );
+		$SLATE_NAMED_SLOT(FArguments, BottomSlot, );
+		$SLATE_ARGUMENT(EOrientation, Orientation, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

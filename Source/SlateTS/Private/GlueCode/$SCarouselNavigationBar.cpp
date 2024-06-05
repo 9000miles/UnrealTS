@@ -22,11 +22,11 @@ namespace $SCarouselNavigationBar
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_STYLE_ARGUMENT(Style);
-		$SLATE_EVENT(OnSelectedIndexChanged);
-		$SLATE_ARGUMENT(ItemCount);
-		$SLATE_ATTRIBUTE(CurrentItemIndex);
-		$SLATE_ATTRIBUTE(CurrentSlideAmount);
+		$SLATE_STYLE_ARGUMENT(FWidgetCarouselNavigationBarStyle, Style, );
+		$SLATE_EVENT(FOnSelectedIndexChanged, OnSelectedIndexChanged, );
+		$SLATE_ARGUMENT(int32, ItemCount, );
+		$SLATE_ATTRIBUTE(int32, CurrentItemIndex, );
+		$SLATE_ATTRIBUTE(float, CurrentSlideAmount, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

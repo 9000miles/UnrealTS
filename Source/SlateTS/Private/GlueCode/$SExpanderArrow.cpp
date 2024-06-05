@@ -21,10 +21,10 @@ namespace $SExpanderArrow
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT(StyleSet);
-		$SLATE_ATTRIBUTE(IndentAmount);
-		$SLATE_ATTRIBUTE(BaseIndentLevel);
-		$SLATE_ATTRIBUTE(ShouldDrawWires);
+		$SLATE_ARGUMENT(const ISlateStyle*, StyleSet, );
+		$SLATE_ATTRIBUTE(float, IndentAmount, );
+		$SLATE_ATTRIBUTE(int32, BaseIndentLevel, );
+		$SLATE_ATTRIBUTE(bool, ShouldDrawWires, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

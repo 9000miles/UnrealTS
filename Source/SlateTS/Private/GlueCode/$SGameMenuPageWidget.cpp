@@ -21,9 +21,9 @@ namespace $SGameMenuPageWidget
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_STYLE_ARGUMENT(MenuStyle);
-		$SLATE_ARGUMENT(PCOwner);
-		$SLATE_ARGUMENT(GameMenu);
+		$SLATE_STYLE_ARGUMENT(FGameMenuStyle, MenuStyle, );
+		$SLATE_ARGUMENT(TWeakObjectPtr<APlayerController>, PCOwner, );
+		$SLATE_ARGUMENT(bool, GameMenu, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

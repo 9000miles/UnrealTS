@@ -4,18 +4,15 @@
 #include "V8Utils.h"
 #include "Converter.hpp"
 
-#define $SLATE_ARGUMENT(Name)\
-$Arguments__SLATE_ARGUMENT::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
-
-#define $SLATE_ARGUMENT_WITH_TYPE(Name, Type);\
-$Arguments__SLATE_ARGUMENT::Set_##Name##Type(Arguments, Isolate, JsObject, #Name, "")
+#define $SLATE_ARGUMENT(Type, Name, Tag)\
+$SLATE_ARGUMENT$::Set_##Name##_##Tag(Arguments, Isolate, JsObject, #Name)
 
 /** ======================= SLATE_ARGUMENT ======================= **/
-namespace $Arguments__SLATE_ARGUMENT
+namespace $SLATE_ARGUMENT$
 {
-#define SET_SLATE_ARUMENT(Name, Type, ArgType)\
+#define SET_SLATE_ARUMENT(Type, Name, Tag)\
 	template<typename TArgumentType>\
-	void Set_##Name##ArgType(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "")\
+	void Set_##Name##_##Tag(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName)\
 	{\
 		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();\
 		const bool bHas = JsObject->Has(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).FromMaybe(false);\
@@ -29,52 +26,52 @@ namespace $Arguments__SLATE_ARGUMENT
 	}
 
 	//支持TOptional<ESlateCheckBoxType::, Type>
-	SET_SLATE_ARUMENT(Type, ESlateCheckBoxType::Type, );
-	SET_SLATE_ARUMENT(TextShapingMethod, ETextShapingMethod, );
-	SET_SLATE_ARUMENT(TextFlowDirection, ETextFlowDirection, );
-	//SET_SLATE_ARUMENT(LineBreakPolicy, TSharedPtr<, IBreakIterator>);
-	SET_SLATE_ARUMENT(OverflowPolicy, ETextOverflowPolicy, );
-	SET_SLATE_ARUMENT(SimpleTextMode, bool, );
-	//SET_SLATE_ARUMENT(ButtonStyle, , FButtonStyle*);
-	SET_SLATE_ARUMENT(HAlign, EHorizontalAlignment, );
-	SET_SLATE_ARUMENT(VAlign, EVerticalAlignment, );
-	SET_SLATE_ARUMENT(ContentPadding, FMargin, );
-	SET_SLATE_ARUMENT(Padding, FMargin, );
-	SET_SLATE_ARUMENT(ClickMethod, EButtonClickMethod::Type, );
-	SET_SLATE_ARUMENT(TouchMethod, EButtonTouchMethod::Type, );
-	SET_SLATE_ARUMENT(PressMethod, EButtonPressMethod::Type, );
-	SET_SLATE_ARUMENT(IsFocusable, bool, );
-	SET_SLATE_ARUMENT(PressedSoundOverride, FSlateSound, );
-	SET_SLATE_ARUMENT(HoveredSoundOverride, FSlateSound, );
-	SET_SLATE_ARUMENT(UncheckedSoundOverride, FSlateSound, );
-	SET_SLATE_ARUMENT(CheckedSoundOverride, FSlateSound, );
-	SET_SLATE_ARUMENT(CheckBoxContentUsesAutoWidth, bool, );
-	SET_SLATE_ARUMENT(UncheckedImage, const FSlateBrush*, );
-	SET_SLATE_ARUMENT(UncheckedHoveredImage, const FSlateBrush*, );
-	SET_SLATE_ARUMENT(UncheckedPressedImage, const FSlateBrush*, );
-	SET_SLATE_ARUMENT(CheckedImage, const FSlateBrush*, );
-	SET_SLATE_ARUMENT(CheckedHoveredImage, const FSlateBrush*, );
-	SET_SLATE_ARUMENT(CheckedPressedImage, const FSlateBrush*, );
-	SET_SLATE_ARUMENT(UndeterminedImage, const FSlateBrush*, );
-	SET_SLATE_ARUMENT(UndeterminedHoveredImage, const FSlateBrush*, );
-	SET_SLATE_ARUMENT(UndeterminedPressedImage, const FSlateBrush*, );
-	SET_SLATE_ARUMENT(BackgroundImage, const FSlateBrush*, );
-	SET_SLATE_ARUMENT(BackgroundHoveredImage, const FSlateBrush*, );
-	SET_SLATE_ARUMENT(BackgroundPressedImage, const FSlateBrush*, );
-	SET_SLATE_ARUMENT(FlipForRightToLeftFlowDirection, bool, );
-	SET_SLATE_ARUMENT(HasDownArrow, bool, );
-	SET_SLATE_ARUMENT(Method, EPopupMethod, );
-	SET_SLATE_ARUMENT(CollapseMenuOnParentFocus, bool, );
-	SET_SLATE_ARUMENT(Placement, EMenuPlacement, );
-	SET_SLATE_ARUMENT(FitInWindow, bool, );
-	SET_SLATE_ARUMENT(ShouldDeferPaintingAfterWindowContent, bool, );
-	SET_SLATE_ARUMENT(UseApplicationMenuStack, bool, );
-	SET_SLATE_ARUMENT(IsCollapsedByParent, bool, );
-	SET_SLATE_ARUMENT(ApplyWidgetStyleToMenu, bool, );
-	SET_SLATE_ARUMENT(MenuContent, TSharedPtr<SWidget>, );
-	SET_SLATE_ARUMENT(InitiallyCollapsed, bool, );
-	SET_SLATE_ARUMENT(MinWidth, float, );
-	SET_SLATE_ARUMENT(MaxHeight, float, );
-	SET_SLATE_ARUMENT(AllowAnimatedTransition, bool, );
-	SET_SLATE_ARUMENT(BodyBorderImage, const FSlateBrush*, );
+	SET_SLATE_ARUMENT(ESlateCheckBoxType::Type, Type, );
+	SET_SLATE_ARUMENT(ETextShapingMethod, TextShapingMethod, );
+	SET_SLATE_ARUMENT(ETextFlowDirection, TextFlowDirection, );
+	//SET_SLATE_ARUMENTineBreakPolicy, TSharedPtr<,(, IBreakIterator>);
+	SET_SLATE_ARUMENT(ETextOverflowPolicy, OverflowPolicy, );
+	SET_SLATE_ARUMENT(bool, SimpleTextMode, );
+	//SET_SLATE_ARUMENTuttonStyle, ,(, FButtonStyle*);
+	SET_SLATE_ARUMENT(EHorizontalAlignment, HAlign, );
+	SET_SLATE_ARUMENT(EVerticalAlignment, VAlign, );
+	SET_SLATE_ARUMENT(FMargin, ContentPadding, );
+	SET_SLATE_ARUMENT(FMargin, Padding, );
+	SET_SLATE_ARUMENT(EButtonClickMethod::Type, ClickMethod, );
+	SET_SLATE_ARUMENT(EButtonTouchMethod::Type, TouchMethod, );
+	SET_SLATE_ARUMENT(EButtonPressMethod::Type, PressMethod, );
+	SET_SLATE_ARUMENT(bool, IsFocusable, );
+	SET_SLATE_ARUMENT(FSlateSound, PressedSoundOverride, );
+	SET_SLATE_ARUMENT(FSlateSound, HoveredSoundOverride, );
+	SET_SLATE_ARUMENT(FSlateSound, UncheckedSoundOverride, );
+	SET_SLATE_ARUMENT(FSlateSound, CheckedSoundOverride, );
+	SET_SLATE_ARUMENT(bool, CheckBoxContentUsesAutoWidth, );
+	SET_SLATE_ARUMENT(const FSlateBrush*, UncheckedImage, );
+	SET_SLATE_ARUMENT(const FSlateBrush*, UncheckedHoveredImage, );
+	SET_SLATE_ARUMENT(const FSlateBrush*, UncheckedPressedImage, );
+	SET_SLATE_ARUMENT(const FSlateBrush*, CheckedImage, );
+	SET_SLATE_ARUMENT(const FSlateBrush*, CheckedHoveredImage, );
+	SET_SLATE_ARUMENT(const FSlateBrush*, CheckedPressedImage, );
+	SET_SLATE_ARUMENT(const FSlateBrush*, UndeterminedImage, );
+	SET_SLATE_ARUMENT(const FSlateBrush*, UndeterminedHoveredImage, );
+	SET_SLATE_ARUMENT(const FSlateBrush*, UndeterminedPressedImage, );
+	SET_SLATE_ARUMENT(const FSlateBrush*, BackgroundImage, );
+	SET_SLATE_ARUMENT(const FSlateBrush*, BackgroundHoveredImage, );
+	SET_SLATE_ARUMENT(const FSlateBrush*, BackgroundPressedImage, );
+	SET_SLATE_ARUMENT(bool, FlipForRightToLeftFlowDirection, );
+	SET_SLATE_ARUMENT(bool, HasDownArrow, );
+	SET_SLATE_ARUMENT(EPopupMethod, Method, );
+	SET_SLATE_ARUMENT(bool, CollapseMenuOnParentFocus, );
+	SET_SLATE_ARUMENT(EMenuPlacement, Placement, );
+	SET_SLATE_ARUMENT(bool, FitInWindow, );
+	SET_SLATE_ARUMENT(bool, ShouldDeferPaintingAfterWindowContent, );
+	SET_SLATE_ARUMENT(bool, UseApplicationMenuStack, );
+	SET_SLATE_ARUMENT(bool, IsCollapsedByParent, );
+	SET_SLATE_ARUMENT(bool, ApplyWidgetStyleToMenu, );
+	SET_SLATE_ARUMENT(TSharedPtr<SWidget>, MenuContent, );
+	SET_SLATE_ARUMENT(bool, InitiallyCollapsed, );
+	SET_SLATE_ARUMENT(float, MinWidth, );
+	SET_SLATE_ARUMENT(float, MaxHeight, );
+	SET_SLATE_ARUMENT(bool, AllowAnimatedTransition, );
+	SET_SLATE_ARUMENT(const FSlateBrush*, BodyBorderImage, );
 }

@@ -22,15 +22,15 @@ namespace $SColorBlock
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(Color);
-		$SLATE_ATTRIBUTE(AlphaBackgroundBrush);
-		$SLATE_ATTRIBUTE(CornerRadius);
-		$SLATE_ATTRIBUTE(ColorIsHSV);
-		$SLATE_ATTRIBUTE(ShowBackgroundForAlpha);
-		$SLATE_ATTRIBUTE(UseSRGB);
-		$SLATE_ATTRIBUTE(AlphaDisplayMode);
-		$SLATE_ATTRIBUTE(Size);
-		$SLATE_EVENT(OnMouseButtonDown);
+		$SLATE_ATTRIBUTE(FLinearColor, Color, );
+		$SLATE_ATTRIBUTE(const FSlateBrush*, AlphaBackgroundBrush, );
+		$SLATE_ATTRIBUTE(FVector4, CornerRadius, );
+		$SLATE_ATTRIBUTE(bool, ColorIsHSV, );
+		$SLATE_ATTRIBUTE(bool, ShowBackgroundForAlpha, );
+		$SLATE_ATTRIBUTE(bool, UseSRGB, );
+		$SLATE_ATTRIBUTE(EColorBlockAlphaDisplayMode, AlphaDisplayMode, );
+		$SLATE_ATTRIBUTE(FVector2D, Size, );
+		$SLATE_EVENT(FPointerEventHandler, OnMouseButtonDown, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

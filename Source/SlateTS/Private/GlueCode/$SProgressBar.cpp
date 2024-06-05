@@ -21,16 +21,16 @@ namespace $SProgressBar
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_STYLE_ARGUMENT(Style);
-		$SLATE_ARGUMENT(BarFillType);
-		$SLATE_ARGUMENT(BarFillStyle);
-		$SLATE_ATTRIBUTE(Percent);
-		$SLATE_ATTRIBUTE(FillColorAndOpacity);
-		$SLATE_ATTRIBUTE(BorderPadding);
-		$SLATE_ARGUMENT(BackgroundImage);
-		$SLATE_ARGUMENT(FillImage);
-		$SLATE_ARGUMENT(MarqueeImage);
-		$SLATE_ARGUMENT(RefreshRate);
+		$SLATE_STYLE_ARGUMENT(FProgressBarStyle, Style, FProgressBarStyle);
+		$SLATE_ARGUMENT(EProgressBarFillType::Type, BarFillType, );
+		$SLATE_ARGUMENT(EProgressBarFillStyle::Type, BarFillStyle, );
+		$SLATE_ATTRIBUTE(TOptional<float>, Percent, );
+		$SLATE_ATTRIBUTE(FSlateColor, FillColorAndOpacity, );
+		$SLATE_ATTRIBUTE(FVector2D, BorderPadding, );
+		$SLATE_ARGUMENT(const FSlateBrush*, BackgroundImage, );
+		$SLATE_ARGUMENT(const FSlateBrush*, FillImage, );
+		$SLATE_ARGUMENT(const FSlateBrush*, MarqueeImage, );
+		$SLATE_ARGUMENT(float, RefreshRate, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

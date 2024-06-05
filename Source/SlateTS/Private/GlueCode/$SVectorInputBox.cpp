@@ -21,25 +21,25 @@ namespace $SNumericVectorInputBox
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(Vector);
-		$SLATE_ATTRIBUTE(MinVector);
-		$SLATE_ATTRIBUTE(MaxVector);
-		$SLATE_ATTRIBUTE(MinSliderVector);
-		$SLATE_ATTRIBUTE(MaxSliderVector);
-		$SLATE_EVENT(OnVectorChanged);
-		$SLATE_EVENT(OnVectorCommitted);
-		$SLATE_STYLE_ARGUMENT(EditableTextBoxStyle);
-		$SLATE_STYLE_ARGUMENT(SpinBoxStyle);
-		$SLATE_ATTRIBUTE(Font);
-		$SLATE_ARGUMENT(AllowSpin);
-		$SLATE_ATTRIBUTE(SpinDelta);
-		$SLATE_ARGUMENT(bColorAxisLabels);
-		$SLATE_EVENT(OnBeginSliderMovement);
-		$SLATE_EVENT(OnEndSliderMovement);
-		$SLATE_ARGUMENT(TypeInterface);
-		$SLATE_ARGUMENT(DisplayToggle);
-		$SLATE_ARGUMENT(TogglePadding);
-		$SLATE_ARGUMENT(ConstrainVector);
+		$SLATE_ATTRIBUTE(TOptional<VectorType>, Vector, );
+		$SLATE_ATTRIBUTE(TOptional<VectorType>, MinVector, );
+		$SLATE_ATTRIBUTE(TOptional<VectorType>, MaxVector, );
+		$SLATE_ATTRIBUTE(TOptional<VectorType>, MinSliderVector, );
+		$SLATE_ATTRIBUTE(TOptional<VectorType>, MaxSliderVector, );
+		$SLATE_EVENT(FOnVectorValueChanged, OnVectorChanged, );
+		$SLATE_EVENT(FOnVectorValueCommitted, OnVectorCommitted, );
+		$SLATE_STYLE_ARGUMENT(FEditableTextBoxStyle, EditableTextBoxStyle, );
+		$SLATE_STYLE_ARGUMENT(FSpinBoxStyle, SpinBoxStyle, );
+		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
+		$SLATE_ARGUMENT(bool, AllowSpin, );
+		$SLATE_ATTRIBUTE(NumericType, SpinDelta, );
+		$SLATE_ARGUMENT(bool, bColorAxisLabels, );
+		$SLATE_EVENT(FSimpleDelegate, OnBeginSliderMovement, );
+		$SLATE_EVENT(FOnNumericValueChanged, OnEndSliderMovement, );
+		$SLATE_ARGUMENT(TSharedPtr< INumericTypeInterface<NumericType> >, TypeInterface, );
+		$SLATE_ARGUMENT(bool, DisplayToggle, );
+		$SLATE_ARGUMENT(FMargin, TogglePadding, );
+		$SLATE_ARGUMENT(FOnConstrainVector, ConstrainVector, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

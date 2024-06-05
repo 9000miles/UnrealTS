@@ -21,11 +21,11 @@ namespace $SWindowTitleBarArea
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT(HAlign);
-		$SLATE_ARGUMENT(VAlign);
-		$SLATE_ATTRIBUTE(Padding);
-		$SLATE_DEFAULT_SLOT(Content);
-		$SLATE_EVENT(RequestToggleFullscreen);
+		$SLATE_ARGUMENT(EHorizontalAlignment, HAlign, );
+		$SLATE_ARGUMENT(EVerticalAlignment, VAlign, );
+		$SLATE_ATTRIBUTE(FMargin, Padding, );
+		$SLATE_DEFAULT_SLOT(FArguments, Content, );
+		$SLATE_EVENT(FSimpleDelegate, RequestToggleFullscreen, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

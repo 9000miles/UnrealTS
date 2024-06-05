@@ -21,20 +21,20 @@ namespace $SSearchBox
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_STYLE_ARGUMENT(Style);
-		$SLATE_ATTRIBUTE(HintText);
-		$SLATE_ATTRIBUTE(InitialText);
-		$SLATE_ATTRIBUTE(SearchResultData);
-		$SLATE_ATTRIBUTE(IsSearching);
-		$SLATE_EVENT(OnTextChanged);
-		$SLATE_EVENT(OnTextCommitted);
-		$SLATE_EVENT(OnSearch);
-		$SLATE_ATTRIBUTE(SelectAllTextWhenFocused);
-		$SLATE_ATTRIBUTE(MinDesiredWidth);
-		$SLATE_ATTRIBUTE(DelayChangeNotificationsWhileTyping);
-		$SLATE_ATTRIBUTE(DelayChangeNotificationsWhileTypingSeconds);
-		$SLATE_EVENT(OnKeyDownHandler);
-		$SLATE_EVENT(OnSearchGlassClicked);
+		$SLATE_STYLE_ARGUMENT(FSearchBoxStyle, Style, FSearchBoxStyle);
+		$SLATE_ATTRIBUTE(FText, HintText, );
+		$SLATE_ATTRIBUTE(FText, InitialText, );
+		$SLATE_ATTRIBUTE(TOptional<FSearchResultData>, SearchResultData, );
+		$SLATE_ATTRIBUTE(bool, IsSearching, );
+		$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
+		$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
+		$SLATE_EVENT(FOnSearch, OnSearch, );
+		$SLATE_ATTRIBUTE(bool, SelectAllTextWhenFocused, );
+		$SLATE_ATTRIBUTE(float, MinDesiredWidth, );
+		$SLATE_ATTRIBUTE(bool, DelayChangeNotificationsWhileTyping, );
+		$SLATE_ATTRIBUTE(float, DelayChangeNotificationsWhileTypingSeconds, );
+		$SLATE_EVENT(FOnKeyDown, OnKeyDownHandler, );
+		$SLATE_EVENT(FOnClicked, OnSearchGlassClicked, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

@@ -21,7 +21,7 @@ namespace $SWeakWidget
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT(PossiblyNullContent);
+		$SLATE_ARGUMENT(TSharedPtr<SWidget>, PossiblyNullContent, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

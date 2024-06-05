@@ -21,10 +21,10 @@ namespace $SFieldName
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT_DEFAULT(bShowIcon);
-		$SLATE_ARGUMENT_DEFAULT(bSanitizeName);
-		$SLATE_ARGUMENT(OverrideDisplayName);
-		$SLATE_ATTRIBUTE(HighlightText);
+		$SLATE_ARGUMENT_DEFAULT(bool, bShowIcon, );
+		$SLATE_ARGUMENT_DEFAULT(bool, bSanitizeName, );
+		$SLATE_ARGUMENT(TOptional<FText>, OverrideDisplayName, );
+		$SLATE_ATTRIBUTE(FText, HighlightText, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

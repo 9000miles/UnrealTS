@@ -21,16 +21,16 @@ namespace $STextComboBox
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_STYLE_ARGUMENT(ComboBoxStyle);
-		$SLATE_STYLE_ARGUMENT(ButtonStyle);
-		$SLATE_ARGUMENT(OptionsSource);
-		$SLATE_ATTRIBUTE(ColorAndOpacity);
-		$SLATE_ATTRIBUTE(Font);
-		$SLATE_ATTRIBUTE(ContentPadding);
-		$SLATE_EVENT(OnSelectionChanged);
-		$SLATE_EVENT(OnComboBoxOpening);
-		$SLATE_ARGUMENT(InitiallySelectedItem);
-		$SLATE_EVENT(OnGetTextLabelForItem);
+		$SLATE_STYLE_ARGUMENT(FComboBoxStyle, ComboBoxStyle, );
+		$SLATE_STYLE_ARGUMENT(FButtonStyle, ButtonStyle, );
+		$SLATE_ARGUMENT(TArray< TSharedPtr<FString> >*, OptionsSource, );
+		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, );
+		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
+		$SLATE_ATTRIBUTE(FMargin, ContentPadding, );
+		$SLATE_EVENT(FOnTextSelectionChanged, OnSelectionChanged, );
+		$SLATE_EVENT(FOnComboBoxOpening, OnComboBoxOpening, );
+		$SLATE_ARGUMENT(TSharedPtr<FString>, InitiallySelectedItem, );
+		$SLATE_EVENT(FGetTextComboLabel, OnGetTextLabelForItem, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

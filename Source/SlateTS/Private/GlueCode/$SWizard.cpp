@@ -21,12 +21,12 @@ namespace $SWizard
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_NAMED_SLOT(ButtonContent);
-		$SLATE_ATTRIBUTE(Name);
-		$SLATE_ATTRIBUTE(CanShow);
-		$SLATE_EVENT(OnEnter);
-		$SLATE_EVENT(OnLeave);
-		$SLATE_DEFAULT_SLOT(PageContent);
+		$SLATE_NAMED_SLOT(FArguments, ButtonContent, );
+		$SLATE_ATTRIBUTE(FText, Name, );
+		$SLATE_ATTRIBUTE(bool, CanShow, );
+		$SLATE_EVENT(FSimpleDelegate, OnEnter, );
+		$SLATE_EVENT(FSimpleDelegate, OnLeave, );
+		$SLATE_DEFAULT_SLOT(FArguments, PageContent, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

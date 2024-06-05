@@ -21,26 +21,26 @@ namespace $SScrollBox
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_SLOT_ARGUMENT(Slots);
-		$SLATE_STYLE_ARGUMENT(Style);
-		$SLATE_STYLE_ARGUMENT(ScrollBarStyle);
-		$SLATE_ARGUMENT(ExternalScrollbar);
-		$SLATE_ARGUMENT(Orientation);
-		$SLATE_ARGUMENT(ScrollBarVisibility);
-		$SLATE_ARGUMENT(ScrollBarAlwaysVisible);
-		$SLATE_ARGUMENT(ScrollBarDragFocusCause);
-		$SLATE_ARGUMENT(ScrollBarThickness);
-		$SLATE_ARGUMENT(ScrollBarPadding);
-		$SLATE_ARGUMENT(AllowOverscroll);
-		$SLATE_ARGUMENT(BackPadScrolling);
-		$SLATE_ARGUMENT(FrontPadScrolling);
-		$SLATE_ARGUMENT(AnimateWheelScrolling);
-		$SLATE_ARGUMENT(WheelScrollMultiplier);
-		$SLATE_ARGUMENT(NavigationDestination);
-		$SLATE_ARGUMENT(NavigationScrollPadding);
-		$SLATE_ARGUMENT(ScrollWhenFocusChanges);
-		$SLATE_EVENT(OnUserScrolled);
-		$SLATE_ARGUMENT(ConsumeMouseWheel);
+		$SLATE_SLOT_ARGUMENT(FSlot, Slots, );
+		$SLATE_STYLE_ARGUMENT(FScrollBoxStyle, Style, FScrollBorderStyle);
+		$SLATE_STYLE_ARGUMENT(FScrollBarStyle, ScrollBarStyle, );
+		$SLATE_ARGUMENT(TSharedPtr<SScrollBar>, ExternalScrollbar, );
+		$SLATE_ARGUMENT(EOrientation, Orientation, );
+		$SLATE_ARGUMENT(EVisibility, ScrollBarVisibility, );
+		$SLATE_ARGUMENT(bool, ScrollBarAlwaysVisible, );
+		$SLATE_ARGUMENT(EFocusCause, ScrollBarDragFocusCause, );
+		$SLATE_ARGUMENT(FVector2D, ScrollBarThickness, );
+		$SLATE_ARGUMENT(FMargin, ScrollBarPadding, );
+		$SLATE_ARGUMENT(EAllowOverscroll, AllowOverscroll, );
+		$SLATE_ARGUMENT(bool, BackPadScrolling, );
+		$SLATE_ARGUMENT(bool, FrontPadScrolling, );
+		$SLATE_ARGUMENT(bool, AnimateWheelScrolling, );
+		$SLATE_ARGUMENT(float, WheelScrollMultiplier, );
+		$SLATE_ARGUMENT(EDescendantScrollDestination, NavigationDestination, );
+		$SLATE_ARGUMENT(float, NavigationScrollPadding, );
+		$SLATE_ARGUMENT(EScrollWhenFocusChanges, ScrollWhenFocusChanges, );
+		$SLATE_EVENT(FOnUserScrolled, OnUserScrolled, );
+		$SLATE_ARGUMENT(EConsumeMouseWheel, ConsumeMouseWheel, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

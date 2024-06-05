@@ -4,10 +4,10 @@
 #include "V8Utils.h"
 #include "Converter.hpp"
 
-#define $SLATE_EVENT(Name)\
-$Arguments__SLATE_EVENT::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
+#define $SLATE_EVENT(Type, Name, Tag)\
+$SLATE_EVENT$::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
 
-namespace $Arguments__SLATE_EVENT
+namespace $SLATE_EVENT$
 {
 #define SET_SLATE_EVENT_FOnCheckStateChanged(Name, RetType)\
 	template<typename TArgumentType>\
@@ -29,7 +29,7 @@ namespace $Arguments__SLATE_EVENT
 
 }
 
-namespace $Arguments__SLATE_EVENT
+namespace $SLATE_EVENT$
 {
 #define SET_SLATE_EVENT_FOnGetContent(Name, RetType)\
 	template<typename TArgumentType>\
@@ -66,7 +66,7 @@ namespace $Arguments__SLATE_EVENT
 	};
 }
 
-namespace $Arguments__SLATE_EVENT
+namespace $SLATE_EVENT$
 {
 #define SET_SLATE_EVENT_PointerEventHandler(Name, RetType)\
 	template<typename TArgumentType>\
@@ -90,7 +90,7 @@ namespace $Arguments__SLATE_EVENT
 	SET_SLATE_EVENT_PointerEventHandler(OnMouseDoubleClick, FReply);
 }
 
-namespace $Arguments__SLATE_EVENT
+namespace $SLATE_EVENT$
 {
 #define SET_SLATE_EVENT_SIMPLE_DELEGATE(Name,Type)\
 	template<typename TArgumentType>\
@@ -122,7 +122,7 @@ namespace $Arguments__SLATE_EVENT
 	}
 }
 
-namespace $Arguments__SLATE_EVENT
+namespace $SLATE_EVENT$
 {
 #define SET_SLATE_EVENT_FOnIsOpenChanged(Name)\
 	template<typename TArgumentType>\
@@ -142,7 +142,7 @@ namespace $Arguments__SLATE_EVENT
 
 }
 
-namespace $Arguments__SLATE_EVENT
+namespace $SLATE_EVENT$
 {
 #define SET_SLATE_EVENT_FOnComboBoxOpened(Name)\
 	template<typename TArgumentType>\
@@ -160,7 +160,7 @@ namespace $Arguments__SLATE_EVENT
 	SET_SLATE_EVENT_FOnComboBoxOpened(OnComboBoxOpened);
 }
 
-namespace $Arguments__SLATE_EVENT
+namespace $SLATE_EVENT$
 {
 #define SET_SLATE_EVENT_FOnClicked(Name)\
 	template<typename TArgumentType>\
@@ -178,7 +178,7 @@ namespace $Arguments__SLATE_EVENT
 	SET_SLATE_EVENT_FOnClicked(OnClicked);
 }
 
-namespace $Arguments__SLATE_EVENT
+namespace $SLATE_EVENT$
 {
 #define SET_SLATE_EVENT_FOnBooleanValueChanged(Name)\
 	template<typename TArgumentType>\

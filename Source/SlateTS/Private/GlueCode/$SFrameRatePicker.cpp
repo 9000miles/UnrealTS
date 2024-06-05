@@ -21,19 +21,19 @@ namespace $SFrameRatePicker
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_STYLE_ARGUMENT(ComboButtonStyle);
-		$SLATE_STYLE_ARGUMENT(ButtonStyle);
-		$SLATE_ATTRIBUTE(ForegroundColor);
-		$SLATE_ATTRIBUTE(ContentPadding);
-		$SLATE_ATTRIBUTE(Value);
-		$SLATE_EVENT(OnValueChanged);
-		$SLATE_ATTRIBUTE(HasMultipleValues);
-		$SLATE_ARGUMENT(PresetValues);
-		$SLATE_ATTRIBUTE(RecommendedText);
-		$SLATE_ATTRIBUTE(NotRecommendedText);
-		$SLATE_ATTRIBUTE(NotRecommendedToolTip);
-		$SLATE_EVENT(IsPresetRecommended);
-		$SLATE_ATTRIBUTE(Font);
+		$SLATE_STYLE_ARGUMENT(FComboButtonStyle, ComboButtonStyle, );
+		$SLATE_STYLE_ARGUMENT(FButtonStyle, ButtonStyle, );
+		$SLATE_ATTRIBUTE(FSlateColor, ForegroundColor, );
+		$SLATE_ATTRIBUTE(FMargin, ContentPadding, );
+		$SLATE_ATTRIBUTE(FFrameRate, Value, );
+		$SLATE_EVENT(FOnValueChanged, OnValueChanged, );
+		$SLATE_ATTRIBUTE(bool, HasMultipleValues, );
+		$SLATE_ARGUMENT(TArray<FCommonFrameRateInfo>, PresetValues, );
+		$SLATE_ATTRIBUTE(FText, RecommendedText, );
+		$SLATE_ATTRIBUTE(FText, NotRecommendedText, );
+		$SLATE_ATTRIBUTE(FText, NotRecommendedToolTip, );
+		$SLATE_EVENT(FIsPresetRecommended, IsPresetRecommended, );
+		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

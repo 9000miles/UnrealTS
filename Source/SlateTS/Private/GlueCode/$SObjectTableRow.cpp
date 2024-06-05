@@ -21,10 +21,10 @@ namespace $IObjectTableRow
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT(bAllowDragging);
-		$SLATE_DEFAULT_SLOT(Content);
-		$SLATE_EVENT(OnHovered);
-		$SLATE_EVENT(OnUnhovered);
+		$SLATE_ARGUMENT(bool, bAllowDragging, );
+		$SLATE_DEFAULT_SLOT(FArguments, Content, );
+		$SLATE_EVENT(FOnRowHovered, OnHovered, );
+		$SLATE_EVENT(FOnRowHovered, OnUnhovered, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

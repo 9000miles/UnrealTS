@@ -21,17 +21,17 @@ namespace $SBreadcrumbTrail
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_STYLE_ARGUMENT(ButtonStyle);
-		$SLATE_STYLE_ARGUMENT(TextStyle);
-		$SLATE_ATTRIBUTE(ButtonContentPadding);
-		$SLATE_ATTRIBUTE(DelimiterImage);
-		$SLATE_ATTRIBUTE(ShowLeadingDelimiter);
-		$SLATE_EVENT(OnCrumbPushed);
-		$SLATE_EVENT(OnCrumbPopped);
-		$SLATE_EVENT(OnCrumbClicked);
-		$SLATE_ARGUMENT(PersistentBreadcrumbs);
-		$SLATE_EVENT(HasCrumbMenuContent);
-		$SLATE_EVENT(GetCrumbMenuContent);
+		$SLATE_STYLE_ARGUMENT(FButtonStyle, ButtonStyle, );
+		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, );
+		$SLATE_ATTRIBUTE(FMargin, ButtonContentPadding, );
+		$SLATE_ATTRIBUTE(const FSlateBrush*, DelimiterImage, );
+		$SLATE_ATTRIBUTE(bool, ShowLeadingDelimiter, );
+		$SLATE_EVENT(FOnCrumbPushed, OnCrumbPushed, );
+		$SLATE_EVENT(FOnCrumbPopped, OnCrumbPopped, );
+		$SLATE_EVENT(FOnCrumbClicked, OnCrumbClicked, );
+		$SLATE_ARGUMENT(bool, PersistentBreadcrumbs, );
+		$SLATE_EVENT(FHasCrumbMenuContent, HasCrumbMenuContent, );
+		$SLATE_EVENT(FGetCrumbMenuContent, GetCrumbMenuContent, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

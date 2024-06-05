@@ -21,15 +21,15 @@ namespace $SFxWidget
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(RenderScale);
-		$SLATE_ATTRIBUTE(RenderScaleOrigin);
-		$SLATE_ATTRIBUTE(LayoutScale);
-		$SLATE_ATTRIBUTE(VisualOffset);
-		$SLATE_ATTRIBUTE(IgnoreClipping);
-		$SLATE_ATTRIBUTE(ColorAndOpacity);
-		$SLATE_ARGUMENT(HAlign);
-		$SLATE_ARGUMENT(VAlign);
-		$SLATE_DEFAULT_SLOT(Content);
+		$SLATE_ATTRIBUTE(float, RenderScale, );
+		$SLATE_ATTRIBUTE(FVector2D, RenderScaleOrigin, );
+		$SLATE_ATTRIBUTE(float, LayoutScale, );
+		$SLATE_ATTRIBUTE(FVector2D, VisualOffset, );
+		$SLATE_ATTRIBUTE(bool, IgnoreClipping, );
+		$SLATE_ATTRIBUTE(FLinearColor, ColorAndOpacity, );
+		$SLATE_ARGUMENT(EHorizontalAlignment, HAlign, );
+		$SLATE_ARGUMENT(EVerticalAlignment, VAlign, );
+		$SLATE_DEFAULT_SLOT(FArguments, Content, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

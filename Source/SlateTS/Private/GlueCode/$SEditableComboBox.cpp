@@ -21,22 +21,22 @@ namespace $SEditableComboBox
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(AddButtonToolTip);
-		$SLATE_STYLE_ARGUMENT(ButtonStyle);
-		$SLATE_NAMED_SLOT(Content);
-		$SLATE_ATTRIBUTE(ContentPadding);
-		$SLATE_ARGUMENT(InitiallySelectedItem);
-		$SLATE_ARGUMENT(MaxListHeight);
-		$SLATE_ARGUMENT(IsRenameVisible);
-		$SLATE_EVENT(OnAddClicked);
-		$SLATE_EVENT(OnGenerateWidget);
-		$SLATE_EVENT(OnGetEditableText);
-		$SLATE_EVENT(OnRemoveClicked);
-		$SLATE_EVENT(OnSelectionChanged);
-		$SLATE_EVENT(OnSelectionRenamed);
-		$SLATE_ARGUMENT(OptionsSource);
-		$SLATE_ATTRIBUTE(RemoveButtonToolTip);
-		$SLATE_ATTRIBUTE(RenameButtonToolTip);
+		$SLATE_ATTRIBUTE(FText, AddButtonToolTip, );
+		$SLATE_STYLE_ARGUMENT(FButtonStyle, ButtonStyle, );
+		$SLATE_NAMED_SLOT(FArguments, Content, );
+		$SLATE_ATTRIBUTE(FMargin, ContentPadding, );
+		$SLATE_ARGUMENT(OptionType, InitiallySelectedItem, );
+		$SLATE_ARGUMENT(float, MaxListHeight, );
+		$SLATE_ARGUMENT(EVisibility, IsRenameVisible, );
+		$SLATE_EVENT(FOnClicked, OnAddClicked, );
+		$SLATE_EVENT(FOnGenerateWidget, OnGenerateWidget, );
+		$SLATE_EVENT(FOnGetEditableComboBoxText, OnGetEditableText, );
+		$SLATE_EVENT(FOnClicked, OnRemoveClicked, );
+		$SLATE_EVENT(FOnSelectionChanged, OnSelectionChanged, );
+		$SLATE_EVENT(FOnTextCommitted, OnSelectionRenamed, );
+		$SLATE_ARGUMENT(const TArray<OptionType>*, OptionsSource, );
+		$SLATE_ATTRIBUTE(FText, RemoveButtonToolTip, );
+		$SLATE_ATTRIBUTE(FText, RenameButtonToolTip, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

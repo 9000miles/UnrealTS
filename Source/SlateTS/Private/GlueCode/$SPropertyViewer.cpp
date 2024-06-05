@@ -21,23 +21,23 @@ namespace $SPropertyViewer
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT_DEFAULT(PropertyVisibility);
-		$SLATE_ARGUMENT_DEFAULT(bSanitizeName);
-		$SLATE_ARGUMENT_DEFAULT(bShowFieldIcon);
-		$SLATE_ARGUMENT_DEFAULT(bSortChildNode);
-		$SLATE_ARGUMENT_DEFAULT(bShowSearchBox);
-		$SLATE_ARGUMENT_DEFAULT(SelectionMode);
-		$SLATE_ARGUMENT_DEFAULT(FieldIterator);
-		$SLATE_ARGUMENT_DEFAULT(FieldExpander);
-		$SLATE_ARGUMENT_DEFAULT(NotifyHook);
-		$SLATE_NAMED_SLOT(SearchBoxPreSlot);
-		$SLATE_NAMED_SLOT(SearchBoxPostSlot);
-		$SLATE_EVENT(OnGetPreSlot);
-		$SLATE_EVENT(OnGetPostSlot);
-		$SLATE_EVENT(OnContextMenuOpening);
-		$SLATE_EVENT(OnSelectionChanged);
-		$SLATE_EVENT(OnDoubleClicked);
-		$SLATE_EVENT(OnGenerateContainer);
+		$SLATE_ARGUMENT_DEFAULT(EPropertyVisibility, PropertyVisibility, );
+		$SLATE_ARGUMENT_DEFAULT(bool, bSanitizeName, );
+		$SLATE_ARGUMENT_DEFAULT(bool, bShowFieldIcon, );
+		$SLATE_ARGUMENT_DEFAULT(bool, bSortChildNode, );
+		$SLATE_ARGUMENT_DEFAULT(bool, bShowSearchBox, );
+		$SLATE_ARGUMENT_DEFAULT(ESelectionMode::Type, SelectionMode, );
+		$SLATE_ARGUMENT_DEFAULT(IFieldIterator*, FieldIterator, );
+		$SLATE_ARGUMENT_DEFAULT(IFieldExpander*, FieldExpander, );
+		$SLATE_ARGUMENT_DEFAULT(INotifyHook*, NotifyHook, );
+		$SLATE_NAMED_SLOT(FArguments, SearchBoxPreSlot, );
+		$SLATE_NAMED_SLOT(FArguments, SearchBoxPostSlot, );
+		$SLATE_EVENT(FGetFieldWidget, OnGetPreSlot, );
+		$SLATE_EVENT(FGetFieldWidget, OnGetPostSlot, );
+		$SLATE_EVENT(FOnContextMenuOpening, OnContextMenuOpening, );
+		$SLATE_EVENT(FOnSelectionChanged, OnSelectionChanged, );
+		$SLATE_EVENT(FOnDoubleClicked, OnDoubleClicked, );
+		$SLATE_EVENT(FOnGenerateContainer, OnGenerateContainer, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

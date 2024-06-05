@@ -21,8 +21,8 @@ namespace $FToolBarStackButtonBlock
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT(LabelVisibility);
-		$SLATE_ARGUMENT(ForceSmallIcons);
+		$SLATE_ARGUMENT(TOptional< EVisibility >, LabelVisibility, );
+		$SLATE_ARGUMENT(bool, ForceSmallIcons, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

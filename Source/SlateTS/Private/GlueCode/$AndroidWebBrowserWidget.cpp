@@ -21,9 +21,9 @@ namespace $SAndroidWebBrowserWidget
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT(InitialURL);
-		$SLATE_ARGUMENT(UseTransparency);
-		$SLATE_ARGUMENT(WebBrowserWindow);
+		$SLATE_ARGUMENT(FString, InitialURL, );
+		$SLATE_ARGUMENT(bool, UseTransparency, );
+		$SLATE_ARGUMENT(TSharedPtr<FAndroidWebBrowserWindow>, WebBrowserWindow, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

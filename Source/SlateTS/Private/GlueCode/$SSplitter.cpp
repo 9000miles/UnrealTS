@@ -21,17 +21,17 @@ namespace $SSplitter
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_SLOT_ARGUMENT(Slots);
-		$SLATE_STYLE_ARGUMENT(Style);
-		$SLATE_ARGUMENT(Orientation);
-		$SLATE_ARGUMENT(ResizeMode);
-		$SLATE_ARGUMENT(PhysicalSplitterHandleSize);
-		$SLATE_ARGUMENT(HitDetectionSplitterHandleSize);
-		$SLATE_ARGUMENT(MinimumSlotHeight);
-		$SLATE_ATTRIBUTE(HighlightedHandleIndex);
-		$SLATE_EVENT(OnHandleHovered);
-		$SLATE_EVENT(OnSplitterFinishedResizing);
-		$SLATE_EVENT(OnGetMaxSlotSize);
+		$SLATE_SLOT_ARGUMENT(FSlot, Slots, );
+		$SLATE_STYLE_ARGUMENT(FSplitterStyle, Style, FSplitterStyle);
+		$SLATE_ARGUMENT(EOrientation, Orientation, );
+		$SLATE_ARGUMENT(ESplitterResizeMode::Type, ResizeMode, );
+		$SLATE_ARGUMENT(float, PhysicalSplitterHandleSize, );
+		$SLATE_ARGUMENT(float, HitDetectionSplitterHandleSize, );
+		$SLATE_ARGUMENT(float, MinimumSlotHeight, );
+		$SLATE_ATTRIBUTE(int32, HighlightedHandleIndex, );
+		$SLATE_EVENT(FOnHandleHovered, OnHandleHovered, );
+		$SLATE_EVENT(FSimpleDelegate, OnSplitterFinishedResizing, );
+		$SLATE_EVENT(FOnGetMaxSlotSize, OnGetMaxSlotSize, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

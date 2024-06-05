@@ -21,11 +21,11 @@ namespace $SNotificationBackground
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(Padding);
-		$SLATE_ATTRIBUTE(ColorAndOpacity);
-		$SLATE_ATTRIBUTE(BorderBackgroundColor);
-		$SLATE_ATTRIBUTE(DesiredSizeScale);
-		$SLATE_DEFAULT_SLOT(Content);
+		$SLATE_ATTRIBUTE(FMargin, Padding, );
+		$SLATE_ATTRIBUTE(FLinearColor, ColorAndOpacity, );
+		$SLATE_ATTRIBUTE(FSlateColor, BorderBackgroundColor, );
+		$SLATE_ATTRIBUTE(FVector2D, DesiredSizeScale, );
+		$SLATE_DEFAULT_SLOT(FArguments, Content, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

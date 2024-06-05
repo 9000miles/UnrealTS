@@ -21,11 +21,11 @@ namespace $SRichTextHyperlink
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(Text);
-		$SLATE_STYLE_ARGUMENT(Style);
-		$SLATE_EVENT(OnNavigate);
-		$SLATE_ARGUMENT(TextShapingMethod);
-		$SLATE_ARGUMENT(TextFlowDirection);
+		$SLATE_ATTRIBUTE(FText, Text, );
+		$SLATE_STYLE_ARGUMENT(FHyperlinkStyle, Style, FHyperlinkStyle);
+		$SLATE_EVENT(FSimpleDelegate, OnNavigate, );
+		$SLATE_ARGUMENT(TOptional<ETextShapingMethod>, TextShapingMethod, );
+		$SLATE_ARGUMENT(TOptional<ETextFlowDirection>, TextFlowDirection, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

@@ -21,12 +21,12 @@ namespace $STimecode
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(Timecode);
-		$SLATE_ATTRIBUTE(TimecodeFont);
-		$SLATE_ATTRIBUTE(TimecodeColor);
-		$SLATE_ATTRIBUTE(DisplayLabel);
-		$SLATE_ATTRIBUTE(LabelFont);
-		$SLATE_ATTRIBUTE(LabelColor);
+		$SLATE_ATTRIBUTE(FTimecode, Timecode, );
+		$SLATE_ATTRIBUTE(FSlateFontInfo, TimecodeFont, );
+		$SLATE_ATTRIBUTE(FSlateColor, TimecodeColor, );
+		$SLATE_ATTRIBUTE(bool, DisplayLabel, );
+		$SLATE_ATTRIBUTE(FSlateFontInfo, LabelFont, );
+		$SLATE_ATTRIBUTE(FSlateColor, LabelColor, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

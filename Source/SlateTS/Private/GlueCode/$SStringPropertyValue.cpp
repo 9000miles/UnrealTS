@@ -21,8 +21,8 @@ namespace $SStringPropertyValue
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT(Path);
-		$SLATE_ARGUMENT(NotifyHook);
+		$SLATE_ARGUMENT(FPropertyPath, Path, );
+		$SLATE_ARGUMENT(INotifyHook*, NotifyHook, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

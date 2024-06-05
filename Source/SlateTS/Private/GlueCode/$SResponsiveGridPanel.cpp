@@ -21,9 +21,9 @@ namespace $SResponsiveGridPanel
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ARGUMENT(ColumnGutter);
-		$SLATE_ARGUMENT(RowGutter);
-		$SLATE_SLOT_ARGUMENT(Slots);
+		$SLATE_ARGUMENT(float, ColumnGutter, );
+		$SLATE_ARGUMENT(float, RowGutter, );
+		$SLATE_SLOT_ARGUMENT(FSlot, Slots, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

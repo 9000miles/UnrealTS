@@ -21,11 +21,11 @@ namespace $SSimpleGradient
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(StartColor);
-		$SLATE_ATTRIBUTE(EndColor);
-		$SLATE_ATTRIBUTE(HasAlphaBackground);
-		$SLATE_ATTRIBUTE(Orientation);
-		$SLATE_ARGUMENT_DEFAULT(UseSRGB);
+		$SLATE_ATTRIBUTE(FLinearColor, StartColor, );
+		$SLATE_ATTRIBUTE(FLinearColor, EndColor, );
+		$SLATE_ATTRIBUTE(bool, HasAlphaBackground, );
+		$SLATE_ATTRIBUTE(EOrientation, Orientation, );
+		$SLATE_ARGUMENT_DEFAULT(bool, UseSRGB, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

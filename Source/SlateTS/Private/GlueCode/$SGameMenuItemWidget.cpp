@@ -21,14 +21,14 @@ namespace $SGameMenuItemWidget
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_STYLE_ARGUMENT(MenuStyle);
-		$SLATE_ARGUMENT(PCOwner);
-		$SLATE_EVENT(OnClicked);
-		$SLATE_EVENT(OnArrowPressed);
-		$SLATE_ATTRIBUTE(Text);
-		$SLATE_ARGUMENT(bIsMultichoice);
-		$SLATE_ATTRIBUTE(OptionText);
-		$SLATE_ARGUMENT(InactiveTextAlpha);
+		$SLATE_STYLE_ARGUMENT(FGameMenuStyle, MenuStyle, );
+		$SLATE_ARGUMENT(TWeakObjectPtr<APlayerController>, PCOwner, );
+		$SLATE_EVENT(FOnClicked, OnClicked, );
+		$SLATE_EVENT(FOnArrowPressed, OnArrowPressed, );
+		$SLATE_ATTRIBUTE(FText, Text, );
+		$SLATE_ARGUMENT(bool, bIsMultichoice, );
+		$SLATE_ATTRIBUTE(FText, OptionText, );
+		$SLATE_ARGUMENT(TOptional<float>, InactiveTextAlpha, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

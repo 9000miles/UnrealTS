@@ -21,14 +21,14 @@ namespace $SWrapBox
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_SLOT_ARGUMENT(Slots);
-		$SLATE_ATTRIBUTE(PreferredWidth);
-		$SLATE_ATTRIBUTE(PreferredSize);
-		$SLATE_ATTRIBUTE(HAlign);
-		$SLATE_ARGUMENT(InnerSlotPadding);
-		$SLATE_ARGUMENT(UseAllottedWidth);
-		$SLATE_ARGUMENT(UseAllottedSize);
-		$SLATE_ARGUMENT(Orientation);
+		$SLATE_SLOT_ARGUMENT(FSlot, Slots, );
+		$SLATE_ATTRIBUTE(float, PreferredWidth, );
+		$SLATE_ATTRIBUTE(float, PreferredSize, );
+		$SLATE_ATTRIBUTE(EHorizontalAlignment, HAlign, );
+		$SLATE_ARGUMENT(FVector2D, InnerSlotPadding, );
+		$SLATE_ARGUMENT(bool, UseAllottedWidth, );
+		$SLATE_ARGUMENT(bool, UseAllottedSize, );
+		$SLATE_ARGUMENT(EOrientation, Orientation, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

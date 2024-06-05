@@ -21,11 +21,11 @@ namespace $SSubMenuHandler
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_DEFAULT_SLOT(Content);
-		$SLATE_ARGUMENT(MenuAnchor);
-		$SLATE_ARGUMENT(MenuContent);
-		$SLATE_ATTRIBUTE(Placement);
-		$SLATE_EVENT(OnGetMenuContent);
+		$SLATE_DEFAULT_SLOT(FArguments, Content, );
+		$SLATE_ARGUMENT(TSharedPtr<SMenuAnchor>, MenuAnchor, );
+		$SLATE_ARGUMENT(TSharedPtr<SWidget>, MenuContent, );
+		$SLATE_ATTRIBUTE(EMenuPlacement, Placement, );
+		$SLATE_EVENT(FOnGetContent, OnGetMenuContent, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

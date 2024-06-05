@@ -21,14 +21,14 @@ namespace $SUniformWrapPanel
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_SLOT_ARGUMENT(Slots);
-		$SLATE_ATTRIBUTE(SlotPadding);
-		$SLATE_ATTRIBUTE(MinDesiredSlotWidth);
-		$SLATE_ATTRIBUTE(MinDesiredSlotHeight);
-		$SLATE_ATTRIBUTE(MaxDesiredSlotWidth);
-		$SLATE_ATTRIBUTE(MaxDesiredSlotHeight);
-		$SLATE_ATTRIBUTE(EvenRowDistribution);
-		$SLATE_ATTRIBUTE(HAlign);
+		$SLATE_SLOT_ARGUMENT(FSlot, Slots, );
+		$SLATE_ATTRIBUTE(FMargin, SlotPadding, );
+		$SLATE_ATTRIBUTE(float, MinDesiredSlotWidth, );
+		$SLATE_ATTRIBUTE(float, MinDesiredSlotHeight, );
+		$SLATE_ATTRIBUTE(float, MaxDesiredSlotWidth, );
+		$SLATE_ATTRIBUTE(float, MaxDesiredSlotHeight, );
+		$SLATE_ATTRIBUTE(bool, EvenRowDistribution, );
+		$SLATE_ATTRIBUTE(EHorizontalAlignment, HAlign, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)
