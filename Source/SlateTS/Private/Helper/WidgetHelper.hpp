@@ -8,11 +8,12 @@
 #include "Converter.hpp"
 #include "Styling/SlateTypes.h"
 
-#include "SLATE_ATTRIBUTE.hpp"
-#include "SLATE_ARGUMENT.hpp"
-#include "SLATE_STYLE_ARGUMENT.hpp"
-#include "SLATE_EVENT_GLUE.hpp"
-#include "SLATE_SLOT.hpp"
+#include "$SLATE_ATTRIBUTE.hpp"
+#include "$SLATE_ARGUMENT.hpp"
+#include "$SLATE_STYLE_ARGUMENT.hpp"
+#include "$SLATE_EVENT.hpp"
+#include "$SLATE_DEFAULT_SLOT.hpp"
+#include "$SLATE_NAMED_SLOT.hpp"
 
 #define SET_VARIABLE__(Name);\
 WidgetArgument4::Set_##Name(Arguments, Isolate, JsObject, #Name, "")

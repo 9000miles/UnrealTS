@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Input/SSlider.h"
 
 UsingCppType(SSlider);
 UsingTSharedPtr(SSlider);
@@ -30,7 +31,7 @@ namespace $SSlider
 		$SLATE_ATTRIBUTE(FSlateColor, SliderHandleColor, );
 		$SLATE_STYLE_ARGUMENT(FSliderStyle, Style, FSliderStyle);
 		$SLATE_ATTRIBUTE(float, StepSize, );
-		$SLATE_ATTRIBUTE(float, Value, );
+		$SLATE_ATTRIBUTE(float, Value, float);
 		$SLATE_ARGUMENT(float, MinValue, );
 		$SLATE_ARGUMENT(float, MaxValue, );
 		$SLATE_ARGUMENT(bool, IsFocusable, );

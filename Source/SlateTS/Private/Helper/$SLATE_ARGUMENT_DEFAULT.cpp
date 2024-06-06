@@ -1,0 +1,21 @@
+#pragma once
+#include "JsObject.h"
+#include "v8.h"
+#include "V8Utils.h"
+
+namespace $SLATE_ARGUMENT_DEFAULT$
+{
+#define DEFINE_FUNCTION_SLATE_ARGUMENT_DEFAULT(Type, Name, Tag)
+
+	DEFINE_FUNCTION_SLATE_ARGUMENT_DEFAULT(EPropertyVisibility, PropertyVisibility, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT_DEFAULT(ESelectionMode::Type, SelectionMode, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT_DEFAULT(IFieldExpander*, FieldExpander, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT_DEFAULT(IFieldIterator*, FieldIterator, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT_DEFAULT(INotifyHook*, NotifyHook, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT_DEFAULT(bool, UseSRGB, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT_DEFAULT(bool, bSanitizeName, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT_DEFAULT(bool, bShowFieldIcon, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT_DEFAULT(bool, bShowIcon, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT_DEFAULT(bool, bShowSearchBox, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT_DEFAULT(bool, bSortChildNode, )
+}
