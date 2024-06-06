@@ -10,7 +10,7 @@ $SLATE_STYLE_ARGUMENT$::Set_##Name##_##Tag(Arguments, Isolate, JsObject, #Name)
 /** ======================= SLATE_STYLE_ARGUMENT ======================= **/
 namespace $SLATE_STYLE_ARGUMENT$
 {
-#define SET_SLATE_STYLE_ARGUMENT(Type, Name, Tag)\
+#define DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(Type, Name, Tag)\
 	template<typename TType = Type, typename TArgumentType>\
 	void Set_##Name##_##Tag(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName)\
 	{\
@@ -24,10 +24,10 @@ namespace $SLATE_STYLE_ARGUMENT$
 		}\
 	}
 
-	SET_SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, );
-	SET_SLATE_STYLE_ARGUMENT(FCheckBoxStyle, Style, FCheckBoxStyle);
-	SET_SLATE_STYLE_ARGUMENT(FExpandableAreaStyle, Style, FExpandableAreaStyle);
-	SET_SLATE_STYLE_ARGUMENT(FComboButtonStyle, ComboButtonStyle, );
-	SET_SLATE_STYLE_ARGUMENT(FButtonStyle, ButtonStyle, );
+	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, );
+	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FCheckBoxStyle, Style, FCheckBoxStyle);
+	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FExpandableAreaStyle, Style, FExpandableAreaStyle);
+	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FComboButtonStyle, ComboButtonStyle, );
+	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FButtonStyle, ButtonStyle, );
 
 }

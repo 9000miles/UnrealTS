@@ -10,7 +10,7 @@ $SLATE_ATTRIBUTE$::Set_##Name##_##Tag(Arguments, Isolate, JsObject, #Name)
 /** ======================= SET_SLATE_ATTRIBUTE ======================= **/
 namespace $SLATE_ATTRIBUTE$
 {
-#define SET_SLATE_ATTRIBUTE(Type, Name, Tag)\
+#define DEFINE_FUNCTION_SLATE_ATTRIBUTE(Type, Name, Tag)\
 	template<typename TArgumentType>\
 	void Set_##Name##_##Tag(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName)\
 	{\
@@ -21,48 +21,48 @@ namespace $SLATE_ATTRIBUTE$
 		Arguments._##Name = WidgetAttribute::MakeAttribute<Type>(Context, JsValue);\
 	}
 
-	SET_SLATE_ATTRIBUTE(FText, Text, );
-	SET_SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
-	SET_SLATE_ATTRIBUTE(const FSlateBrush*, StrikeBrush, );
-	SET_SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, FSlateColor);
-	SET_SLATE_ATTRIBUTE(FLinearColor, ColorAndOpacity, FLinearColor);
-	SET_SLATE_ATTRIBUTE(FVector2D, ShadowOffset, );
-	SET_SLATE_ATTRIBUTE(FLinearColor, ShadowColorAndOpacity, );
-	SET_SLATE_ATTRIBUTE(FLinearColor, HighlightColor, );
-	SET_SLATE_ATTRIBUTE(const FSlateBrush*, HighlightShape, );
-	SET_SLATE_ATTRIBUTE(FText, HighlightText, );
-	SET_SLATE_ATTRIBUTE(float, WrapTextAt, );
-	SET_SLATE_ATTRIBUTE(bool, AutoWrapText, );
-	SET_SLATE_ATTRIBUTE(ETextWrappingPolicy, WrappingPolicy, );
-	SET_SLATE_ATTRIBUTE(ETextTransformPolicy, TransformPolicy, );
-	SET_SLATE_ATTRIBUTE(FMargin, Margin, );
-	SET_SLATE_ATTRIBUTE(FMargin, Padding, );
-	SET_SLATE_ATTRIBUTE(float, LineHeightPercentage, );
-	SET_SLATE_ATTRIBUTE(ETextJustify::Type, Justification, );
-	SET_SLATE_ATTRIBUTE(float, MinDesiredWidth, float);
-	SET_SLATE_ATTRIBUTE(FVector2D, DesiredSizeScale, );
-	SET_SLATE_ATTRIBUTE(FVector2D, ContentScale, );
-	SET_SLATE_ATTRIBUTE(FSlateColor, ButtonColorAndOpacity, );
-	SET_SLATE_ATTRIBUTE(FSlateColor, ForegroundColor, );
-	SET_SLATE_ATTRIBUTE(FSlateColor, BorderBackgroundColor, );
-	SET_SLATE_ATTRIBUTE(ECheckBoxState, IsChecked, );
-	SET_SLATE_ATTRIBUTE(bool, ShowEffectWhenDisabled, );
-	SET_SLATE_ATTRIBUTE(EMenuPlacement, MenuPlacement, );
-	SET_SLATE_ATTRIBUTE(const FSlateBrush*, BorderImage, );
-	SET_SLATE_ATTRIBUTE(FMargin, ContentPadding, );
-	SET_SLATE_ATTRIBUTE(EMenuPlacement, Placement, );
-	SET_SLATE_ATTRIBUTE(FOptionalSize, WidthOverride, );
-	SET_SLATE_ATTRIBUTE(FOptionalSize, HeightOverride, );
-	SET_SLATE_ATTRIBUTE(FOptionalSize, MinDesiredHeight, );
-	SET_SLATE_ATTRIBUTE(FOptionalSize, MinDesiredWidth, );
-	SET_SLATE_ATTRIBUTE(FOptionalSize, MaxDesiredWidth, );
-	SET_SLATE_ATTRIBUTE(FOptionalSize, MaxDesiredHeight, );
-	SET_SLATE_ATTRIBUTE(FOptionalSize, MinAspectRatio, );
-	SET_SLATE_ATTRIBUTE(FOptionalSize, MaxAspectRatio, );
-	SET_SLATE_ATTRIBUTE(FSlateColor, BodyBorderBackgroundColor, );
-	SET_SLATE_ATTRIBUTE(FText, AreaTitle, );
-	SET_SLATE_ATTRIBUTE(FMargin, AreaTitlePadding, );
-	SET_SLATE_ATTRIBUTE(FMargin, HeaderPadding, );
-	SET_SLATE_ATTRIBUTE(FSlateFontInfo, AreaTitleFont, );
-	SET_SLATE_ATTRIBUTE(TOptional<EMouseCursor::Type>, HeaderCursor, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FText, Text, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(const FSlateBrush*, StrikeBrush, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, FSlateColor);
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FLinearColor, ColorAndOpacity, FLinearColor);
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FVector2D, ShadowOffset, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FLinearColor, ShadowColorAndOpacity, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FLinearColor, HighlightColor, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(const FSlateBrush*, HighlightShape, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FText, HighlightText, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(float, WrapTextAt, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(bool, AutoWrapText, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(ETextWrappingPolicy, WrappingPolicy, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(ETextTransformPolicy, TransformPolicy, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FMargin, Margin, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FMargin, Padding, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(float, LineHeightPercentage, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(ETextJustify::Type, Justification, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(float, MinDesiredWidth, float);
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FVector2D, DesiredSizeScale, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FVector2D, ContentScale, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, ButtonColorAndOpacity, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, ForegroundColor, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, BorderBackgroundColor, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(ECheckBoxState, IsChecked, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(bool, ShowEffectWhenDisabled, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(EMenuPlacement, MenuPlacement, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(const FSlateBrush*, BorderImage, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FMargin, ContentPadding, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(EMenuPlacement, Placement, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FOptionalSize, WidthOverride, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FOptionalSize, HeightOverride, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FOptionalSize, MinDesiredHeight, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FOptionalSize, MinDesiredWidth, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FOptionalSize, MaxDesiredWidth, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FOptionalSize, MaxDesiredHeight, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FOptionalSize, MinAspectRatio, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FOptionalSize, MaxAspectRatio, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, BodyBorderBackgroundColor, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FText, AreaTitle, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FMargin, AreaTitlePadding, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FMargin, HeaderPadding, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FSlateFontInfo, AreaTitleFont, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<EMouseCursor::Type>, HeaderCursor, );
 }

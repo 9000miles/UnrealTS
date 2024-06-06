@@ -9,7 +9,7 @@ $SLATE_DEFAULT_SLOT$::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
 
 namespace $SLATE_DEFAULT_SLOT$
 {
-#define SET_SLATE_SLOT(Name)\
+#define DEFINE_FUNCTION_SLATE_DEFAULT_SLOT(Name)\
 	template<typename TArgumentType>\
 	void Set_##Name(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "") {\
 		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();\
@@ -22,9 +22,9 @@ namespace $SLATE_DEFAULT_SLOT$
 		Arguments._##Name.Widget = *JsFunction.Func<TSharedRef<SWidget>*>(nullptr);\
 	};
 
-	SET_SLATE_SLOT(Content);
-	SET_SLATE_SLOT(ButtonContent);
-	SET_SLATE_SLOT(MenuContent);
+	DEFINE_FUNCTION_SLATE_DEFAULT_SLOT(Content);
+	DEFINE_FUNCTION_SLATE_DEFAULT_SLOT(ButtonContent);
+	DEFINE_FUNCTION_SLATE_DEFAULT_SLOT(MenuContent);
 }
 
 
@@ -33,7 +33,7 @@ $SLATE_NAMED_SLOT$::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
 
 namespace $SLATE_NAMED_SLOT$
 {
-#define SET_SLATE_SLOT(Name)\
+#define DEFINE_FUNCTION_SLATE_NAMED_SLOT(Name)\
 	template<typename TArgumentType>\
 	void Set_##Name(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "") {\
 		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();\
@@ -46,9 +46,9 @@ namespace $SLATE_NAMED_SLOT$
 		Arguments._##Name.Widget = *JsFunction.Func<TSharedRef<SWidget>*>(nullptr);\
 	};
 
-	SET_SLATE_SLOT(Content);
-	SET_SLATE_SLOT(ButtonContent);
-	SET_SLATE_SLOT(MenuContent);
-	SET_SLATE_SLOT(HeaderContent);
-	SET_SLATE_SLOT(BodyContent);
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(Content);
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(ButtonContent);
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(MenuContent);
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(HeaderContent);
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(BodyContent);
 }
