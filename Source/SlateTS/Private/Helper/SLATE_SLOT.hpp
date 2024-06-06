@@ -5,13 +5,13 @@
 #include "Converter.hpp"
 
 #define $SLATE_DEFAULT_SLOT(Type, Name, Tag)\
-$SLATE_DEFAULT_SLOT$::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
+$SLATE_DEFAULT_SLOT$::Set_##Name##_##Tag(Arguments, Isolate, JsObject, #Name, "")
 
 namespace $SLATE_DEFAULT_SLOT$
 {
-#define DEFINE_FUNCTION_SLATE_DEFAULT_SLOT(Name)\
+#define DEFINE_FUNCTION_SLATE_DEFAULT_SLOT(Type, Name, Tag)\
 	template<typename TArgumentType>\
-	void Set_##Name(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "") {\
+	void Set_##Name##_##Tag(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "") {\
 		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();\
 		const bool bHas = JsObject->Has(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).FromMaybe(false);\
 		if (!bHas) return;\
@@ -30,13 +30,13 @@ namespace $SLATE_DEFAULT_SLOT$
 
 
 #define $SLATE_NAMED_SLOT(Type, Name, Tag)\
-$SLATE_NAMED_SLOT$::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
+$SLATE_NAMED_SLOT$::Set_##Name##_##Tag(Arguments, Isolate, JsObject, #Name, "")
 
 namespace $SLATE_NAMED_SLOT$
 {
-#define DEFINE_FUNCTION_SLATE_NAMED_SLOT(Name)\
+#define DEFINE_FUNCTION_SLATE_NAMED_SLOT(Type, Name, Tag)\
 	template<typename TArgumentType>\
-	void Set_##Name(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "") {\
+	void Set_##Name##_##Tag(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName, const char* WidgetClass = "") {\
 		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();\
 		const bool bHas = JsObject->Has(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).FromMaybe(false);\
 		if (!bHas) return;\

@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Navigation/SBreadcrumbTrail.h"
 
 UsingCppType(SBreadcrumbTrail);
 UsingTSharedPtr(SBreadcrumbTrail);
