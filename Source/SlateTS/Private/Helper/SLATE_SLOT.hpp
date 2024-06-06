@@ -22,9 +22,10 @@ namespace $SLATE_DEFAULT_SLOT$
 		Arguments._##Name.Widget = *JsFunction.Func<TSharedRef<SWidget>*>(nullptr);\
 	};
 
-	DEFINE_FUNCTION_SLATE_DEFAULT_SLOT(Content);
-	DEFINE_FUNCTION_SLATE_DEFAULT_SLOT(ButtonContent);
-	DEFINE_FUNCTION_SLATE_DEFAULT_SLOT(MenuContent);
+	DEFINE_FUNCTION_SLATE_DEFAULT_SLOT(FArguments, Content, );
+	DEFINE_FUNCTION_SLATE_DEFAULT_SLOT(FArguments, HeaderContent, );
+	DEFINE_FUNCTION_SLATE_DEFAULT_SLOT(FArguments, PageContent, );
+	//DEFINE_FUNCTION_SLATE_DEFAULT_SLOT(typename STableRow<ItemType>::FArguments, Content, )
 }
 
 
@@ -46,9 +47,20 @@ namespace $SLATE_NAMED_SLOT$
 		Arguments._##Name.Widget = *JsFunction.Func<TSharedRef<SWidget>*>(nullptr);\
 	};
 
-	DEFINE_FUNCTION_SLATE_NAMED_SLOT(Content);
-	DEFINE_FUNCTION_SLATE_NAMED_SLOT(ButtonContent);
-	DEFINE_FUNCTION_SLATE_NAMED_SLOT(MenuContent);
-	DEFINE_FUNCTION_SLATE_NAMED_SLOT(HeaderContent);
-	DEFINE_FUNCTION_SLATE_NAMED_SLOT(BodyContent);
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(FArguments, BodyContent, );
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(FArguments, BottomSlot, );
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(FArguments, ButtonContent, );
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(FArguments, CollapsedButtonContent, );
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(FArguments, Content, );
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(FArguments, ExpandedButtonContent, );
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(FArguments, ExpandedChildContent, );
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(FArguments, HeaderContent, );
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(FArguments, Label, );
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(FArguments, MenuContent, );
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(FArguments, SearchBoxPostSlot, );
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(FArguments, SearchBoxPreSlot, );
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(FArguments, TabWellContentLeft, );
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(FArguments, TabWellContentRight, );
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(FArguments, ThumbSlot, );
+	DEFINE_FUNCTION_SLATE_NAMED_SLOT(FArguments, TopSlot, )
 }
