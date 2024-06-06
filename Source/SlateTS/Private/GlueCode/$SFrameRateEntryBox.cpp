@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "TimeManagement/Public/Widgets/SFrameRateEntryBox.h"
 
 UsingCppType(SFrameRateEntryBox);
 UsingTSharedPtr(SFrameRateEntryBox);
@@ -21,7 +22,7 @@ namespace $SFrameRateEntryBox
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(FFrameRate, Value, );
+		$SLATE_ATTRIBUTE(FFrameRate, Value, FFrameRate);
 		//$SLATE_EVENT(FOnValueChanged, OnValueChanged, );
 		$SLATE_ATTRIBUTE(bool, HasMultipleValues, );
 		$SLATE_STYLE_ARGUMENT(FEditableTextBoxStyle, Style, FEditableTextBoxStyle);
@@ -82,7 +83,7 @@ struct AutoRegister_SFrameRateEntryBox
 	{
 		DTS::DTSArguments Args = DTS::DTSArguments("SFrameRateEntryBox");
 		Args.Add<FFrameRate>("Value", DTS::EArgType::SLATE_ATTRIBUTE);
-		Args.Add<FOnValueChanged>("OnValueChanged", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SFrameRateEntryBox::FOnValueChanged>("OnValueChanged", DTS::EArgType::SLATE_EVENT);
 		Args.Add<bool>("HasMultipleValues", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FEditableTextBoxStyle>("Style", DTS::EArgType::SLATE_STYLE_ARGUMENT);
 		Args.Add<FSlateFontInfo>("Font", DTS::EArgType::SLATE_ATTRIBUTE);

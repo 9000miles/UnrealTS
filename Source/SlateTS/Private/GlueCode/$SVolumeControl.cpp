@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Input/SVolumeControl.h"
 
 UsingCppType(SVolumeControl);
 UsingTSharedPtr(SVolumeControl);
@@ -84,7 +85,7 @@ struct AutoRegister_SVolumeControl
 		Args.Add<float>("Volume", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FOnFloatValueChanged>("OnVolumeChanged", DTS::EArgType::SLATE_EVENT);
 		Args.Add<bool>("Muted", DTS::EArgType::SLATE_ATTRIBUTE);
-		Args.Add<FOnMuted>("OnMuteChanged", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SVolumeControl::FOnMuted>("OnMuteChanged", DTS::EArgType::SLATE_EVENT);
 		return Args;
 	}
 

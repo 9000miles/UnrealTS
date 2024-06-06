@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Layout/SFxWidget.h"
 
 UsingCppType(SFxWidget);
 UsingTSharedPtr(SFxWidget);
@@ -26,7 +27,7 @@ namespace $SFxWidget
 		$SLATE_ATTRIBUTE(float, LayoutScale, );
 		$SLATE_ATTRIBUTE(FVector2D, VisualOffset, );
 		$SLATE_ATTRIBUTE(bool, IgnoreClipping, );
-		$SLATE_ATTRIBUTE(FLinearColor, ColorAndOpacity, );
+		$SLATE_ATTRIBUTE(FLinearColor, ColorAndOpacity, FLinearColor);
 		$SLATE_ARGUMENT(EHorizontalAlignment, HAlign, );
 		$SLATE_ARGUMENT(EVerticalAlignment, VAlign, );
 		$SLATE_DEFAULT_SLOT(FArguments, Content, );

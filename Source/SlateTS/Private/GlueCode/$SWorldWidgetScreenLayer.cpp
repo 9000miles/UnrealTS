@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Slate/SWorldWidgetScreenLayer.h"
 
 UsingCppType(SWorldWidgetScreenLayer);
 UsingTSharedPtr(SWorldWidgetScreenLayer);

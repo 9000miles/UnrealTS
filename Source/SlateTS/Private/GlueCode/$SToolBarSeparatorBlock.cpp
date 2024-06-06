@@ -10,13 +10,14 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "../Private/Framework/MultiBox/SToolBarSeparatorBlock.h"
 
-UsingCppType(FToolBarSeparatorBlock);
-UsingTSharedPtr(FToolBarSeparatorBlock);
+UsingCppType(SToolBarSeparatorBlock);
+UsingTSharedPtr(SToolBarSeparatorBlock);
 
-namespace $FToolBarSeparatorBlock
+namespace $SToolBarSeparatorBlock
 {
-	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, FToolBarSeparatorBlock::FArguments& Arguments)
+	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, SToolBarSeparatorBlock::FArguments& Arguments)
 	{
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
@@ -35,16 +36,16 @@ namespace $FToolBarSeparatorBlock
 		uint8 ArgumentsIndex = InfoLength == 3 ? 1 : 0;
 		uint8 FilenameIndex = InfoLength == 3 ? 2 : 1;
 
-		FToolBarSeparatorBlock::FArguments Arguments;
+		SToolBarSeparatorBlock::FArguments Arguments;
 		$Arguments(Info, ArgumentsIndex, Context, Isolate, Arguments);
 
 		FString Filename;
 		if (Info[FilenameIndex]->IsString()) Filename = UTF8_TO_TCHAR(*(v8::String::Utf8Value(Isolate, Info[FilenameIndex])));
 
-		TSharedPtr<FToolBarSeparatorBlock> Widget = MakeTDecl<FToolBarSeparatorBlock>("FToolBarSeparatorBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+		TSharedPtr<SToolBarSeparatorBlock> Widget = MakeTDecl<SToolBarSeparatorBlock>("SToolBarSeparatorBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
 		if (InfoLength == 2)
 		{
-			auto V8Result = puerts::converter::Converter<TSharedPtr<FToolBarSeparatorBlock>>::toScript(Context, Widget);
+			auto V8Result = puerts::converter::Converter<TSharedPtr<SToolBarSeparatorBlock>>::toScript(Context, Widget);
 			Info.GetReturnValue().Set(V8Result); return;
 		}
 
@@ -52,9 +53,9 @@ namespace $FToolBarSeparatorBlock
 		{
 			auto RefObject = puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex]);
 			if (Info[ExposeIndex]->IsObject() && RefObject->IsObject() &&
-				puerts::DataTransfer::IsInstanceOf(Isolate, puerts::StaticTypeId<TSharedPtr<FToolBarSeparatorBlock>>::get(), RefObject->ToObject(Context).ToLocalChecked()))
+				puerts::DataTransfer::IsInstanceOf(Isolate, puerts::StaticTypeId<TSharedPtr<SToolBarSeparatorBlock>>::get(), RefObject->ToObject(Context).ToLocalChecked()))
 			{
-				TSharedPtr<FToolBarSeparatorBlock>* Arg1 = puerts::DataTransfer::GetPointerFast<TSharedPtr<FToolBarSeparatorBlock>>(puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex])->ToObject(Context).ToLocalChecked());
+				TSharedPtr<SToolBarSeparatorBlock>* Arg1 = puerts::DataTransfer::GetPointerFast<TSharedPtr<SToolBarSeparatorBlock>>(puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex])->ToObject(Context).ToLocalChecked());
 				*Arg1 = Widget; return;
 			}
 		}
@@ -64,59 +65,59 @@ namespace $FToolBarSeparatorBlock
 		v8::Isolate* Isolate = Info.GetIsolate();
 		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
 
-		TSharedPtr<FToolBarSeparatorBlock> Widget = MakeShared<FToolBarSeparatorBlock>();
-		auto V8Result = puerts::converter::Converter<TSharedPtr<FToolBarSeparatorBlock>>::toScript(Context, Widget);
+		TSharedPtr<SToolBarSeparatorBlock> Widget = MakeShared<SToolBarSeparatorBlock>();
+		auto V8Result = puerts::converter::Converter<TSharedPtr<SToolBarSeparatorBlock>>::toScript(Context, Widget);
 		Info.GetReturnValue().Set(V8Result);
 	}
 	static void $SAssignNew(const v8::FunctionCallbackInfo<v8::Value>& Info) { $SNew(Info); }
 }
 
-struct AutoRegister_FToolBarSeparatorBlock
+struct AutoRegister_SToolBarSeparatorBlock
 {
 	DTS::DTSArguments RegisterArguments()
 	{
-		DTS::DTSArguments Args = DTS::DTSArguments("FToolBarSeparatorBlock");
+		DTS::DTSArguments Args = DTS::DTSArguments("SToolBarSeparatorBlock");
 
 		return Args;
 	}
 
 	void GenDTS()
 	{
-		DTS::Class ClassDTS = DTS::Class().Name("FToolBarSeparatorBlock").Super("FMultiBlock")
+		DTS::Class ClassDTS = DTS::Class().Name("SToolBarSeparatorBlock").Super("FMultiBlock")
 			.Arguments(RegisterArguments())
 			.Functions(DTS::Array<DTS::Function>()
 				+ DTS::Function()
 				[
 					DTS::Function::Slot().Name("SNew").Static(true)
 						.Parameters(DTS::Array<DTS::Property>()
-							+ DTS::Property().Name("Arguments").Type("FToolBarSeparatorBlock.Arguments")
+							+ DTS::Property().Name("Arguments").Type("SToolBarSeparatorBlock.Arguments")
 							+ DTS::Property().Name("Filename").Type(TS_string)
 						)
-						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<FToolBarSeparatorBlock>>::value().Data()))
+						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SToolBarSeparatorBlock>>::value().Data()))
 				]
 				+ DTS::Function()
 				[
 					DTS::Function::Slot().Name("SAssignNew").Static(true)
 						.Parameters(DTS::Array<DTS::Property>()
-							+ DTS::Property().Name("WidgetRef").Type(puerts::ScriptTypeName<TSharedPtr<FToolBarSeparatorBlock>>::value().Data()).Out(true)
-							+ DTS::Property().Name("Arguments").Type("FToolBarSeparatorBlock.Arguments")
+							+ DTS::Property().Name("WidgetRef").Type(puerts::ScriptTypeName<TSharedPtr<SToolBarSeparatorBlock>>::value().Data()).Out(true)
+							+ DTS::Property().Name("Arguments").Type("SToolBarSeparatorBlock.Arguments")
 							+ DTS::Property().Name("Filename").Type(TS_string)
 						)
 				]
 				+ DTS::Function()
 				[
 					DTS::Function::Slot().Name("MakeShared").Static(true)
-						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<FToolBarSeparatorBlock>>::value().Data()))
+						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SToolBarSeparatorBlock>>::value().Data()))
 				]
 			);
 
 		DTS::FClassDTS::Add(ClassDTS);
 	}
 
-	AutoRegister_FToolBarSeparatorBlock()
+	AutoRegister_SToolBarSeparatorBlock()
 	{
 		GenDTS();
-		RegisterTSharedPtr(FToolBarSeparatorBlock);
+		RegisterTSharedPtr(SToolBarSeparatorBlock);
 
 		puerts::JSClassDefinition Def = JSClassEmptyDefinition;
 
@@ -126,15 +127,15 @@ struct AutoRegister_FToolBarSeparatorBlock
 		};
 		static puerts::JSFunctionInfo Functions[] =
 		{
-			{"SNew", $FToolBarSeparatorBlock::$SNew},
-			{"SAssignNew", $FToolBarSeparatorBlock::$SAssignNew},
-			{"MakeShared", $FToolBarSeparatorBlock::$MakeShared},
+			{"SNew", $SToolBarSeparatorBlock::$SNew},
+			{"SAssignNew", $SToolBarSeparatorBlock::$SAssignNew},
+			{"MakeShared", $SToolBarSeparatorBlock::$MakeShared},
 			{0, 0}
 		};
 
-		Def.ScriptName = "FToolBarSeparatorBlock";
-		Def.TypeId = puerts::StaticTypeId<FToolBarSeparatorBlock>::get();
-		Def.SuperTypeId = puerts::StaticTypeId<FMultiBlock>::get();
+		Def.ScriptName = "SToolBarSeparatorBlock";
+		Def.TypeId = puerts::StaticTypeId<SToolBarSeparatorBlock>::get();
+		Def.SuperTypeId = puerts::StaticTypeId<SMultiBlockBaseWidget>::get();
 		Def.Methods = Methods;
 		Def.Functions = Functions;
 
@@ -142,4 +143,4 @@ struct AutoRegister_FToolBarSeparatorBlock
 	}
 };
 
-AutoRegister_FToolBarSeparatorBlock _AutoRegister_FToolBarSeparatorBlock;
+AutoRegister_SToolBarSeparatorBlock _AutoRegister_SToolBarSeparatorBlock;

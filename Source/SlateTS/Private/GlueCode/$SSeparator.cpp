@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Layout/SSeparator.h"
 
 UsingCppType(SSeparator);
 UsingTSharedPtr(SSeparator);
@@ -24,7 +25,7 @@ namespace $SSeparator
 		$SLATE_ARGUMENT(const FSlateBrush*, SeparatorImage, );
 		$SLATE_ARGUMENT(EOrientation, Orientation, );
 		$SLATE_ARGUMENT(float, Thickness, );
-		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, );
+		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, FSlateColor);
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Layout/SScrollBar.h"
 
 UsingCppType(SScrollBar);
 UsingTSharedPtr(SScrollBar);
@@ -29,7 +30,7 @@ namespace $SScrollBar
 		$SLATE_ARGUMENT(bool, PreventThrottling, );
 		$SLATE_ARGUMENT(EOrientation, Orientation, );
 		$SLATE_ARGUMENT(EFocusCause, DragFocusCause, );
-		$SLATE_ATTRIBUTE(FVector2D, Thickness, );
+		$SLATE_ATTRIBUTE(FVector2D, Thickness, FVector2D);
 		$SLATE_ATTRIBUTE(FMargin, Padding, );
 	}
 

@@ -24,7 +24,7 @@ namespace $SButton
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_DEFAULT_SLOT(FArguments, Content, );
 		$SLATE_STYLE_ARGUMENT(FButtonStyle, ButtonStyle, );
-		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, );
+		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, FTextBlockStyle);
 		$SLATE_ARGUMENT(EHorizontalAlignment, HAlign, );
 		$SLATE_ARGUMENT(EVerticalAlignment, VAlign, );
 		$SLATE_ATTRIBUTE(FMargin, ContentPadding, );

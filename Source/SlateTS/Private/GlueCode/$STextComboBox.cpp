@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Input/STextComboBox.h"
 
 UsingCppType(STextComboBox);
 UsingTSharedPtr(STextComboBox);
@@ -24,7 +25,7 @@ namespace $STextComboBox
 		$SLATE_STYLE_ARGUMENT(FComboBoxStyle, ComboBoxStyle, );
 		$SLATE_STYLE_ARGUMENT(FButtonStyle, ButtonStyle, );
 		$SLATE_ARGUMENT(TArray< TSharedPtr<FString> >*, OptionsSource, );
-		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, );
+		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, FSlateColor);
 		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
 		$SLATE_ATTRIBUTE(FMargin, ContentPadding, );
 		//$SLATE_EVENT(FOnTextSelectionChanged, OnSelectionChanged, );
@@ -91,10 +92,10 @@ struct AutoRegister_STextComboBox
 		Args.Add<FSlateColor>("ColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FSlateFontInfo>("Font", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FMargin>("ContentPadding", DTS::EArgType::SLATE_ATTRIBUTE);
-		Args.Add<FOnTextSelectionChanged>("OnSelectionChanged", DTS::EArgType::SLATE_EVENT);
+		Args.Add<STextComboBox::FOnTextSelectionChanged>("OnSelectionChanged", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FOnComboBoxOpening>("OnComboBoxOpening", DTS::EArgType::SLATE_EVENT);
 		Args.Add<TSharedPtr<FString>>("InitiallySelectedItem", DTS::EArgType::SLATE_ARGUMENT);
-		Args.Add<FGetTextComboLabel>("OnGetTextLabelForItem", DTS::EArgType::SLATE_EVENT);
+		Args.Add<STextComboBox::FGetTextComboLabel>("OnGetTextLabelForItem", DTS::EArgType::SLATE_EVENT);
 		return Args;
 	}
 

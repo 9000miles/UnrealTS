@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Images/SSpinningImage.h"
 
 UsingCppType(SSpinningImage);
 UsingTSharedPtr(SSpinningImage);
@@ -22,7 +23,7 @@ namespace $SSpinningImage
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_ATTRIBUTE(const FSlateBrush*, Image, );
-		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, );
+		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, FSlateColor);
 		//$SLATE_EVENT(FPointerEventHandler, OnMouseButtonDown, );
 		$SLATE_ARGUMENT(float, Period, );
 	}

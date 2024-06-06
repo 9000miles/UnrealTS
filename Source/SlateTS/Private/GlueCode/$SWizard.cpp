@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "AppFramework/Public/Widgets/Workflow/SWizard.h"
 
 UsingCppType(SWizard);
 UsingTSharedPtr(SWizard);

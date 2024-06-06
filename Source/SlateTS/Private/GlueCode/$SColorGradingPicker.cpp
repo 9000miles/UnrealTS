@@ -102,7 +102,7 @@ struct AutoRegister_SColorGradingPicker
 		Args.Add<float>("MainDelta", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<int32>("MainShiftMouseMovePixelPerDelta", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<EColorGradingModes>("ColorGradingModes", DTS::EArgType::SLATE_ARGUMENT);
-		Args.Add<FOnColorGradingPickerValueChanged>("OnColorCommitted", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SColorGradingPicker::FOnColorGradingPickerValueChanged>("OnColorCommitted", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FOnGetCurrentVector4Value>("OnQueryCurrentColor", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FSimpleDelegate>("OnBeginSliderMovement", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FSimpleDelegate>("OnEndSliderMovement", DTS::EArgType::SLATE_EVENT);

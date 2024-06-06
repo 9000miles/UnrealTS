@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "TimeManagement/Public/Widgets/STimecode.h"
 
 UsingCppType(STimecode);
 UsingTSharedPtr(STimecode);

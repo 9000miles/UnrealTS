@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Input/SVirtualKeyboardEntry.h"
 
 UsingCppType(SVirtualKeyboardEntry);
 UsingTSharedPtr(SVirtualKeyboardEntry);
@@ -24,12 +25,12 @@ namespace $SVirtualKeyboardEntry
 		$SLATE_ATTRIBUTE(FText, Text, );
 		$SLATE_ATTRIBUTE(FText, HintText, );
 		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
-		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, );
+		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, FSlateColor);
 		$SLATE_ATTRIBUTE(bool, IsReadOnly, );
 		$SLATE_ATTRIBUTE(bool, ClearKeyboardFocusOnCommit, );
 		//$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
 		//$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
-		$SLATE_ATTRIBUTE(float, MinDesiredWidth, );
+		$SLATE_ATTRIBUTE(float, MinDesiredWidth, float);
 		$SLATE_ATTRIBUTE(EKeyboardType, KeyboardType, );
 		$SLATE_ARGUMENT(FVirtualKeyboardOptions, VirtualKeyboardOptions, );
 	}

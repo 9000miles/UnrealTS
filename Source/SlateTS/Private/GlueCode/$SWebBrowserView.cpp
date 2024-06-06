@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "WebBrowser/Public/SWebBrowserView.h"
 
 UsingCppType(SWebBrowserView);
 UsingTSharedPtr(SWebBrowserView);
@@ -25,7 +26,7 @@ namespace $SWebBrowserView
 		$SLATE_ARGUMENT(FString, InitialURL, );
 		$SLATE_ARGUMENT(TOptional<FString>, ContentsToLoad, );
 		$SLATE_ARGUMENT(bool, ShowErrorMessage, );
-		$SLATE_ARGUMENT(bool, SupportsTransparency, );
+		$SLATE_ARGUMENT(bool, SupportsTransparency, bool);
 		$SLATE_ARGUMENT(bool, InterceptLoadRequests, );
 		$SLATE_ARGUMENT(bool, SupportsThumbMouseButtonNavigation, );
 		$SLATE_ARGUMENT(FColor, BackgroundColor, );
@@ -128,16 +129,16 @@ struct AutoRegister_SWebBrowserView
 		Args.Add<FOnBeforePopupDelegate>("OnBeforePopup", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FOnCreateWindowDelegate>("OnCreateWindow", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FOnCloseWindowDelegate>("OnCloseWindow", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnBeforeBrowse>("OnBeforeNavigation", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnLoadUrl>("OnLoadUrl", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnShowDialog>("OnShowDialog", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SWebBrowserView::FOnBeforeBrowse>("OnBeforeNavigation", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SWebBrowserView::FOnLoadUrl>("OnLoadUrl", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SWebBrowserView::FOnShowDialog>("OnShowDialog", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FSimpleDelegate>("OnDismissAllDialogs", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnSuppressContextMenu>("OnSuppressContextMenu", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SWebBrowserView::FOnSuppressContextMenu>("OnSuppressContextMenu", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FOnCreateToolTip>("OnCreateToolTip", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnDragWindow>("OnDragWindow", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnUnhandledKeyDown>("OnUnhandledKeyDown", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnUnhandledKeyUp>("OnUnhandledKeyUp", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnUnhandledKeyChar>("OnUnhandledKeyChar", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SWebBrowserView::FOnDragWindow>("OnDragWindow", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SWebBrowserView::FOnUnhandledKeyDown>("OnUnhandledKeyDown", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SWebBrowserView::FOnUnhandledKeyUp>("OnUnhandledKeyUp", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SWebBrowserView::FOnUnhandledKeyChar>("OnUnhandledKeyChar", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FOnConsoleMessageDelegate>("OnConsoleMessage", DTS::EArgType::SLATE_EVENT);
 		return Args;
 	}

@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Notifications/SProgressBar.h"
 
 UsingCppType(SProgressBar);
 UsingTSharedPtr(SProgressBar);

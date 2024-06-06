@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/SInvalidationPanel.h"
 
 UsingCppType(SInvalidationPanel);
 UsingTSharedPtr(SInvalidationPanel);

@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Notifications/SErrorHint.h"
 
 UsingCppType(SErrorHint);
 UsingTSharedPtr(SErrorHint);

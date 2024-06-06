@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Input/SSearchBox.h"
 
 UsingCppType(SSearchBox);
 UsingTSharedPtr(SSearchBox);
@@ -30,7 +31,7 @@ namespace $SSearchBox
 		//$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
 		//$SLATE_EVENT(FOnSearch, OnSearch, );
 		$SLATE_ATTRIBUTE(bool, SelectAllTextWhenFocused, );
-		$SLATE_ATTRIBUTE(float, MinDesiredWidth, );
+		$SLATE_ATTRIBUTE(float, MinDesiredWidth, float);
 		$SLATE_ATTRIBUTE(bool, DelayChangeNotificationsWhileTyping, );
 		$SLATE_ATTRIBUTE(float, DelayChangeNotificationsWhileTypingSeconds, );
 		//$SLATE_EVENT(FOnKeyDown, OnKeyDownHandler, );
@@ -92,11 +93,11 @@ struct AutoRegister_SSearchBox
 		Args.Add<FSearchBoxStyle>("Style", DTS::EArgType::SLATE_STYLE_ARGUMENT);
 		Args.Add<FText>("HintText", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FText>("InitialText", DTS::EArgType::SLATE_ATTRIBUTE);
-		Args.Add<TOptional<FSearchResultData>>("SearchResultData", DTS::EArgType::SLATE_ATTRIBUTE);
+		Args.Add<TOptional<SSearchBox::FSearchResultData>>("SearchResultData", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<bool>("IsSearching", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FOnTextChanged>("OnTextChanged", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FOnTextCommitted>("OnTextCommitted", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnSearch>("OnSearch", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SSearchBox::FOnSearch>("OnSearch", DTS::EArgType::SLATE_EVENT);
 		Args.Add<bool>("SelectAllTextWhenFocused", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<float>("MinDesiredWidth", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<bool>("DelayChangeNotificationsWhileTyping", DTS::EArgType::SLATE_ATTRIBUTE);

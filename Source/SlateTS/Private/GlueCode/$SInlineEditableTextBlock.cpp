@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Text/SInlineEditableTextBlock.h"
 
 UsingCppType(SInlineEditableTextBlock);
 UsingTSharedPtr(SInlineEditableTextBlock);
@@ -24,7 +25,7 @@ namespace $SInlineEditableTextBlock
 		$SLATE_ATTRIBUTE(FText, Text, );
 		$SLATE_STYLE_ARGUMENT(FInlineEditableTextBlockStyle, Style, FInlineEditableTextBlockStyle);
 		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
-		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, );
+		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, FSlateColor);
 		$SLATE_ATTRIBUTE(FVector2D, ShadowOffset, );
 		$SLATE_ATTRIBUTE(FLinearColor, ShadowColorAndOpacity, );
 		$SLATE_ATTRIBUTE(FText, HighlightText, );

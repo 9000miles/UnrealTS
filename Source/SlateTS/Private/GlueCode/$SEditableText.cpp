@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Input/SEditableText.h"
 
 UsingCppType(SEditableText);
 UsingTSharedPtr(SEditableText);
@@ -24,9 +25,9 @@ namespace $SEditableText
 		$SLATE_ATTRIBUTE(FText, Text, );
 		$SLATE_ATTRIBUTE(FText, HintText, );
 		$SLATE_ATTRIBUTE(FText, SearchText, );
-		$SLATE_STYLE_ARGUMENT(FEditableTextStyle, Style, );
+		$SLATE_STYLE_ARGUMENT(FEditableTextStyle, Style, FEditableTextStyle);
 		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
-		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, );
+		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, FSlateColor);
 		$SLATE_ATTRIBUTE(const FSlateBrush*, BackgroundImageSelected, );
 		$SLATE_ATTRIBUTE(const FSlateBrush*, BackgroundImageComposing, );
 		$SLATE_ATTRIBUTE(const FSlateBrush*, CaretImage, );
@@ -43,7 +44,7 @@ namespace $SEditableText
 		//$SLATE_EVENT(FOnIsTypedCharValid, OnIsTypedCharValid, );
 		//$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
 		//$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
-		$SLATE_ATTRIBUTE(float, MinDesiredWidth, );
+		$SLATE_ATTRIBUTE(float, MinDesiredWidth, float);
 		$SLATE_ATTRIBUTE(bool, SelectAllTextOnCommit, );
 		//$SLATE_EVENT(FOnKeyChar, OnKeyCharHandler, );
 		//$SLATE_EVENT(FOnKeyDown, OnKeyDownHandler, );

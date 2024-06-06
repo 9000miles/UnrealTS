@@ -101,8 +101,8 @@ struct AutoRegister_SInputKeySelector
 		Args.Add<bool>("AllowGamepadKeys", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<bool>("EscapeCancelsSelection", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<TArray<FKey>>("EscapeKeys", DTS::EArgType::SLATE_ARGUMENT);
-		Args.Add<FOnKeySelected>("OnKeySelected", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnIsSelectingKeyChanged>("OnIsSelectingKeyChanged", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SInputKeySelector::FOnKeySelected>("OnKeySelected", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SInputKeySelector::FOnIsSelectingKeyChanged>("OnIsSelectingKeyChanged", DTS::EArgType::SLATE_EVENT);
 		Args.Add<bool>("IsFocusable", DTS::EArgType::SLATE_ARGUMENT);
 		return Args;
 	}

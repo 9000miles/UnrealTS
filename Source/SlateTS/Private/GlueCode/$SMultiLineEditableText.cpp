@@ -144,7 +144,7 @@ struct AutoRegister_SMultiLineEditableText
 		Args.Add<FOnContextMenuOpening>("OnContextMenuOpening", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FOnUserScrolled>("OnHScrollBarUserScrolled", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FOnUserScrolled>("OnVScrollBarUserScrolled", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnCursorMoved>("OnCursorMoved", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SMultiLineEditableText::FOnCursorMoved>("OnCursorMoved", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FOnKeyChar>("OnKeyCharHandler", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FOnKeyDown>("OnKeyDownHandler", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FMenuExtensionDelegate>("ContextMenuExtender", DTS::EArgType::SLATE_EVENT);

@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Input/SEditableTextBox.h"
 
 UsingCppType(SEditableTextBox);
 UsingTSharedPtr(SEditableTextBox);
@@ -42,7 +43,7 @@ namespace $SEditableTextBox
 		//$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
 		//$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
 		//$SLATE_EVENT(FOnVerifyTextChanged, OnVerifyTextChanged, );
-		$SLATE_ATTRIBUTE(float, MinDesiredWidth, );
+		$SLATE_ATTRIBUTE(float, MinDesiredWidth, float);
 		$SLATE_ATTRIBUTE(bool, SelectAllTextOnCommit, );
 		$SLATE_ATTRIBUTE(bool, SelectWordOnMouseDoubleClick, );
 		//$SLATE_EVENT(FOnKeyChar, OnKeyCharHandler, );

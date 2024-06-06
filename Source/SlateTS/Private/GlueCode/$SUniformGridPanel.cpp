@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Layout/SUniformGridPanel.h"
 
 UsingCppType(SUniformGridPanel);
 UsingTSharedPtr(SUniformGridPanel);

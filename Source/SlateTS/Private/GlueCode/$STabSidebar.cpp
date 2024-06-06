@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "../Private/Framework/Docking/STabSidebar.h"
 
 UsingCppType(STabSidebar);
 UsingTSharedPtr(STabSidebar);

@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Input/SVirtualJoystick.h"
 
 UsingCppType(SVirtualJoystick);
 UsingTSharedPtr(SVirtualJoystick);

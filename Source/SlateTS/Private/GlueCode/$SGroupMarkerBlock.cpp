@@ -10,13 +10,14 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "../Private/Framework/MultiBox/SGroupMarkerBlock.h"
 
-UsingCppType(FGroupStartBlock);
-UsingTSharedPtr(FGroupStartBlock);
+UsingCppType(SGroupMarkerBlock);
+UsingTSharedPtr(SGroupMarkerBlock);
 
-namespace $FGroupStartBlock
+namespace $SGroupMarkerBlock
 {
-	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, FGroupStartBlock::FArguments& Arguments)
+	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, SGroupMarkerBlock::FArguments& Arguments)
 	{
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
@@ -35,16 +36,16 @@ namespace $FGroupStartBlock
 		uint8 ArgumentsIndex = InfoLength == 3 ? 1 : 0;
 		uint8 FilenameIndex = InfoLength == 3 ? 2 : 1;
 
-		FGroupStartBlock::FArguments Arguments;
+		SGroupMarkerBlock::FArguments Arguments;
 		$Arguments(Info, ArgumentsIndex, Context, Isolate, Arguments);
 
 		FString Filename;
 		if (Info[FilenameIndex]->IsString()) Filename = UTF8_TO_TCHAR(*(v8::String::Utf8Value(Isolate, Info[FilenameIndex])));
 
-		TSharedPtr<FGroupStartBlock> Widget = MakeTDecl<FGroupStartBlock>("FGroupStartBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+		TSharedPtr<SGroupMarkerBlock> Widget = MakeTDecl<SGroupMarkerBlock>("SGroupMarkerBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
 		if (InfoLength == 2)
 		{
-			auto V8Result = puerts::converter::Converter<TSharedPtr<FGroupStartBlock>>::toScript(Context, Widget);
+			auto V8Result = puerts::converter::Converter<TSharedPtr<SGroupMarkerBlock>>::toScript(Context, Widget);
 			Info.GetReturnValue().Set(V8Result); return;
 		}
 
@@ -52,9 +53,9 @@ namespace $FGroupStartBlock
 		{
 			auto RefObject = puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex]);
 			if (Info[ExposeIndex]->IsObject() && RefObject->IsObject() &&
-				puerts::DataTransfer::IsInstanceOf(Isolate, puerts::StaticTypeId<TSharedPtr<FGroupStartBlock>>::get(), RefObject->ToObject(Context).ToLocalChecked()))
+				puerts::DataTransfer::IsInstanceOf(Isolate, puerts::StaticTypeId<TSharedPtr<SGroupMarkerBlock>>::get(), RefObject->ToObject(Context).ToLocalChecked()))
 			{
-				TSharedPtr<FGroupStartBlock>* Arg1 = puerts::DataTransfer::GetPointerFast<TSharedPtr<FGroupStartBlock>>(puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex])->ToObject(Context).ToLocalChecked());
+				TSharedPtr<SGroupMarkerBlock>* Arg1 = puerts::DataTransfer::GetPointerFast<TSharedPtr<SGroupMarkerBlock>>(puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex])->ToObject(Context).ToLocalChecked());
 				*Arg1 = Widget; return;
 			}
 		}
@@ -64,59 +65,59 @@ namespace $FGroupStartBlock
 		v8::Isolate* Isolate = Info.GetIsolate();
 		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
 
-		TSharedPtr<FGroupStartBlock> Widget = MakeShared<FGroupStartBlock>();
-		auto V8Result = puerts::converter::Converter<TSharedPtr<FGroupStartBlock>>::toScript(Context, Widget);
+		TSharedPtr<SGroupMarkerBlock> Widget = MakeShared<SGroupMarkerBlock>();
+		auto V8Result = puerts::converter::Converter<TSharedPtr<SGroupMarkerBlock>>::toScript(Context, Widget);
 		Info.GetReturnValue().Set(V8Result);
 	}
 	static void $SAssignNew(const v8::FunctionCallbackInfo<v8::Value>& Info) { $SNew(Info); }
 }
 
-struct AutoRegister_FGroupStartBlock
+struct AutoRegister_SGroupMarkerBlock
 {
 	DTS::DTSArguments RegisterArguments()
 	{
-		DTS::DTSArguments Args = DTS::DTSArguments("FGroupStartBlock");
+		DTS::DTSArguments Args = DTS::DTSArguments("SGroupMarkerBlock");
 
 		return Args;
 	}
 
 	void GenDTS()
 	{
-		DTS::Class ClassDTS = DTS::Class().Name("FGroupStartBlock").Super("FMultiBlock")
+		DTS::Class ClassDTS = DTS::Class().Name("SGroupMarkerBlock").Super("FMultiBlock")
 			.Arguments(RegisterArguments())
 			.Functions(DTS::Array<DTS::Function>()
 				+ DTS::Function()
 				[
 					DTS::Function::Slot().Name("SNew").Static(true)
 						.Parameters(DTS::Array<DTS::Property>()
-							+ DTS::Property().Name("Arguments").Type("FGroupStartBlock.Arguments")
+							+ DTS::Property().Name("Arguments").Type("SGroupMarkerBlock.Arguments")
 							+ DTS::Property().Name("Filename").Type(TS_string)
 						)
-						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<FGroupStartBlock>>::value().Data()))
+						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SGroupMarkerBlock>>::value().Data()))
 				]
 				+ DTS::Function()
 				[
 					DTS::Function::Slot().Name("SAssignNew").Static(true)
 						.Parameters(DTS::Array<DTS::Property>()
-							+ DTS::Property().Name("WidgetRef").Type(puerts::ScriptTypeName<TSharedPtr<FGroupStartBlock>>::value().Data()).Out(true)
-							+ DTS::Property().Name("Arguments").Type("FGroupStartBlock.Arguments")
+							+ DTS::Property().Name("WidgetRef").Type(puerts::ScriptTypeName<TSharedPtr<SGroupMarkerBlock>>::value().Data()).Out(true)
+							+ DTS::Property().Name("Arguments").Type("SGroupMarkerBlock.Arguments")
 							+ DTS::Property().Name("Filename").Type(TS_string)
 						)
 				]
 				+ DTS::Function()
 				[
 					DTS::Function::Slot().Name("MakeShared").Static(true)
-						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<FGroupStartBlock>>::value().Data()))
+						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SGroupMarkerBlock>>::value().Data()))
 				]
 			);
 
 		DTS::FClassDTS::Add(ClassDTS);
 	}
 
-	AutoRegister_FGroupStartBlock()
+	AutoRegister_SGroupMarkerBlock()
 	{
 		GenDTS();
-		RegisterTSharedPtr(FGroupStartBlock);
+		RegisterTSharedPtr(SGroupMarkerBlock);
 
 		puerts::JSClassDefinition Def = JSClassEmptyDefinition;
 
@@ -126,15 +127,15 @@ struct AutoRegister_FGroupStartBlock
 		};
 		static puerts::JSFunctionInfo Functions[] =
 		{
-			{"SNew", $FGroupStartBlock::$SNew},
-			{"SAssignNew", $FGroupStartBlock::$SAssignNew},
-			{"MakeShared", $FGroupStartBlock::$MakeShared},
+			{"SNew", $SGroupMarkerBlock::$SNew},
+			{"SAssignNew", $SGroupMarkerBlock::$SAssignNew},
+			{"MakeShared", $SGroupMarkerBlock::$MakeShared},
 			{0, 0}
 		};
 
-		Def.ScriptName = "FGroupStartBlock";
-		Def.TypeId = puerts::StaticTypeId<FGroupStartBlock>::get();
-		Def.SuperTypeId = puerts::StaticTypeId<FMultiBlock>::get();
+		Def.ScriptName = "SGroupMarkerBlock";
+		Def.TypeId = puerts::StaticTypeId<SGroupMarkerBlock>::get();
+		Def.SuperTypeId = puerts::StaticTypeId<SMultiBlockBaseWidget>::get();
 		Def.Methods = Methods;
 		Def.Functions = Functions;
 
@@ -142,4 +143,4 @@ struct AutoRegister_FGroupStartBlock
 	}
 };
 
-AutoRegister_FGroupStartBlock _AutoRegister_FGroupStartBlock;
+AutoRegister_SGroupMarkerBlock _AutoRegister_SGroupMarkerBlock;

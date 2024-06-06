@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "AppFramework/Private/Widgets/Colors/SEyeDropperButton.h"
 
 UsingCppType(SEyeDropperButton);
 UsingTSharedPtr(SEyeDropperButton);
@@ -81,7 +82,7 @@ struct AutoRegister_SEyeDropperButton
 		DTS::DTSArguments Args = DTS::DTSArguments("SEyeDropperButton");
 		Args.Add<FOnLinearColorValueChanged>("OnValueChanged", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FSimpleDelegate>("OnBegin", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnDropperComplete>("OnComplete", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SEyeDropperButton::FOnDropperComplete>("OnComplete", DTS::EArgType::SLATE_EVENT);
 		Args.Add<float>("DisplayGamma", DTS::EArgType::SLATE_ATTRIBUTE);
 		return Args;
 	}

@@ -31,8 +31,8 @@ namespace $SExpandableArea
 		$SLATE_NAMED_SLOT(FArguments, BodyContent, );
 		$SLATE_ATTRIBUTE(FText, AreaTitle, );
 		$SLATE_ARGUMENT(bool, InitiallyCollapsed, );
-		$SLATE_ARGUMENT(float, MinWidth, );
-		$SLATE_ARGUMENT(float, MaxHeight, );
+		$SLATE_ARGUMENT(float, MinWidth, float);
+		$SLATE_ARGUMENT(float, MaxHeight, float);
 		$SLATE_ATTRIBUTE(FMargin, AreaTitlePadding, );
 		$SLATE_ATTRIBUTE(FMargin, HeaderPadding, );
 		$SLATE_ATTRIBUTE(FMargin, Padding, );

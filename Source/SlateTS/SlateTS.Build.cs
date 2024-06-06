@@ -51,6 +51,9 @@ public class SlateTS : ModuleRules
                 "WidgetCarousel",
                 "AppFramework",
                 "GameMenuBuilder",
+                "AdvancedWidgets",
+                "TimeManagement",
+                "WebBrowser",
 				// ... add private dependencies that you statically link with here ...	
 			}
             );

@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Layout/SSplitter.h"
 
 UsingCppType(SSplitter);
 UsingTSharedPtr(SSplitter);
@@ -94,9 +95,9 @@ struct AutoRegister_SSplitter
 		Args.Add<float>("HitDetectionSplitterHandleSize", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<float>("MinimumSlotHeight", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<int32>("HighlightedHandleIndex", DTS::EArgType::SLATE_ATTRIBUTE);
-		Args.Add<FOnHandleHovered>("OnHandleHovered", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SSplitter::FOnHandleHovered>("OnHandleHovered", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FSimpleDelegate>("OnSplitterFinishedResizing", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnGetMaxSlotSize>("OnGetMaxSlotSize", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SSplitter::FOnGetMaxSlotSize>("OnGetMaxSlotSize", DTS::EArgType::SLATE_EVENT);
 		return Args;
 	}
 

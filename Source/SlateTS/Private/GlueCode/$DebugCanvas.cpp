@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Slate/DebugCanvas.h"
 
 UsingCppType(SDebugCanvas);
 UsingTSharedPtr(SDebugCanvas);

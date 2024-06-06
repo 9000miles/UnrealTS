@@ -10,13 +10,14 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "../Private/Framework/MultiBox/SHeadingBlock.h"
 
-UsingCppType(FHeadingBlock);
-UsingTSharedPtr(FHeadingBlock);
+UsingCppType(SHeadingBlock);
+UsingTSharedPtr(SHeadingBlock);
 
-namespace $FHeadingBlock
+namespace $SHeadingBlock
 {
-	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, FHeadingBlock::FArguments& Arguments)
+	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, SHeadingBlock::FArguments& Arguments)
 	{
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
@@ -35,16 +36,16 @@ namespace $FHeadingBlock
 		uint8 ArgumentsIndex = InfoLength == 3 ? 1 : 0;
 		uint8 FilenameIndex = InfoLength == 3 ? 2 : 1;
 
-		FHeadingBlock::FArguments Arguments;
+		SHeadingBlock::FArguments Arguments;
 		$Arguments(Info, ArgumentsIndex, Context, Isolate, Arguments);
 
 		FString Filename;
 		if (Info[FilenameIndex]->IsString()) Filename = UTF8_TO_TCHAR(*(v8::String::Utf8Value(Isolate, Info[FilenameIndex])));
 
-		TSharedPtr<FHeadingBlock> Widget = MakeTDecl<FHeadingBlock>("FHeadingBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+		TSharedPtr<SHeadingBlock> Widget = MakeTDecl<SHeadingBlock>("SHeadingBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
 		if (InfoLength == 2)
 		{
-			auto V8Result = puerts::converter::Converter<TSharedPtr<FHeadingBlock>>::toScript(Context, Widget);
+			auto V8Result = puerts::converter::Converter<TSharedPtr<SHeadingBlock>>::toScript(Context, Widget);
 			Info.GetReturnValue().Set(V8Result); return;
 		}
 
@@ -52,9 +53,9 @@ namespace $FHeadingBlock
 		{
 			auto RefObject = puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex]);
 			if (Info[ExposeIndex]->IsObject() && RefObject->IsObject() &&
-				puerts::DataTransfer::IsInstanceOf(Isolate, puerts::StaticTypeId<TSharedPtr<FHeadingBlock>>::get(), RefObject->ToObject(Context).ToLocalChecked()))
+				puerts::DataTransfer::IsInstanceOf(Isolate, puerts::StaticTypeId<TSharedPtr<SHeadingBlock>>::get(), RefObject->ToObject(Context).ToLocalChecked()))
 			{
-				TSharedPtr<FHeadingBlock>* Arg1 = puerts::DataTransfer::GetPointerFast<TSharedPtr<FHeadingBlock>>(puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex])->ToObject(Context).ToLocalChecked());
+				TSharedPtr<SHeadingBlock>* Arg1 = puerts::DataTransfer::GetPointerFast<TSharedPtr<SHeadingBlock>>(puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex])->ToObject(Context).ToLocalChecked());
 				*Arg1 = Widget; return;
 			}
 		}
@@ -64,59 +65,59 @@ namespace $FHeadingBlock
 		v8::Isolate* Isolate = Info.GetIsolate();
 		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
 
-		TSharedPtr<FHeadingBlock> Widget = MakeShared<FHeadingBlock>();
-		auto V8Result = puerts::converter::Converter<TSharedPtr<FHeadingBlock>>::toScript(Context, Widget);
+		TSharedPtr<SHeadingBlock> Widget = MakeShared<SHeadingBlock>();
+		auto V8Result = puerts::converter::Converter<TSharedPtr<SHeadingBlock>>::toScript(Context, Widget);
 		Info.GetReturnValue().Set(V8Result);
 	}
 	static void $SAssignNew(const v8::FunctionCallbackInfo<v8::Value>& Info) { $SNew(Info); }
 }
 
-struct AutoRegister_FHeadingBlock
+struct AutoRegister_SHeadingBlock
 {
 	DTS::DTSArguments RegisterArguments()
 	{
-		DTS::DTSArguments Args = DTS::DTSArguments("FHeadingBlock");
+		DTS::DTSArguments Args = DTS::DTSArguments("SHeadingBlock");
 
 		return Args;
 	}
 
 	void GenDTS()
 	{
-		DTS::Class ClassDTS = DTS::Class().Name("FHeadingBlock").Super("FMultiBlock")
+		DTS::Class ClassDTS = DTS::Class().Name("SHeadingBlock").Super("FMultiBlock")
 			.Arguments(RegisterArguments())
 			.Functions(DTS::Array<DTS::Function>()
 				+ DTS::Function()
 				[
 					DTS::Function::Slot().Name("SNew").Static(true)
 						.Parameters(DTS::Array<DTS::Property>()
-							+ DTS::Property().Name("Arguments").Type("FHeadingBlock.Arguments")
+							+ DTS::Property().Name("Arguments").Type("SHeadingBlock.Arguments")
 							+ DTS::Property().Name("Filename").Type(TS_string)
 						)
-						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<FHeadingBlock>>::value().Data()))
+						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SHeadingBlock>>::value().Data()))
 				]
 				+ DTS::Function()
 				[
 					DTS::Function::Slot().Name("SAssignNew").Static(true)
 						.Parameters(DTS::Array<DTS::Property>()
-							+ DTS::Property().Name("WidgetRef").Type(puerts::ScriptTypeName<TSharedPtr<FHeadingBlock>>::value().Data()).Out(true)
-							+ DTS::Property().Name("Arguments").Type("FHeadingBlock.Arguments")
+							+ DTS::Property().Name("WidgetRef").Type(puerts::ScriptTypeName<TSharedPtr<SHeadingBlock>>::value().Data()).Out(true)
+							+ DTS::Property().Name("Arguments").Type("SHeadingBlock.Arguments")
 							+ DTS::Property().Name("Filename").Type(TS_string)
 						)
 				]
 				+ DTS::Function()
 				[
 					DTS::Function::Slot().Name("MakeShared").Static(true)
-						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<FHeadingBlock>>::value().Data()))
+						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SHeadingBlock>>::value().Data()))
 				]
 			);
 
 		DTS::FClassDTS::Add(ClassDTS);
 	}
 
-	AutoRegister_FHeadingBlock()
+	AutoRegister_SHeadingBlock()
 	{
 		GenDTS();
-		RegisterTSharedPtr(FHeadingBlock);
+		RegisterTSharedPtr(SHeadingBlock);
 
 		puerts::JSClassDefinition Def = JSClassEmptyDefinition;
 
@@ -126,15 +127,15 @@ struct AutoRegister_FHeadingBlock
 		};
 		static puerts::JSFunctionInfo Functions[] =
 		{
-			{"SNew", $FHeadingBlock::$SNew},
-			{"SAssignNew", $FHeadingBlock::$SAssignNew},
-			{"MakeShared", $FHeadingBlock::$MakeShared},
+			{"SNew", $SHeadingBlock::$SNew},
+			{"SAssignNew", $SHeadingBlock::$SAssignNew},
+			{"MakeShared", $SHeadingBlock::$MakeShared},
 			{0, 0}
 		};
 
-		Def.ScriptName = "FHeadingBlock";
-		Def.TypeId = puerts::StaticTypeId<FHeadingBlock>::get();
-		Def.SuperTypeId = puerts::StaticTypeId<FMultiBlock>::get();
+		Def.ScriptName = "SHeadingBlock";
+		Def.TypeId = puerts::StaticTypeId<SHeadingBlock>::get();
+		Def.SuperTypeId = puerts::StaticTypeId<SMultiBlockBaseWidget>::get();
 		Def.Methods = Methods;
 		Def.Functions = Functions;
 
@@ -142,4 +143,4 @@ struct AutoRegister_FHeadingBlock
 	}
 };
 
-AutoRegister_FHeadingBlock _AutoRegister_FHeadingBlock;
+AutoRegister_SHeadingBlock _AutoRegister_SHeadingBlock;

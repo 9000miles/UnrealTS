@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Input/SSubMenuHandler.h"
 
 UsingCppType(SSubMenuHandler);
 UsingTSharedPtr(SSubMenuHandler);

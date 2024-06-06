@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "TimeManagement/Public/Widgets/SFrameRatePicker.h"
 
 UsingCppType(SFrameRatePicker);
 UsingTSharedPtr(SFrameRatePicker);
@@ -25,7 +26,7 @@ namespace $SFrameRatePicker
 		$SLATE_STYLE_ARGUMENT(FButtonStyle, ButtonStyle, );
 		$SLATE_ATTRIBUTE(FSlateColor, ForegroundColor, );
 		$SLATE_ATTRIBUTE(FMargin, ContentPadding, );
-		$SLATE_ATTRIBUTE(FFrameRate, Value, );
+		$SLATE_ATTRIBUTE(FFrameRate, Value, FFrameRate);
 		//$SLATE_EVENT(FOnValueChanged, OnValueChanged, );
 		$SLATE_ATTRIBUTE(bool, HasMultipleValues, );
 		$SLATE_ARGUMENT(TArray<FCommonFrameRateInfo>, PresetValues, );
@@ -93,13 +94,13 @@ struct AutoRegister_SFrameRatePicker
 		Args.Add<FSlateColor>("ForegroundColor", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FMargin>("ContentPadding", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FFrameRate>("Value", DTS::EArgType::SLATE_ATTRIBUTE);
-		Args.Add<FOnValueChanged>("OnValueChanged", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SFrameRatePicker::FOnValueChanged>("OnValueChanged", DTS::EArgType::SLATE_EVENT);
 		Args.Add<bool>("HasMultipleValues", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<TArray<FCommonFrameRateInfo>>("PresetValues", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<FText>("RecommendedText", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FText>("NotRecommendedText", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FText>("NotRecommendedToolTip", DTS::EArgType::SLATE_ATTRIBUTE);
-		Args.Add<FIsPresetRecommended>("IsPresetRecommended", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SFrameRatePicker::FIsPresetRecommended>("IsPresetRecommended", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FSlateFontInfo>("Font", DTS::EArgType::SLATE_ATTRIBUTE);
 		return Args;
 	}

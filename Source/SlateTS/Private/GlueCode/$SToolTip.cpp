@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/SToolTip.h"
 
 UsingCppType(SToolTip);
 UsingTSharedPtr(SToolTip);
@@ -88,7 +89,7 @@ struct AutoRegister_SToolTip
 		Args.Add<FMargin>("TextMargin", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<const FSlateBrush*>("BorderImage", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<bool>("IsInteractive", DTS::EArgType::SLATE_ATTRIBUTE);
-		Args.Add<FOnSetInteractiveWindowLocation>("OnSetInteractiveWindowLocation", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SToolTip::FOnSetInteractiveWindowLocation>("OnSetInteractiveWindowLocation", DTS::EArgType::SLATE_EVENT);
 		return Args;
 	}
 

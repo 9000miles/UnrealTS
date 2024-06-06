@@ -85,9 +85,9 @@ struct AutoRegister_SColorGradingWheel
 		Args.Add<FLinearColor>("SelectedColor", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<int32>("DesiredWheelSize", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<float>("ExponentDisplacement", DTS::EArgType::SLATE_ATTRIBUTE);
-		Args.Add<FOnColorGradingWheelMouseCapture>("OnMouseCaptureBegin", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnColorGradingWheelMouseCapture>("OnMouseCaptureEnd", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnColorGradingWheelValueChanged>("OnValueChanged", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SColorGradingWheel::FOnColorGradingWheelMouseCapture>("OnMouseCaptureBegin", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SColorGradingWheel::FOnColorGradingWheelMouseCapture>("OnMouseCaptureEnd", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SColorGradingWheel::FOnColorGradingWheelValueChanged>("OnValueChanged", DTS::EArgType::SLATE_EVENT);
 		return Args;
 	}
 

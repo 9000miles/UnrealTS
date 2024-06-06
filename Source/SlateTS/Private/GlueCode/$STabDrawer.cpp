@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Framework/Docking/STabDrawer.h"
 
 UsingCppType(STabDrawer);
 UsingTSharedPtr(STabDrawer);

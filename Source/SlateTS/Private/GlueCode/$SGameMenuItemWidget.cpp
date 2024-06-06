@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "GameMenuBuilder/Public/SGameMenuItemWidget.h"
 
 UsingCppType(SGameMenuItemWidget);
 UsingTSharedPtr(SGameMenuItemWidget);
@@ -86,7 +87,7 @@ struct AutoRegister_SGameMenuItemWidget
 		Args.Add<FGameMenuStyle>("MenuStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT);
 		Args.Add<TWeakObjectPtr<APlayerController>>("PCOwner", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<FOnClicked>("OnClicked", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnArrowPressed>("OnArrowPressed", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SGameMenuItemWidget::FOnArrowPressed>("OnArrowPressed", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FText>("Text", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<bool>("bIsMultichoice", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<FText>("OptionText", DTS::EArgType::SLATE_ATTRIBUTE);

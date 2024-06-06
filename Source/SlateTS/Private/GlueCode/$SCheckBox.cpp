@@ -26,7 +26,7 @@ namespace $SCheckBox
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_DEFAULT_SLOT(FArguments, Content, );
 		$SLATE_STYLE_ARGUMENT(FCheckBoxStyle, Style, FCheckBoxStyle);
-		$SLATE_ARGUMENT(TOptional<ESlateCheckBoxType::Type>, Type, );
+		$SLATE_ARGUMENT(TOptional<ESlateCheckBoxType::Type>, Type, TOptional_ESlateCheckBoxType);
 		//$SLATE_EVENT(FOnCheckStateChanged, OnCheckStateChanged, );
 		$SLATE_ATTRIBUTE(ECheckBoxState, IsChecked, );
 		$SLATE_ARGUMENT(EHorizontalAlignment, HAlign, );

@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "WebBrowser/Public/SWebBrowser.h"
 
 UsingCppType(SWebBrowser);
 UsingTSharedPtr(SWebBrowser);
@@ -27,7 +28,7 @@ namespace $SWebBrowser
 		$SLATE_ARGUMENT(bool, ShowControls, );
 		$SLATE_ARGUMENT(bool, ShowAddressBar, );
 		$SLATE_ARGUMENT(bool, ShowErrorMessage, );
-		$SLATE_ARGUMENT(bool, SupportsTransparency, );
+		$SLATE_ARGUMENT(bool, SupportsTransparency, bool);
 		$SLATE_ARGUMENT(bool, SupportsThumbMouseButtonNavigation, );
 		$SLATE_ARGUMENT(bool, ShowInitialThrobber, );
 		$SLATE_ARGUMENT(FColor, BackgroundColor, );
@@ -124,12 +125,12 @@ struct AutoRegister_SWebBrowser
 		Args.Add<FOnBeforePopupDelegate>("OnBeforePopup", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FOnCreateWindowDelegate>("OnCreateWindow", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FOnCloseWindowDelegate>("OnCloseWindow", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnBeforeBrowse>("OnBeforeNavigation", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnLoadUrl>("OnLoadUrl", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnShowDialog>("OnShowDialog", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SWebBrowser::FOnBeforeBrowse>("OnBeforeNavigation", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SWebBrowser::FOnLoadUrl>("OnLoadUrl", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SWebBrowser::FOnShowDialog>("OnShowDialog", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FSimpleDelegate>("OnDismissAllDialogs", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FOnSuppressContextMenu>("OnSuppressContextMenu", DTS::EArgType::SLATE_EVENT);
-		Args.Add<FOnDragWindow>("OnDragWindow", DTS::EArgType::SLATE_EVENT);
+		Args.Add<SWebBrowser::FOnDragWindow>("OnDragWindow", DTS::EArgType::SLATE_EVENT);
 		Args.Add<FOnConsoleMessageDelegate>("OnConsoleMessage", DTS::EArgType::SLATE_EVENT);
 		return Args;
 	}

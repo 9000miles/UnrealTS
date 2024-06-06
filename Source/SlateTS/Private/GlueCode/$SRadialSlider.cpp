@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "AdvancedWidgets/Public/Widgets/SRadialSlider.h"
 
 UsingCppType(SRadialSlider);
 UsingTSharedPtr(SRadialSlider);
@@ -28,11 +29,11 @@ namespace $SRadialSlider
 		$SLATE_ATTRIBUTE(FSlateColor, SliderProgressColor, );
 		$SLATE_ATTRIBUTE(FSlateColor, SliderHandleColor, );
 		$SLATE_ATTRIBUTE(FSlateColor, CenterBackgroundColor, );
-		$SLATE_ATTRIBUTE(float, Thickness, );
+		$SLATE_ATTRIBUTE(float, Thickness, float);
 		$SLATE_ARGUMENT(FSlateBrush, CenterBackgroundBrush, );
 		$SLATE_STYLE_ARGUMENT(FSliderStyle, Style, FSliderStyle);
 		$SLATE_ATTRIBUTE(float, StepSize, );
-		$SLATE_ATTRIBUTE(float, Value, );
+		$SLATE_ATTRIBUTE(float, Value, float);
 		$SLATE_ATTRIBUTE(bool, bUseCustomDefaultValue, );
 		$SLATE_ATTRIBUTE(float, CustomDefaultValue, );
 		$SLATE_ARGUMENT(FRuntimeFloatCurve, SliderRange, );

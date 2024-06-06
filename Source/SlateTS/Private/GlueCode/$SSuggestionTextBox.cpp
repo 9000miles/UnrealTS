@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Input/SSuggestionTextBox.h"
 
 UsingCppType(SSuggestionTextBox);
 UsingTSharedPtr(SSuggestionTextBox);
@@ -29,7 +30,7 @@ namespace $SSuggestionTextBox
 		$SLATE_ATTRIBUTE(FSlateColor, ForegroundColor, );
 		$SLATE_ATTRIBUTE(FText, HintText, );
 		$SLATE_ATTRIBUTE(bool, IsCaretMovedWhenGainFocus, );
-		$SLATE_ATTRIBUTE(float, MinDesiredWidth, );
+		$SLATE_ATTRIBUTE(float, MinDesiredWidth, float);
 		//$SLATE_EVENT(FOnShowingHistory, OnShowingHistory, );
 		//$SLATE_EVENT(FOnShowingSuggestions, OnShowingSuggestions, );
 		//$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
@@ -37,7 +38,7 @@ namespace $SSuggestionTextBox
 		$SLATE_ATTRIBUTE(bool, RevertTextOnEscape, );
 		$SLATE_ATTRIBUTE(bool, SelectAllTextOnCommit, );
 		$SLATE_ATTRIBUTE(bool, SelectAllTextWhenFocused, );
-		$SLATE_STYLE_ARGUMENT(FEditableTextBoxStyle, TextStyle, );
+		$SLATE_STYLE_ARGUMENT(FEditableTextBoxStyle, TextStyle, FEditableTextBoxStyle);
 		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, SuggestionTextStyle, );
 		$SLATE_ATTRIBUTE(float, SuggestionListMaxHeight, );
 		$SLATE_ATTRIBUTE(FText, Text, );

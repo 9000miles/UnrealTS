@@ -10,13 +10,14 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Framework/MultiBox/SToolBarStackButtonBlock.h"
 
-UsingCppType(FToolBarStackButtonBlock);
-UsingTSharedPtr(FToolBarStackButtonBlock);
+UsingCppType(SToolBarStackButtonBlock);
+UsingTSharedPtr(SToolBarStackButtonBlock);
 
-namespace $FToolBarStackButtonBlock
+namespace $SToolBarStackButtonBlock
 {
-	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, FToolBarStackButtonBlock::FArguments& Arguments)
+	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, SToolBarStackButtonBlock::FArguments& Arguments)
 	{
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
@@ -36,16 +37,16 @@ namespace $FToolBarStackButtonBlock
 		uint8 ArgumentsIndex = InfoLength == 3 ? 1 : 0;
 		uint8 FilenameIndex = InfoLength == 3 ? 2 : 1;
 
-		FToolBarStackButtonBlock::FArguments Arguments;
+		SToolBarStackButtonBlock::FArguments Arguments;
 		$Arguments(Info, ArgumentsIndex, Context, Isolate, Arguments);
 
 		FString Filename;
 		if (Info[FilenameIndex]->IsString()) Filename = UTF8_TO_TCHAR(*(v8::String::Utf8Value(Isolate, Info[FilenameIndex])));
 
-		TSharedPtr<FToolBarStackButtonBlock> Widget = MakeTDecl<FToolBarStackButtonBlock>("FToolBarStackButtonBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+		TSharedPtr<SToolBarStackButtonBlock> Widget = MakeTDecl<SToolBarStackButtonBlock>("SToolBarStackButtonBlock", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
 		if (InfoLength == 2)
 		{
-			auto V8Result = puerts::converter::Converter<TSharedPtr<FToolBarStackButtonBlock>>::toScript(Context, Widget);
+			auto V8Result = puerts::converter::Converter<TSharedPtr<SToolBarStackButtonBlock>>::toScript(Context, Widget);
 			Info.GetReturnValue().Set(V8Result); return;
 		}
 
@@ -53,9 +54,9 @@ namespace $FToolBarStackButtonBlock
 		{
 			auto RefObject = puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex]);
 			if (Info[ExposeIndex]->IsObject() && RefObject->IsObject() &&
-				puerts::DataTransfer::IsInstanceOf(Isolate, puerts::StaticTypeId<TSharedPtr<FToolBarStackButtonBlock>>::get(), RefObject->ToObject(Context).ToLocalChecked()))
+				puerts::DataTransfer::IsInstanceOf(Isolate, puerts::StaticTypeId<TSharedPtr<SToolBarStackButtonBlock>>::get(), RefObject->ToObject(Context).ToLocalChecked()))
 			{
-				TSharedPtr<FToolBarStackButtonBlock>* Arg1 = puerts::DataTransfer::GetPointerFast<TSharedPtr<FToolBarStackButtonBlock>>(puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex])->ToObject(Context).ToLocalChecked());
+				TSharedPtr<SToolBarStackButtonBlock>* Arg1 = puerts::DataTransfer::GetPointerFast<TSharedPtr<SToolBarStackButtonBlock>>(puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex])->ToObject(Context).ToLocalChecked());
 				*Arg1 = Widget; return;
 			}
 		}
@@ -65,18 +66,18 @@ namespace $FToolBarStackButtonBlock
 		v8::Isolate* Isolate = Info.GetIsolate();
 		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
 
-		TSharedPtr<FToolBarStackButtonBlock> Widget = MakeShared<FToolBarStackButtonBlock>();
-		auto V8Result = puerts::converter::Converter<TSharedPtr<FToolBarStackButtonBlock>>::toScript(Context, Widget);
+		TSharedPtr<SToolBarStackButtonBlock> Widget = MakeShared<SToolBarStackButtonBlock>();
+		auto V8Result = puerts::converter::Converter<TSharedPtr<SToolBarStackButtonBlock>>::toScript(Context, Widget);
 		Info.GetReturnValue().Set(V8Result);
 	}
 	static void $SAssignNew(const v8::FunctionCallbackInfo<v8::Value>& Info) { $SNew(Info); }
 }
 
-struct AutoRegister_FToolBarStackButtonBlock
+struct AutoRegister_SToolBarStackButtonBlock
 {
 	DTS::DTSArguments RegisterArguments()
 	{
-		DTS::DTSArguments Args = DTS::DTSArguments("FToolBarStackButtonBlock");
+		DTS::DTSArguments Args = DTS::DTSArguments("SToolBarStackButtonBlock");
 		Args.Add<TOptional< EVisibility >>("LabelVisibility", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<bool>("ForceSmallIcons", DTS::EArgType::SLATE_ARGUMENT);
 		return Args;
@@ -84,41 +85,41 @@ struct AutoRegister_FToolBarStackButtonBlock
 
 	void GenDTS()
 	{
-		DTS::Class ClassDTS = DTS::Class().Name("FToolBarStackButtonBlock").Super("FMultiBlock")
+		DTS::Class ClassDTS = DTS::Class().Name("SToolBarStackButtonBlock").Super("FMultiBlock")
 			.Arguments(RegisterArguments())
 			.Functions(DTS::Array<DTS::Function>()
 				+ DTS::Function()
 				[
 					DTS::Function::Slot().Name("SNew").Static(true)
 						.Parameters(DTS::Array<DTS::Property>()
-							+ DTS::Property().Name("Arguments").Type("FToolBarStackButtonBlock.Arguments")
+							+ DTS::Property().Name("Arguments").Type("SToolBarStackButtonBlock.Arguments")
 							+ DTS::Property().Name("Filename").Type(TS_string)
 						)
-						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<FToolBarStackButtonBlock>>::value().Data()))
+						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SToolBarStackButtonBlock>>::value().Data()))
 				]
 				+ DTS::Function()
 				[
 					DTS::Function::Slot().Name("SAssignNew").Static(true)
 						.Parameters(DTS::Array<DTS::Property>()
-							+ DTS::Property().Name("WidgetRef").Type(puerts::ScriptTypeName<TSharedPtr<FToolBarStackButtonBlock>>::value().Data()).Out(true)
-							+ DTS::Property().Name("Arguments").Type("FToolBarStackButtonBlock.Arguments")
+							+ DTS::Property().Name("WidgetRef").Type(puerts::ScriptTypeName<TSharedPtr<SToolBarStackButtonBlock>>::value().Data()).Out(true)
+							+ DTS::Property().Name("Arguments").Type("SToolBarStackButtonBlock.Arguments")
 							+ DTS::Property().Name("Filename").Type(TS_string)
 						)
 				]
 				+ DTS::Function()
 				[
 					DTS::Function::Slot().Name("MakeShared").Static(true)
-						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<FToolBarStackButtonBlock>>::value().Data()))
+						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SToolBarStackButtonBlock>>::value().Data()))
 				]
 			);
 
 		DTS::FClassDTS::Add(ClassDTS);
 	}
 
-	AutoRegister_FToolBarStackButtonBlock()
+	AutoRegister_SToolBarStackButtonBlock()
 	{
 		GenDTS();
-		RegisterTSharedPtr(FToolBarStackButtonBlock);
+		RegisterTSharedPtr(SToolBarStackButtonBlock);
 
 		puerts::JSClassDefinition Def = JSClassEmptyDefinition;
 
@@ -128,15 +129,15 @@ struct AutoRegister_FToolBarStackButtonBlock
 		};
 		static puerts::JSFunctionInfo Functions[] =
 		{
-			{"SNew", $FToolBarStackButtonBlock::$SNew},
-			{"SAssignNew", $FToolBarStackButtonBlock::$SAssignNew},
-			{"MakeShared", $FToolBarStackButtonBlock::$MakeShared},
+			{"SNew", $SToolBarStackButtonBlock::$SNew},
+			{"SAssignNew", $SToolBarStackButtonBlock::$SAssignNew},
+			{"MakeShared", $SToolBarStackButtonBlock::$MakeShared},
 			{0, 0}
 		};
 
-		Def.ScriptName = "FToolBarStackButtonBlock";
-		Def.TypeId = puerts::StaticTypeId<FToolBarStackButtonBlock>::get();
-		Def.SuperTypeId = puerts::StaticTypeId<FMultiBlock>::get();
+		Def.ScriptName = "SToolBarStackButtonBlock";
+		Def.TypeId = puerts::StaticTypeId<SToolBarStackButtonBlock>::get();
+		Def.SuperTypeId = puerts::StaticTypeId<SMultiBlockBaseWidget>::get();
 		Def.Methods = Methods;
 		Def.Functions = Functions;
 
@@ -144,4 +145,4 @@ struct AutoRegister_FToolBarStackButtonBlock
 	}
 };
 
-AutoRegister_FToolBarStackButtonBlock _AutoRegister_FToolBarStackButtonBlock;
+AutoRegister_SToolBarStackButtonBlock _AutoRegister_SToolBarStackButtonBlock;

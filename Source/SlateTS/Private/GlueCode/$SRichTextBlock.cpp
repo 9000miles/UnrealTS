@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Text/SRichTextBlock.h"
 
 UsingCppType(SRichTextBlock);
 UsingTSharedPtr(SRichTextBlock);
@@ -27,10 +28,10 @@ namespace $SRichTextBlock
 		$SLATE_ATTRIBUTE(bool, AutoWrapText, );
 		$SLATE_ATTRIBUTE(ETextWrappingPolicy, WrappingPolicy, );
 		$SLATE_ATTRIBUTE(ETextTransformPolicy, TransformPolicy, );
-		$SLATE_ARGUMENT(TSharedPtr<class FRichTextLayoutMarshaller>, Marshaller, );
+		$SLATE_ARGUMENT(TSharedPtr<class FRichTextLayoutMarshaller>, Marshaller, TSharedPtr_FRichTextLayoutMarshaller);
 		//$SLATE_EVENT(FCreateSlateTextLayout, CreateSlateTextLayout, );
 		$SLATE_ARGUMENT(const ISlateStyle*, DecoratorStyleSet, );
-		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, );
+		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, FTextBlockStyle);
 		$SLATE_ATTRIBUTE(FMargin, Margin, );
 		$SLATE_ATTRIBUTE(float, LineHeightPercentage, );
 		$SLATE_ATTRIBUTE(ETextJustify::Type, Justification, );
@@ -39,7 +40,7 @@ namespace $SRichTextBlock
 		$SLATE_ARGUMENT(TArray< TSharedRef< class ITextDecorator > >, Decorators, );
 		$SLATE_ARGUMENT(TSharedPtr< class IRichTextMarkupParser >, Parser, );
 		$SLATE_ARGUMENT(TOptional<ETextOverflowPolicy>, OverflowPolicy, );
-		$SLATE_ATTRIBUTE(float, MinDesiredWidth, );
+		$SLATE_ATTRIBUTE(float, MinDesiredWidth, float);
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

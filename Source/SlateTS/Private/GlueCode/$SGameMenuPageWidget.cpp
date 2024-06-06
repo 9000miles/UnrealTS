@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "GameMenuBuilder/Public/SGameMenuPageWidget.h"
 
 UsingCppType(SGameMenuPageWidget);
 UsingTSharedPtr(SGameMenuPageWidget);

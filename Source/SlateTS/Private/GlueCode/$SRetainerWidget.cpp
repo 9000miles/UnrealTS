@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Slate/SRetainerWidget.h"
 
 UsingCppType(SRetainerWidget);
 UsingTSharedPtr(SRetainerWidget);

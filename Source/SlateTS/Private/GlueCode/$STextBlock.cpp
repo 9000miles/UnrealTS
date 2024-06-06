@@ -24,7 +24,7 @@ namespace $STextBlock
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_ATTRIBUTE(FText, Text, );
-		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, );
+		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, FTextBlockStyle);
 		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
 		$SLATE_ATTRIBUTE(const FSlateBrush*, StrikeBrush, );
 		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, FSlateColor);

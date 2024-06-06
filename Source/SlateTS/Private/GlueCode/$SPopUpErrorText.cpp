@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Notifications/SPopUpErrorText.h"
 
 UsingCppType(SPopupErrorText);
 UsingTSharedPtr(SPopupErrorText);
