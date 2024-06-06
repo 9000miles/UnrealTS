@@ -25,7 +25,7 @@ namespace $SSubMenuHandler
 		$SLATE_ARGUMENT(TSharedPtr<SMenuAnchor>, MenuAnchor, );
 		$SLATE_ARGUMENT(TSharedPtr<SWidget>, MenuContent, );
 		$SLATE_ATTRIBUTE(EMenuPlacement, Placement, );
-		$SLATE_EVENT(FOnGetContent, OnGetMenuContent, );
+		//$SLATE_EVENT(FOnGetContent, OnGetMenuContent, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

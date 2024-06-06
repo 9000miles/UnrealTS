@@ -22,8 +22,8 @@ namespace $SCarouselNavigationButton
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_EVENT(FOnBeginPeek, OnBeginPeek, );
-		$SLATE_EVENT(FOnEndPeek, OnEndPeek, );
+		//$SLATE_EVENT(FOnBeginPeek, OnBeginPeek, );
+		//$SLATE_EVENT(FOnEndPeek, OnEndPeek, );
 		$SLATE_ARGUMENT(EHorizontalAlignment, HAlign, );
 		$SLATE_ARGUMENT(EVerticalAlignment, VAlign, );
 		$SLATE_ATTRIBUTE(FMargin, Padding, );

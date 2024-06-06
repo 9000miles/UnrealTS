@@ -32,12 +32,12 @@ namespace $SColorGradingPicker
 		$SLATE_ARGUMENT(float, MainDelta, );
 		$SLATE_ARGUMENT(int32, MainShiftMouseMovePixelPerDelta, );
 		$SLATE_ARGUMENT(EColorGradingModes, ColorGradingModes, );
-		$SLATE_EVENT(FOnColorGradingPickerValueChanged, OnColorCommitted, );
-		$SLATE_EVENT(FOnGetCurrentVector4Value, OnQueryCurrentColor, );
-		$SLATE_EVENT(FSimpleDelegate, OnBeginSliderMovement, );
-		$SLATE_EVENT(FSimpleDelegate, OnEndSliderMovement, );
-		$SLATE_EVENT(FSimpleDelegate, OnBeginMouseCapture, );
-		$SLATE_EVENT(FSimpleDelegate, OnEndMouseCapture, );
+		//$SLATE_EVENT(FOnColorGradingPickerValueChanged, OnColorCommitted, );
+		//$SLATE_EVENT(FOnGetCurrentVector4Value, OnQueryCurrentColor, );
+		//$SLATE_EVENT(FSimpleDelegate, OnBeginSliderMovement, );
+		//$SLATE_EVENT(FSimpleDelegate, OnEndSliderMovement, );
+		//$SLATE_EVENT(FSimpleDelegate, OnBeginMouseCapture, );
+		//$SLATE_EVENT(FSimpleDelegate, OnEndMouseCapture, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

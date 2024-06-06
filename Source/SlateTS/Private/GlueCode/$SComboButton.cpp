@@ -26,9 +26,9 @@ namespace $SComboButton
 		$SLATE_STYLE_ARGUMENT(FButtonStyle, ButtonStyle, );
 		$SLATE_NAMED_SLOT(FArguments, ButtonContent, );
 		$SLATE_NAMED_SLOT(FArguments, MenuContent, );
-		$SLATE_EVENT(FOnGetContent, OnGetMenuContent, );
-		$SLATE_EVENT(FOnIsOpenChanged, OnMenuOpenChanged, );
-		$SLATE_EVENT(FOnComboBoxOpened, OnComboBoxOpened, );
+		//$SLATE_EVENT(FOnGetContent, OnGetMenuContent, );
+		//$SLATE_EVENT(FOnIsOpenChanged, OnMenuOpenChanged, );
+		//$SLATE_EVENT(FOnComboBoxOpened, OnComboBoxOpened, );
 		$SLATE_ARGUMENT(bool, IsFocusable, );
 		$SLATE_ARGUMENT(bool, HasDownArrow, );
 		$SLATE_ATTRIBUTE(FSlateColor, ForegroundColor, );

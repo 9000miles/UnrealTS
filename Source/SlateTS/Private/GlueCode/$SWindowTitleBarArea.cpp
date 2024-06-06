@@ -25,7 +25,7 @@ namespace $SWindowTitleBarArea
 		$SLATE_ARGUMENT(EVerticalAlignment, VAlign, );
 		$SLATE_ATTRIBUTE(FMargin, Padding, );
 		$SLATE_DEFAULT_SLOT(FArguments, Content, );
-		$SLATE_EVENT(FSimpleDelegate, RequestToggleFullscreen, );
+		//$SLATE_EVENT(FSimpleDelegate, RequestToggleFullscreen, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

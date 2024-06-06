@@ -29,12 +29,12 @@ namespace $SColorPicker
 		$SLATE_ATTRIBUTE(bool, UseAlpha, );
 		$SLATE_ATTRIBUTE(bool, OnlyRefreshOnMouseUp, );
 		$SLATE_ATTRIBUTE(bool, OnlyRefreshOnOk, );
-		$SLATE_EVENT(FOnLinearColorValueChanged, OnColorCommitted, );
-		$SLATE_EVENT(FOnLinearColorValueChanged, PreColorCommitted, );
-		$SLATE_EVENT(FOnColorPickerCancelled, OnColorPickerCancelled, );
-		$SLATE_EVENT(FOnWindowClosed, OnColorPickerWindowClosed, );
-		$SLATE_EVENT(FSimpleDelegate, OnInteractivePickBegin, );
-		$SLATE_EVENT(FSimpleDelegate, OnInteractivePickEnd, );
+		//$SLATE_EVENT(FOnLinearColorValueChanged, OnColorCommitted, );
+		//$SLATE_EVENT(FOnLinearColorValueChanged, PreColorCommitted, );
+		//$SLATE_EVENT(FOnColorPickerCancelled, OnColorPickerCancelled, );
+		//$SLATE_EVENT(FOnWindowClosed, OnColorPickerWindowClosed, );
+		//$SLATE_EVENT(FSimpleDelegate, OnInteractivePickBegin, );
+		//$SLATE_EVENT(FSimpleDelegate, OnInteractivePickEnd, );
 		$SLATE_ATTRIBUTE(TSharedPtr<SWindow>, ParentWindow, );
 		$SLATE_ATTRIBUTE(float, DisplayGamma, );
 		$SLATE_ARGUMENT(TOptional<bool>, sRGBOverride, );

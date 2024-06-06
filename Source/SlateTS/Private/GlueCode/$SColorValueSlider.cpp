@@ -23,9 +23,9 @@ namespace $SColorValueSlider
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_ATTRIBUTE(FLinearColor, SelectedColor, );
-		$SLATE_EVENT(FOnLinearColorValueChanged, OnValueChanged, );
-		$SLATE_EVENT(FSimpleDelegate, OnMouseCaptureBegin, );
-		$SLATE_EVENT(FSimpleDelegate, OnMouseCaptureEnd, );
+		//$SLATE_EVENT(FOnLinearColorValueChanged, OnValueChanged, );
+		//$SLATE_EVENT(FSimpleDelegate, OnMouseCaptureBegin, );
+		//$SLATE_EVENT(FSimpleDelegate, OnMouseCaptureEnd, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

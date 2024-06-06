@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Input/SHyperlink.h"
 
 UsingCppType(SHyperlink);
 UsingTSharedPtr(SHyperlink);
@@ -23,10 +24,10 @@ namespace $SHyperlink
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_ATTRIBUTE(FText, Text, );
 		$SLATE_STYLE_ARGUMENT(FHyperlinkStyle, Style, FHyperlinkStyle);
-		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, );
+		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, FTextBlockStyle);
 		$SLATE_STYLE_ARGUMENT(FButtonStyle, UnderlineStyle, );
 		$SLATE_ATTRIBUTE(FMargin, Padding, );
-		$SLATE_EVENT(FSimpleDelegate, OnNavigate, );
+		//$SLATE_EVENT(FSimpleDelegate, OnNavigate, );
 		$SLATE_ARGUMENT(TOptional<ETextShapingMethod>, TextShapingMethod, );
 		$SLATE_ARGUMENT(TOptional<ETextFlowDirection>, TextFlowDirection, );
 	}

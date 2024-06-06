@@ -27,7 +27,7 @@ namespace $SCheckBox
 		$SLATE_DEFAULT_SLOT(FArguments, Content, );
 		$SLATE_STYLE_ARGUMENT(FCheckBoxStyle, Style, FCheckBoxStyle);
 		$SLATE_ARGUMENT(TOptional<ESlateCheckBoxType::Type>, Type, );
-		$SLATE_EVENT(FOnCheckStateChanged, OnCheckStateChanged, );
+		//$SLATE_EVENT(FOnCheckStateChanged, OnCheckStateChanged, );
 		$SLATE_ATTRIBUTE(ECheckBoxState, IsChecked, );
 		$SLATE_ARGUMENT(EHorizontalAlignment, HAlign, );
 		$SLATE_ARGUMENT(bool, CheckBoxContentUsesAutoWidth, );
@@ -38,7 +38,7 @@ namespace $SCheckBox
 		$SLATE_ATTRIBUTE(FSlateColor, ForegroundColor, );
 		$SLATE_ATTRIBUTE(FSlateColor, BorderBackgroundColor, );
 		$SLATE_ARGUMENT(bool, IsFocusable, );
-		$SLATE_EVENT(FOnGetContent, OnGetMenuContent, );
+		//$SLATE_EVENT(FOnGetContent, OnGetMenuContent, );
 		$SLATE_ARGUMENT(TOptional<FSlateSound>, CheckedSoundOverride, );
 		$SLATE_ARGUMENT(TOptional<FSlateSound>, UncheckedSoundOverride, );
 		$SLATE_ARGUMENT(TOptional<FSlateSound>, HoveredSoundOverride, );

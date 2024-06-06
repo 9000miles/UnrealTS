@@ -46,7 +46,7 @@ namespace $STextBlock
 		$SLATE_ARGUMENT(TSharedPtr<IBreakIterator>, LineBreakPolicy, );
 		$SLATE_ARGUMENT(TOptional<ETextOverflowPolicy>, OverflowPolicy, );
 		$SLATE_ARGUMENT(bool, SimpleTextMode, );
-		$SLATE_EVENT(FPointerEventHandler, OnDoubleClicked, );
+		//$SLATE_EVENT(FPointerEventHandler, OnDoubleClicked, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

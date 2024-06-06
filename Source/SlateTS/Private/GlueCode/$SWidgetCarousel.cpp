@@ -21,8 +21,8 @@ namespace $SWidgetCarousel
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_EVENT(FOnGenerateWidget, OnGenerateWidget, );
-		$SLATE_EVENT(FOnCarouselPageChanged, OnPageChanged, );
+		//$SLATE_EVENT(FOnGenerateWidget, OnGenerateWidget, );
+		//$SLATE_EVENT(FOnCarouselPageChanged, OnPageChanged, );
 		$SLATE_ARGUMENT(const TArray<ItemType>*, WidgetItemsSource, );
 		$SLATE_ATTRIBUTE(float, MoveSpeed, );
 		$SLATE_ATTRIBUTE(float, SlideValueLeftLimit, );

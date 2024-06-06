@@ -26,10 +26,10 @@ namespace $SBorder
 		$SLATE_ARGUMENT(EHorizontalAlignment, HAlign, );
 		$SLATE_ARGUMENT(EVerticalAlignment, VAlign, );
 		$SLATE_ATTRIBUTE(FMargin, Padding, );
-		$SLATE_EVENT(FPointerEventHandler, OnMouseButtonDown, );
-		$SLATE_EVENT(FPointerEventHandler, OnMouseButtonUp, );
-		$SLATE_EVENT(FPointerEventHandler, OnMouseMove, );
-		$SLATE_EVENT(FPointerEventHandler, OnMouseDoubleClick, );
+		//$SLATE_EVENT(FPointerEventHandler, OnMouseButtonDown, );
+		//$SLATE_EVENT(FPointerEventHandler, OnMouseButtonUp, );
+		//$SLATE_EVENT(FPointerEventHandler, OnMouseMove, );
+		//$SLATE_EVENT(FPointerEventHandler, OnMouseDoubleClick, );
 		$SLATE_ATTRIBUTE(const FSlateBrush*, BorderImage, );
 		$SLATE_ATTRIBUTE(FVector2D, ContentScale, );
 		$SLATE_ATTRIBUTE(FVector2D, DesiredSizeScale, );

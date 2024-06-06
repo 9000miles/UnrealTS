@@ -35,11 +35,11 @@ namespace $SSlider
 		$SLATE_ARGUMENT(float, MinValue, );
 		$SLATE_ARGUMENT(float, MaxValue, );
 		$SLATE_ARGUMENT(bool, IsFocusable, );
-		$SLATE_EVENT(FSimpleDelegate, OnMouseCaptureBegin, );
-		$SLATE_EVENT(FSimpleDelegate, OnMouseCaptureEnd, );
-		$SLATE_EVENT(FSimpleDelegate, OnControllerCaptureBegin, );
-		$SLATE_EVENT(FSimpleDelegate, OnControllerCaptureEnd, );
-		$SLATE_EVENT(FOnFloatValueChanged, OnValueChanged, );
+		//$SLATE_EVENT(FSimpleDelegate, OnMouseCaptureBegin, );
+		//$SLATE_EVENT(FSimpleDelegate, OnMouseCaptureEnd, );
+		//$SLATE_EVENT(FSimpleDelegate, OnControllerCaptureBegin, );
+		//$SLATE_EVENT(FSimpleDelegate, OnControllerCaptureEnd, );
+		//$SLATE_EVENT(FOnFloatValueChanged, OnValueChanged, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

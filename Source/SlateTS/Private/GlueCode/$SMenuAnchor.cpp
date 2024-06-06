@@ -24,8 +24,8 @@ namespace $SMenuAnchor
 		$SLATE_DEFAULT_SLOT(FArguments, Content, );
 		$SLATE_ARGUMENT(FMargin, Padding, );
 		$SLATE_ARGUMENT(TSharedPtr<SWidget>, MenuContent, );
-		$SLATE_EVENT(FOnGetContent, OnGetMenuContent, );
-		$SLATE_EVENT(FOnIsOpenChanged, OnMenuOpenChanged, );
+		//$SLATE_EVENT(FOnGetContent, OnGetMenuContent, );
+		//$SLATE_EVENT(FOnIsOpenChanged, OnMenuOpenChanged, );
 		$SLATE_ATTRIBUTE(EMenuPlacement, Placement, );
 		$SLATE_ARGUMENT(bool, FitInWindow, );
 		$SLATE_ARGUMENT(TOptional<EPopupMethod>, Method, );

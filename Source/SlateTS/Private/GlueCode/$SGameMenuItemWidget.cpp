@@ -23,8 +23,8 @@ namespace $SGameMenuItemWidget
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_STYLE_ARGUMENT(FGameMenuStyle, MenuStyle, );
 		$SLATE_ARGUMENT(TWeakObjectPtr<APlayerController>, PCOwner, );
-		$SLATE_EVENT(FOnClicked, OnClicked, );
-		$SLATE_EVENT(FOnArrowPressed, OnArrowPressed, );
+		//$SLATE_EVENT(FOnClicked, OnClicked, );
+		//$SLATE_EVENT(FOnArrowPressed, OnArrowPressed, );
 		$SLATE_ATTRIBUTE(FText, Text, );
 		$SLATE_ARGUMENT(bool, bIsMultichoice, );
 		$SLATE_ATTRIBUTE(FText, OptionText, );

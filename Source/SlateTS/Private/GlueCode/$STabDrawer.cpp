@@ -25,9 +25,9 @@ namespace $STabDrawer
 		$SLATE_ARGUMENT(float, MinDrawerSize, );
 		$SLATE_ARGUMENT(float, MaxDrawerSize, );
 		$SLATE_ARGUMENT(float, TargetDrawerSize, );
-		$SLATE_EVENT(FOnDrawerTargetSizeChanged, OnTargetDrawerSizeChanged, );
-		$SLATE_EVENT(FOnDrawerFocusLost, OnDrawerFocusLost, );
-		$SLATE_EVENT(FOnDrawerClosed, OnDrawerClosed, );
+		//$SLATE_EVENT(FOnDrawerTargetSizeChanged, OnTargetDrawerSizeChanged, );
+		//$SLATE_EVENT(FOnDrawerFocusLost, OnDrawerFocusLost, );
+		//$SLATE_EVENT(FOnDrawerClosed, OnDrawerClosed, );
 		$SLATE_ARGUMENT(FVector2D, ShadowOffset, );
 	}
 

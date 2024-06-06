@@ -36,18 +36,18 @@ namespace $SSpinBox
 		$SLATE_ATTRIBUTE(int32, LinearDeltaSensitivity, );
 		$SLATE_ATTRIBUTE(bool, SupportDynamicSliderMaxValue, );
 		$SLATE_ATTRIBUTE(bool, SupportDynamicSliderMinValue, );
-		$SLATE_EVENT(FOnDynamicSliderMinMaxValueChanged, OnDynamicSliderMaxValueChanged, );
-		$SLATE_EVENT(FOnDynamicSliderMinMaxValueChanged, OnDynamicSliderMinValueChanged, );
+		//$SLATE_EVENT(FOnDynamicSliderMinMaxValueChanged, OnDynamicSliderMaxValueChanged, );
+		//$SLATE_EVENT(FOnDynamicSliderMinMaxValueChanged, OnDynamicSliderMinValueChanged, );
 		$SLATE_ATTRIBUTE(float, SliderExponent, );
 		$SLATE_ATTRIBUTE(NumericType, SliderExponentNeutralValue, );
 		$SLATE_ARGUMENT(bool, EnableWheel, );
 		$SLATE_ATTRIBUTE(TOptional< NumericType >, WheelStep, );
 		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
 		$SLATE_ATTRIBUTE(FMargin, ContentPadding, );
-		$SLATE_EVENT(FOnValueChanged, OnValueChanged, );
-		$SLATE_EVENT(FOnValueCommitted, OnValueCommitted, );
-		$SLATE_EVENT(FSimpleDelegate, OnBeginSliderMovement, );
-		$SLATE_EVENT(FOnValueChanged, OnEndSliderMovement, );
+		//$SLATE_EVENT(FOnValueChanged, OnValueChanged, );
+		//$SLATE_EVENT(FOnValueCommitted, OnValueCommitted, );
+		//$SLATE_EVENT(FSimpleDelegate, OnBeginSliderMovement, );
+		//$SLATE_EVENT(FOnValueChanged, OnEndSliderMovement, );
 		$SLATE_ATTRIBUTE(bool, ClearKeyboardFocusOnCommit, );
 		$SLATE_ATTRIBUTE(bool, SelectAllTextOnCommit, );
 		$SLATE_ATTRIBUTE(float, MinDesiredWidth, );
@@ -55,7 +55,7 @@ namespace $SSpinBox
 		$SLATE_ATTRIBUTE(EKeyboardType, KeyboardType, );
 		$SLATE_ARGUMENT(TSharedPtr< INumericTypeInterface<NumericType> >, TypeInterface, );
 		$SLATE_ARGUMENT(bool, PreventThrottling, );
-		$SLATE_EVENT(FMenuExtensionDelegate, ContextMenuExtender, );
+		//$SLATE_EVENT(FMenuExtensionDelegate, ContextMenuExtender, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

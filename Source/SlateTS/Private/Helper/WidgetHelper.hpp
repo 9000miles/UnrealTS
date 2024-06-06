@@ -9,11 +9,13 @@
 #include "Styling/SlateTypes.h"
 
 #include "$SLATE_ATTRIBUTE.hpp"
-#include "$SLATE_ARGUMENT.hpp"
-#include "$SLATE_STYLE_ARGUMENT.hpp"
-#include "$SLATE_EVENT.hpp"
 #include "$SLATE_DEFAULT_SLOT.hpp"
+#include "$SLATE_ARGUMENT_DEFAULT.hpp"
+#include "$SLATE_SLOT_ARGUMENT.hpp"
+#include "$SLATE_ARGUMENT.hpp"
+#include "$SLATE_EVENT.hpp"
 #include "$SLATE_NAMED_SLOT.hpp"
+#include "$SLATE_STYLE_ARGUMENT.hpp"
 
 #define SET_VARIABLE__(Name);\
 WidgetArgument4::Set_##Name(Arguments, Isolate, JsObject, #Name, "")
@@ -34,13 +36,13 @@ namespace WidgetOptional
 
 namespace WidgetDelegate
 {
-	FSimpleDelegate MakeSimpleDelegate(FJsObject& JsObject)
-	{
-		return FSimpleDelegate();
-	}
+	//FSimpleDelegate MakeSimpleDelegate(FJsObject& JsObject)
+	//{
+	//	return FSimpleDelegate();
+	//}
 
-	FOnClicked MakeOnClicked(FJsObject& JsObject)
-	{
-		return FOnClicked();
-	}
+	//FOnClicked MakeOnClicked(FJsObject& JsObject)
+	//{
+	//	return FOnClicked();
+	//}
 }

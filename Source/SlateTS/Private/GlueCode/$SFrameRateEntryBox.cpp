@@ -22,7 +22,7 @@ namespace $SFrameRateEntryBox
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_ATTRIBUTE(FFrameRate, Value, );
-		$SLATE_EVENT(FOnValueChanged, OnValueChanged, );
+		//$SLATE_EVENT(FOnValueChanged, OnValueChanged, );
 		$SLATE_ATTRIBUTE(bool, HasMultipleValues, );
 		$SLATE_STYLE_ARGUMENT(FEditableTextBoxStyle, Style, FEditableTextBoxStyle);
 		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );

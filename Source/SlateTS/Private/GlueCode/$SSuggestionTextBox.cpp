@@ -30,10 +30,10 @@ namespace $SSuggestionTextBox
 		$SLATE_ATTRIBUTE(FText, HintText, );
 		$SLATE_ATTRIBUTE(bool, IsCaretMovedWhenGainFocus, );
 		$SLATE_ATTRIBUTE(float, MinDesiredWidth, );
-		$SLATE_EVENT(FOnShowingHistory, OnShowingHistory, );
-		$SLATE_EVENT(FOnShowingSuggestions, OnShowingSuggestions, );
-		$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
-		$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
+		//$SLATE_EVENT(FOnShowingHistory, OnShowingHistory, );
+		//$SLATE_EVENT(FOnShowingSuggestions, OnShowingSuggestions, );
+		//$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
+		//$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
 		$SLATE_ATTRIBUTE(bool, RevertTextOnEscape, );
 		$SLATE_ATTRIBUTE(bool, SelectAllTextOnCommit, );
 		$SLATE_ATTRIBUTE(bool, SelectAllTextWhenFocused, );

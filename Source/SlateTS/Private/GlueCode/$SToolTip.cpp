@@ -27,7 +27,7 @@ namespace $SToolTip
 		$SLATE_ATTRIBUTE(FMargin, TextMargin, );
 		$SLATE_ATTRIBUTE(const FSlateBrush*, BorderImage, );
 		$SLATE_ATTRIBUTE(bool, IsInteractive, );
-		$SLATE_EVENT(FOnSetInteractiveWindowLocation, OnSetInteractiveWindowLocation, );
+		//$SLATE_EVENT(FOnSetInteractiveWindowLocation, OnSetInteractiveWindowLocation, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

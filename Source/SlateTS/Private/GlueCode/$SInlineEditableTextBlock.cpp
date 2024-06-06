@@ -34,12 +34,12 @@ namespace $SInlineEditableTextBlock
 		$SLATE_ATTRIBUTE(bool, IsReadOnly, );
 		$SLATE_ARGUMENT(bool, MultiLine, );
 		$SLATE_ARGUMENT(EModifierKey::Type, ModiferKeyForNewLine, );
-		$SLATE_EVENT(FOnBeginTextEdit, OnBeginTextEdit, );
-		$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
-		$SLATE_EVENT(FSimpleDelegate, OnEnterEditingMode, );
-		$SLATE_EVENT(FSimpleDelegate, OnExitEditingMode, );
-		$SLATE_EVENT(FIsSelected, IsSelected, );
-		$SLATE_EVENT(FOnVerifyTextChanged, OnVerifyTextChanged, );
+		//$SLATE_EVENT(FOnBeginTextEdit, OnBeginTextEdit, );
+		//$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
+		//$SLATE_EVENT(FSimpleDelegate, OnEnterEditingMode, );
+		//$SLATE_EVENT(FSimpleDelegate, OnExitEditingMode, );
+		//$SLATE_EVENT(FIsSelected, IsSelected, );
+		//$SLATE_EVENT(FOnVerifyTextChanged, OnVerifyTextChanged, );
 		$SLATE_ARGUMENT(TOptional<ETextOverflowPolicy>, OverflowPolicy, );
 	}
 

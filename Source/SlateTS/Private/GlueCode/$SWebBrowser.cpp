@@ -34,21 +34,21 @@ namespace $SWebBrowser
 		$SLATE_ARGUMENT(int, BrowserFrameRate, );
 		$SLATE_ARGUMENT(TOptional<EPopupMethod>, PopupMenuMethod, );
 		$SLATE_ATTRIBUTE(FVector2D, ViewportSize, );
-		$SLATE_EVENT(FSimpleDelegate, OnLoadCompleted, );
-		$SLATE_EVENT(FSimpleDelegate, OnLoadError, );
-		$SLATE_EVENT(FSimpleDelegate, OnLoadStarted, );
-		$SLATE_EVENT(FOnTextChanged, OnTitleChanged, );
-		$SLATE_EVENT(FOnTextChanged, OnUrlChanged, );
-		$SLATE_EVENT(FOnBeforePopupDelegate, OnBeforePopup, );
-		$SLATE_EVENT(FOnCreateWindowDelegate, OnCreateWindow, );
-		$SLATE_EVENT(FOnCloseWindowDelegate, OnCloseWindow, );
-		$SLATE_EVENT(FOnBeforeBrowse, OnBeforeNavigation, );
-		$SLATE_EVENT(FOnLoadUrl, OnLoadUrl, );
-		$SLATE_EVENT(FOnShowDialog, OnShowDialog, );
-		$SLATE_EVENT(FSimpleDelegate, OnDismissAllDialogs, );
-		$SLATE_EVENT(FOnSuppressContextMenu, OnSuppressContextMenu, );
-		$SLATE_EVENT(FOnDragWindow, OnDragWindow, );
-		$SLATE_EVENT(FOnConsoleMessageDelegate, OnConsoleMessage, );
+		//$SLATE_EVENT(FSimpleDelegate, OnLoadCompleted, );
+		//$SLATE_EVENT(FSimpleDelegate, OnLoadError, );
+		//$SLATE_EVENT(FSimpleDelegate, OnLoadStarted, );
+		//$SLATE_EVENT(FOnTextChanged, OnTitleChanged, );
+		//$SLATE_EVENT(FOnTextChanged, OnUrlChanged, );
+		//$SLATE_EVENT(FOnBeforePopupDelegate, OnBeforePopup, );
+		//$SLATE_EVENT(FOnCreateWindowDelegate, OnCreateWindow, );
+		//$SLATE_EVENT(FOnCloseWindowDelegate, OnCloseWindow, );
+		//$SLATE_EVENT(FOnBeforeBrowse, OnBeforeNavigation, );
+		//$SLATE_EVENT(FOnLoadUrl, OnLoadUrl, );
+		//$SLATE_EVENT(FOnShowDialog, OnShowDialog, );
+		//$SLATE_EVENT(FSimpleDelegate, OnDismissAllDialogs, );
+		//$SLATE_EVENT(FOnSuppressContextMenu, OnSuppressContextMenu, );
+		//$SLATE_EVENT(FOnDragWindow, OnDragWindow, );
+		//$SLATE_EVENT(FOnConsoleMessageDelegate, OnConsoleMessage, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

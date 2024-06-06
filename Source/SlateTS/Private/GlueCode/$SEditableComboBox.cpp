@@ -25,16 +25,16 @@ namespace $SEditableComboBox
 		$SLATE_STYLE_ARGUMENT(FButtonStyle, ButtonStyle, );
 		$SLATE_NAMED_SLOT(FArguments, Content, );
 		$SLATE_ATTRIBUTE(FMargin, ContentPadding, );
-		$SLATE_ARGUMENT(OptionType, InitiallySelectedItem, );
+		//$SLATE_ARGUMENT(OptionType, InitiallySelectedItem, );
 		$SLATE_ARGUMENT(float, MaxListHeight, );
 		$SLATE_ARGUMENT(EVisibility, IsRenameVisible, );
-		$SLATE_EVENT(FOnClicked, OnAddClicked, );
-		$SLATE_EVENT(FOnGenerateWidget, OnGenerateWidget, );
-		$SLATE_EVENT(FOnGetEditableComboBoxText, OnGetEditableText, );
-		$SLATE_EVENT(FOnClicked, OnRemoveClicked, );
-		$SLATE_EVENT(FOnSelectionChanged, OnSelectionChanged, );
-		$SLATE_EVENT(FOnTextCommitted, OnSelectionRenamed, );
-		$SLATE_ARGUMENT(const TArray<OptionType>*, OptionsSource, );
+		//$SLATE_EVENT(FOnClicked, OnAddClicked, );
+		//$SLATE_EVENT(FOnGenerateWidget, OnGenerateWidget, );
+		//$SLATE_EVENT(FOnGetEditableComboBoxText, OnGetEditableText, );
+		//$SLATE_EVENT(FOnClicked, OnRemoveClicked, );
+		//$SLATE_EVENT(FOnSelectionChanged, OnSelectionChanged, );
+		//$SLATE_EVENT(FOnTextCommitted, OnSelectionRenamed, );
+		//$SLATE_ARGUMENT(const TArray<OptionType>*, OptionsSource, );
 		$SLATE_ATTRIBUTE(FText, RemoveButtonToolTip, );
 		$SLATE_ATTRIBUTE(FText, RenameButtonToolTip, );
 	}

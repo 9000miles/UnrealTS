@@ -45,11 +45,11 @@ namespace $SRadialSlider
 		$SLATE_ARGUMENT(bool, UseVerticalDrag, );
 		$SLATE_ARGUMENT(bool, ShowSliderHandle, );
 		$SLATE_ARGUMENT(bool, ShowSliderHand, );
-		$SLATE_EVENT(FSimpleDelegate, OnMouseCaptureBegin, );
-		$SLATE_EVENT(FSimpleDelegate, OnMouseCaptureEnd, );
-		$SLATE_EVENT(FSimpleDelegate, OnControllerCaptureBegin, );
-		$SLATE_EVENT(FSimpleDelegate, OnControllerCaptureEnd, );
-		$SLATE_EVENT(FOnFloatValueChanged, OnValueChanged, );
+		//$SLATE_EVENT(FSimpleDelegate, OnMouseCaptureBegin, );
+		//$SLATE_EVENT(FSimpleDelegate, OnMouseCaptureEnd, );
+		//$SLATE_EVENT(FSimpleDelegate, OnControllerCaptureBegin, );
+		//$SLATE_EVENT(FSimpleDelegate, OnControllerCaptureEnd, );
+		//$SLATE_EVENT(FOnFloatValueChanged, OnValueChanged, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Input/SMultiLineEditableTextBox.h"
 
 UsingCppType(SMultiLineEditableTextBox);
 UsingTSharedPtr(SMultiLineEditableTextBox);
@@ -21,9 +22,9 @@ namespace $SMultiLineEditableTextBox
 		if (!Info[ArgumentsIndex]->IsObject()) return;
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_STYLE_ARGUMENT(FEditableTextBoxStyle, Style, );
-		$SLATE_STYLE_ARGUMENT_DEPRECATED(FTextBlockStyle, TextStyle, 5.2, "TextStyle is deprecated and will be ignored. Please use the TextStyle embedded in FEditableTextBoxStyle Style.", );
-		$SLATE_ARGUMENT(TSharedPtr< ITextLayoutMarshaller >, Marshaller, );
+		$SLATE_STYLE_ARGUMENT(FEditableTextBoxStyle, Style, FEditableTextBoxStyle);
+		//$SLATE_STYLE_ARGUMENT_DEPRECATED(FTextBlockStyle, TextStyle, 5.2, "TextStyle is deprecated and will be ignored. Please use the TextStyle embedded in FEditableTextBoxStyle Style.", );
+		$SLATE_ARGUMENT(TSharedPtr< ITextLayoutMarshaller >, Marshaller, TSharedPtr_ITextLayoutMarshaller);
 		$SLATE_ATTRIBUTE(FText, Text, );
 		$SLATE_ATTRIBUTE(FText, HintText, );
 		$SLATE_ATTRIBUTE(FText, SearchText, );
@@ -46,18 +47,18 @@ namespace $SMultiLineEditableTextBox
 		$SLATE_ARGUMENT(TSharedPtr< SScrollBar >, VScrollBar, );
 		$SLATE_ATTRIBUTE(FMargin, HScrollBarPadding, );
 		$SLATE_ATTRIBUTE(FMargin, VScrollBarPadding, );
-		$SLATE_EVENT(FOnContextMenuOpening, OnContextMenuOpening, );
-		$SLATE_EVENT(FOnIsTypedCharValid, OnIsTypedCharValid, );
-		$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
-		$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
-		$SLATE_EVENT(FOnVerifyTextChanged, OnVerifyTextChanged, );
-		$SLATE_EVENT(FOnUserScrolled, OnHScrollBarUserScrolled, );
-		$SLATE_EVENT(FOnUserScrolled, OnVScrollBarUserScrolled, );
-		$SLATE_EVENT(SMultiLineEditableText::FOnCursorMoved, OnCursorMoved, );
-		$SLATE_EVENT(FOnKeyChar, OnKeyCharHandler, );
-		$SLATE_EVENT(FOnKeyDown, OnKeyDownHandler, );
-		$SLATE_EVENT(FMenuExtensionDelegate, ContextMenuExtender, );
-		$SLATE_EVENT(FCreateSlateTextLayout, CreateSlateTextLayout, );
+		//$SLATE_EVENT(FOnContextMenuOpening, OnContextMenuOpening, );
+		//$SLATE_EVENT(FOnIsTypedCharValid, OnIsTypedCharValid, );
+		//$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
+		//$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
+		//$SLATE_EVENT(FOnVerifyTextChanged, OnVerifyTextChanged, );
+		//$SLATE_EVENT(FOnUserScrolled, OnHScrollBarUserScrolled, );
+		//$SLATE_EVENT(FOnUserScrolled, OnVScrollBarUserScrolled, );
+		//$SLATE_EVENT(SMultiLineEditableText::FOnCursorMoved, OnCursorMoved, );
+		//$SLATE_EVENT(FOnKeyChar, OnKeyCharHandler, );
+		//$SLATE_EVENT(FOnKeyDown, OnKeyDownHandler, );
+		//$SLATE_EVENT(FMenuExtensionDelegate, ContextMenuExtender, );
+		//$SLATE_EVENT(FCreateSlateTextLayout, CreateSlateTextLayout, );
 		$SLATE_ATTRIBUTE(float, WrapTextAt, );
 		$SLATE_ATTRIBUTE(bool, AutoWrapText, );
 		$SLATE_ATTRIBUTE(ETextWrappingPolicy, WrappingPolicy, );
@@ -129,7 +130,7 @@ struct AutoRegister_SMultiLineEditableTextBox
 	{
 		DTS::DTSArguments Args = DTS::DTSArguments("SMultiLineEditableTextBox");
 		Args.Add<FEditableTextBoxStyle>("Style", DTS::EArgType::SLATE_STYLE_ARGUMENT);
-		Args.Add<FTextBlockStyle>("TextStyle, 5.2, "TextStyle is deprecated and will be ignored. Please use the TextStyle embedded in FEditableTextBoxStyle Style."", DTS::EArgType::SLATE_STYLE_ARGUMENT_DEPRECATED);
+		//Args.Add<FTextBlockStyle>("TextStyle", DTS::EArgType::SLATE_STYLE_ARGUMENT_DEPRECATED);
 		Args.Add<TSharedPtr< ITextLayoutMarshaller >>("Marshaller", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<FText>("Text", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<FText>("HintText", DTS::EArgType::SLATE_ATTRIBUTE);

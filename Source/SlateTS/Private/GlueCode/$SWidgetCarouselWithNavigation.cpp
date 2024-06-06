@@ -23,7 +23,7 @@ namespace $SWidgetCarouselWithNavigation
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_STYLE_ARGUMENT(FWidgetCarouselNavigationBarStyle, NavigationBarStyle, );
 		$SLATE_STYLE_ARGUMENT(FWidgetCarouselNavigationButtonStyle, NavigationButtonStyle, );
-		$SLATE_EVENT(FOnGenerateWidget, OnGenerateWidget, );
+		//$SLATE_EVENT(FOnGenerateWidget, OnGenerateWidget, );
 		$SLATE_ARGUMENT(const TArray<ItemType>*, WidgetItemsSource, );
 	}
 

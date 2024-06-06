@@ -26,15 +26,15 @@ namespace $SSearchBox
 		$SLATE_ATTRIBUTE(FText, InitialText, );
 		$SLATE_ATTRIBUTE(TOptional<FSearchResultData>, SearchResultData, );
 		$SLATE_ATTRIBUTE(bool, IsSearching, );
-		$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
-		$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
-		$SLATE_EVENT(FOnSearch, OnSearch, );
+		//$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
+		//$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
+		//$SLATE_EVENT(FOnSearch, OnSearch, );
 		$SLATE_ATTRIBUTE(bool, SelectAllTextWhenFocused, );
 		$SLATE_ATTRIBUTE(float, MinDesiredWidth, );
 		$SLATE_ATTRIBUTE(bool, DelayChangeNotificationsWhileTyping, );
 		$SLATE_ATTRIBUTE(float, DelayChangeNotificationsWhileTypingSeconds, );
-		$SLATE_EVENT(FOnKeyDown, OnKeyDownHandler, );
-		$SLATE_EVENT(FOnClicked, OnSearchGlassClicked, );
+		//$SLATE_EVENT(FOnKeyDown, OnKeyDownHandler, );
+		//$SLATE_EVENT(FOnClicked, OnSearchGlassClicked, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

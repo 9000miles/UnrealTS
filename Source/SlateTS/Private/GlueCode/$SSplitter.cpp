@@ -29,9 +29,9 @@ namespace $SSplitter
 		$SLATE_ARGUMENT(float, HitDetectionSplitterHandleSize, );
 		$SLATE_ARGUMENT(float, MinimumSlotHeight, );
 		$SLATE_ATTRIBUTE(int32, HighlightedHandleIndex, );
-		$SLATE_EVENT(FOnHandleHovered, OnHandleHovered, );
-		$SLATE_EVENT(FSimpleDelegate, OnSplitterFinishedResizing, );
-		$SLATE_EVENT(FOnGetMaxSlotSize, OnGetMaxSlotSize, );
+		//$SLATE_EVENT(FOnHandleHovered, OnHandleHovered, );
+		//$SLATE_EVENT(FSimpleDelegate, OnSplitterFinishedResizing, );
+		//$SLATE_EVENT(FOnGetMaxSlotSize, OnGetMaxSlotSize, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

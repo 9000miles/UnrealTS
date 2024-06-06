@@ -27,10 +27,10 @@ namespace $STextComboBox
 		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, );
 		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
 		$SLATE_ATTRIBUTE(FMargin, ContentPadding, );
-		$SLATE_EVENT(FOnTextSelectionChanged, OnSelectionChanged, );
-		$SLATE_EVENT(FOnComboBoxOpening, OnComboBoxOpening, );
+		//$SLATE_EVENT(FOnTextSelectionChanged, OnSelectionChanged, );
+		//$SLATE_EVENT(FOnComboBoxOpening, OnComboBoxOpening, );
 		$SLATE_ARGUMENT(TSharedPtr<FString>, InitiallySelectedItem, );
-		$SLATE_EVENT(FGetTextComboLabel, OnGetTextLabelForItem, );
+		//$SLATE_EVENT(FGetTextComboLabel, OnGetTextLabelForItem, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

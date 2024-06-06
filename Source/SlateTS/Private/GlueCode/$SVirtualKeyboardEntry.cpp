@@ -27,8 +27,8 @@ namespace $SVirtualKeyboardEntry
 		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, );
 		$SLATE_ATTRIBUTE(bool, IsReadOnly, );
 		$SLATE_ATTRIBUTE(bool, ClearKeyboardFocusOnCommit, );
-		$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
-		$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
+		//$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
+		//$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
 		$SLATE_ATTRIBUTE(float, MinDesiredWidth, );
 		$SLATE_ATTRIBUTE(EKeyboardType, KeyboardType, );
 		$SLATE_ARGUMENT(FVirtualKeyboardOptions, VirtualKeyboardOptions, );

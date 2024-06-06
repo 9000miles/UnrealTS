@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "../Private/Widgets/Views/SListPanel.h"
 
 UsingCppType(SListPanel);
 UsingTSharedPtr(SListPanel);

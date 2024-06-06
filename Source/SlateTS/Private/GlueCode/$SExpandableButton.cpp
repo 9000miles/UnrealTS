@@ -26,8 +26,8 @@ namespace $SExpandableButton
 		$SLATE_NAMED_SLOT(FArguments, CollapsedButtonContent, );
 		$SLATE_NAMED_SLOT(FArguments, ExpandedButtonContent, );
 		$SLATE_NAMED_SLOT(FArguments, ExpandedChildContent, );
-		$SLATE_EVENT(FOnClicked, OnExpansionClicked, );
-		$SLATE_EVENT(FOnClicked, OnCloseClicked, );
+		//$SLATE_EVENT(FOnClicked, OnExpansionClicked, );
+		//$SLATE_EVENT(FOnClicked, OnCloseClicked, );
 		$SLATE_ATTRIBUTE(bool, IsExpanded, );
 	}
 

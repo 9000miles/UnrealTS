@@ -23,13 +23,13 @@ namespace $STextEntryPopup
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_ARGUMENT(FText, Label, );
 		$SLATE_ARGUMENT(FText, DefaultText, );
-		$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
-		$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
+		//$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
+		//$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
 		$SLATE_ARGUMENT(bool, SelectAllTextWhenFocused, );
 		$SLATE_ATTRIBUTE(bool, ClearKeyboardFocusOnCommit, );
 		$SLATE_ATTRIBUTE(FText, HintText, );
 		$SLATE_ATTRIBUTE(float, MaxWidth, );
-		$SLATE_EVENT(FOnVerifyTextChanged, OnVerifyTextChanged, );
+		//$SLATE_EVENT(FOnVerifyTextChanged, OnVerifyTextChanged, );
 		$SLATE_ARGUMENT(TSharedPtr<class IErrorReportingWidget>, ErrorReporting, );
 		$SLATE_ARGUMENT(bool, AutoFocus, );
 	}

@@ -3,7 +3,7 @@
 #include "v8.h"
 #include "V8Utils.h"
 #include "Converter.hpp"
-#include "GameMenuBuilder/Public/GameMenuWidgetStyle.h"
+#include "GameMenuWidgetStyle.h"
 #include "Styling/SegmentedControlStyle.h"
 #include "WidgetCarousel/Public/WidgetCarouselStyle.h"
 
@@ -34,7 +34,7 @@ namespace $SLATE_STYLE_ARGUMENT$
 	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FComboButtonStyle, ComboButtonStyle, );
 	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FEditableTextBoxStyle, EditableTextBoxStyle, );
 	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FEditableTextBoxStyle, Style, FEditableTextBoxStyle);
-	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FEditableTextBoxStyle, TextStyle, );
+	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FEditableTextBoxStyle, TextStyle, FEditableTextBoxStyle);
 	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FEditableTextStyle, Style, FEditableTextStyle);
 	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FExpandableAreaStyle, Style, FExpandableAreaStyle);
 	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FGameMenuStyle, MenuStyle, );
@@ -55,7 +55,7 @@ namespace $SLATE_STYLE_ARGUMENT$
 	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FTableViewStyle, ListViewStyle, );
 	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FTableViewStyle, TreeViewStyle, );
 	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FTextBlockStyle, SuggestionTextStyle, );
-	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, );
+	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, FTextBlockStyle);
 	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FVolumeControlStyle, Style, FVolumeControlStyle);
 	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FWidgetCarouselNavigationBarStyle, NavigationBarStyle, );
 	DEFINE_FUNCTION_SLATE_STYLE_ARGUMENT(FWidgetCarouselNavigationBarStyle, Style, FWidgetCarouselNavigationBarStyle);

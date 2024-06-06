@@ -26,13 +26,13 @@ namespace $SFrameRatePicker
 		$SLATE_ATTRIBUTE(FSlateColor, ForegroundColor, );
 		$SLATE_ATTRIBUTE(FMargin, ContentPadding, );
 		$SLATE_ATTRIBUTE(FFrameRate, Value, );
-		$SLATE_EVENT(FOnValueChanged, OnValueChanged, );
+		//$SLATE_EVENT(FOnValueChanged, OnValueChanged, );
 		$SLATE_ATTRIBUTE(bool, HasMultipleValues, );
 		$SLATE_ARGUMENT(TArray<FCommonFrameRateInfo>, PresetValues, );
 		$SLATE_ATTRIBUTE(FText, RecommendedText, );
 		$SLATE_ATTRIBUTE(FText, NotRecommendedText, );
 		$SLATE_ATTRIBUTE(FText, NotRecommendedToolTip, );
-		$SLATE_EVENT(FIsPresetRecommended, IsPresetRecommended, );
+		//$SLATE_EVENT(FIsPresetRecommended, IsPresetRecommended, );
 		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
 	}
 

@@ -32,12 +32,12 @@ namespace $SPropertyViewer
 		$SLATE_ARGUMENT_DEFAULT(INotifyHook*, NotifyHook, );
 		$SLATE_NAMED_SLOT(FArguments, SearchBoxPreSlot, );
 		$SLATE_NAMED_SLOT(FArguments, SearchBoxPostSlot, );
-		$SLATE_EVENT(FGetFieldWidget, OnGetPreSlot, );
-		$SLATE_EVENT(FGetFieldWidget, OnGetPostSlot, );
-		$SLATE_EVENT(FOnContextMenuOpening, OnContextMenuOpening, );
-		$SLATE_EVENT(FOnSelectionChanged, OnSelectionChanged, );
-		$SLATE_EVENT(FOnDoubleClicked, OnDoubleClicked, );
-		$SLATE_EVENT(FOnGenerateContainer, OnGenerateContainer, );
+		//$SLATE_EVENT(FGetFieldWidget, OnGetPreSlot, );
+		//$SLATE_EVENT(FGetFieldWidget, OnGetPostSlot, );
+		//$SLATE_EVENT(FOnContextMenuOpening, OnContextMenuOpening, );
+		//$SLATE_EVENT(FOnSelectionChanged, OnSelectionChanged, );
+		//$SLATE_EVENT(FOnDoubleClicked, OnDoubleClicked, );
+		//$SLATE_EVENT(FOnGenerateContainer, OnGenerateContainer, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Notifications/SNotificationBackground.h"
 
 UsingCppType(SNotificationBackground);
 UsingTSharedPtr(SNotificationBackground);
@@ -22,7 +23,7 @@ namespace $SNotificationBackground
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_ATTRIBUTE(FMargin, Padding, );
-		$SLATE_ATTRIBUTE(FLinearColor, ColorAndOpacity, );
+		$SLATE_ATTRIBUTE(FLinearColor, ColorAndOpacity, FLinearColor);
 		$SLATE_ATTRIBUTE(FSlateColor, BorderBackgroundColor, );
 		$SLATE_ATTRIBUTE(FVector2D, DesiredSizeScale, );
 		$SLATE_DEFAULT_SLOT(FArguments, Content, );

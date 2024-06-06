@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Input/SInputKeySelector.h"
 
 UsingCppType(SInputKeySelector);
 UsingTSharedPtr(SInputKeySelector);
@@ -25,15 +26,15 @@ namespace $SInputKeySelector
 		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
 		$SLATE_ATTRIBUTE(FMargin, Margin, );
 		$SLATE_STYLE_ARGUMENT(FButtonStyle, ButtonStyle, );
-		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, );
+		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, FTextBlockStyle);
 		$SLATE_ARGUMENT(FText, KeySelectionText, );
 		$SLATE_ARGUMENT(FText, NoKeySpecifiedText, );
 		$SLATE_ARGUMENT(bool, AllowModifierKeys, );
 		$SLATE_ARGUMENT(bool, AllowGamepadKeys, );
 		$SLATE_ARGUMENT(bool, EscapeCancelsSelection, );
 		$SLATE_ARGUMENT(TArray<FKey>, EscapeKeys, );
-		$SLATE_EVENT(FOnKeySelected, OnKeySelected, );
-		$SLATE_EVENT(FOnIsSelectingKeyChanged, OnIsSelectingKeyChanged, );
+		//$SLATE_EVENT(FOnKeySelected, OnKeySelected, );
+		//$SLATE_EVENT(FOnIsSelectingKeyChanged, OnIsSelectingKeyChanged, );
 		$SLATE_ARGUMENT(bool, IsFocusable, );
 	}
 

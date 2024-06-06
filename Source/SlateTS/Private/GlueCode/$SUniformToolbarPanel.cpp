@@ -29,7 +29,7 @@ namespace $SUniformToolbarPanel
 		$SLATE_ATTRIBUTE(FVector2D, MinDesiredSlotSize, );
 		$SLATE_ATTRIBUTE(float, MaxUniformSize, );
 		$SLATE_ATTRIBUTE(float, MinUniformSize, );
-		$SLATE_EVENT(FOnGetContent, OnDropdownOpened, );
+		//$SLATE_EVENT(FOnGetContent, OnDropdownOpened, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

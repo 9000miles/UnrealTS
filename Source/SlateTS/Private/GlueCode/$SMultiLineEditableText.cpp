@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Text/SMultiLineEditableText.h"
 
 UsingCppType(SMultiLineEditableText);
 UsingTSharedPtr(SMultiLineEditableText);
@@ -24,11 +25,11 @@ namespace $SMultiLineEditableText
 		$SLATE_ATTRIBUTE(FText, Text, );
 		$SLATE_ATTRIBUTE(FText, HintText, );
 		$SLATE_ATTRIBUTE(FText, SearchText, );
-		$SLATE_ARGUMENT(TSharedPtr< ITextLayoutMarshaller >, Marshaller, );
+		$SLATE_ARGUMENT(TSharedPtr< ITextLayoutMarshaller >, Marshaller, TSharedPtr_ITextLayoutMarshaller);
 		$SLATE_ATTRIBUTE(float, WrapTextAt, );
 		$SLATE_ATTRIBUTE(bool, AutoWrapText, );
 		$SLATE_ATTRIBUTE(ETextWrappingPolicy, WrappingPolicy, );
-		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, );
+		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, FTextBlockStyle);
 		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
 		$SLATE_ATTRIBUTE(FMargin, Margin, );
 		$SLATE_ATTRIBUTE(float, LineHeightPercentage, );
@@ -36,9 +37,9 @@ namespace $SMultiLineEditableText
 		$SLATE_ATTRIBUTE(bool, IsReadOnly, );
 		$SLATE_ARGUMENT(TSharedPtr< SScrollBar >, HScrollBar, );
 		$SLATE_ARGUMENT(TSharedPtr< SScrollBar >, VScrollBar, );
-		$SLATE_EVENT(FOnIsTypedCharValid, OnIsTypedCharValid, );
-		$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
-		$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
+		//$SLATE_EVENT(FOnIsTypedCharValid, OnIsTypedCharValid, );
+		//$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
+		//$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );
 		$SLATE_ATTRIBUTE(bool, AllowMultiLine, );
 		$SLATE_ATTRIBUTE(bool, SelectAllTextWhenFocused, );
 		$SLATE_ATTRIBUTE(bool, SelectWordOnMouseDoubleClick, );
@@ -46,14 +47,14 @@ namespace $SMultiLineEditableText
 		$SLATE_ATTRIBUTE(bool, RevertTextOnEscape, );
 		$SLATE_ATTRIBUTE(bool, ClearKeyboardFocusOnCommit, );
 		$SLATE_ATTRIBUTE(bool, AllowContextMenu, );
-		$SLATE_EVENT(FOnContextMenuOpening, OnContextMenuOpening, );
-		$SLATE_EVENT(FOnUserScrolled, OnHScrollBarUserScrolled, );
-		$SLATE_EVENT(FOnUserScrolled, OnVScrollBarUserScrolled, );
-		$SLATE_EVENT(FOnCursorMoved, OnCursorMoved, );
-		$SLATE_EVENT(FOnKeyChar, OnKeyCharHandler, );
-		$SLATE_EVENT(FOnKeyDown, OnKeyDownHandler, );
-		$SLATE_EVENT(FMenuExtensionDelegate, ContextMenuExtender, );
-		$SLATE_EVENT(FCreateSlateTextLayout, CreateSlateTextLayout, );
+		//$SLATE_EVENT(FOnContextMenuOpening, OnContextMenuOpening, );
+		//$SLATE_EVENT(FOnUserScrolled, OnHScrollBarUserScrolled, );
+		//$SLATE_EVENT(FOnUserScrolled, OnVScrollBarUserScrolled, );
+		//$SLATE_EVENT(FOnCursorMoved, OnCursorMoved, );
+		//$SLATE_EVENT(FOnKeyChar, OnKeyCharHandler, );
+		//$SLATE_EVENT(FOnKeyDown, OnKeyDownHandler, );
+		//$SLATE_EVENT(FMenuExtensionDelegate, ContextMenuExtender, );
+		//$SLATE_EVENT(FCreateSlateTextLayout, CreateSlateTextLayout, );
 		$SLATE_ARGUMENT(EModifierKey::Type, ModiferKeyForNewLine, );
 		$SLATE_ARGUMENT(FVirtualKeyboardOptions, VirtualKeyboardOptions, );
 		$SLATE_ATTRIBUTE(EVirtualKeyboardTrigger, VirtualKeyboardTrigger, );

@@ -29,11 +29,11 @@ namespace $SButton
 		$SLATE_ARGUMENT(EVerticalAlignment, VAlign, );
 		$SLATE_ATTRIBUTE(FMargin, ContentPadding, );
 		$SLATE_ATTRIBUTE(FText, Text, );
-		$SLATE_EVENT(FOnClicked, OnClicked, );
-		$SLATE_EVENT(FSimpleDelegate, OnPressed, );
-		$SLATE_EVENT(FSimpleDelegate, OnReleased, );
-		$SLATE_EVENT(FSimpleDelegate, OnHovered, );
-		$SLATE_EVENT(FSimpleDelegate, OnUnhovered, );
+		//$SLATE_EVENT(FOnClicked, OnClicked, );
+		//$SLATE_EVENT(FSimpleDelegate, OnPressed, );
+		//$SLATE_EVENT(FSimpleDelegate, OnReleased, );
+		//$SLATE_EVENT(FSimpleDelegate, OnHovered, );
+		//$SLATE_EVENT(FSimpleDelegate, OnUnhovered, );
 		$SLATE_ARGUMENT(EButtonClickMethod::Type, ClickMethod, );
 		$SLATE_ARGUMENT(EButtonTouchMethod::Type, TouchMethod, );
 		$SLATE_ARGUMENT(EButtonPressMethod::Type, PressMethod, );

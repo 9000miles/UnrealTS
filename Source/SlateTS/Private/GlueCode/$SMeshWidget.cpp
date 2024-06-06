@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Slate/SMeshWidget.h"
 
 UsingCppType(SMeshWidget);
 UsingTSharedPtr(SMeshWidget);

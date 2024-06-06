@@ -23,7 +23,7 @@ namespace $SRichTextHyperlink
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_ATTRIBUTE(FText, Text, );
 		$SLATE_STYLE_ARGUMENT(FHyperlinkStyle, Style, FHyperlinkStyle);
-		$SLATE_EVENT(FSimpleDelegate, OnNavigate, );
+		//$SLATE_EVENT(FSimpleDelegate, OnNavigate, );
 		$SLATE_ARGUMENT(TOptional<ETextShapingMethod>, TextShapingMethod, );
 		$SLATE_ARGUMENT(TOptional<ETextFlowDirection>, TextFlowDirection, );
 	}

@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Images/SThrobber.h"
 
 UsingCppType(SThrobber);
 UsingTSharedPtr(SThrobber);
@@ -80,7 +81,7 @@ struct AutoRegister_SThrobber
 		DTS::DTSArguments Args = DTS::DTSArguments("SThrobber");
 		Args.Add<const FSlateBrush*>("PieceImage", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<int32>("NumPieces", DTS::EArgType::SLATE_ARGUMENT);
-		Args.Add<EAnimation>("Animate", DTS::EArgType::SLATE_ARGUMENT);
+		Args.Add<SThrobber::EAnimation>("Animate", DTS::EArgType::SLATE_ARGUMENT);
 		return Args;
 	}
 

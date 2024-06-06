@@ -27,12 +27,12 @@ namespace $SBreadcrumbTrail
 		$SLATE_ATTRIBUTE(FMargin, ButtonContentPadding, );
 		$SLATE_ATTRIBUTE(const FSlateBrush*, DelimiterImage, );
 		$SLATE_ATTRIBUTE(bool, ShowLeadingDelimiter, );
-		$SLATE_EVENT(FOnCrumbPushed, OnCrumbPushed, );
-		$SLATE_EVENT(FOnCrumbPopped, OnCrumbPopped, );
-		$SLATE_EVENT(FOnCrumbClicked, OnCrumbClicked, );
+		//$SLATE_EVENT(FOnCrumbPushed, OnCrumbPushed, );
+		//$SLATE_EVENT(FOnCrumbPopped, OnCrumbPopped, );
+		//$SLATE_EVENT(FOnCrumbClicked, OnCrumbClicked, );
 		$SLATE_ARGUMENT(bool, PersistentBreadcrumbs, );
-		$SLATE_EVENT(FHasCrumbMenuContent, HasCrumbMenuContent, );
-		$SLATE_EVENT(FGetCrumbMenuContent, GetCrumbMenuContent, );
+		//$SLATE_EVENT(FHasCrumbMenuContent, HasCrumbMenuContent, );
+		//$SLATE_EVENT(FGetCrumbMenuContent, GetCrumbMenuContent, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

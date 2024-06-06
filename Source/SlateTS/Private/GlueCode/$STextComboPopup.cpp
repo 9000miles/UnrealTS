@@ -23,7 +23,7 @@ namespace $STextComboPopup
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_ARGUMENT(FText, Label, );
 		$SLATE_ARGUMENT(TArray<FString>, TextOptions, );
-		$SLATE_EVENT(FOnTextChosen, OnTextChosen, );
+		//$SLATE_EVENT(FOnTextChosen, OnTextChosen, );
 		$SLATE_ARGUMENT(bool, AutoFocus, );
 	}
 

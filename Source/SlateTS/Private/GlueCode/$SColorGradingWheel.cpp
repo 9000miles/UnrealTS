@@ -25,9 +25,9 @@ namespace $SColorGradingWheel
 		$SLATE_ATTRIBUTE(FLinearColor, SelectedColor, );
 		$SLATE_ATTRIBUTE(int32, DesiredWheelSize, );
 		$SLATE_ATTRIBUTE(float, ExponentDisplacement, );
-		$SLATE_EVENT(FOnColorGradingWheelMouseCapture, OnMouseCaptureBegin, );
-		$SLATE_EVENT(FOnColorGradingWheelMouseCapture, OnMouseCaptureEnd, );
-		$SLATE_EVENT(FOnColorGradingWheelValueChanged, OnValueChanged, );
+		//$SLATE_EVENT(FOnColorGradingWheelMouseCapture, OnMouseCaptureBegin, );
+		//$SLATE_EVENT(FOnColorGradingWheelMouseCapture, OnMouseCaptureEnd, );
+		//$SLATE_EVENT(FOnColorGradingWheelValueChanged, OnValueChanged, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

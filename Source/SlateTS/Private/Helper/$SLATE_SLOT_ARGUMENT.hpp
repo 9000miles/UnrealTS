@@ -3,6 +3,8 @@
 #include "v8.h"
 #include "V8Utils.h"
 
+#define $SLATE_SLOT_ARGUMENT(Type, Name, Tag)
+
 namespace $SLATE_SLOT_ARGUMENT$
 {
 #define DEFINE_FUNCTION_SLATE_SLOT_ARGUMENT(Type, Name, Tag)

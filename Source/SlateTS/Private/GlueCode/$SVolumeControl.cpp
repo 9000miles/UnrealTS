@@ -23,9 +23,9 @@ namespace $SVolumeControl
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_STYLE_ARGUMENT(FVolumeControlStyle, Style, FVolumeControlStyle);
 		$SLATE_ATTRIBUTE(float, Volume, );
-		$SLATE_EVENT(FOnFloatValueChanged, OnVolumeChanged, );
+		//$SLATE_EVENT(FOnFloatValueChanged, OnVolumeChanged, );
 		$SLATE_ATTRIBUTE(bool, Muted, );
-		$SLATE_EVENT(FOnMuted, OnMuteChanged, );
+		//$SLATE_EVENT(FOnMuted, OnMuteChanged, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

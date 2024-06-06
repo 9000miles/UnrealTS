@@ -24,8 +24,8 @@ namespace $SWizard
 		$SLATE_NAMED_SLOT(FArguments, ButtonContent, );
 		$SLATE_ATTRIBUTE(FText, Name, );
 		$SLATE_ATTRIBUTE(bool, CanShow, );
-		$SLATE_EVENT(FSimpleDelegate, OnEnter, );
-		$SLATE_EVENT(FSimpleDelegate, OnLeave, );
+		//$SLATE_EVENT(FSimpleDelegate, OnEnter, );
+		//$SLATE_EVENT(FSimpleDelegate, OnLeave, );
 		$SLATE_DEFAULT_SLOT(FArguments, PageContent, );
 	}
 

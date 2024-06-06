@@ -39,7 +39,7 @@ namespace $SScrollBox
 		$SLATE_ARGUMENT(EDescendantScrollDestination, NavigationDestination, );
 		$SLATE_ARGUMENT(float, NavigationScrollPadding, );
 		$SLATE_ARGUMENT(EScrollWhenFocusChanges, ScrollWhenFocusChanges, );
-		$SLATE_EVENT(FOnUserScrolled, OnUserScrolled, );
+		//$SLATE_EVENT(FOnUserScrolled, OnUserScrolled, );
 		$SLATE_ARGUMENT(EConsumeMouseWheel, ConsumeMouseWheel, );
 	}
 

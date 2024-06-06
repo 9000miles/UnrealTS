@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "PreLoadScreen/Public/SimplePreLoadScreenWidget.h"
 
 UsingCppType(SSimplePreLoadScreenWidget);
 UsingTSharedPtr(SSimplePreLoadScreenWidget);

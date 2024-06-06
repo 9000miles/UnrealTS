@@ -23,7 +23,7 @@ namespace $SCarouselNavigationBar
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_STYLE_ARGUMENT(FWidgetCarouselNavigationBarStyle, Style, );
-		$SLATE_EVENT(FOnSelectedIndexChanged, OnSelectedIndexChanged, );
+		//$SLATE_EVENT(FOnSelectedIndexChanged, OnSelectedIndexChanged, );
 		$SLATE_ARGUMENT(int32, ItemCount, );
 		$SLATE_ATTRIBUTE(int32, CurrentItemIndex, );
 		$SLATE_ATTRIBUTE(float, CurrentSlideAmount, );

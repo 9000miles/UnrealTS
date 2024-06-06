@@ -27,22 +27,22 @@ namespace $SNumericRotatorInputBox
 		$SLATE_ARGUMENT(bool, bColorAxisLabels, );
 		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
 		$SLATE_ARGUMENT(bool, AllowSpin, );
-		$SLATE_EVENT(FOnNumericValueChanged, OnPitchChanged, );
-		$SLATE_EVENT(FOnNumericValueChanged, OnYawChanged, );
-		$SLATE_EVENT(FOnNumericValueChanged, OnRollChanged, );
-		$SLATE_EVENT(FOnNumericValueCommitted, OnPitchCommitted, );
-		$SLATE_EVENT(FOnNumericValueCommitted, OnYawCommitted, );
-		$SLATE_EVENT(FOnNumericValueCommitted, OnRollCommitted, );
-		$SLATE_EVENT(FSimpleDelegate, OnBeginSliderMovement, );
-		$SLATE_EVENT(FOnNumericValueChanged, OnEndSliderMovement, );
+		//$SLATE_EVENT(FOnNumericValueChanged, OnPitchChanged, );
+		//$SLATE_EVENT(FOnNumericValueChanged, OnYawChanged, );
+		//$SLATE_EVENT(FOnNumericValueChanged, OnRollChanged, );
+		//$SLATE_EVENT(FOnNumericValueCommitted, OnPitchCommitted, );
+		//$SLATE_EVENT(FOnNumericValueCommitted, OnYawCommitted, );
+		//$SLATE_EVENT(FOnNumericValueCommitted, OnRollCommitted, );
+		//$SLATE_EVENT(FSimpleDelegate, OnBeginSliderMovement, );
+		//$SLATE_EVENT(FOnNumericValueChanged, OnEndSliderMovement, );
 		$SLATE_ARGUMENT(TSharedPtr< INumericTypeInterface<NumericType> >, TypeInterface, );
 		$SLATE_ARGUMENT(bool, DisplayToggle, );
 		$SLATE_ATTRIBUTE(ECheckBoxState, TogglePitchChecked, );
 		$SLATE_ATTRIBUTE(ECheckBoxState, ToggleYawChecked, );
 		$SLATE_ATTRIBUTE(ECheckBoxState, ToggleRollChecked, );
-		$SLATE_EVENT(FOnCheckStateChanged, OnTogglePitchChanged, );
-		$SLATE_EVENT(FOnCheckStateChanged, OnToggleYawChanged, );
-		$SLATE_EVENT(FOnCheckStateChanged, OnToggleRollChanged, );
+		//$SLATE_EVENT(FOnCheckStateChanged, OnTogglePitchChanged, );
+		//$SLATE_EVENT(FOnCheckStateChanged, OnToggleYawChanged, );
+		//$SLATE_EVENT(FOnCheckStateChanged, OnToggleRollChanged, );
 		$SLATE_ARGUMENT(FMargin, TogglePadding, );
 	}
 

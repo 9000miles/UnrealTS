@@ -50,6 +50,7 @@ public class SlateTS : ModuleRules
                 "PuertsEx",
                 "WidgetCarousel",
                 "AppFramework",
+                "GameMenuBuilder",
 				// ... add private dependencies that you statically link with here ...	
 			}
             );

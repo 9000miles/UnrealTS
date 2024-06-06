@@ -3,6 +3,8 @@
 #include "v8.h"
 #include "V8Utils.h"
 
+#define $SLATE_ARGUMENT_DEFAULT(Type, Name, Tag)
+
 namespace $SLATE_ARGUMENT_DEFAULT$
 {
 #define DEFINE_FUNCTION_SLATE_ARGUMENT_DEFAULT(Type, Name, Tag)

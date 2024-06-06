@@ -22,7 +22,7 @@ namespace $SScrollBar
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_STYLE_ARGUMENT(FScrollBarStyle, Style, FScrollBarStyle);
-		$SLATE_EVENT(FOnUserScrolled, OnUserScrolled, );
+		//$SLATE_EVENT(FOnUserScrolled, OnUserScrolled, );
 		$SLATE_ARGUMENT(bool, AlwaysShowScrollbar, );
 		$SLATE_ARGUMENT(bool, AlwaysShowScrollbarTrack, );
 		$SLATE_ARGUMENT(bool, HideWhenNotInUse, );

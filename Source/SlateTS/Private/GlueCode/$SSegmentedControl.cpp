@@ -29,9 +29,9 @@ namespace $SSegmentedControl
 		$SLATE_ATTRIBUTE(OptionType, Value, );
 		$SLATE_ATTRIBUTE(TArray<OptionType>, Values, );
 		$SLATE_ATTRIBUTE(FMargin, UniformPadding, );
-		$SLATE_EVENT(FOnValueChanged, OnValueChanged, );
-		$SLATE_EVENT(FOnValuesChanged, OnValuesChanged, );
-		$SLATE_EVENT(FOnValueChecked, OnValueChecked, );
+		//$SLATE_EVENT(FOnValueChanged, OnValueChanged, );
+		//$SLATE_EVENT(FOnValuesChanged, OnValuesChanged, );
+		//$SLATE_EVENT(FOnValueChecked, OnValueChecked, );
 		$SLATE_ARGUMENT(int32, MaxSegmentsPerLine, );
 	}
 

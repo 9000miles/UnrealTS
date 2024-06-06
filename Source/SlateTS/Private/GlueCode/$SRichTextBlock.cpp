@@ -28,7 +28,7 @@ namespace $SRichTextBlock
 		$SLATE_ATTRIBUTE(ETextWrappingPolicy, WrappingPolicy, );
 		$SLATE_ATTRIBUTE(ETextTransformPolicy, TransformPolicy, );
 		$SLATE_ARGUMENT(TSharedPtr<class FRichTextLayoutMarshaller>, Marshaller, );
-		$SLATE_EVENT(FCreateSlateTextLayout, CreateSlateTextLayout, );
+		//$SLATE_EVENT(FCreateSlateTextLayout, CreateSlateTextLayout, );
 		$SLATE_ARGUMENT(const ISlateStyle*, DecoratorStyleSet, );
 		$SLATE_STYLE_ARGUMENT(FTextBlockStyle, TextStyle, );
 		$SLATE_ATTRIBUTE(FMargin, Margin, );

@@ -36,7 +36,7 @@ namespace $SExpandableArea
 		$SLATE_ATTRIBUTE(FMargin, AreaTitlePadding, );
 		$SLATE_ATTRIBUTE(FMargin, HeaderPadding, );
 		$SLATE_ATTRIBUTE(FMargin, Padding, );
-		$SLATE_EVENT(FOnBooleanValueChanged, OnAreaExpansionChanged, );
+		//$SLATE_EVENT(FOnBooleanValueChanged, OnAreaExpansionChanged, );
 		$SLATE_ATTRIBUTE(FSlateFontInfo, AreaTitleFont, );
 		$SLATE_ATTRIBUTE(TOptional<EMouseCursor::Type>, HeaderCursor, );
 		$SLATE_ARGUMENT(bool, AllowAnimatedTransition, );

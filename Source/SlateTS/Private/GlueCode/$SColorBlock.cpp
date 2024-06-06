@@ -30,7 +30,7 @@ namespace $SColorBlock
 		$SLATE_ATTRIBUTE(bool, UseSRGB, );
 		$SLATE_ATTRIBUTE(EColorBlockAlphaDisplayMode, AlphaDisplayMode, );
 		$SLATE_ATTRIBUTE(FVector2D, Size, );
-		$SLATE_EVENT(FPointerEventHandler, OnMouseButtonDown, );
+		//$SLATE_EVENT(FPointerEventHandler, OnMouseButtonDown, );
 	}
 
 	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)

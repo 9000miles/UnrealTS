@@ -29,20 +29,20 @@ namespace $SHeaderRow
 		$SLATE_ARGUMENT(TOptional< float >, FixedWidth, );
 		$SLATE_ATTRIBUTE(float, ManualWidth, );
 		$SLATE_ARGUMENT(TOptional< float >, FillSized, );
-		$SLATE_EVENT(FOnWidthChanged, OnWidthChanged, );
+		//$SLATE_EVENT(FOnWidthChanged, OnWidthChanged, );
 		$SLATE_DEFAULT_SLOT(FArguments, HeaderContent, );
 		$SLATE_ARGUMENT(EHorizontalAlignment, HAlignHeader, );
 		$SLATE_ARGUMENT(EVerticalAlignment, VAlignHeader, );
 		$SLATE_ARGUMENT(TOptional< FMargin >, HeaderContentPadding, );
 		$SLATE_ARGUMENT(EHeaderComboVisibility, HeaderComboVisibility, );
 		$SLATE_NAMED_SLOT(FArguments, MenuContent, );
-		$SLATE_EVENT(FOnGetContent, OnGetMenuContent, );
+		//$SLATE_EVENT(FOnGetContent, OnGetMenuContent, );
 		$SLATE_ARGUMENT(EHorizontalAlignment, HAlignCell, );
 		$SLATE_ARGUMENT(EVerticalAlignment, VAlignCell, );
 		$SLATE_ATTRIBUTE(EColumnSortMode::Type, InitialSortMode, );
 		$SLATE_ATTRIBUTE(EColumnSortMode::Type, SortMode, );
 		$SLATE_ATTRIBUTE(EColumnSortPriority::Type, SortPriority, );
-		$SLATE_EVENT(FOnSortModeChanged, OnSort, );
+		//$SLATE_EVENT(FOnSortModeChanged, OnSort, );
 		$SLATE_ATTRIBUTE(bool, ShouldGenerateWidget, );
 	}
 
