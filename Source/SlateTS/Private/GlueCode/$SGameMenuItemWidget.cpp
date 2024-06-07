@@ -11,6 +11,7 @@
 #include "DTSDefine.h"
 #include "PuertsEx.h"
 #include "GameMenuBuilder/Public/SGameMenuItemWidget.h"
+#include "GameMenuBuilder/Public/GameMenuWidgetStyle.h"
 
 UsingCppType(SGameMenuItemWidget);
 UsingTSharedPtr(SGameMenuItemWidget);

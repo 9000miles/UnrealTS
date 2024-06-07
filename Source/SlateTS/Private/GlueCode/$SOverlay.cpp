@@ -77,7 +77,7 @@ struct AutoRegister_SOverlay
 	DTS::DTSArguments RegisterArguments()
 	{
 		DTS::DTSArguments Args = DTS::DTSArguments("SOverlay");
-		Args.Add<SOverlay::FOverlaySlot>("Slots", DTS::EArgType::SLATE_SLOT_ARGUMENT);
+		//Args.Add<SOverlay::FOverlaySlot>("Slots", DTS::EArgType::SLATE_SLOT_ARGUMENT);
 		return Args;
 	}
 

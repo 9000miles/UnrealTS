@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include "CoreMinimal.h"
 #include "GlueCode/SlateCoreGlue.h"
 #include "Framework/Text/ITextLayoutMarshaller.h"
 #include "Styling/SlateTypes.h"
@@ -8,17 +9,40 @@
 #include "Binding.hpp"
 #include "Widgets/Notifications/SErrorText.h"
 #include "TimeManagement/Public/CommonFrameRates.h"
-
-
-
+#include "GameMenuBuilder/Public/GameMenuWidgetStyle.h"
+#include "Widgets/Input/IVirtualKeyboardEntry.h"
+#include "Layout/Visibility.h"
+#include "Sound/SlateSound.h"
+#include "Framework/Text/IRichTextMarkupParser.h"
+#include "Framework/Text/ITextDecorator.h"
+#include "Framework/Text/RichTextLayoutMarshaller.h"
+#include "Curves/CurveFloat.h"
+#include "Slate/SlateVectorArtData.h"
+#include "Framework/Commands/InputChord.h"
 
 UsingUStruct(FHyperlinkStyle);
+UsingUStruct(FGameMenuStyle);
+UsingUStruct(FFrameRate);
+UsingUStruct(FEditableTextBoxStyle);
+UsingUStruct(FVirtualKeyboardOptions);
+UsingUStruct(FEditableTextStyle);
+UsingUStruct(EVisibility);
+UsingUStruct(FSlateSound);
+UsingUStruct(FProgressBarStyle);
+UsingUStruct(FScrollBoxStyle);
+UsingUStruct(FScrollBorderStyle);
+UsingUStruct(FScrollBarStyle);
+UsingUStruct(FRuntimeFloatCurve);
+UsingUStruct(FSliderStyle);
+UsingUStruct(FInputChord);
 struct AutoRegister_Struct
 {
 	AutoRegister_Struct()
 	{
-		puerts::DefineClass<FHyperlinkStyle>()
-			.Register();
+		//puerts::DefineClass<FHyperlinkStyle>()
+		//	.Register();
+		//puerts::DefineClass<FGameMenuStyle>()
+		//	.Register();
 
 	}
 }__AutoRegister_Struct;
@@ -26,6 +50,11 @@ struct AutoRegister_Struct
 UsingCppType(ISlateStyle);
 UsingCppType(IErrorReportingWidget);
 UsingCppType(ITextLayoutMarshaller);
+UsingCppType(IRichTextMarkupParser);
+UsingCppType(ITextDecorator);
+UsingCppType(FRichTextLayoutMarshaller);
+UsingTSharedPtr(FRichTextLayoutMarshaller);
+UsingCppType(USlateVectorArtData);
 struct AutoRegister_Class
 {
 	AutoRegister_Class()

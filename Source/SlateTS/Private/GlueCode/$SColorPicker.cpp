@@ -25,7 +25,7 @@ namespace $SColorPicker
 		$SLATE_ATTRIBUTE(FLinearColor, TargetColorAttribute, );
 		$SLATE_ATTRIBUTE(TArray<FColor*>, TargetFColors, );
 		$SLATE_ATTRIBUTE(TArray<FLinearColor*>, TargetLinearColors, );
-		$SLATE_ATTRIBUTE(TArray<FColorChannels>, TargetColorChannels, );
+		//$SLATE_ATTRIBUTE(TArray<FColorChannels>, TargetColorChannels, );//可能会被移除
 		$SLATE_ATTRIBUTE(bool, UseAlpha, );
 		$SLATE_ATTRIBUTE(bool, OnlyRefreshOnMouseUp, );
 		$SLATE_ATTRIBUTE(bool, OnlyRefreshOnOk, );
@@ -99,7 +99,7 @@ struct AutoRegister_SColorPicker
 		Args.Add<FLinearColor>("TargetColorAttribute", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<TArray<FColor*>>("TargetFColors", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<TArray<FLinearColor*>>("TargetLinearColors", DTS::EArgType::SLATE_ATTRIBUTE);
-		Args.Add<TArray<FColorChannels>>("TargetColorChannels", DTS::EArgType::SLATE_ATTRIBUTE);
+		//Args.Add<TArray<FColorChannels>>("TargetColorChannels", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<bool>("UseAlpha", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<bool>("OnlyRefreshOnMouseUp", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<bool>("OnlyRefreshOnOk", DTS::EArgType::SLATE_ATTRIBUTE);
