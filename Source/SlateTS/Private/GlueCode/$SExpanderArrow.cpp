@@ -11,6 +11,7 @@
 #include "DTSDefine.h"
 #include "PuertsEx.h"
 #include "Widgets/Views/SExpanderArrow.h"
+#include "Widgets/Views/ITableRow.h"
 
 UsingCppType(SExpanderArrow);
 UsingTSharedPtr(SExpanderArrow);
@@ -45,7 +46,8 @@ namespace $SExpanderArrow
 		FString Filename;
 		if (Info[FilenameIndex]->IsString()) Filename = UTF8_TO_TCHAR(*(v8::String::Utf8Value(Isolate, Info[FilenameIndex])));
 
-		TSharedPtr<SExpanderArrow> Widget = MakeTDecl<SExpanderArrow>("SExpanderArrow", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+		TSharedPtr<class ITableRow> TableRow;//@TODO 从Info里面获取值
+		TSharedPtr<SExpanderArrow> Widget = MakeTDecl<SExpanderArrow>("SExpanderArrow", TCHAR_TO_ANSI(*Filename), 1, RequiredArgs::MakeRequiredArgs(TableRow)) <<= Arguments;
 		if (InfoLength == 2)
 		{
 			auto V8Result = puerts::converter::Converter<TSharedPtr<SExpanderArrow>>::toScript(Context, Widget);

@@ -3,6 +3,7 @@
 #include "v8.h"
 #include "V8Utils.h"
 #include "Converter.hpp"
+#include "SlateCoreGlue.hpp"
 
 #define $SLATE_ARGUMENT(Type, Name, Tag)\
 $SLATE_ARGUMENT$::Set_##Name##_##Tag(Arguments, Isolate, JsObject, #Name)
@@ -109,37 +110,41 @@ namespace $SLATE_ARGUMENT$
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TArray<FString>, AltRetryDomains, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TArray<FString>, TextOptions, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TArray<float>, ValueTags, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional< FMargin >, HeaderContentPadding, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional< float >, FillSized, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional< float >, FixedWidth, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<EPopupMethod>, Method, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<EPopupMethod>, PopupMenuMethod, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<ESlateCheckBoxType::Type>, Type, TOptional_ESlateCheckBoxType);
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<ETextFlowDirection>, TextFlowDirection, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<ETextOverflowPolicy>, OverflowPolicy, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<ETextShapingMethod>, TextShapingMethod, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<EVisibility>, LabelVisibility, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<FBrowserContextSettings>, ContextSettings, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<FSlateSound>, CheckedSoundOverride, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<FSlateSound>, HoveredSoundOverride, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<FSlateSound>, PressedSoundOverride, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<FSlateSound>, UncheckedSoundOverride, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<FString>, ContentsToLoad, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<FText>, OverrideDisplayName, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<FVector2D>, OverrideScreenSize, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<bool>, sRGBOverride, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<const FFieldColorSettings>, OverrideColorSettings, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<double>, FixedLineScrollOffset, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<float>, InactiveTextAlpha, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<float>, MaxHeight, TOptional_float);
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<float>, MaxWidth, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<float>, MinHeight, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<float>, MinWidth, TOptional_float);
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<float>, OverrideDpiScale, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<float>, SliderValueMax, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<float>, SliderValueMin, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<float>, ValueMax, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TOptional<float>, ValueMin, );
+
+	/** TOptional<> **/
+	DEFINE_FUNCTION_SLATE_ARGUMENT(FMargin, HeaderContentPadding, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(float, FillSized, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(float, FixedWidth, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(EPopupMethod, Method, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(EPopupMethod, PopupMenuMethod, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(ESlateCheckBoxType::Type , Type, ESlateCheckBoxType);
+	DEFINE_FUNCTION_SLATE_ARGUMENT(ETextFlowDirection, TextFlowDirection, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(ETextOverflowPolicy, OverflowPolicy, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(ETextShapingMethod, TextShapingMethod, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(EVisibility, LabelVisibility, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(FBrowserContextSettings, ContextSettings, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(FSlateSound, CheckedSoundOverride, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(FSlateSound, HoveredSoundOverride, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(FSlateSound, PressedSoundOverride, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(FSlateSound, UncheckedSoundOverride, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(FString, ContentsToLoad, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(FText, OverrideDisplayName, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(FVector2D, OverrideScreenSize, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(bool, sRGBOverride, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(const FieldColorSettings > , OverrideColorSettings, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(double, FixedLineScrollOffset, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(float, InactiveTextAlpha, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(float, MaxHeight, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(float, MaxWidth, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(float, MinHeight, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(float, MinWidth, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(float, OverrideDpiScale, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(float, SliderValueMax, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(float, SliderValueMin, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(float, ValueMax, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(float, ValueMin, );
+	/** TOptional<> **/
+
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr< INumericTypeInterface<NumericType> >, TypeInterface, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr< ITextLayoutMarshaller >, Marshaller, TSharedPtr_ITextLayoutMarshaller);
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr< SScrollBar >, HScrollBar, );
@@ -160,7 +165,7 @@ namespace $SLATE_ARGUMENT$
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr<class FRichTextLayoutMarshaller>, Marshaller, TSharedPtr_FRichTextLayoutMarshaller);
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr<class IErrorReportingWidget>, ErrorReporting, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr<class SDockingNode>, OwnerNode, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TWeakObjectPtr<APlayerController>, PCOwner, );
+	//DEFINE_FUNCTION_SLATE_ARGUMENT(TWeakObjectPtr<APlayerController>, PCOwner, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(USlateVectorArtData*, MeshData, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(bool, AdjustInitialSizeAndPositionForDPIScale, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(bool, AllowAnimatedTransition, );

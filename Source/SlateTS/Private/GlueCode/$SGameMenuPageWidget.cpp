@@ -23,7 +23,7 @@ namespace $SGameMenuPageWidget
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_STYLE_ARGUMENT(FGameMenuStyle, MenuStyle, );
-		$SLATE_ARGUMENT(TWeakObjectPtr<APlayerController>, PCOwner, );
+		//$SLATE_ARGUMENT(TWeakObjectPtr<APlayerController>, PCOwner, );
 		$SLATE_ARGUMENT(bool, GameMenu, );
 	}
 

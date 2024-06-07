@@ -43,10 +43,10 @@ namespace $SWindow
 		$SLATE_ARGUMENT(bool, SupportsMaximize, );
 		$SLATE_ARGUMENT(bool, SupportsMinimize, );
 		$SLATE_ARGUMENT(bool, ShouldPreserveAspectRatio, );
-		$SLATE_ARGUMENT(TOptional<float>, MinWidth, TOptional_float);
+		$SLATE_ARGUMENT(TOptional<float>, MinWidth, );
 		$SLATE_ARGUMENT(TOptional<float>, MinHeight, );
 		$SLATE_ARGUMENT(TOptional<float>, MaxWidth, );
-		$SLATE_ARGUMENT(TOptional<float>, MaxHeight, TOptional_float);
+		$SLATE_ARGUMENT(TOptional<float>, MaxHeight, );
 		$SLATE_ARGUMENT(bool, CreateTitleBar, );
 		$SLATE_ARGUMENT(bool, SaneWindowPlacement, );
 		$SLATE_ARGUMENT(FMargin, LayoutBorder, );

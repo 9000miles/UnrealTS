@@ -145,27 +145,31 @@ namespace $SLATE_ATTRIBUTE$
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TArray<FLinearColor*>, TargetLinearColors, );
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TArray<FLinearColor>, GradientColors, );
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TArray<OptionType>, Values, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional< NumericType >, MaxSliderValue, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional< NumericType >, MaxValue, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional< NumericType >, MinSliderValue, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional< NumericType >, MinValue, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional< NumericType >, WheelStep, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional< int32 >, MaxFractionalDigits, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional< int32 >, MinFractionalDigits, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<EMouseCursor::Type>, HeaderCursor, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<FSearchResultData>, SearchResultData, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<FVector2D>, DesiredSizeOverride, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, Pitch, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, Roll, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, Value, TOptional_NumericType);
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, Yaw, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<VectorType>, MaxSliderVector, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<VectorType>, MaxVector, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<VectorType>, MinSliderVector, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<VectorType>, MinVector, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<VectorType>, Vector, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<float>, Percent, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<int32>, BlurRadius, );
+
+	/** TOptional<> **/
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, MaxSliderValue, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, MaxValue, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, MinSliderValue, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, MinValue, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, WheelStep, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(int32, MaxFractionalDigits, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(int32, MinFractionalDigits, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(EMouseCursor::Type , HeaderCursor, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FSearchResultData, SearchResultData, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FVector2D, DesiredSizeOverride, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, Pitch, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, Roll, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, Value, TOptional_NumericType);
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, Yaw, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(VectorType, MaxSliderVector, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(VectorType, MaxVector, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(VectorType, MinSliderVector, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(VectorType, MinVector, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(VectorType, Vector, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(float, Percent, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(int32, BlurRadius, );
+	/** TOptional<> **/
+
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TSharedPtr< IToolTip >, ToolTip, );
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TSharedPtr<SDockingTabStack>, ParentStackNode, );
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TSharedPtr<SWidget>, OptionalOwningDetailsView, );
