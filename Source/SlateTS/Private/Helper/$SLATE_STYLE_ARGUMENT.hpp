@@ -6,6 +6,7 @@
 #include "GameMenuWidgetStyle.h"
 #include "Styling/SegmentedControlStyle.h"
 #include "WidgetCarousel/Public/WidgetCarouselStyle.h"
+#include "Styling/SlateTypes.h"
 
 #define $SLATE_STYLE_ARGUMENT(Type, Name, Tag)\
 $SLATE_STYLE_ARGUMENT$::Set_##Name##_##Tag(Arguments, Isolate, JsObject, #Name)

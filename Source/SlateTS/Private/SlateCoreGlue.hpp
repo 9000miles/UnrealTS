@@ -35,6 +35,8 @@ UsingUStruct(FScrollBarStyle);
 UsingUStruct(FRuntimeFloatCurve);
 UsingUStruct(FSliderStyle);
 UsingUStruct(FInputChord);
+UsingUStruct(FSplitterStyle);
+UsingUStruct(FSearchBoxStyle);
 struct AutoRegister_Struct
 {
 	AutoRegister_Struct()
@@ -53,16 +55,18 @@ UsingCppType(ITextLayoutMarshaller);
 UsingCppType(IRichTextMarkupParser);
 UsingCppType(ITextDecorator);
 UsingCppType(FRichTextLayoutMarshaller);
-UsingTSharedPtr(FRichTextLayoutMarshaller);
 UsingCppType(USlateVectorArtData);
+
+UsingTSharedPtr(IErrorReportingWidget);
+UsingTSharedPtr(FRichTextLayoutMarshaller);
 struct AutoRegister_Class
 {
 	AutoRegister_Class()
 	{
 		puerts::DefineClass<ISlateStyle>()
 			.Register();
-		puerts::DefineClass<IErrorReportingWidget>()
-			.Register();
+		//puerts::DefineClass<IErrorReportingWidget>()
+		//	.Register();
 
 		puerts::DefineClass<ITextLayoutMarshaller>()
 			.Register();

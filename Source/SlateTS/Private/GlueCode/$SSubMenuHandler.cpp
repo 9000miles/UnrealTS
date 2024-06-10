@@ -46,7 +46,8 @@ namespace $SSubMenuHandler
 		FString Filename;
 		if (Info[FilenameIndex]->IsString()) Filename = UTF8_TO_TCHAR(*(v8::String::Utf8Value(Isolate, Info[FilenameIndex])));
 
-		TSharedPtr<SSubMenuHandler> Widget = MakeTDecl<SSubMenuHandler>("SSubMenuHandler", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+		TWeakPtr<SMenuOwner> InMenuOwner;
+		TSharedPtr<SSubMenuHandler> Widget = MakeTDecl<SSubMenuHandler>("SSubMenuHandler", TCHAR_TO_ANSI(*Filename), 1, RequiredArgs::MakeRequiredArgs(InMenuOwner)) <<= Arguments;
 		if (InfoLength == 2)
 		{
 			auto V8Result = puerts::converter::Converter<TSharedPtr<SSubMenuHandler>>::toScript(Context, Widget);

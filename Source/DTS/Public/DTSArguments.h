@@ -7,6 +7,7 @@
 #include "AppFramework/Public/Widgets/Colors/SColorPicker.h"
 #include "Framework/Text/SlateTextLayout.h"
 #include "Widgets/SWindow.h"
+#include "Framework/Docking/STabDrawer.h"
 //#include "PuertsEx.h"
 
 namespace DTS
@@ -89,8 +90,10 @@ namespace DTS
 		template<> void Add<TDelegate<FReply(const FGeometry&, const FKeyEvent&)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "(Geometry: UE.Geometry, KeyEvent: UE.KeyEvent) => cpp.FReply", bOptional, ArgType });
 		}
-		template<> void Add<TDelegate<FReply(const FGeometry&, const FCharacterEvent&)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+		template<> void Add<TDelegate<FVector2D(int32)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "(Geometry: UE.Geometry, CharacterEvent: UE.CharacterEvent) => cpp.FReply", bOptional, ArgType });
+		}template<> void Add<TDelegate<FReply(const FGeometry&, const FCharacterEvent&)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+			_Arguments.Add({ InName, "(V: number) => UE.Vector2D", bOptional, ArgType });
 		}
 
 		template<> void Add<TDelegate<TSharedRef<SWidget, ESPMode::ThreadSafe>()>>(FString InName, DTS::EArgType ArgType, const bool bOptional)
@@ -153,6 +156,9 @@ namespace DTS
 		template<> void Add<TDelegate<void(const FText&, ETextCommit::Type)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "(text: string, commitType: string) => void", bOptional, ArgType });
 		}
+		template<> void Add<TDelegate<void(const FString&, FJsonSerializableArray&)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+			_Arguments.Add({ InName, "(V1: string, V2: string[]) => void", bOptional, ArgType });
+		}
 		template<> void Add<TDelegate<void(int32)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "(V: number) => void", bOptional, ArgType });
 		}
@@ -165,8 +171,7 @@ namespace DTS
 		template<> void Add<TDelegate<void(FVector4&)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "(V1: UE.Vector4) => void", bOptional, ArgType });
 		}
-		template<> void Add<TDelegate<void(ECheckBoxState)>>(FString InName, DTS::EArgType ArgType, const bool bOptional)
-		{
+		template<> void Add<TDelegate<void(ECheckBoxState)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "(InNewState: UE.ECheckBoxState) => void", bOptional, ArgType });
 		}
 		template<> void Add<TDelegate<void(FMenuBuilder&)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
@@ -175,8 +180,20 @@ namespace DTS
 		template<> void Add<TDelegate<void(FLinearColor)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "(Color: UE.LinearColor) => void", bOptional, ArgType });
 		}
+		template<> void Add<TDelegate<void(FJsonSerializableArray&)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+			_Arguments.Add({ InName, "(V: string[]) => void", bOptional, ArgType });
+		}
+		template<> void Add<TDelegate<void(SSearchBox::SearchDirection)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+			_Arguments.Add({ InName, "(V: number) => void", bOptional, ArgType });
+		}
 		template<> void Add<TDelegate<void(TSharedRef<SDockTab>)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "(DockTab: cpp.TSharedRef<SDockTab>) => void", bOptional, ArgType });
+		}
+		template<> void Add<TDelegate<void(TSharedRef<STabDrawer>)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+			_Arguments.Add({ InName, "(TabDrawer: cpp.TSharedRef<cpp.STabDrawer>) => void", bOptional, ArgType });
+		}
+		template<> void Add<TDelegate<void(TSharedRef<STabDrawer>, float)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+			_Arguments.Add({ InName, "(TabDrawer: cpp.TSharedRef<cpp.STabDrawer>, V2: number) => void", bOptional, ArgType });
 		}
 		template<> void Add<TDelegate<void(TSharedRef<SWindow>&)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "(Window: cpp.TSharedRef<SWindow>) => void", bOptional, ArgType });
@@ -204,7 +221,7 @@ namespace DTS
 		template<> void Add<TSharedPtr<Type>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {\
 			Add<Type>(InName, ArgType, bOptional);\
 		}
-		ADD_TSharedPtr(SWindow);
+		//ADD_TSharedPtr(SWindow);
 
 
 		template<> void Add<TArray<FColor*>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {

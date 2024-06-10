@@ -155,7 +155,7 @@ namespace $SLATE_ATTRIBUTE$
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(int32, MaxFractionalDigits, );
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(int32, MinFractionalDigits, );
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(EMouseCursor::Type , HeaderCursor, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FSearchResultData, SearchResultData, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(SSearchBox::FSearchResultData, SearchResultData, );
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FVector2D, DesiredSizeOverride, );
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, Pitch, );
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, Roll, );

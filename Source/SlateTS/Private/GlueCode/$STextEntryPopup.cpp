@@ -31,7 +31,7 @@ namespace $STextEntryPopup
 		$SLATE_ATTRIBUTE(FText, HintText, );
 		$SLATE_ATTRIBUTE(float, MaxWidth, );
 		//$SLATE_EVENT(FOnVerifyTextChanged, OnVerifyTextChanged, );
-		$SLATE_ARGUMENT(TSharedPtr<class IErrorReportingWidget>, ErrorReporting, );
+		//$SLATE_ARGUMENT(TSharedPtr<class IErrorReportingWidget>, ErrorReporting, );
 		$SLATE_ARGUMENT(bool, AutoFocus, );
 	}
 

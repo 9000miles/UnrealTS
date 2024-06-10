@@ -11,6 +11,7 @@
 #include "DTSDefine.h"
 #include "PuertsEx.h"
 #include "Widgets/Layout/SScrollBorder.h"
+#include "Framework/Layout/IScrollableWidget.h"
 
 UsingCppType(SScrollBorder);
 UsingTSharedPtr(SScrollBorder);
@@ -44,7 +45,8 @@ namespace $SScrollBorder
 		FString Filename;
 		if (Info[FilenameIndex]->IsString()) Filename = UTF8_TO_TCHAR(*(v8::String::Utf8Value(Isolate, Info[FilenameIndex])));
 
-		TSharedPtr<SScrollBorder> Widget = MakeTDecl<SScrollBorder>("SScrollBorder", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+		TSharedRef<IScrollableWidget> InScrollableWidget = MakeShared<IScrollableWidget>();//@TODO
+		TSharedPtr<SScrollBorder> Widget = MakeTDecl<SScrollBorder>("SScrollBorder", TCHAR_TO_ANSI(*Filename), 1, RequiredArgs::MakeRequiredArgs(InScrollableWidget)) <<= Arguments;
 		if (InfoLength == 2)
 		{
 			auto V8Result = puerts::converter::Converter<TSharedPtr<SScrollBorder>>::toScript(Context, Widget);

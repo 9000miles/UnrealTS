@@ -11,6 +11,7 @@
 #include "DTSDefine.h"
 #include "PuertsEx.h"
 #include "Widgets/Input/SRichTextHyperlink.h"
+#include "Framework/Text/SlateHyperlinkRun.h"
 
 UsingCppType(SRichTextHyperlink);
 UsingTSharedPtr(SRichTextHyperlink);
@@ -46,7 +47,8 @@ namespace $SRichTextHyperlink
 		FString Filename;
 		if (Info[FilenameIndex]->IsString()) Filename = UTF8_TO_TCHAR(*(v8::String::Utf8Value(Isolate, Info[FilenameIndex])));
 
-		TSharedPtr<SRichTextHyperlink> Widget = MakeTDecl<SRichTextHyperlink>("SRichTextHyperlink", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+		TSharedRef< FSlateHyperlinkRun::FWidgetViewModel > InViewModel;
+		TSharedPtr<SRichTextHyperlink> Widget = MakeTDecl<SRichTextHyperlink>("SRichTextHyperlink", TCHAR_TO_ANSI(*Filename), 1, RequiredArgs::MakeRequiredArgs(InViewModel)) <<= Arguments;
 		if (InfoLength == 2)
 		{
 			auto V8Result = puerts::converter::Converter<TSharedPtr<SRichTextHyperlink>>::toScript(Context, Widget);

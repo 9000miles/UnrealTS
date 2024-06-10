@@ -4,6 +4,7 @@
 #include "V8Utils.h"
 #include "Converter.hpp"
 #include "SlateCoreGlue.hpp"
+#include "Widgets/Notifications/SErrorText.h"
 
 #define $SLATE_ARGUMENT(Type, Name, Tag)\
 $SLATE_ARGUMENT$::Set_##Name##_##Tag(Arguments, Isolate, JsObject, #Name)
@@ -163,7 +164,7 @@ namespace $SLATE_ARGUMENT$
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr<SWidget>, PossiblyNullContent, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr<SWindow>, ParentWindow, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr<class FRichTextLayoutMarshaller>, Marshaller, TSharedPtr_FRichTextLayoutMarshaller);
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr<class IErrorReportingWidget>, ErrorReporting, );
+	//DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr<class IErrorReportingWidget>, ErrorReporting, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr<class SDockingNode>, OwnerNode, );
 	//DEFINE_FUNCTION_SLATE_ARGUMENT(TWeakObjectPtr<APlayerController>, PCOwner, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(USlateVectorArtData*, MeshData, );

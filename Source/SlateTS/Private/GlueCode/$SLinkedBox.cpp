@@ -10,6 +10,7 @@
 #include "DTSHelper.h"
 #include "DTSDefine.h"
 #include "PuertsEx.h"
+#include "Widgets/Layout/SLinkedBox.h"
 
 UsingCppType(SLinkedBox);
 UsingTSharedPtr(SLinkedBox);
@@ -52,7 +53,8 @@ namespace $SLinkedBox
 		FString Filename;
 		if (Info[FilenameIndex]->IsString()) Filename = UTF8_TO_TCHAR(*(v8::String::Utf8Value(Isolate, Info[FilenameIndex])));
 
-		TSharedPtr<SLinkedBox> Widget = MakeTDecl<SLinkedBox>("SLinkedBox", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+		TSharedRef<FLinkedBoxManager> InManager;
+		TSharedPtr<SLinkedBox> Widget = MakeTDecl<SLinkedBox>("SLinkedBox", TCHAR_TO_ANSI(*Filename), 1, RequiredArgs::MakeRequiredArgs(InManager)) <<= Arguments;
 		if (InfoLength == 2)
 		{
 			auto V8Result = puerts::converter::Converter<TSharedPtr<SLinkedBox>>::toScript(Context, Widget);

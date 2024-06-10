@@ -67,7 +67,7 @@ namespace $SMultiLineEditableTextBox
 		$SLATE_ATTRIBUTE(FSlateColor, BackgroundColor, );
 		$SLATE_ATTRIBUTE(FMargin, Padding, );
 		$SLATE_ATTRIBUTE(FMargin, Margin, );
-		$SLATE_ARGUMENT(TSharedPtr<class IErrorReportingWidget>, ErrorReporting, );
+		//$SLATE_ARGUMENT(TSharedPtr<class IErrorReportingWidget>, ErrorReporting, );
 		$SLATE_ARGUMENT(EModifierKey::Type, ModiferKeyForNewLine, );
 		$SLATE_ARGUMENT(FVirtualKeyboardOptions, VirtualKeyboardOptions, );
 		$SLATE_ATTRIBUTE(EVirtualKeyboardTrigger, VirtualKeyboardTrigger, );

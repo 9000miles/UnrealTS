@@ -25,7 +25,7 @@ namespace $SSuggestionTextBox
 		$SLATE_ATTRIBUTE(FSlateColor, BackgroundColor, );
 		$SLATE_ARGUMENT(const FSlateBrush*, BackgroundImage, );
 		$SLATE_ATTRIBUTE(bool, ClearKeyboardFocusOnCommit, );
-		$SLATE_ARGUMENT(TSharedPtr<class IErrorReportingWidget>, ErrorReporting, );
+		//$SLATE_ARGUMENT(TSharedPtr<class IErrorReportingWidget>, ErrorReporting, );
 		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
 		$SLATE_ATTRIBUTE(FSlateColor, ForegroundColor, );
 		$SLATE_ATTRIBUTE(FText, HintText, );

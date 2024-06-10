@@ -11,6 +11,7 @@
 #include "DTSDefine.h"
 #include "PuertsEx.h"
 #include "Framework/Docking/STabDrawer.h"
+#include "Widgets/Docking/SDockTab.h"
 
 UsingCppType(STabDrawer);
 UsingTSharedPtr(STabDrawer);
@@ -49,7 +50,10 @@ namespace $STabDrawer
 		FString Filename;
 		if (Info[FilenameIndex]->IsString()) Filename = UTF8_TO_TCHAR(*(v8::String::Utf8Value(Isolate, Info[FilenameIndex])));
 
-		TSharedPtr<STabDrawer> Widget = MakeTDecl<STabDrawer>("STabDrawer", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+		TSharedRef<SDockTab> InTab = SNew(SDockTab);
+		TWeakPtr<SWidget> InTabButton;
+		ETabDrawerOpenDirection InOpenDirection;//@TODO
+		TSharedPtr<STabDrawer> Widget = MakeTDecl<STabDrawer>("STabDrawer", TCHAR_TO_ANSI(*Filename), 3, RequiredArgs::MakeRequiredArgs(InTab, InTabButton, InOpenDirection)) <<= Arguments;
 		if (InfoLength == 2)
 		{
 			auto V8Result = puerts::converter::Converter<TSharedPtr<STabDrawer>>::toScript(Context, Widget);
