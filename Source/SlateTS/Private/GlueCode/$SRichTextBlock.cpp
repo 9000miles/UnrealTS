@@ -37,8 +37,8 @@ namespace $SRichTextBlock
 		$SLATE_ATTRIBUTE(ETextJustify::Type, Justification, );
 		$SLATE_ARGUMENT(TOptional<ETextShapingMethod>, TextShapingMethod, );
 		$SLATE_ARGUMENT(TOptional<ETextFlowDirection>, TextFlowDirection, );
-		$SLATE_ARGUMENT(TArray< TSharedRef< class ITextDecorator > >, Decorators, );
-		$SLATE_ARGUMENT(TSharedPtr< class IRichTextMarkupParser >, Parser, );
+		//$SLATE_ARGUMENT(TArray< TSharedRef< class ITextDecorator > >, Decorators, );
+		//$SLATE_ARGUMENT(TSharedPtr< class IRichTextMarkupParser >, Parser, );
 		$SLATE_ARGUMENT(TOptional<ETextOverflowPolicy>, OverflowPolicy, );
 		$SLATE_ATTRIBUTE(float, MinDesiredWidth, float);
 	}

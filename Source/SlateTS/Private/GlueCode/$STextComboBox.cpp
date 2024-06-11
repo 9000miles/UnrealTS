@@ -24,7 +24,7 @@ namespace $STextComboBox
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_STYLE_ARGUMENT(FComboBoxStyle, ComboBoxStyle, );
 		$SLATE_STYLE_ARGUMENT(FButtonStyle, ButtonStyle, );
-		$SLATE_ARGUMENT(TArray< TSharedPtr<FString> >*, OptionsSource, );
+		//$SLATE_ARGUMENT(TArray< TSharedPtr<FString> >*, OptionsSource, );
 		$SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, FSlateColor);
 		$SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
 		$SLATE_ATTRIBUTE(FMargin, ContentPadding, );

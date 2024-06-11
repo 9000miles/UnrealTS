@@ -32,7 +32,7 @@ namespace $SInputKeySelector
 		$SLATE_ARGUMENT(bool, AllowModifierKeys, );
 		$SLATE_ARGUMENT(bool, AllowGamepadKeys, );
 		$SLATE_ARGUMENT(bool, EscapeCancelsSelection, );
-		$SLATE_ARGUMENT(TArray<FKey>, EscapeKeys, );
+		//$SLATE_ARGUMENT(TArray<FKey>, EscapeKeys, );
 		//$SLATE_EVENT(FOnKeySelected, OnKeySelected, );
 		//$SLATE_EVENT(FOnIsSelectingKeyChanged, OnIsSelectingKeyChanged, );
 		$SLATE_ARGUMENT(bool, IsFocusable, );

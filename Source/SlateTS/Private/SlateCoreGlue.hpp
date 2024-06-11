@@ -19,24 +19,28 @@
 #include "Curves/CurveFloat.h"
 #include "Slate/SlateVectorArtData.h"
 #include "Framework/Commands/InputChord.h"
+#include "Textures/SlateIcon.h"
 
-UsingUStruct(FHyperlinkStyle);
-UsingUStruct(FGameMenuStyle);
-UsingUStruct(FFrameRate);
 UsingUStruct(FEditableTextBoxStyle);
-UsingUStruct(FVirtualKeyboardOptions);
 UsingUStruct(FEditableTextStyle);
-UsingUStruct(EVisibility);
-UsingUStruct(FSlateSound);
-UsingUStruct(FProgressBarStyle);
-UsingUStruct(FScrollBoxStyle);
-UsingUStruct(FScrollBorderStyle);
-UsingUStruct(FScrollBarStyle);
-UsingUStruct(FRuntimeFloatCurve);
-UsingUStruct(FSliderStyle);
+UsingUStruct(FFrameRate);
+UsingUStruct(FGameMenuStyle);
+UsingUStruct(FHyperlinkStyle);
 UsingUStruct(FInputChord);
-UsingUStruct(FSplitterStyle);
+UsingUStruct(FProgressBarStyle);
+UsingUStruct(FRuntimeFloatCurve);
+UsingUStruct(FScrollBarStyle);
+UsingUStruct(FScrollBorderStyle);
+UsingUStruct(FScrollBoxStyle);
 UsingUStruct(FSearchBoxStyle);
+UsingUStruct(FSlateSound);
+UsingUStruct(FSliderStyle);
+UsingUStruct(FSplitterStyle);
+UsingUStruct(FTextBlockStyle);
+UsingUStruct(FVirtualKeyboardOptions);
+UsingUStruct(FInlineEditableTextBlockStyle); 
+UsingUStruct(FComboBoxStyle);
+UsingUStruct(FTimecode);
 struct AutoRegister_Struct
 {
 	AutoRegister_Struct()
@@ -56,9 +60,13 @@ UsingCppType(IRichTextMarkupParser);
 UsingCppType(ITextDecorator);
 UsingCppType(FRichTextLayoutMarshaller);
 UsingCppType(USlateVectorArtData);
+UsingCppType(EVisibility);
+UsingCppType(FSlateIcon);
 
 UsingTSharedPtr(IErrorReportingWidget);
 UsingTSharedPtr(FRichTextLayoutMarshaller);
+UsingTSharedPtr(ITextLayoutMarshaller);
+UsingTSharedPtr(FString);
 struct AutoRegister_Class
 {
 	AutoRegister_Class()
@@ -73,7 +81,8 @@ struct AutoRegister_Class
 	}
 }__AutoRegister_Class;
 
-UsingTArrayWithName(FCommonFrameRateInfo, "FCommonFrameRateInfo");
+UsingTArrayWithName(FCommonFrameRateInfo, "FCommonFrameRateInfo[]");
+UsingTArrayWithName(FString, "FString[]");
 struct AutoRegister_TArray
 {
 	AutoRegister_TArray()

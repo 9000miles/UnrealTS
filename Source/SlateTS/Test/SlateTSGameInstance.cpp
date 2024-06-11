@@ -130,8 +130,8 @@ struct AutoRegisterMyTest
 	AutoRegisterMyTest()
 	{
 		puerts::DefineClass<USlateTSGameInstance>()
-			.Method("GetTextBlock", MakeFunction(&USlateTSGameInstance::GetTextBlock))
-			.Method("SetTestWidget", MakeFunction(&USlateTSGameInstance::SetTestWidget))
+			//.Method("GetTextBlock", MakeFunction(&USlateTSGameInstance::GetTextBlock))
+			//.Method("SetTestWidget", MakeFunction(&USlateTSGameInstance::SetTestWidget))
 			//.Method("SetScriptClass", MakeFunction(&UTestPuertsSlateGameInstance::SetScriptClass))
 			.Register();
 

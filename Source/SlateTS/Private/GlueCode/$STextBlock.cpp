@@ -43,7 +43,7 @@ namespace $STextBlock
 		$SLATE_ATTRIBUTE(float, MinDesiredWidth, float);
 		$SLATE_ARGUMENT(TOptional<ETextShapingMethod>, TextShapingMethod, );
 		$SLATE_ARGUMENT(TOptional<ETextFlowDirection>, TextFlowDirection, );
-		$SLATE_ARGUMENT(TSharedPtr<IBreakIterator>, LineBreakPolicy, );
+		//$SLATE_ARGUMENT(TSharedPtr<IBreakIterator>, LineBreakPolicy, );
 		$SLATE_ARGUMENT(TOptional<ETextOverflowPolicy>, OverflowPolicy, );
 		$SLATE_ARGUMENT(bool, SimpleTextMode, );
 		//$SLATE_EVENT(FPointerEventHandler, OnDoubleClicked, );
@@ -152,7 +152,7 @@ struct AutoRegister_STextBlock
 		Args.Add<float>("MinDesiredWidth", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<TOptional<ETextShapingMethod>>("TextShapingMethod", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<TOptional<ETextFlowDirection>>("TextFlowDirection", DTS::EArgType::SLATE_ARGUMENT);
-		Args.Add<TSharedPtr<IBreakIterator>>("LineBreakPolicy", DTS::EArgType::SLATE_ARGUMENT);
+		//Args.Add<TSharedPtr<IBreakIterator>>("LineBreakPolicy", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<TOptional<ETextOverflowPolicy>>("OverflowPolicy", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<bool>("SimpleTextMode", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<FPointerEventHandler>("OnDoubleClicked", DTS::EArgType::SLATE_EVENT);

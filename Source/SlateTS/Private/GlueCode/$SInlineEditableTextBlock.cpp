@@ -31,7 +31,7 @@ namespace $SInlineEditableTextBlock
 		$SLATE_ATTRIBUTE(FText, HighlightText, );
 		$SLATE_ATTRIBUTE(float, WrapTextAt, );
 		$SLATE_ATTRIBUTE(ETextJustify::Type, Justification, );
-		$SLATE_ARGUMENT(TSharedPtr<IBreakIterator>, LineBreakPolicy, );
+		//$SLATE_ARGUMENT(TSharedPtr<IBreakIterator>, LineBreakPolicy, );
 		$SLATE_ATTRIBUTE(bool, IsReadOnly, );
 		$SLATE_ARGUMENT(bool, MultiLine, );
 		$SLATE_ARGUMENT(EModifierKey::Type, ModiferKeyForNewLine, );
@@ -105,7 +105,7 @@ struct AutoRegister_SInlineEditableTextBlock
 		Args.Add<FText>("HighlightText", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<float>("WrapTextAt", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<ETextJustify::Type>("Justification", DTS::EArgType::SLATE_ATTRIBUTE);
-		Args.Add<TSharedPtr<IBreakIterator>>("LineBreakPolicy", DTS::EArgType::SLATE_ARGUMENT);
+		//Args.Add<TSharedPtr<IBreakIterator>>("LineBreakPolicy", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<bool>("IsReadOnly", DTS::EArgType::SLATE_ATTRIBUTE);
 		Args.Add<bool>("MultiLine", DTS::EArgType::SLATE_ARGUMENT);
 		Args.Add<EModifierKey::Type>("ModiferKeyForNewLine", DTS::EArgType::SLATE_ARGUMENT);

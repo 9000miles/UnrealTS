@@ -7,6 +7,7 @@
 #include "Styling/SegmentedControlStyle.h"
 #include "WidgetCarousel/Public/WidgetCarouselStyle.h"
 #include "Styling/SlateTypes.h"
+#include "SlateCoreGlue.hpp"
 
 #define $SLATE_STYLE_ARGUMENT(Type, Name, Tag)\
 $SLATE_STYLE_ARGUMENT$::Set_##Name##_##Tag(Arguments, Isolate, JsObject, #Name)
@@ -23,7 +24,7 @@ namespace $SLATE_STYLE_ARGUMENT$
 		if (!bHas) return;\
 		if (puerts::converter::Converter<Type>::accept(Context, JsObject))\
 		{\
-			Type* Ret = puerts::converter::Converter<Type*>::toCpp(Context, JsObject);\
+			const Type* Ret = puerts::converter::Converter<Type*>::toCpp(Context, JsObject);\
 			Arguments._##Name = Ret;\
 		}\
 	}

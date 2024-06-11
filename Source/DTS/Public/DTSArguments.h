@@ -3,11 +3,12 @@
 #include "CoreMinimal.h"
 #include "DTSDefine.h"
 #include "Widgets/Input/SSearchBox.h"
-#include "WebBrowser/Public/IWebBrowserSingleton.h"
-#include "AppFramework/Public/Widgets/Colors/SColorPicker.h"
+//#include "WebBrowser/Public/IWebBrowserSingleton.h"
+//#include "AppFramework/Public/Widgets/Colors/SColorPicker.h"
 #include "Framework/Text/SlateTextLayout.h"
 #include "Widgets/SWindow.h"
 #include "Framework/Docking/STabDrawer.h"
+#include "TypeInfo.hpp"
 //#include "PuertsEx.h"
 
 namespace DTS
@@ -47,9 +48,21 @@ namespace DTS
 		template<> void Add<APlayerController>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "UE.PlayerController", bOptional, ArgType });
 		}
-		//template<> void Add<EVisibility>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
-		//	_Arguments.Add({ InName, "UE.PlayerController", bOptional, ArgType });
-		//}
+		template<> void Add<FSlateSound>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+			_Arguments.Add({ InName, "UE.SlateSound", bOptional, ArgType });
+		}
+		template<> void Add<FVector2D>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+			_Arguments.Add({ InName, "UE.Vector2D", bOptional, ArgType });
+		}
+		template<> void Add<FMargin>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+			_Arguments.Add({ InName, "UE.Margin", bOptional, ArgType });
+		}
+		template<> void Add<FString>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+			_Arguments.Add({ InName, "string", bOptional, ArgType });
+		}
+		template<> void Add<EVisibility>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+			_Arguments.Add({ InName, "UE.EVisibility", bOptional, ArgType });
+		}
 
 #define ADD_TOptional(Type)\
 		template<> void Add<TOptional<Type>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {\
@@ -71,7 +84,7 @@ namespace DTS
 		ADD_TOptional(SSearchBox::FSearchResultData);
 		ADD_TOptional(EVisibility);
 		ADD_TOptional(FString);
-		ADD_TOptional(FBrowserContextSettings);
+		//ADD_TOptional(FBrowserContextSettings);
 
 
 #define ADD_TWeakObjectPtr(Type)\
@@ -90,10 +103,14 @@ namespace DTS
 		template<> void Add<TDelegate<FReply(const FGeometry&, const FKeyEvent&)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "(Geometry: UE.Geometry, KeyEvent: UE.KeyEvent) => cpp.FReply", bOptional, ArgType });
 		}
+		template<> void Add<TDelegate<FReply(const FGeometry&, const FCharacterEvent&)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+			_Arguments.Add({ InName, "(V: number) => UE.Vector2D", bOptional, ArgType });
+		}
 		template<> void Add<TDelegate<FVector2D(int32)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "(Geometry: UE.Geometry, CharacterEvent: UE.CharacterEvent) => cpp.FReply", bOptional, ArgType });
-		}template<> void Add<TDelegate<FReply(const FGeometry&, const FCharacterEvent&)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
-			_Arguments.Add({ InName, "(V: number) => UE.Vector2D", bOptional, ArgType });
+		}
+		template<> void Add<TDelegate<FString(FTextDisplayStringPtr)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+			_Arguments.Add({ InName, "(V: string) => string", bOptional, ArgType });
 		}
 
 		template<> void Add<TDelegate<TSharedRef<SWidget, ESPMode::ThreadSafe>()>>(FString InName, DTS::EArgType ArgType, const bool bOptional)
@@ -156,6 +173,9 @@ namespace DTS
 		template<> void Add<TDelegate<void(const FText&, ETextCommit::Type)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "(text: string, commitType: string) => void", bOptional, ArgType });
 		}
+		template<> void Add<TDelegate<void(const FString&)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+			_Arguments.Add({ InName, "(V1: string) => void", bOptional, ArgType });
+		}
 		template<> void Add<TDelegate<void(const FString&, FJsonSerializableArray&)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "(V1: string, V2: string[]) => void", bOptional, ArgType });
 		}
@@ -167,6 +187,9 @@ namespace DTS
 		}
 		template<> void Add<TDelegate<void(FVector4&, bool)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "(V1: UE.Vector4, V2: boolean) => void", bOptional, ArgType });
+		}
+		template<> void Add<TDelegate<void(FVector2D&)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+			_Arguments.Add({ InName, "(V1: UE.Vector2D) => void", bOptional, ArgType });
 		}
 		template<> void Add<TDelegate<void(FVector4&)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "(V1: UE.Vector4) => void", bOptional, ArgType });
@@ -182,6 +205,9 @@ namespace DTS
 		}
 		template<> void Add<TDelegate<void(FJsonSerializableArray&)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "(V: string[]) => void", bOptional, ArgType });
+		}
+		template<> void Add<TDelegate<void(FTextDisplayStringPtr, ESelectInfo::Type)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+			_Arguments.Add({ InName, "(V1: string, V2: UE.ESelectInfo) => void", bOptional, ArgType });
 		}
 		template<> void Add<TDelegate<void(SSearchBox::SearchDirection)>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "(V: number) => void", bOptional, ArgType });
@@ -213,19 +239,23 @@ namespace DTS
 		template<> void Add<SSearchBox::FSearchResultData>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "cpp.FSearchResultData", bOptional, ArgType });
 		}
-		template<> void Add<FBrowserContextSettings>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
-			_Arguments.Add({ InName, "cpp.FBrowserContextSettings", bOptional, ArgType });
-		}
+		//template<> void Add<FBrowserContextSettings>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+		//	_Arguments.Add({ InName, "cpp.FBrowserContextSettings", bOptional, ArgType });
+		//}
 
 #define ADD_TSharedPtr(Type)\
 		template<> void Add<TSharedPtr<Type>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {\
 			Add<Type>(InName, ArgType, bOptional);\
 		}
 		//ADD_TSharedPtr(SWindow);
+		//ADD_TSharedPtr(IBreakIterator);
 
 
 		template<> void Add<TArray<FColor*>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
 			_Arguments.Add({ InName, "UE.TArray<UE.Color>", bOptional, ArgType });
+		}
+		template<> void Add<TArray<FKey>>(FString InName, DTS::EArgType ArgType, const bool bOptional) {
+			_Arguments.Add({ InName, "UE.Key", bOptional, ArgType });
 		}
 
 		FString GenDTS();

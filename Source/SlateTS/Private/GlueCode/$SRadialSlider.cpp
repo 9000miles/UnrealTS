@@ -41,7 +41,7 @@ namespace $SRadialSlider
 		$SLATE_ARGUMENT(float, SliderHandleEndAngle, );
 		$SLATE_ARGUMENT(float, AngularOffset, );
 		$SLATE_ARGUMENT(FVector2D, HandStartEndRatio, );
-		$SLATE_ARGUMENT(TArray<float>, ValueTags, );
+		//$SLATE_ARGUMENT(TArray<float>, ValueTags, );
 		$SLATE_ARGUMENT(bool, IsFocusable, );
 		$SLATE_ARGUMENT(bool, UseVerticalDrag, );
 		$SLATE_ARGUMENT(bool, ShowSliderHandle, );

@@ -25,7 +25,7 @@ namespace $SSearchBox
 		$SLATE_STYLE_ARGUMENT(FSearchBoxStyle, Style, FSearchBoxStyle);
 		$SLATE_ATTRIBUTE(FText, HintText, );
 		$SLATE_ATTRIBUTE(FText, InitialText, );
-		$SLATE_ATTRIBUTE(TOptional<SSearchBox::FSearchResultData>, SearchResultData, );
+		//$SLATE_ATTRIBUTE(TOptional<SSearchBox::FSearchResultData>, SearchResultData, );
 		$SLATE_ATTRIBUTE(bool, IsSearching, );
 		//$SLATE_EVENT(FOnTextChanged, OnTextChanged, );
 		//$SLATE_EVENT(FOnTextCommitted, OnTextCommitted, );

@@ -28,7 +28,7 @@ namespace $SLATE_ARGUMENT$
 	}
 
 	DEFINE_FUNCTION_SLATE_ARGUMENT(EAllowOverscroll, AllowOverscroll, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(EAnimation, Animate, );
+	DEFINE_FUNCTION_SLATE_ARGUMENT(SThrobber::EAnimation, Animate, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(EAutoCenter, AutoCenter, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(EButtonClickMethod::Type, ClickMethod, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(EButtonPressMethod::Type, PressMethod, );
@@ -151,7 +151,7 @@ namespace $SLATE_ARGUMENT$
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr< SScrollBar >, HScrollBar, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr< SScrollBar >, VScrollBar, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr< class IRichTextMarkupParser >, Parser, );
-	DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr<FAndroidWebBrowserWindow>, WebBrowserWindow, );
+	//DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr<FAndroidWebBrowserWindow>, WebBrowserWindow, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr<FString>, InitiallySelectedItem, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr<IBreakIterator>, LineBreakPolicy, );
 	DEFINE_FUNCTION_SLATE_ARGUMENT(TSharedPtr<ISlateViewport>, ViewportInterface, );

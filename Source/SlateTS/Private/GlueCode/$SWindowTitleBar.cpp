@@ -42,7 +42,10 @@ namespace $SWindowTitleBar
 		FString Filename;
 		if (Info[FilenameIndex]->IsString()) Filename = UTF8_TO_TCHAR(*(v8::String::Utf8Value(Isolate, Info[FilenameIndex])));
 
-		TSharedPtr<SWindowTitleBar> Widget = MakeTDecl<SWindowTitleBar>("SWindowTitleBar", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+		TSharedRef<SWindow> InWindow = SNew(SWindow);
+		TSharedPtr<SWidget> InCenterContent;
+		EHorizontalAlignment InCenterContentAlignment;//@TODO
+		TSharedPtr<SWindowTitleBar> Widget = MakeTDecl<SWindowTitleBar>("SWindowTitleBar", TCHAR_TO_ANSI(*Filename), 3, RequiredArgs::MakeRequiredArgs(InWindow, InCenterContent, InCenterContentAlignment)) <<= Arguments;
 		if (InfoLength == 2)
 		{
 			auto V8Result = puerts::converter::Converter<TSharedPtr<SWindowTitleBar>>::toScript(Context, Widget);

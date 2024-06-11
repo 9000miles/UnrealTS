@@ -23,7 +23,7 @@ namespace $SScrollBox
 
 		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
 		$SLATE_SLOT_ARGUMENT(FSlot, Slots, );
-		$SLATE_STYLE_ARGUMENT(FScrollBoxStyle, Style, FScrollBorderStyle);
+		$SLATE_STYLE_ARGUMENT(FScrollBoxStyle, Style, FScrollBoxStyle);
 		$SLATE_STYLE_ARGUMENT(FScrollBarStyle, ScrollBarStyle, );
 		$SLATE_ARGUMENT(TSharedPtr<SScrollBar>, ExternalScrollbar, );
 		$SLATE_ARGUMENT(EOrientation, Orientation, );

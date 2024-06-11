@@ -6,6 +6,7 @@
 #include "Binding.hpp"
 #include "TypeInfo.hpp"
 #include "UEDataBinding.hpp"
+#include "Styling/SlateTypes.h"
 
 namespace puerts
 {
@@ -17,14 +18,13 @@ namespace puerts
 	template <> struct ScriptTypeName<Type> { static constexpr auto value() { return Literal("UE.") + Literal(#Type).Sub<1, 5>(); }};
 
 	DefineUEType(FMargin);
-	DefineUEType(FTextBlockStyle);
+	//DefineUEType(FTextBlockStyle);
 	DefineUEType(FButtonStyle);
 	DefineUEType(FComboButtonStyle);
 	DefineUEType(FSlateFontInfo);
 	DefineUEType(FSlateBrush);
 	DefineUEType(FLinearColor);
 	DefineUEType(FSlateColor);
-	DefineUEType(FVector2D);
 	DefineUEType(FCheckBoxStyle);
 	DefineUEType(TOptional<FSlateSound>);
 	DefineUEType(TOptional<ETextShapingMethod>);

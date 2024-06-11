@@ -42,7 +42,8 @@ namespace $SWorldWidgetScreenLayer
 		FString Filename;
 		if (Info[FilenameIndex]->IsString()) Filename = UTF8_TO_TCHAR(*(v8::String::Utf8Value(Isolate, Info[FilenameIndex])));
 
-		TSharedPtr<SWorldWidgetScreenLayer> Widget = MakeTDecl<SWorldWidgetScreenLayer>("SWorldWidgetScreenLayer", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+		FLocalPlayerContext InPlayerContext;//@TODO
+		TSharedPtr<SWorldWidgetScreenLayer> Widget = MakeTDecl<SWorldWidgetScreenLayer>("SWorldWidgetScreenLayer", TCHAR_TO_ANSI(*Filename), 1, RequiredArgs::MakeRequiredArgs(InPlayerContext)) <<= Arguments;
 		if (InfoLength == 2)
 		{
 			auto V8Result = puerts::converter::Converter<TSharedPtr<SWorldWidgetScreenLayer>>::toScript(Context, Widget);

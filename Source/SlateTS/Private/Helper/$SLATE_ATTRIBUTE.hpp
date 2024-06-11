@@ -3,6 +3,7 @@
 #include "v8.h"
 #include "V8Utils.h"
 #include "Converter.hpp"
+#include "WidgetAttribute.hpp"
 
 #define $SLATE_ATTRIBUTE(Type, Name, Tag)\
 $SLATE_ATTRIBUTE$::Set_##Name##_##Tag(Arguments, Isolate, JsObject, #Name)
@@ -20,7 +21,7 @@ namespace $SLATE_ATTRIBUTE$
 		v8::Local<v8::Value> JsValue = JsObject->Get(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).ToLocalChecked();\
 		Arguments._##Name = WidgetAttribute::MakeAttribute<Type>(Context, JsValue);\
 	}
-
+	
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(ECheckBoxState, IsChecked, );
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(ECheckBoxState, ToggleChecked, );
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(ECheckBoxState, TogglePitchChecked, );
@@ -147,27 +148,27 @@ namespace $SLATE_ATTRIBUTE$
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TArray<OptionType>, Values, );
 
 	/** TOptional<> **/
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, MaxSliderValue, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, MaxValue, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, MinSliderValue, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, MinValue, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, WheelStep, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(int32, MaxFractionalDigits, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(int32, MinFractionalDigits, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(EMouseCursor::Type , HeaderCursor, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(SSearchBox::FSearchResultData, SearchResultData, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(FVector2D, DesiredSizeOverride, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, Pitch, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, Roll, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, Value, TOptional_NumericType);
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(NumericType, Yaw, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(VectorType, MaxSliderVector, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(VectorType, MaxVector, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(VectorType, MinSliderVector, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(VectorType, MinVector, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(VectorType, Vector, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(float, Percent, );
-	DEFINE_FUNCTION_SLATE_ATTRIBUTE(int32, BlurRadius, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, MaxSliderValue, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, MaxValue, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, MinSliderValue, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, MinValue, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, WheelStep, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<int32>, MaxFractionalDigits, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<int32>, MinFractionalDigits, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<EMouseCursor::Type>, HeaderCursor, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<SSearchBox::FSearchResultData>, SearchResultData, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<FVector2D>, DesiredSizeOverride, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, Pitch, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, Roll, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, Value, TOptional_NumericType);
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, Yaw, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<VectorType>, MaxSliderVector, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<VectorType>, MaxVector, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<VectorType>, MinSliderVector, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<VectorType>, MinVector, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<VectorType>, Vector, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<float>, Percent, );
+	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TOptional<int32>, BlurRadius, );
 	/** TOptional<> **/
 
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(TSharedPtr< IToolTip >, ToolTip, );
