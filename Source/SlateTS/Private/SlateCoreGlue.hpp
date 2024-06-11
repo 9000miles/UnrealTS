@@ -20,6 +20,8 @@
 #include "Slate/SlateVectorArtData.h"
 #include "Framework/Commands/InputChord.h"
 #include "Textures/SlateIcon.h"
+#include "Rendering/RenderingCommon.h"
+#include "Widgets/SWindow.h"
 
 UsingUStruct(FEditableTextBoxStyle);
 UsingUStruct(FEditableTextStyle);
@@ -38,9 +40,11 @@ UsingUStruct(FSliderStyle);
 UsingUStruct(FSplitterStyle);
 UsingUStruct(FTextBlockStyle);
 UsingUStruct(FVirtualKeyboardOptions);
-UsingUStruct(FInlineEditableTextBlockStyle); 
+UsingUStruct(FInlineEditableTextBlockStyle);
 UsingUStruct(FComboBoxStyle);
 UsingUStruct(FTimecode);
+UsingUStruct(FVolumeControlStyle);
+UsingUStruct(FWindowStyle);
 struct AutoRegister_Struct
 {
 	AutoRegister_Struct()
@@ -62,11 +66,14 @@ UsingCppType(FRichTextLayoutMarshaller);
 UsingCppType(USlateVectorArtData);
 UsingCppType(EVisibility);
 UsingCppType(FSlateIcon);
+UsingCppType(ISlateViewport);
+UsingCppType(FWindowTransparency);
 
 UsingTSharedPtr(IErrorReportingWidget);
 UsingTSharedPtr(FRichTextLayoutMarshaller);
 UsingTSharedPtr(ITextLayoutMarshaller);
 UsingTSharedPtr(FString);
+UsingTSharedPtr(ISlateViewport);
 struct AutoRegister_Class
 {
 	AutoRegister_Class()

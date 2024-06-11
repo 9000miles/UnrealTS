@@ -1,149 +1,149 @@
-#pragma once
-
-#include "CoreMinimal.h"
-#include "JsObject.h"
-#include "Binding.hpp"
-#include "DTSDefine.h"
-#include "TypeInfo.hpp"
-#include "UEDataBinding.hpp"
-#include "Helper/WidgetHelper.hpp"
-#include "DTSHelper.h"
-#include "DTSDefine.h"
-#include "PuertsEx.h"
-#include "Framework/Application/SWindowTitleBar.h"
-
-UsingCppType(SWindowTitleBar);
-UsingTSharedPtr(SWindowTitleBar);
-
-namespace $SWindowTitleBar
-{
-	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, SWindowTitleBar::FArguments& Arguments)
-	{
-		if (!Info[ArgumentsIndex]->IsObject()) return;
-
-		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-		$SLATE_ATTRIBUTE(FSlateColor, IconColorAndOpacity, );
-	}
-
-	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)
-	{
-		v8::Isolate* Isolate = Info.GetIsolate();
-		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
-		const uint8 InfoLength = Info.Length();
-		if (InfoLength <= 1) { puerts::DataTransfer::ThrowException(Isolate, "Invalid argument!"); return; }
-
-		uint8 ExposeIndex = InfoLength == 3 ? 0 : -1;
-		uint8 ArgumentsIndex = InfoLength == 3 ? 1 : 0;
-		uint8 FilenameIndex = InfoLength == 3 ? 2 : 1;
-
-		SWindowTitleBar::FArguments Arguments;
-		$Arguments(Info, ArgumentsIndex, Context, Isolate, Arguments);
-
-		FString Filename;
-		if (Info[FilenameIndex]->IsString()) Filename = UTF8_TO_TCHAR(*(v8::String::Utf8Value(Isolate, Info[FilenameIndex])));
-
-		TSharedRef<SWindow> InWindow = SNew(SWindow);
-		TSharedPtr<SWidget> InCenterContent;
-		EHorizontalAlignment InCenterContentAlignment;//@TODO
-		TSharedPtr<SWindowTitleBar> Widget = MakeTDecl<SWindowTitleBar>("SWindowTitleBar", TCHAR_TO_ANSI(*Filename), 3, RequiredArgs::MakeRequiredArgs(InWindow, InCenterContent, InCenterContentAlignment)) <<= Arguments;
-		if (InfoLength == 2)
-		{
-			auto V8Result = puerts::converter::Converter<TSharedPtr<SWindowTitleBar>>::toScript(Context, Widget);
-			Info.GetReturnValue().Set(V8Result); return;
-		}
-
-		if (InfoLength == 3)
-		{
-			auto RefObject = puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex]);
-			if (Info[ExposeIndex]->IsObject() && RefObject->IsObject() &&
-				puerts::DataTransfer::IsInstanceOf(Isolate, puerts::StaticTypeId<TSharedPtr<SWindowTitleBar>>::get(), RefObject->ToObject(Context).ToLocalChecked()))
-			{
-				TSharedPtr<SWindowTitleBar>* Arg1 = puerts::DataTransfer::GetPointerFast<TSharedPtr<SWindowTitleBar>>(puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex])->ToObject(Context).ToLocalChecked());
-				*Arg1 = Widget; return;
-			}
-		}
-	}
-	static void $MakeShared(const v8::FunctionCallbackInfo<v8::Value>& Info)
-	{
-		v8::Isolate* Isolate = Info.GetIsolate();
-		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
-
-		TSharedPtr<SWindowTitleBar> Widget = MakeShared<SWindowTitleBar>();
-		auto V8Result = puerts::converter::Converter<TSharedPtr<SWindowTitleBar>>::toScript(Context, Widget);
-		Info.GetReturnValue().Set(V8Result);
-	}
-	static void $SAssignNew(const v8::FunctionCallbackInfo<v8::Value>& Info) { $SNew(Info); }
-}
-
-struct AutoRegister_SWindowTitleBar
-{
-	DTS::DTSArguments RegisterArguments()
-	{
-		DTS::DTSArguments Args = DTS::DTSArguments("SWindowTitleBar");
-		Args.Add<FSlateColor>("IconColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
-		return Args;
-	}
-
-	void GenDTS()
-	{
-		DTS::Class ClassDTS = DTS::Class().Name("SWindowTitleBar").Super("SCompoundWidget")
-			.Arguments(RegisterArguments())
-			.Functions(DTS::Array<DTS::Function>()
-				+ DTS::Function()
-				[
-					DTS::Function::Slot().Name("SNew").Static(true)
-						.Parameters(DTS::Array<DTS::Property>()
-							+ DTS::Property().Name("Arguments").Type("SWindowTitleBar.Arguments")
-							+ DTS::Property().Name("Filename").Type(TS_string)
-						)
-						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SWindowTitleBar>>::value().Data()))
-				]
-				+ DTS::Function()
-				[
-					DTS::Function::Slot().Name("SAssignNew").Static(true)
-						.Parameters(DTS::Array<DTS::Property>()
-							+ DTS::Property().Name("WidgetRef").Type(puerts::ScriptTypeName<TSharedPtr<SWindowTitleBar>>::value().Data()).Out(true)
-							+ DTS::Property().Name("Arguments").Type("SWindowTitleBar.Arguments")
-							+ DTS::Property().Name("Filename").Type(TS_string)
-						)
-				]
-				+ DTS::Function()
-				[
-					DTS::Function::Slot().Name("MakeShared").Static(true)
-						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SWindowTitleBar>>::value().Data()))
-				]
-			);
-
-		DTS::FClassDTS::Add(ClassDTS);
-	}
-
-	AutoRegister_SWindowTitleBar()
-	{
-		GenDTS();
-		RegisterTSharedPtr(SWindowTitleBar);
-
-		puerts::JSClassDefinition Def = JSClassEmptyDefinition;
-
-		static puerts::JSFunctionInfo Methods[] =
-		{
-			{0, 0}
-		};
-		static puerts::JSFunctionInfo Functions[] =
-		{
-			{"SNew", $SWindowTitleBar::$SNew},
-			{"SAssignNew", $SWindowTitleBar::$SAssignNew},
-			{"MakeShared", $SWindowTitleBar::$MakeShared},
-			{0, 0}
-		};
-
-		Def.ScriptName = "SWindowTitleBar";
-		Def.TypeId = puerts::StaticTypeId<SWindowTitleBar>::get();
-		Def.SuperTypeId = puerts::StaticTypeId<SCompoundWidget>::get();
-		Def.Methods = Methods;
-		Def.Functions = Functions;
-
-		puerts::RegisterJSClass(Def);
-	}
-};
-
-AutoRegister_SWindowTitleBar _AutoRegister_SWindowTitleBar;
+//#pragma once
+//
+//#include "CoreMinimal.h"
+//#include "JsObject.h"
+//#include "Binding.hpp"
+//#include "DTSDefine.h"
+//#include "TypeInfo.hpp"
+//#include "UEDataBinding.hpp"
+//#include "Helper/WidgetHelper.hpp"
+//#include "DTSHelper.h"
+//#include "DTSDefine.h"
+//#include "PuertsEx.h"
+//#include "Framework/Application/SWindowTitleBar.h"
+//
+//UsingCppType(SWindowTitleBar);
+//UsingTSharedPtr(SWindowTitleBar);
+//
+//namespace $SWindowTitleBar
+//{
+//	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, SWindowTitleBar::FArguments& Arguments)
+//	{
+//		if (!Info[ArgumentsIndex]->IsObject()) return;
+//
+//		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
+//		$SLATE_ATTRIBUTE(FSlateColor, IconColorAndOpacity, );
+//	}
+//
+//	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)
+//	{
+//		v8::Isolate* Isolate = Info.GetIsolate();
+//		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
+//		const uint8 InfoLength = Info.Length();
+//		if (InfoLength <= 1) { puerts::DataTransfer::ThrowException(Isolate, "Invalid argument!"); return; }
+//
+//		uint8 ExposeIndex = InfoLength == 3 ? 0 : -1;
+//		uint8 ArgumentsIndex = InfoLength == 3 ? 1 : 0;
+//		uint8 FilenameIndex = InfoLength == 3 ? 2 : 1;
+//
+//		SWindowTitleBar::FArguments Arguments;
+//		$Arguments(Info, ArgumentsIndex, Context, Isolate, Arguments);
+//
+//		FString Filename;
+//		if (Info[FilenameIndex]->IsString()) Filename = UTF8_TO_TCHAR(*(v8::String::Utf8Value(Isolate, Info[FilenameIndex])));
+//
+//		TSharedRef<SWindow> InWindow = SNew(SWindow);
+//		TSharedPtr<SWidget> InCenterContent;
+//		EHorizontalAlignment InCenterContentAlignment;//@TODO
+//		TSharedPtr<SWindowTitleBar> Widget = MakeTDecl<SWindowTitleBar>("SWindowTitleBar", TCHAR_TO_ANSI(*Filename), 3, RequiredArgs::MakeRequiredArgs(InWindow, InCenterContent, InCenterContentAlignment)) <<= Arguments;
+//		if (InfoLength == 2)
+//		{
+//			auto V8Result = puerts::converter::Converter<TSharedPtr<SWindowTitleBar>>::toScript(Context, Widget);
+//			Info.GetReturnValue().Set(V8Result); return;
+//		}
+//
+//		if (InfoLength == 3)
+//		{
+//			auto RefObject = puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex]);
+//			if (Info[ExposeIndex]->IsObject() && RefObject->IsObject() &&
+//				puerts::DataTransfer::IsInstanceOf(Isolate, puerts::StaticTypeId<TSharedPtr<SWindowTitleBar>>::get(), RefObject->ToObject(Context).ToLocalChecked()))
+//			{
+//				TSharedPtr<SWindowTitleBar>* Arg1 = puerts::DataTransfer::GetPointerFast<TSharedPtr<SWindowTitleBar>>(puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex])->ToObject(Context).ToLocalChecked());
+//				*Arg1 = Widget; return;
+//			}
+//		}
+//	}
+//	static void $MakeShared(const v8::FunctionCallbackInfo<v8::Value>& Info)
+//	{
+//		v8::Isolate* Isolate = Info.GetIsolate();
+//		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
+//
+//		TSharedPtr<SWindowTitleBar> Widget = MakeShared<SWindowTitleBar>();
+//		auto V8Result = puerts::converter::Converter<TSharedPtr<SWindowTitleBar>>::toScript(Context, Widget);
+//		Info.GetReturnValue().Set(V8Result);
+//	}
+//	static void $SAssignNew(const v8::FunctionCallbackInfo<v8::Value>& Info) { $SNew(Info); }
+//}
+//
+//struct AutoRegister_SWindowTitleBar
+//{
+//	DTS::DTSArguments RegisterArguments()
+//	{
+//		DTS::DTSArguments Args = DTS::DTSArguments("SWindowTitleBar");
+//		Args.Add<FSlateColor>("IconColorAndOpacity", DTS::EArgType::SLATE_ATTRIBUTE);
+//		return Args;
+//	}
+//
+//	void GenDTS()
+//	{
+//		DTS::Class ClassDTS = DTS::Class().Name("SWindowTitleBar").Super("SCompoundWidget")
+//			.Arguments(RegisterArguments())
+//			.Functions(DTS::Array<DTS::Function>()
+//				+ DTS::Function()
+//				[
+//					DTS::Function::Slot().Name("SNew").Static(true)
+//						.Parameters(DTS::Array<DTS::Property>()
+//							+ DTS::Property().Name("Arguments").Type("SWindowTitleBar.Arguments")
+//							+ DTS::Property().Name("Filename").Type(TS_string)
+//						)
+//						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SWindowTitleBar>>::value().Data()))
+//				]
+//				+ DTS::Function()
+//				[
+//					DTS::Function::Slot().Name("SAssignNew").Static(true)
+//						.Parameters(DTS::Array<DTS::Property>()
+//							+ DTS::Property().Name("WidgetRef").Type(puerts::ScriptTypeName<TSharedPtr<SWindowTitleBar>>::value().Data()).Out(true)
+//							+ DTS::Property().Name("Arguments").Type("SWindowTitleBar.Arguments")
+//							+ DTS::Property().Name("Filename").Type(TS_string)
+//						)
+//				]
+//				+ DTS::Function()
+//				[
+//					DTS::Function::Slot().Name("MakeShared").Static(true)
+//						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SWindowTitleBar>>::value().Data()))
+//				]
+//			);
+//
+//		DTS::FClassDTS::Add(ClassDTS);
+//	}
+//
+//	AutoRegister_SWindowTitleBar()
+//	{
+//		GenDTS();
+//		RegisterTSharedPtr(SWindowTitleBar);
+//
+//		puerts::JSClassDefinition Def = JSClassEmptyDefinition;
+//
+//		static puerts::JSFunctionInfo Methods[] =
+//		{
+//			{0, 0}
+//		};
+//		static puerts::JSFunctionInfo Functions[] =
+//		{
+//			{"SNew", $SWindowTitleBar::$SNew},
+//			{"SAssignNew", $SWindowTitleBar::$SAssignNew},
+//			{"MakeShared", $SWindowTitleBar::$MakeShared},
+//			{0, 0}
+//		};
+//
+//		Def.ScriptName = "SWindowTitleBar";
+//		Def.TypeId = puerts::StaticTypeId<SWindowTitleBar>::get();
+//		Def.SuperTypeId = puerts::StaticTypeId<SCompoundWidget>::get();
+//		Def.Methods = Methods;
+//		Def.Functions = Functions;
+//
+//		puerts::RegisterJSClass(Def);
+//	}
+//};
+//
+//AutoRegister_SWindowTitleBar _AutoRegister_SWindowTitleBar;

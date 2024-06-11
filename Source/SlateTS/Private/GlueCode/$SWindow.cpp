@@ -30,7 +30,7 @@ namespace $SWindow
 		$SLATE_ARGUMENT(FVector2D, ScreenPosition, );
 		$SLATE_ARGUMENT(FVector2D, ClientSize, );
 		$SLATE_ARGUMENT(bool, AdjustInitialSizeAndPositionForDPIScale, );
-		$SLATE_ARGUMENT(FWindowTransparency, SupportsTransparency, FWindowTransparency);
+		//$SLATE_ARGUMENT(FWindowTransparency, SupportsTransparency, FWindowTransparency);
 		$SLATE_ARGUMENT(float, InitialOpacity, );
 		$SLATE_ARGUMENT(bool, IsInitiallyMaximized, );
 		$SLATE_ARGUMENT(bool, IsInitiallyMinimized, );

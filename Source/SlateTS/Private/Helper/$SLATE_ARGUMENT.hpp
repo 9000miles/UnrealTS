@@ -5,6 +5,12 @@
 #include "Converter.hpp"
 #include "SlateCoreGlue.hpp"
 #include "Widgets/Notifications/SErrorText.h"
+#include "Internationalization/IBreakIterator.h"
+#include "Rendering/RenderingCommon.h"
+#include "Widgets/Views/SHeaderRow.h"
+#include "Widgets/Input/SMenuAnchor.h"
+#include "Widgets/Layout/SScrollBar.h"
+#include "Widgets/SWindow.h"
 
 #define $SLATE_ARGUMENT(Type, Name, Tag)\
 $SLATE_ARGUMENT$::Set_##Name##_##Tag(Arguments, Isolate, JsObject, #Name)
