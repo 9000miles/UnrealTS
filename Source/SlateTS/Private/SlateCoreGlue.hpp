@@ -22,29 +22,8 @@
 #include "Textures/SlateIcon.h"
 #include "Rendering/RenderingCommon.h"
 #include "Widgets/SWindow.h"
+#include "Framework/MultiBox/MultiBox.h"
 
-UsingUStruct(FEditableTextBoxStyle);
-UsingUStruct(FEditableTextStyle);
-UsingUStruct(FFrameRate);
-UsingUStruct(FGameMenuStyle);
-UsingUStruct(FHyperlinkStyle);
-UsingUStruct(FInputChord);
-UsingUStruct(FProgressBarStyle);
-UsingUStruct(FRuntimeFloatCurve);
-UsingUStruct(FScrollBarStyle);
-UsingUStruct(FScrollBorderStyle);
-UsingUStruct(FScrollBoxStyle);
-UsingUStruct(FSearchBoxStyle);
-UsingUStruct(FSlateSound);
-UsingUStruct(FSliderStyle);
-UsingUStruct(FSplitterStyle);
-UsingUStruct(FTextBlockStyle);
-UsingUStruct(FVirtualKeyboardOptions);
-UsingUStruct(FInlineEditableTextBlockStyle);
-UsingUStruct(FComboBoxStyle);
-UsingUStruct(FTimecode);
-UsingUStruct(FVolumeControlStyle);
-UsingUStruct(FWindowStyle);
 struct AutoRegister_Struct
 {
 	AutoRegister_Struct()
@@ -57,23 +36,6 @@ struct AutoRegister_Struct
 	}
 }__AutoRegister_Struct;
 
-UsingCppType(ISlateStyle);
-UsingCppType(IErrorReportingWidget);
-UsingCppType(ITextLayoutMarshaller);
-UsingCppType(IRichTextMarkupParser);
-UsingCppType(ITextDecorator);
-UsingCppType(FRichTextLayoutMarshaller);
-UsingCppType(USlateVectorArtData);
-UsingCppType(EVisibility);
-UsingCppType(FSlateIcon);
-UsingCppType(ISlateViewport);
-UsingCppType(FWindowTransparency);
-
-UsingTSharedPtr(IErrorReportingWidget);
-UsingTSharedPtr(FRichTextLayoutMarshaller);
-UsingTSharedPtr(ITextLayoutMarshaller);
-UsingTSharedPtr(FString);
-UsingTSharedPtr(ISlateViewport);
 struct AutoRegister_Class
 {
 	AutoRegister_Class()
@@ -88,8 +50,6 @@ struct AutoRegister_Class
 	}
 }__AutoRegister_Class;
 
-UsingTArrayWithName(FCommonFrameRateInfo, "FCommonFrameRateInfo[]");
-UsingTArrayWithName(FString, "FString[]");
 struct AutoRegister_TArray
 {
 	AutoRegister_TArray()
@@ -141,6 +101,27 @@ struct AutoRegisterSlateCoreGlue
 			.Register();
 		RegisterTSharedPtr(SLeafWidget);
 		RegisterTSharedRef(SLeafWidget);
+
+		puerts::DefineClass<SPanel>()
+			.Extends<SWidget>()
+			.Register();
+		RegisterTSharedPtr(SPanel);
+		RegisterTSharedRef(SPanel);
+
+		puerts::DefineClass<SMultiBlockBaseWidget>()
+			.Extends<SCompoundWidget>()
+			.Register();
+		RegisterTSharedPtr(SMultiBlockBaseWidget);
+		RegisterTSharedRef(SMultiBlockBaseWidget);
+
+#define DEFINE_WIDGET_CLASS(Type, Super)\
+		puerts::DefineClass<Type>()\
+			.Extends<Super>()\
+			.Register();\
+		RegisterTSharedPtr(Type);\
+		RegisterTSharedRef(Type);
+
+		DEFINE_WIDGET_CLASS(SBoxPanel, SPanel);
 	}
 };
 

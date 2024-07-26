@@ -3,7 +3,7 @@
 #include "v8.h"
 #include "V8Utils.h"
 #include "Converter.hpp"
-#include "SlateCoreGlue.hpp"
+#include "DefineHelper.h"
 #include "Widgets/Notifications/SErrorText.h"
 #include "Internationalization/IBreakIterator.h"
 #include "Rendering/RenderingCommon.h"

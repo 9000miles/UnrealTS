@@ -12,7 +12,7 @@
 #include "PuertsEx.h"
 #include "GlueCode/SlateCoreGlue.h"
 #include "Widgets/Input/SCheckBox.h"
-#include "../Helper/WidgetAttribute.hpp"
+#include "../Helper/WidgetAttribute.h"
 
 UsingCppType(SCheckBox);
 UsingTSharedPtr(SCheckBox);

@@ -11,7 +11,7 @@
 #include "DTSDefine.h"
 #include "PuertsEx.h"
 #include "Widgets/Text/STextBlock.h"
-#include "../Helper/WidgetAttribute.hpp"
+#include "../Helper/WidgetAttribute.h"
 
 UsingCppType(STextBlock);
 UsingTSharedPtr(STextBlock);
@@ -120,8 +120,8 @@ namespace $STextBlock
 			if (!Self) { puerts::DataTransfer::ThrowException(Isolate, "[STextBlock::GetText] Attempt to access a NULL self pointer"); return; }
 
 			v8::Local<v8::Value> JsObject = Info[0].As<v8::Value>();
-			//auto Ret = WidgetAttribute::MakeAttribute<FText>(Context, JsObject, "");
-			//Self->SetText(Ret); return;
+			auto Ret = WidgetAttribute::MakeAttribute<FText>(Context, JsObject);
+			Self->SetText(Ret); return;
 		}
 		puerts::DataTransfer::ThrowException(Isolate, "Invalid argument!");
 	}

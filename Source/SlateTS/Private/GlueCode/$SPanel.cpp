@@ -10,20 +10,20 @@
 //#include "DTSHelper.h"
 //#include "DTSDefine.h"
 //#include "PuertsEx.h"
-//#include "AppFramework/Public/Widgets/Colors/SColorThemes.h"
+//#include "Widgets/SPanel.h"
 //
-//UsingCppType(SColorTrash);
-//UsingTSharedPtr(SColorTrash);
+//UsingCppType(SPanel);
+//UsingTSharedPtr(SPanel);
 //
-//namespace $SColorTrash
+//namespace $SPanel
 //{
-//	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, SColorTrash::FArguments& Arguments)
-//	{
-//		if (!Info[ArgumentsIndex]->IsObject()) return;
-//
-//		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
-//		$SLATE_ATTRIBUTE(bool, UsesSmallIcon, );
-//	}
+////	static void $Arguments(const v8::FunctionCallbackInfo<v8::Value>& Info, uint8 ArgumentsIndex, v8::Local<v8::Context> Context, v8::Isolate* Isolate, SPanel::FArguments& Arguments)
+////	{
+////		if (!Info[ArgumentsIndex]->IsObject()) return;
+////
+////		v8::Local<v8::Object> JsObject = Info[ArgumentsIndex].As<v8::Object>();
+////$__ARGUMENTS__$
+////	}
 //
 //	static void $SNew(const v8::FunctionCallbackInfo<v8::Value>& Info)
 //	{
@@ -36,16 +36,16 @@
 //		uint8 ArgumentsIndex = InfoLength == 3 ? 1 : 0;
 //		uint8 FilenameIndex = InfoLength == 3 ? 2 : 1;
 //
-//		SColorTrash::FArguments Arguments;
-//		$Arguments(Info, ArgumentsIndex, Context, Isolate, Arguments);
+//		//SPanel::FArguments Arguments;
+//		//$Arguments(Info, ArgumentsIndex, Context, Isolate, Arguments);
 //
 //		FString Filename;
 //		if (Info[FilenameIndex]->IsString()) Filename = UTF8_TO_TCHAR(*(v8::String::Utf8Value(Isolate, Info[FilenameIndex])));
 //
-//		TSharedPtr<SColorTrash> Widget = MakeTDecl<SColorTrash>("SColorTrash", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<= Arguments;
+//		TSharedPtr<SPanel> Widget = MakeTDecl<SPanel>("SPanel", TCHAR_TO_ANSI(*Filename), 0, RequiredArgs::MakeRequiredArgs()) <<=;
 //		if (InfoLength == 2)
 //		{
-//			auto V8Result = puerts::converter::Converter<TSharedPtr<SColorTrash>>::toScript(Context, Widget);
+//			auto V8Result = puerts::converter::Converter<TSharedPtr<SPanel>>::toScript(Context, Widget);
 //			Info.GetReturnValue().Set(V8Result); return;
 //		}
 //
@@ -53,9 +53,9 @@
 //		{
 //			auto RefObject = puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex]);
 //			if (Info[ExposeIndex]->IsObject() && RefObject->IsObject() &&
-//				puerts::DataTransfer::IsInstanceOf(Isolate, puerts::StaticTypeId<TSharedPtr<SColorTrash>>::get(), RefObject->ToObject(Context).ToLocalChecked()))
+//				puerts::DataTransfer::IsInstanceOf(Isolate, puerts::StaticTypeId<TSharedPtr<SPanel>>::get(), RefObject->ToObject(Context).ToLocalChecked()))
 //			{
-//				TSharedPtr<SColorTrash>* Arg1 = puerts::DataTransfer::GetPointerFast<TSharedPtr<SColorTrash>>(puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex])->ToObject(Context).ToLocalChecked());
+//				TSharedPtr<SPanel>* Arg1 = puerts::DataTransfer::GetPointerFast<TSharedPtr<SPanel>>(puerts::DataTransfer::UnRef(Isolate, Info[ExposeIndex])->ToObject(Context).ToLocalChecked());
 //				*Arg1 = Widget; return;
 //			}
 //		}
@@ -65,59 +65,59 @@
 //		v8::Isolate* Isolate = Info.GetIsolate();
 //		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
 //
-//		TSharedPtr<SColorTrash> Widget = MakeShared<SColorTrash>();
-//		auto V8Result = puerts::converter::Converter<TSharedPtr<SColorTrash>>::toScript(Context, Widget);
+//		TSharedPtr<SPanel> Widget = MakeShared<SPanel>();
+//		auto V8Result = puerts::converter::Converter<TSharedPtr<SPanel>>::toScript(Context, Widget);
 //		Info.GetReturnValue().Set(V8Result);
 //	}
 //	static void $SAssignNew(const v8::FunctionCallbackInfo<v8::Value>& Info) { $SNew(Info); }
 //}
 //
-//struct AutoRegister_SColorTrash
+//struct AutoRegister_SPanel
 //{
 //	DTS::DTSArguments RegisterArguments()
 //	{
-//		DTS::DTSArguments Args = DTS::DTSArguments("SColorTrash");
-//		Args.Add<bool>("UsesSmallIcon", DTS::EArgType::SLATE_ATTRIBUTE);
+//		DTS::DTSArguments Args = DTS::DTSArguments("SPanel");
+////$__DTS_ARGS__$
 //		return Args;
 //	}
 //
 //	void GenDTS()
 //	{
-//		DTS::Class ClassDTS = DTS::Class().Name("SColorTrash").Super("SCompoundWidget")
+//		DTS::Class ClassDTS = DTS::Class().Name("SPanel").Super("$SuperClass$")
 //			.Arguments(RegisterArguments())
 //			.Functions(DTS::Array<DTS::Function>()
 //				+ DTS::Function()
 //				[
 //					DTS::Function::Slot().Name("SNew").Static(true)
 //						.Parameters(DTS::Array<DTS::Property>()
-//							+ DTS::Property().Name("Arguments").Type("SColorTrash.Arguments")
+//							+ DTS::Property().Name("Arguments").Type("SPanel.Arguments")
 //							+ DTS::Property().Name("Filename").Type(TS_string)
 //						)
-//						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SColorTrash>>::value().Data()))
+//						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SPanel>>::value().Data()))
 //				]
 //				+ DTS::Function()
 //				[
 //					DTS::Function::Slot().Name("SAssignNew").Static(true)
 //						.Parameters(DTS::Array<DTS::Property>()
-//							+ DTS::Property().Name("WidgetRef").Type(puerts::ScriptTypeName<TSharedPtr<SColorTrash>>::value().Data()).Out(true)
-//							+ DTS::Property().Name("Arguments").Type("SColorTrash.Arguments")
+//							+ DTS::Property().Name("WidgetRef").Type(puerts::ScriptTypeName<TSharedPtr<SPanel>>::value().Data()).Out(true)
+//							+ DTS::Property().Name("Arguments").Type("SPanel.Arguments")
 //							+ DTS::Property().Name("Filename").Type(TS_string)
 //						)
 //				]
 //				+ DTS::Function()
 //				[
 //					DTS::Function::Slot().Name("MakeShared").Static(true)
-//						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SColorTrash>>::value().Data()))
+//						.Return(DTS::Property().Type(puerts::ScriptTypeName<TSharedPtr<SPanel>>::value().Data()))
 //				]
 //			);
 //
 //		DTS::FClassDTS::Add(ClassDTS);
 //	}
 //
-//	AutoRegister_SColorTrash()
+//	AutoRegister_SPanel()
 //	{
 //		GenDTS();
-//		RegisterTSharedPtr(SColorTrash);
+//		RegisterTSharedPtr(SPanel);
 //
 //		puerts::JSClassDefinition Def = JSClassEmptyDefinition;
 //
@@ -127,15 +127,15 @@
 //		};
 //		static puerts::JSFunctionInfo Functions[] =
 //		{
-//			{"SNew", $SColorTrash::$SNew},
-//			{"SAssignNew", $SColorTrash::$SAssignNew},
-//			{"MakeShared", $SColorTrash::$MakeShared},
+//			{"SNew", $SPanel::$SNew},
+//			{"SAssignNew", $SPanel::$SAssignNew},
+//			{"MakeShared", $SPanel::$MakeShared},
 //			{0, 0}
 //		};
 //
-//		Def.ScriptName = "SColorTrash";
-//		Def.TypeId = puerts::StaticTypeId<SColorTrash>::get();
-//		Def.SuperTypeId = puerts::StaticTypeId<SCompoundWidget>::get();
+//		Def.ScriptName = "SPanel";
+//		Def.TypeId = puerts::StaticTypeId<SPanel>::get();
+//		Def.SuperTypeId = puerts::StaticTypeId<SWidget>::get();
 //		Def.Methods = Methods;
 //		Def.Functions = Functions;
 //
@@ -143,4 +143,4 @@
 //	}
 //};
 //
-//AutoRegister_SColorTrash _AutoRegister_SColorTrash;
+//AutoRegister_SPanel _AutoRegister_SPanel;

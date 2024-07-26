@@ -3,7 +3,7 @@
 #include "v8.h"
 #include "V8Utils.h"
 #include "Converter.hpp"
-#include "WidgetAttribute.hpp"
+#include "WidgetAttribute.h"
 
 #define $SLATE_ATTRIBUTE(Type, Name, Tag)\
 $SLATE_ATTRIBUTE$::Set_##Name##_##Tag(Arguments, Isolate, JsObject, #Name)
@@ -13,14 +13,7 @@ namespace $SLATE_ATTRIBUTE$
 {
 #define DEFINE_FUNCTION_SLATE_ATTRIBUTE(Type, Name, Tag)\
 	template<typename TArgumentType>\
-	void Set_##Name##_##Tag(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName)\
-	{\
-		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();\
-		const bool bHas = JsObject->Has(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).FromMaybe(false);\
-		if (!bHas) return;\
-		v8::Local<v8::Value> JsValue = JsObject->Get(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).ToLocalChecked();\
-		Arguments._##Name = WidgetAttribute::MakeAttribute<Type>(Context, JsValue);\
-	}
+	void Set_##Name##_##Tag(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName);
 	
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(ECheckBoxState, IsChecked, );
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(ECheckBoxState, ToggleChecked, );
@@ -280,3 +273,273 @@ namespace $SLATE_ATTRIBUTE$
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(int32, ShiftMouseMovePixelPerDelta, );
 	DEFINE_FUNCTION_SLATE_ATTRIBUTE(int32, WidgetIndex, )
 }
+
+
+#define IMPL_FUNCTION_SLATE_ATTRIBUTE(Type, Name, Tag)\
+	template<typename TArgumentType>\
+	void $SLATE_ATTRIBUTE$::Set_##Name##_##Tag(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName)\
+	{\
+		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();\
+		const bool bHas = JsObject->Has(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).FromMaybe(false);\
+		if (!bHas) return;\
+		v8::Local<v8::Value> JsValue = JsObject->Get(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).ToLocalChecked();\
+		Arguments._##Name = WidgetAttribute::MakeAttribute<Type>(Context, JsValue);\
+	}
+
+IMPL_FUNCTION_SLATE_ATTRIBUTE(ECheckBoxState, IsChecked, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(ECheckBoxState, ToggleChecked, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(ECheckBoxState, TogglePitchChecked, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(ECheckBoxState, ToggleRollChecked, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(ECheckBoxState, ToggleYawChecked, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(EColorBlockAlphaDisplayMode, AlphaDisplayMode, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(EColumnSortMode::Type, InitialSortMode, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(EColumnSortMode::Type, SortMode, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(EColumnSortPriority::Type, SortPriority, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(EHorizontalAlignment, HAlign, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(EKeyboardType, KeyboardType, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(EKeyboardType, VirtualKeyboardType, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(EListItemAlignment, ItemAlignment, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(EMenuPlacement, MenuPlacement, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(EMenuPlacement, Placement, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(EOrientation, Orientation, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(ESelectionMode::Type, SelectionMode, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(EStretch::Type, Stretch, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(EStretchDirection::Type, StretchDirection, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(ETextJustify::Type, Justification, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(ETextTransformPolicy, TransformPolicy, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(ETextWrappingPolicy, WrappingPolicy, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(EVirtualKeyboardDismissAction, VirtualKeyboardDismissAction, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(EVirtualKeyboardTrigger, VirtualKeyboardTrigger, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(EVisibility, ScrollbarVisibility, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FFrameRate, Value, FFrameRate);
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FInputChord, SelectedKey, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FLinearColor, Color, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FLinearColor, ColorAndOpacity, FLinearColor);
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FLinearColor, EndColor, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FLinearColor, HighlightColor, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FLinearColor, IconColor, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FLinearColor, SelectedColor, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FLinearColor, ShadowColorAndOpacity, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FLinearColor, StartColor, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FLinearColor, TabColorScale, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FLinearColor, TargetColorAttribute, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FMargin, AreaTitlePadding, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FMargin, ButtonContentPadding, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FMargin, ContentPadding, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FMargin, HScrollBarPadding, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FMargin, HeaderPadding, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FMargin, Margin, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FMargin, OverrideTextMargin, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FMargin, Padding, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FMargin, SlotPadding, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FMargin, TextMargin, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FMargin, UniformPadding, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FMargin, VScrollBarPadding, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FOptionalSize, HeightOverride, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FOptionalSize, MaxAspectRatio, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FOptionalSize, MaxDesiredHeight, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FOptionalSize, MaxDesiredWidth, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FOptionalSize, MinAspectRatio, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FOptionalSize, MinDesiredHeight, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FOptionalSize, MinDesiredWidth, FOptionalSize);
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FOptionalSize, WidthOverride, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSceneViewport*, SceneViewport, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, BackgroundColor, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, BodyBorderBackgroundColor, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, BorderBackgroundColor, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, ButtonColorAndOpacity, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, CenterBackgroundColor, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity, FSlateColor);
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, FillColorAndOpacity, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, FocusedForegroundColor, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, ForegroundColor, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, IconColorAndOpacity, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, LabelColor, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, ReadOnlyForegroundColor, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, SliderBarColor, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, SliderHandleColor, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, SliderProgressColor, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateColor, TimecodeColor, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateFontInfo, AreaTitleFont, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateFontInfo, Font, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateFontInfo, LabelFont, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateFontInfo, TimecodeFont, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FSlateIcon, Icon, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, AddButtonToolTip, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, AreaTitle, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, CollapsedText, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, DefaultLabel, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, DefaultTooltip, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, ExpandedText, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, HighlightText, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, HintText, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, InitialText, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, Label, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, LabelSuffix, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, LabelText, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, Name, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, NotRecommendedText, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, NotRecommendedToolTip, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, OptionText, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, RecommendedText, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, RemoveButtonToolTip, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, RenameButtonToolTip, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, SearchText, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, Text, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FText, Title, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FTimecode, Timecode, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FVector2D, BorderFadeDistance, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FVector2D, BorderPadding, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FVector2D, ContentScale, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FVector2D, DesiredSizeScale, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FVector2D, MinDesiredSlotSize, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FVector2D, RenderScaleOrigin, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FVector2D, ShadowOffset, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FVector2D, Size, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FVector2D, Thickness, FVector2D);
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FVector2D, ViewportSize, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FVector2D, VisualOffset, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(FVector4, CornerRadius, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(NumericType, Delta, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(NumericType, SliderExponentNeutralValue, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(NumericType, SpinDelta, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(NumericType, Value, NumericType);
+IMPL_FUNCTION_SLATE_ATTRIBUTE(OptionType, Value, OptionType);
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TArray<FColor*>, TargetFColors, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TArray<FColorChannels>, TargetColorChannels, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TArray<FLinearColor*>, TargetLinearColors, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TArray<FLinearColor>, GradientColors, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TArray<OptionType>, Values, );
+
+/** TOptional<> **/
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, MaxSliderValue, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, MaxValue, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, MinSliderValue, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, MinValue, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, WheelStep, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<int32>, MaxFractionalDigits, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<int32>, MinFractionalDigits, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<EMouseCursor::Type>, HeaderCursor, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<SSearchBox::FSearchResultData>, SearchResultData, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<FVector2D>, DesiredSizeOverride, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, Pitch, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, Roll, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, Value, TOptional_NumericType);
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<NumericType>, Yaw, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<VectorType>, MaxSliderVector, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<VectorType>, MaxVector, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<VectorType>, MinSliderVector, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<VectorType>, MinVector, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<VectorType>, Vector, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<float>, Percent, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TOptional<int32>, BlurRadius, );
+/** TOptional<> **/
+
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TSharedPtr< IToolTip >, ToolTip, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TSharedPtr<SDockingTabStack>, ParentStackNode, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TSharedPtr<SWidget>, OptionalOwningDetailsView, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(TSharedPtr<SWindow>, ParentWindow, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, AllowContextMenu, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, AllowMultiLine, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, AllowSpin, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, AlwaysUsesDeltaSnap, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, AutoWrapText, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, CanShow, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, ClearKeyboardFocusOnCommit, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, ClearTextSelectionOnFocusLoss, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, ColorIsHSV, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, DelayChangeNotificationsWhileTyping, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, DisplayLabel, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, EnableSlider, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, EvenRowDistribution, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, HasAlphaBackground, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, HasMultipleValues, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, IgnoreClipping, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, IgnoreInheritedScale, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, IndentHandle, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, IsCaretMovedWhenGainFocus, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, IsExpanded, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, IsFocusable, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, IsInteractive, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, IsPassword, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, IsReadOnly, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, IsSearching, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, Locked, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, Muted, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, OnlyRefreshOnMouseUp, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, OnlyRefreshOnOk, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, RevertTextOnEscape, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, SelectAllTextOnCommit, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, SelectAllTextWhenFocused, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, SelectWordOnMouseDoubleClick, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, ShouldDrawWires, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, ShouldGenerateWidget, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, ShouldStackHierarchyHeaders, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, ShowBackgroundForAlpha, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, ShowEffectWhenDisabled, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, ShowLeadingDelimiter, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, SupportDynamicSliderMaxValue, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, SupportDynamicSliderMinValue, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, UseAlpha, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, UseSRGB, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, UsesSmallIcon, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, bShowNamedValue, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(bool, bUseCustomDefaultValue, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(const FSlateBrush*, AlphaBackgroundBrush, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(const FSlateBrush*, BackgroundImageComposing, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(const FSlateBrush*, BackgroundImageSelected, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(const FSlateBrush*, BorderImage, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(const FSlateBrush*, CaretImage, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(const FSlateBrush*, DelimiterImage, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(const FSlateBrush*, HighlightShape, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(const FSlateBrush*, Image, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(const FSlateBrush*, StrikeBrush, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, BlurStrength, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, CurrentSlideAmount, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, CustomDefaultValue, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, DPIScale, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, DelayChangeNotificationsWhileTypingSeconds, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, DisplayGamma, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, ExponentDisplacement, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, FadeRate, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, FillWidth, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, IndentAmount, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, ItemHeight, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, ItemWidth, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, LayoutScale, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, LineHeightPercentage, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, ManualWidth, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, MaxDesiredSlotHeight, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, MaxDesiredSlotWidth, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, MaxUniformSize, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, MaxWidth, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, MinDesiredSlotHeight, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, MinDesiredSlotWidth, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, MinDesiredValueWidth, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, MinDesiredWidth, float);
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, MinUniformSize, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, MoveSpeed, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, PeakValueLeftLimit, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, PeakValueRightLimit, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, PreferredSize, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, PreferredWidth, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, RenderScale, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, SlideValueLeftLimit, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, SlideValueRightLimit, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, SliderExponent, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, StepSize, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, SuggestionListMaxHeight, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, Thickness, float);
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, UserSpecifiedScale, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, Value, float);
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, Volume, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(float, WrapTextAt, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(int32, BaseIndentLevel, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(int32, CurrentItemIndex, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(int32, DesiredWheelSize, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(int32, HighlightedHandleIndex, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(int32, LinearDeltaSensitivity, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(int32, MaxPinnedItems, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(int32, NumDesiredItems, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(int32, ShiftMouseMovePixelPerDelta, );
+IMPL_FUNCTION_SLATE_ATTRIBUTE(int32, WidgetIndex, )

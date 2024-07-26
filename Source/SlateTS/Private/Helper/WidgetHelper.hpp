@@ -26,23 +26,3 @@ WidgetArgument4::Set_##Name##Type(Arguments, Isolate, JsObject, #Name, "")
 #define SET_VARIABLE___A_Type(Name, Type);\
 WidgetArgument4::Set_##Name<Type>(Arguments, Info,JsObject, #Type)
 
-namespace WidgetOptional
-{
-	template<typename TType>
-	TOptional<TType> MakeOptional(FJsObject& JsObject) { return TOptional<TType>(); }
-
-	template<>	TOptional<FSlateSound> MakeOptional(FJsObject& JsObject) { return TOptional<FSlateSound>(); }
-}
-
-namespace WidgetDelegate
-{
-	//FSimpleDelegate MakeSimpleDelegate(FJsObject& JsObject)
-	//{
-	//	return FSimpleDelegate();
-	//}
-
-	//FOnClicked MakeOnClicked(FJsObject& JsObject)
-	//{
-	//	return FOnClicked();
-	//}
-}

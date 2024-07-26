@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
+#include "SlateCoreGlue.hpp"
 
 class FSlateTSModule : public IModuleInterface
 {

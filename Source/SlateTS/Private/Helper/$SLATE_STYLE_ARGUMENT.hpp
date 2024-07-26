@@ -7,7 +7,7 @@
 #include "Styling/SegmentedControlStyle.h"
 #include "WidgetCarousel/Public/WidgetCarouselStyle.h"
 #include "Styling/SlateTypes.h"
-#include "SlateCoreGlue.hpp"
+#include "DefineHelper.h"
 
 #define $SLATE_STYLE_ARGUMENT(Type, Name, Tag)\
 $SLATE_STYLE_ARGUMENT$::Set_##Name##_##Tag(Arguments, Isolate, JsObject, #Name)
