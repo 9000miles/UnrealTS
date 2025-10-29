@@ -1,0 +1,283 @@
+#if 0
+
+#pragma once
+#include "JsObject.h"
+#include "v8.h"
+#include "V8Utils.h"
+#include "Converter.hpp"
+
+#define $SLATE_ATTRIBUTE(Type, Name)\
+$Arguments__SLATE_ATTRIBUTE::Set_ATTRIBUTE<Type, $Arguments__SLATE_ATTRIBUTE::$$__##Type##_##VarName##__$$>(Arguments, Isolate, JsObject, #Name)
+
+//#define //$SLATE_ATTRIBUTE_WITH_TYPE(Name, Type);\
+//$Arguments__SLATE_ATTRIBUTE::Set_##Name##Type(Arguments, Isolate, JsObject, #Name, "")
+
+/** ======================= SET_SLATE_ATTRIBUTE ======================= **/
+namespace $Arguments__SLATE_ATTRIBUTE
+{
+	// 辅助模板，用于决定 Arguments 的哪个成员应该被设置
+	template <typename TType, typename TId, typename TArgumentType>
+	void AttributeSetter(TArgumentType& Arguments, v8::Local<v8::Context> Context, v8::Local<v8::Value> JsValue);
+
+#define MAKE_ATTRIBUTE_SETTER(Type, VarName)\
+	struct $$__##Type##_##VarName##__$$ {};\
+	template <typename TArgumentType>\
+	void AttributeSetter<FText, $$__##Type##_##VarName##__$$, TArgumentType>(TArgumentType& Arguments, v8::Local<v8::Context> Context, v8::Local<v8::Value> JsValue) {\
+			Arguments._Text = WidgetAttribute::MakeAttribute<FText>(Context, JsValue);\
+		}
+
+	struct $$__FText_Text__$$ {};
+	template <typename TArgumentType>
+	void AttributeSetter<FText, $$__FText_Text__$$, TArgumentType>(TArgumentType& Arguments, v8::Local<v8::Context> Context, v8::Local<v8::Value> JsValue) {
+		Arguments._Text = WidgetAttribute::MakeAttribute<FText>(Context, JsValue);
+	};
+
+	//template <typename TArgumentType>
+	//struct AttributeSetter<FSlateFontInfo, void, TArgumentType> {
+	//	static void SetAttribute(TArgumentType& Arguments, v8::Local<v8::Context> Context, v8::Local<v8::Value> JsValue) {
+	//		Arguments._Font = WidgetAttribute::MakeAttribute<FSlateFontInfo>(Context, JsValue);
+	//	}
+	//};
+
+	//// 更多类型特化 ...
+	//template <typename TArgumentType>
+	//struct AttributeSetter<const FSlateBrush*, void, TArgumentType> {
+	//	static void SetAttribute(TArgumentType& Arguments, v8::Local<v8::Context> Context, v8::Local<v8::Value> JsValue) {
+	//		Arguments._StrikeBrush = WidgetAttribute::MakeAttribute<const FSlateBrush*>(Context, JsValue);
+	//	}
+	//};
+
+	//struct F_ColorAndOpacity {};
+	//template <typename TArgumentType>
+	//struct AttributeSetter<FSlateColor, F_ColorAndOpacity, TArgumentType> {
+	//	static void SetAttribute(TArgumentType& Arguments, v8::Local<v8::Context> Context, v8::Local<v8::Value> JsValue) {
+	//		Arguments._ColorAndOpacity = WidgetAttribute::MakeAttribute<FSlateColor>(Context, JsValue);
+	//	}
+	//};
+	//struct F_ForegroundColor {};
+	//template <typename TArgumentType>
+	//struct AttributeSetter<FSlateColor, F_ForegroundColor, TArgumentType> {
+	//	static void SetAttribute(TArgumentType& Arguments, v8::Local<v8::Context> Context, v8::Local<v8::Value> JsValue) {
+	//		Arguments._ForegroundColor = WidgetAttribute::MakeAttribute<FSlateColor>(Context, JsValue);
+	//	}
+	//};
+
+	//template <typename TArgumentType>
+	//struct AttributeSetter<FLinearColor, F_ColorAndOpacity, TArgumentType> {
+	//	static void SetAttribute(TArgumentType& Arguments, v8::Local<v8::Context> Context, v8::Local<v8::Value> JsValue) {
+	//		Arguments._ColorAndOpacity = WidgetAttribute::MakeAttribute<FLinearColor>(Context, JsValue);
+	//	}
+	//};
+
+	template <typename TType, typename Tag, typename TArgumentType>
+	void Set_ATTRIBUTE(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName) {
+		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
+		const bool bHas = JsObject->Has(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).FromMaybe(false);
+		if (!bHas) return;
+		v8::Local<v8::Value> JsValue = JsObject->Get(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).ToLocalChecked();
+
+		AttributeSetter<TType, Tag, TArgumentType>::SetAttribute(Arguments, Context, JsValue);
+	}
+
+#define SET_SLATE_ATTRIBUTE(Type, Name)\
+	template<typename TType, typename TArgumentType>\
+	void Set_ATTRIBUTE(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName)\
+	{\
+		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();\
+		const bool bHas = JsObject->Has(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).FromMaybe(false);\
+		if (!bHas) return;\
+		v8::Local<v8::Value> JsValue = JsObject->Get(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).ToLocalChecked();\
+		Arguments._##Name = WidgetAttribute::MakeAttribute<Type>(Context, JsValue);\
+	}
+
+	//SET_SLATE_ATTRIBUTE(FText, Text);
+	//SET_SLATE_ATTRIBUTE(FSlateFontInfo, Font);
+	//SET_SLATE_ATTRIBUTE(const FSlateBrush*, StrikeBrush);
+	//SET_SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity);
+	//SET_SLATE_ATTRIBUTE(FLinearColor, ColorAndOpacity);
+	//SET_SLATE_ATTRIBUTE(FVector2D, ShadowOffset);
+	//SET_SLATE_ATTRIBUTE(FLinearColor, ShadowColorAndOpacity);
+	//SET_SLATE_ATTRIBUTE(FLinearColor, HighlightColor);
+	//SET_SLATE_ATTRIBUTE(const FSlateBrush*, HighlightShape);
+	//SET_SLATE_ATTRIBUTE(FText, HighlightText);
+	//SET_SLATE_ATTRIBUTE(float, WrapTextAt);
+	//SET_SLATE_ATTRIBUTE(bool, AutoWrapText);
+	//SET_SLATE_ATTRIBUTE(ETextWrappingPolicy, WrappingPolicy);
+	//SET_SLATE_ATTRIBUTE(ETextTransformPolicy, TransformPolicy);
+	//SET_SLATE_ATTRIBUTE(FMargin, Margin);
+	//SET_SLATE_ATTRIBUTE(FMargin, Padding);
+	//SET_SLATE_ATTRIBUTE(float, LineHeightPercentage);
+	//SET_SLATE_ATTRIBUTE(ETextJustify::Type, Justification);
+	//SET_SLATE_ATTRIBUTE(float, MinDesiredWidth);
+	//SET_SLATE_ATTRIBUTE(FVector2D, DesiredSizeScale);
+	//SET_SLATE_ATTRIBUTE(FVector2D, ContentScale);
+	//SET_SLATE_ATTRIBUTE(FSlateColor, ButtonColorAndOpacity);
+	//SET_SLATE_ATTRIBUTE(FSlateColor, ForegroundColor);
+	//SET_SLATE_ATTRIBUTE(FSlateColor, BorderBackgroundColor);
+	//SET_SLATE_ATTRIBUTE(ECheckBoxState, IsChecked);
+	//SET_SLATE_ATTRIBUTE(bool, ShowEffectWhenDisabled);
+	//SET_SLATE_ATTRIBUTE(EMenuPlacement, MenuPlacement);
+	//SET_SLATE_ATTRIBUTE(const FSlateBrush*, BorderImage);
+	//SET_SLATE_ATTRIBUTE(FMargin, ContentPadding);
+	//SET_SLATE_ATTRIBUTE(EMenuPlacement, Placement);
+	//SET_SLATE_ATTRIBUTE(FOptionalSize, WidthOverride);
+	//SET_SLATE_ATTRIBUTE(FOptionalSize, HeightOverride);
+	//SET_SLATE_ATTRIBUTE(FOptionalSize, MinDesiredHeight);
+	//SET_SLATE_ATTRIBUTE(FOptionalSize, MinDesiredWidth);
+	//SET_SLATE_ATTRIBUTE(FOptionalSize, MaxDesiredWidth);
+	//SET_SLATE_ATTRIBUTE(FOptionalSize, MaxDesiredHeight);
+	//SET_SLATE_ATTRIBUTE(FOptionalSize, MinAspectRatio);
+	//SET_SLATE_ATTRIBUTE(FOptionalSize, MaxAspectRatio);
+	//SET_SLATE_ATTRIBUTE(FSlateColor, BodyBorderBackgroundColor);
+	//SET_SLATE_ATTRIBUTE(FText, AreaTitle);
+	//SET_SLATE_ATTRIBUTE(FMargin, AreaTitlePadding);
+	//SET_SLATE_ATTRIBUTE(FMargin, HeaderPadding);
+	//SET_SLATE_ATTRIBUTE(FSlateFontInfo, AreaTitleFont);
+	//SET_SLATE_ATTRIBUTE(TOptional<EMouseCursor::Type>, HeaderCursor);
+}
+
+#endif
+//**********************************
+#if 1
+#pragma once
+#include "JsObject.h"
+#include "v8.h"
+#include "V8Utils.h"
+#include "Converter.hpp"
+
+#define $SLATE_ATTRIBUTE(Type, VarName)\
+$Arguments__SLATE_ATTRIBUTE::Set_Variable<Type, $Arguments__SLATE_ATTRIBUTE::$$__##Type##_##VarName##__$$>(Arguments, Isolate, JsObject, #VarName)
+
+//#define //$SLATE_ATTRIBUTE_WITH_TYPE(Name, Type);\
+//$Arguments__SLATE_ATTRIBUTE::Set_##Name##Type(Arguments, Isolate, JsObject, #Name, "")
+
+/** ======================= SET_SLATE_ATTRIBUTE ======================= **/
+namespace $Arguments__SLATE_ATTRIBUTE
+{
+	template <typename TType, typename Tag, typename TArgumentType>
+	void Set_Variable(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName) {
+		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();
+		const bool bHas = JsObject->Has(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).FromMaybe(false);
+		if (!bHas) return;
+		v8::Local<v8::Value> JsValue = JsObject->Get(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).ToLocalChecked();
+
+		$AttributeSetter<TType, Tag, TArgumentType>::SetAttribute(Arguments, Context, JsValue);
+	}
+
+	template <typename TType, typename TId, typename TArgumentType>
+	struct $AttributeSetter;
+
+#define MAKE_ATTRIBUTE_SETTER(Type, VarName)\
+	struct $$__##Type##_##VarName##__$$ {};\
+	template <typename TArgumentType>\
+	struct $AttributeSetter<Type, $$__##Type##_##VarName##__$$, TArgumentType> {\
+		static void SetAttribute(TArgumentType& Arguments, v8::Local<v8::Context> Context, v8::Local<v8::Value> JsValue) {\
+			Arguments._##VarName = WidgetAttribute::MakeAttribute<Type>(Context, JsValue);\
+		}\
+	};
+
+	MAKE_ATTRIBUTE_SETTER(FText, Text);
+	MAKE_ATTRIBUTE_SETTER(FSlateFontInfo, Font);
+	MAKE_ATTRIBUTE_SETTER(const FSlateBrush*, StrikeBrush);
+	MAKE_ATTRIBUTE_SETTER(FSlateColor, ColorAndOpacity);
+	MAKE_ATTRIBUTE_SETTER(FLinearColor, ColorAndOpacity);
+	MAKE_ATTRIBUTE_SETTER(FVector2D, ShadowOffset);
+	MAKE_ATTRIBUTE_SETTER(FLinearColor, ShadowColorAndOpacity);
+	MAKE_ATTRIBUTE_SETTER(FLinearColor, HighlightColor);
+	MAKE_ATTRIBUTE_SETTER(const FSlateBrush*, HighlightShape);
+	MAKE_ATTRIBUTE_SETTER(FText, HighlightText);
+	MAKE_ATTRIBUTE_SETTER(float, WrapTextAt);
+	MAKE_ATTRIBUTE_SETTER(bool, AutoWrapText);
+	MAKE_ATTRIBUTE_SETTER(ETextWrappingPolicy, WrappingPolicy);
+	MAKE_ATTRIBUTE_SETTER(ETextTransformPolicy, TransformPolicy);
+	MAKE_ATTRIBUTE_SETTER(FMargin, Margin);
+	MAKE_ATTRIBUTE_SETTER(FMargin, Padding);
+	MAKE_ATTRIBUTE_SETTER(float, LineHeightPercentage);
+	MAKE_ATTRIBUTE_SETTER(ETextJustify::Type, Justification);
+	MAKE_ATTRIBUTE_SETTER(float, MinDesiredWidth);
+	MAKE_ATTRIBUTE_SETTER(FVector2D, DesiredSizeScale);
+	MAKE_ATTRIBUTE_SETTER(FVector2D, ContentScale);
+	MAKE_ATTRIBUTE_SETTER(FSlateColor, ButtonColorAndOpacity);
+	MAKE_ATTRIBUTE_SETTER(FSlateColor, ForegroundColor);
+	MAKE_ATTRIBUTE_SETTER(FSlateColor, BorderBackgroundColor);
+	MAKE_ATTRIBUTE_SETTER(ECheckBoxState, IsChecked);
+	MAKE_ATTRIBUTE_SETTER(bool, ShowEffectWhenDisabled);
+	MAKE_ATTRIBUTE_SETTER(EMenuPlacement, MenuPlacement);
+	MAKE_ATTRIBUTE_SETTER(const FSlateBrush*, BorderImage);
+	MAKE_ATTRIBUTE_SETTER(FMargin, ContentPadding);
+	MAKE_ATTRIBUTE_SETTER(EMenuPlacement, Placement);
+	MAKE_ATTRIBUTE_SETTER(FOptionalSize, WidthOverride);
+	MAKE_ATTRIBUTE_SETTER(FOptionalSize, HeightOverride);
+	MAKE_ATTRIBUTE_SETTER(FOptionalSize, MinDesiredHeight);
+	MAKE_ATTRIBUTE_SETTER(FOptionalSize, MinDesiredWidth);
+	MAKE_ATTRIBUTE_SETTER(FOptionalSize, MaxDesiredWidth);
+	MAKE_ATTRIBUTE_SETTER(FOptionalSize, MaxDesiredHeight);
+	MAKE_ATTRIBUTE_SETTER(FOptionalSize, MinAspectRatio);
+	MAKE_ATTRIBUTE_SETTER(FOptionalSize, MaxAspectRatio);
+	MAKE_ATTRIBUTE_SETTER(FSlateColor, BodyBorderBackgroundColor);
+	MAKE_ATTRIBUTE_SETTER(FText, AreaTitle);
+	MAKE_ATTRIBUTE_SETTER(FMargin, AreaTitlePadding);
+	MAKE_ATTRIBUTE_SETTER(FMargin, HeaderPadding);
+	MAKE_ATTRIBUTE_SETTER(FSlateFontInfo, AreaTitleFont);
+	MAKE_ATTRIBUTE_SETTER(TOptional<EMouseCursor::Type>, HeaderCursor);
+
+
+//#define SET_SLATE_ATTRIBUTE(Type, Name)\
+//	template<typename TType, typename TArgumentType>\
+//	void Set_ATTRIBUTE(TArgumentType& Arguments, v8::Isolate* Isolate, v8::Local<v8::Object>& JsObject, const char* VariableName)\
+//	{\
+//		v8::Local<v8::Context> Context = Isolate->GetCurrentContext();\
+//		const bool bHas = JsObject->Has(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).FromMaybe(false);\
+//		if (!bHas) return;\
+//		v8::Local<v8::Value> JsValue = JsObject->Get(Context, puerts::FV8Utils::ToV8String(Isolate, VariableName)).ToLocalChecked();\
+//		Arguments._##Name = WidgetAttribute::MakeAttribute<Type>(Context, JsValue);\
+//	}
+
+	//SET_SLATE_ATTRIBUTE(FText, Text);
+	//SET_SLATE_ATTRIBUTE(FSlateFontInfo, Font);
+	//SET_SLATE_ATTRIBUTE(const FSlateBrush*, StrikeBrush);
+	//SET_SLATE_ATTRIBUTE(FSlateColor, ColorAndOpacity);
+	//SET_SLATE_ATTRIBUTE(FLinearColor, ColorAndOpacity);
+	//SET_SLATE_ATTRIBUTE(FVector2D, ShadowOffset);
+	//SET_SLATE_ATTRIBUTE(FLinearColor, ShadowColorAndOpacity);
+	//SET_SLATE_ATTRIBUTE(FLinearColor, HighlightColor);
+	//SET_SLATE_ATTRIBUTE(const FSlateBrush*, HighlightShape);
+	//SET_SLATE_ATTRIBUTE(FText, HighlightText);
+	//SET_SLATE_ATTRIBUTE(float, WrapTextAt);
+	//SET_SLATE_ATTRIBUTE(bool, AutoWrapText);
+	//SET_SLATE_ATTRIBUTE(ETextWrappingPolicy, WrappingPolicy);
+	//SET_SLATE_ATTRIBUTE(ETextTransformPolicy, TransformPolicy);
+	//SET_SLATE_ATTRIBUTE(FMargin, Margin);
+	//SET_SLATE_ATTRIBUTE(FMargin, Padding);
+	//SET_SLATE_ATTRIBUTE(float, LineHeightPercentage);
+	//SET_SLATE_ATTRIBUTE(ETextJustify::Type, Justification);
+	//SET_SLATE_ATTRIBUTE(float, MinDesiredWidth);
+	//SET_SLATE_ATTRIBUTE(FVector2D, DesiredSizeScale);
+	//SET_SLATE_ATTRIBUTE(FVector2D, ContentScale);
+	//SET_SLATE_ATTRIBUTE(FSlateColor, ButtonColorAndOpacity);
+	//SET_SLATE_ATTRIBUTE(FSlateColor, ForegroundColor);
+	//SET_SLATE_ATTRIBUTE(FSlateColor, BorderBackgroundColor);
+	//SET_SLATE_ATTRIBUTE(ECheckBoxState, IsChecked);
+	//SET_SLATE_ATTRIBUTE(bool, ShowEffectWhenDisabled);
+	//SET_SLATE_ATTRIBUTE(EMenuPlacement, MenuPlacement);
+	//SET_SLATE_ATTRIBUTE(const FSlateBrush*, BorderImage);
+	//SET_SLATE_ATTRIBUTE(FMargin, ContentPadding);
+	//SET_SLATE_ATTRIBUTE(EMenuPlacement, Placement);
+	//SET_SLATE_ATTRIBUTE(FOptionalSize, WidthOverride);
+	//SET_SLATE_ATTRIBUTE(FOptionalSize, HeightOverride);
+	//SET_SLATE_ATTRIBUTE(FOptionalSize, MinDesiredHeight);
+	//SET_SLATE_ATTRIBUTE(FOptionalSize, MinDesiredWidth);
+	//SET_SLATE_ATTRIBUTE(FOptionalSize, MaxDesiredWidth);
+	//SET_SLATE_ATTRIBUTE(FOptionalSize, MaxDesiredHeight);
+	//SET_SLATE_ATTRIBUTE(FOptionalSize, MinAspectRatio);
+	//SET_SLATE_ATTRIBUTE(FOptionalSize, MaxAspectRatio);
+	//SET_SLATE_ATTRIBUTE(FSlateColor, BodyBorderBackgroundColor);
+	//SET_SLATE_ATTRIBUTE(FText, AreaTitle);
+	//SET_SLATE_ATTRIBUTE(FMargin, AreaTitlePadding);
+	//SET_SLATE_ATTRIBUTE(FMargin, HeaderPadding);
+	//SET_SLATE_ATTRIBUTE(FSlateFontInfo, AreaTitleFont);
+	//SET_SLATE_ATTRIBUTE(TOptional<EMouseCursor::Type>, HeaderCursor);
+}
+
+
+#endif
